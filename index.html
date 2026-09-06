@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>JUMPY — JUST JUMP.</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,Helvetica,sans-serif;
+ color:#081827;
+ background:#f7fcff;
+}
+header{
+ position:absolute;
+ top:0;left:0;right:0;
+ height:80px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 6%;
+ z-index:10;
+}
+.logo{
+ font-size:38px;
+ font-weight:900;
+ color:white;
+}
+.logo span{color:#40e8a0}
+nav{
+ display:flex;
+ gap:28px;
+ align-items:center;
+ color:white;
+}
+nav a{color:white;text-decoration:none}
+.buy{
+ background:#50eaae;
+ color:#07151e!important;
+ padding:14px 23px;
+ border-radius:30px;
+ font-weight:bold;
+}
+.hero{
+ min-height:850px;
+ position:relative;
+ overflow:hidden;
+ padding-top:110px;
+ background:linear-gradient(#1598ed,#69caff 60%,#effaff);
+}
+.cloud{
+ position:absolute;
+ width:300px;height:80px;
+ background:white;
+ border-radius:100px;
+ opacity:.8;
+}
+.cloud:before,.cloud:after{
+ content:"";
+ position:absolute;
+ background:white;
+ border-radius:50%;
+}
+.cloud:before{width:120px;height:120px;left:60px;top:-60px}
+.cloud:after{width:100px;height:100px;left:170px;top:-45px}
+.c1{top:270px;left:-100px}
+.c2{top:390px;right:-100px}
+.c3{bottom:30px;left:35%;width:500px}
+.moon{
+ position:absolute;
+ right:8%;top:140px;
+ width:105px;height:105px;
+ background:white;
+ border-radius:50%;
+ box-shadow:0 0 35px white;
+}
+.score{
+ position:relative;
+ z-index:3;
+ width:310px;
+ margin:auto;
+ padding:15px 25px;
+ display:flex;
+ justify-content:space-around;
+ align-items:center;
+ text-align:center;
+ background:rgba(255,255,255,.9);
+ border-radius:18px;
+}
+.score small{display:block}
+.score b{font-size:30px}
+.divider{height:50px;width:1px;background:#ccd7df}
+.game{
+ width:min(950px,92%);
+ height:500px;
+ margin:20px auto 0;
+ position:relative;
+ z-index:3;
+}
+canvas{
+ width:100%;
+ height:100%;
+ display:block;
+}
+.jump{
+ position:absolute;
+ bottom:45px;
+ left:50%;
+ transform:translateX(-50%);
+ border:0;
+ background:#50eaae;
+ border-radius:40px;
+ padding:18px 70px;
+ font-size:23px;
+ font-weight:900;
+ cursor:pointer;
+ z-index:5;
+}
+.gameover{
+ position:absolute;
+ right:4%;
+ bottom:35px;
+ width:270px;
+ padding:25px;
+ background:rgba(255,255,255,.94);
+ border-radius:22px;
+ text-align:center;
+ z-index:6;
+ box-shadow:0 10px 30px #17658a22;
+}
+.gameover.hidden{display:none}
+.gameover button{
+ width:100%;
+ padding:14px;
+ border-radius:30px;
+ margin-top:10px;
+ font-weight:bold;
+ font-size:15px;
+ cursor:pointer;
+}
+.retry{
+ background:#071a2d;
+ color:white;
+ border:0;
+}
+.share{
+ background:white;
+ border:1px solid #d5e1e8;
+}
+.card{
+ width:min(1120px,92%);
+ margin:25px auto;
+ padding:28px;
+ background:white;
+ border:1px solid #dfebf2;
+ border-radius:23px;
+ box-shadow:0 8px 30px #0b5d8b0b;
+}
+.contract{
+ display:flex;
+ align-items:center;
+ gap:20px;
+}
+.ca{flex:1}
+.ca small{
+ display:block;
+ color:#687b8d;
+}
+.ca b{font-size:17px}
+.copy{
+ background:white;
+ border:1px solid #dbe4ea;
+ padding:12px 20px;
+ border-radius:25px;
+ font-weight:bold;
+}
+.links{
+ display:flex;
+ gap:25px;
+ border-left:1px solid #ddd;
+ padding-left:25px;
+}
+.links a{
+ text-decoration:none;
+ color:#071827;
+ text-align:center;
+ font-weight:bold;
+}
+.links small{display:block;font-weight:normal}
+.market{
+ display:grid;
+ grid-template-columns:350px 1fr;
+ gap:35px;
+}
+.market h2{
+ font-size:40px;
+ margin:0;
+}
+.market h2 span{color:#35d995}
+.market p{
+ color:#607589;
+ font-size:18px;
+ line-height:1.5;
+}
+.stats{
+ display:flex;
+ gap:28px;
+ margin:25px 0;
+}
+.stats small{
+ display:block;
+ color:#6b7d8e;
+}
+.stats b{font-size:18px}
+.market-buy{
+ display:inline-block;
+ background:#50eaae;
+ padding:15px 27px;
+ border-radius:30px;
+ font-weight:bold;
+ text-decoration:none;
+ color:#071827;
+}
+.chart{
+ height:260px;
+ position:relative;
+ overflow:hidden;
+ border-left:1px solid #e4edf3;
+ border-bottom:1px solid #e4edf3;
+}
+.line{
+ position:absolute;
+ left:0;right:0;bottom:25px;
+ height:75%;
+ border-bottom:3px solid #32c98c;
+ transform:skewY(-13deg);
+}
+.info{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:20px;
+}
+.info article{
+ padding:25px;
+}
+.info h2{margin:8px 0}
+.info p{
+ color:#64778a;
+ line-height:1.6;
+}
+footer{
+ width:90%;
+ margin:auto;
+ padding:35px 0;
+ display:flex;
+ justify-content:space-between;
+ color:#64778a;
+}
+@media(max-width:750px){
+ nav a:not(.buy){display:none}
+ .logo{font-size:30px}
+ .hero{min-height:780px}
+ .game{height:430px}
+ .jump{padding:16px 45px}
+ .gameover{
+  position:relative;
+  right:auto;
+  bottom:auto;
+  margin:-100px auto 0;
+ }
+ .contract{flex-wrap:wrap}
+ .links{
+  width:100%;
+  border-left:0;
+  border-top:1px solid #ddd;
+  padding:18px 0 0;
+  justify-content:space-around;
+ }
+ .market{grid-template-columns:1fr}
+ .info{grid-template-columns:1fr}
+ footer{font-size:11px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">JUMP<span>Y</span></div>
+ <nav>
+  <a href="#about">About</a>
+  <a href="#tokenomics">Tokenomics</a>
+  <a href="#roadmap">Roadmap</a>
+  <a class="buy" href="#">Buy $JUMPY</a>
+ </nav>
+</header>
+
+<section class="hero">
+
+ <div class="moon"></div>
+ <div class="cloud c1"></div>
+ <div class="cloud c2"></div>
+ <div class="cloud c3"></div>
+
+ <div class="score">
+  <div>
+   <small>SCORE</small>
+   <b id="score">0</b>
+  </div>
+
+  <div class="divider"></div>
+
+  <div>
+   <small>🏆 BEST</small>
+   <b id="best">0</b>
+  </div>
+ </div>
+
+ <div class="game">
+  <canvas id="game"></canvas>
+ </div>
+
+ <button class="jump" onclick="jump()">↑ &nbsp; JUMP</button>
+
+ <div class="gameover hidden" id="gameover">
+  <h2>GAME OVER</h2>
+  <p>Score: <b id="final">0</b></p>
+  <p>🏆 Best: <b id="finalBest">0</b></p>
+
+  <button class="retry" onclick="restart()">↻ &nbsp; Try Again</button>
+
+  <button class="share" onclick="share()">𝕏 &nbsp; Share to X</button>
+ </div>
+
+</section>
+
+<section class="card contract">
+
+ <div class="ca">
+  <small>CONTRACT ADDRESS</small>
+  <b id="ca">ADD CA AFTER LAUNCH</b>
+ </div>
+
+ <button class="copy" onclick="copyCA()">▣ Copy</button>
+
+ <div class="links">
+  <a href="https://x.com/jumpymeme">𝕏<small>Twitter / X</small></a>
+  <a href="https://dexscreener.com/solana">◈<small>Dexscreener</small></a>
+  <a href="mailto:jumpymeme@gmail.com">✉<small>Email</small></a>
+ </div>
+
+</section>
+
+<section class="card market">
+
+ <div>
+  <h2>$JUMP<span>Y</span></h2>
+
+  <p>
+   A community-driven memecoin<br>
+   on Solana.
+  </p>
+
+  <h2 style="font-size:30px">$—</h2>
+
+  <div class="stats">
+   <div>
+    <small>Market Cap</small>
+    <b>—</b>
+   </div>
+
+   <div>
+    <small>Volume</small>
+    <b>—</b>
+   </div>
+
+   <div>
+    <small>Holders</small>
+    <b>—</b>
+   </div>
+  </div>
+
+  <a class="market-buy" href="#">Buy $JUMPY</a>
+ </div>
+
+ <div class="chart">
+  <div class="line"></div>
+ </div>
+
+</section>
+
+<section class="card info">
+
+ <article id="about">
+  <small>01</small>
+  <h2>About</h2>
+  <p>
+   JUMPY is simple. Play the game,
+   chase the high score and JUST JUMP.
+  </p>
+ </article>
+
+ <article id="tokenomics">
+  <small>02</small>
+  <h2>Tokenomics</h2>
+  <p>
+   Transparent token information will
+   be published before launch.
+  </p>
+ </article>
+
+ <article id="roadmap">
+  <small>03</small>
+  <h2>Roadmap</h2>
+  <p>
+   Build → Launch → Community →
+   More JUMPY.
+  </p>
+ </article>
+
+</section>
+
+<footer>
+ <span>HIGHER TOGETHER.</span>
+ <span>Built on ◎ Solana</span>
+</footer>
+
+<script>
+
+const canvas=document.getElementById("game");
+const ctx=canvas.getContext("2d");
+
+let W=900,H=470;
+let player;
+let blocks=[];
+let score=0;
+let best=Number(localStorage.getItem("jumpyBest")||0);
+let running=false;
+let dead=false;
+let last=0;
+let timer=0;
+
+document.getElementById("best").textContent=best;
+
+function resize(){
+ W=canvas.clientWidth;
+ H=canvas.clientHeight;
+
+ const d=devicePixelRatio||1;
+
+ canvas.width=W*d;
+ canvas.height=H*d;
+
+ ctx.setTransform(d,0,0,d,0,0);
+}
+
+window.addEventListener("resize",resize);
+resize();
+
+function restart(){
+
+ score=0;
+ blocks=[];
+ timer=0;
+ dead=false;
+ running=true;
+
+ player={
+  x:W*.18,
+  y:H*.5,
+  vy:0
+ };
+
+ document.getElementById("score").textContent=0;
+ document.getElementById("gameover").classList.add("hidden");
+
+ last=performance.now();
+ requestAnimationFrame(loop);
+}
+
+function jump(){
+
+ if(dead){
+  restart();
+  return;
+ }
+
+ if(!running) restart();
+
+ player.vy=-620;
+}
+
+document.addEventListener("keydown",e=>{
+ if(e.code==="Space"){
+  e.preventDefault();
+  jump();
+ }
+});
+
+canvas.addEventListener("pointerdown",jump);
+
+function addBlock(){
+
+ let gap=160;
+ let center=110+Math.random()*(H-220);
+
+ blocks.push({
+  x:W+30,
+  width:48,
+  center:center,
+  gap:gap,
+  passed:false,
+  green:Math.random()>.3
+ });
+}
+
+function drawPlayer(){
+
+ ctx.save();
+
+ ctx.translate(player.x,player.y);
+
+ ctx.fillStyle="#b9c0c7";
+ ctx.fillRect(-35,-16,24,32);
+
+ ctx.fillStyle="white";
+ ctx.strokeStyle="#111";
+ ctx.lineWidth=4;
+
+ ctx.beginPath();
+ ctx.roundRect(-10,-38,52,76,25);
+ ctx.fill();
+ ctx.stroke();
+
+ ctx.fillStyle="#35c968";
+
+ ctx.beginPath();
+ ctx.arc(16,8,27,0,Math.PI);
+ ctx.fill();
+
+ ctx.fillStyle="#111";
+
+ ctx.beginPath();
+ ctx.arc(4,-10,5,0,Math.PI*2);
+ ctx.arc(24,-10,5,0,Math.PI*2);
+ ctx.fill();
+
+ ctx.fillStyle="#ff7294";
+
+ ctx.beginPath();
+ ctx.arc(14,3,7,0,Math.PI);
+ ctx.fill();
+
+ ctx.restore();
+}
+
+function drawBlock(o){
+
+ let color=o.green?"#28d878":"#ef5b5b";
+
+ let top=o.center-o.gap/2;
+ let bottom=o.center+o.gap/2;
+
+ ctx.strokeStyle=color;
+ ctx.lineWidth=6;
+
+ ctx.beginPath();
+ ctx.moveTo(o.x+o.width/2,0);
+ ctx.lineTo(o.x+o.width/2,top);
+ ctx.moveTo(o.x+o.width/2,bottom);
+ ctx.lineTo(o.x+o.width/2,H);
+ ctx.stroke();
+
+ ctx.fillStyle=color;
+
+ ctx.fillRect(o.x,top-28,o.width,56);
+}
+
+function collision(o){
+
+ let top=o.center-o.gap/2-28;
+ let bottom=o.center+o.gap/2;
+
+ return(
+  player.x+22>o.x &&
+  player.x-22<o.x+o.width &&
+  (
+   player.y-22<top ||
+   player.y+22>bottom
+  )
+ );
+}
+
+function loop(now){
+
+ if(!running)return;
+
+ let dt=Math.min((now-last)/1000,.03);
+ last=now;
+
+ ctx.clearRect(0,0,W,H);
+
+ player.vy+=1500*dt;
+ player.y+=player.vy*dt;
+
+ timer-=dt;
+
+ if(timer<=0){
+  addBlock();
+  timer=.9;
+ }
+
+ blocks.forEach(o=>{
+
+  o.x-=310*dt;
+
+  drawBlock(o);
+
+  if(!o.passed && o.x+o.width<player.x){
+
+   o.passed=true;
+   score++;
+
+   document.getElementById("score").textContent=score;
+  }
+
+  if(collision(o))end();
+ });
+
+ blocks=blocks.filter(o=>o.x>-100);
+
+ drawPlayer();
+
+ if(player.y<0 || player.y>H)end();
+
+ if(!dead)
+  requestAnimationFrame(loop);
+}
+
+function end(){
+
+ if(dead)return;
+
+ dead=true;
+ running=false;
+
+ if(score>best){
+  best=score;
+  localStorage.setItem("jumpyBest",best);
+ }
+
+ document.getElementById("best").textContent=best;
+ document.getElementById("final").textContent=score;
+ document.getElementById("finalBest").textContent=best;
+ document.getElementById("gameover").classList.remove("hidden");
+}
+
+function copyCA(){
+
+ navigator.clipboard.writeText(
+  document.getElementById("ca").textContent
+ );
+
+ alert("Copied!");
+}
+
+function share(){
+
+ let text=encodeURIComponent(
+  "I scored "+score+
+  " on JUMPY. JUST JUMP. 🟢🚀"
+ );
+
+ window.open(
+  "https://x.com/intent/post?text="+text,
+  "_blank"
+ );
+}
+
+restart();
+
+</script>
+
+</body>
+</html>
