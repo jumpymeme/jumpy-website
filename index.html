@@ -3,10 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#28a9df">
 <title>JUMPY — JUST JUMP.</title>
 
 <style>
+:root{
+  --green:#43e89a;
+  --green2:#18d878;
+  --dark:#071426;
+  --sky:#20a9df;
+  --line:#dce8ee;
+  --white:#fff;
+}
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -19,43 +27,125 @@ html{
 
 body{
   font-family:Arial,Helvetica,sans-serif;
+  color:var(--dark);
   background:#f7fbfd;
-  color:#071426;
   overflow-x:hidden;
 }
 
-button,a{
-  font:inherit;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
 button{
-  cursor:pointer;
+  font-family:inherit;
 }
 
-/* =========================
+/* ================================
    HERO
-========================= */
+================================ */
 
 .hero{
   position:relative;
-  min-height:800px;
   overflow:hidden;
   background:
     linear-gradient(
       180deg,
-      #159ddd 0%,
-      #35b7e5 48%,
-      #dff6fc 100%
+      #159fe0 0%,
+      #2ab0e1 48%,
+      #e9f9fd 100%
     );
 }
 
-/* clouds */
+.hero-inner{
+  width:min(1500px,100%);
+  margin:auto;
+  padding:0 34px 28px;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.header{
+  height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  z-index:30;
+}
+
+.logo{
+  color:#fff;
+  font-size:40px;
+  font-weight:900;
+  letter-spacing:-3px;
+}
+
+.logo span{
+  color:var(--green);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:34px;
+  color:white;
+  font-size:14px;
+}
+
+.nav a{
+  transition:.2s;
+}
+
+.nav a:hover{
+  opacity:.75;
+}
+
+.buy{
+  background:var(--green);
+  color:#071426;
+  padding:13px 25px;
+  border-radius:999px;
+  font-weight:900;
+}
+
+/* ================================
+   SKY
+================================ */
+
+.sky-decoration{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.moon{
+  position:absolute;
+  width:116px;
+  height:116px;
+  border-radius:50%;
+  right:6%;
+  top:124px;
+  background:
+    radial-gradient(
+      circle at 34% 30%,
+      #fff 0,
+      #eef7fb 58%,
+      #d2e6ef 100%
+    );
+  box-shadow:
+    0 0 28px rgba(255,255,255,.8),
+    inset -10px -8px 15px rgba(100,140,160,.15);
+}
+
 .cloud{
   position:absolute;
-  background:rgba(255,255,255,.86);
-  border-radius:999px;
-  filter:blur(1px);
-  pointer-events:none;
+  background:rgba(255,255,255,.88);
+  border-radius:100px;
+  filter:blur(.4px);
 }
 
 .cloud:before,
@@ -66,248 +156,142 @@ button{
   border-radius:50%;
 }
 
-.cloud.one{
-  width:270px;
-  height:65px;
-  left:-50px;
-  top:340px;
+.cloud-a{
+  width:360px;
+  height:72px;
+  top:245px;
+  left:-100px;
 }
 
-.cloud.one:before{
-  width:120px;
-  height:120px;
-  left:50px;
-  top:-55px;
-}
-
-.cloud.one:after{
-  width:100px;
-  height:100px;
-  left:145px;
-  top:-40px;
-}
-
-.cloud.two{
-  width:350px;
-  height:75px;
-  right:-80px;
-  top:220px;
-}
-
-.cloud.two:before{
-  width:135px;
-  height:135px;
-  left:80px;
-  top:-65px;
-}
-
-.cloud.two:after{
-  width:105px;
-  height:105px;
-  left:195px;
-  top:-45px;
-}
-
-.cloud.three{
-  width:420px;
-  height:80px;
-  left:28%;
-  bottom:45px;
-}
-
-.cloud.three:before{
-  width:160px;
-  height:160px;
-  left:80px;
+.cloud-a:before{
+  width:150px;
+  height:150px;
+  left:70px;
   top:-75px;
 }
 
-.cloud.three:after{
-  width:145px;
-  height:145px;
-  left:220px;
+.cloud-a:after{
+  width:125px;
+  height:125px;
+  left:190px;
+  top:-60px;
+}
+
+.cloud-b{
+  width:430px;
+  height:78px;
+  top:295px;
+  right:-120px;
+}
+
+.cloud-b:before{
+  width:170px;
+  height:170px;
+  left:95px;
+  top:-85px;
+}
+
+.cloud-b:after{
+  width:135px;
+  height:135px;
+  left:245px;
   top:-65px;
 }
 
-/* moon */
-.moon{
-  position:absolute;
-  right:7%;
-  top:125px;
-  width:115px;
-  height:115px;
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 30% 30%,#fff 0,#f4f8fb 55%,#d9e9f2 100%);
-  box-shadow:
-    0 0 25px rgba(255,255,255,.8),
-    inset -8px -8px 15px rgba(160,190,205,.25);
-  z-index:1;
+.cloud-c{
+  width:520px;
+  height:92px;
+  bottom:100px;
+  left:25%;
 }
 
-/* mountains */
-.mountains{
-  position:absolute;
-  bottom:-3px;
-  left:0;
-  width:100%;
-  height:300px;
-  z-index:1;
-  overflow:hidden;
-}
-
-.mountain{
-  position:absolute;
-  bottom:0;
-  width:0;
-  height:0;
-  border-left:180px solid transparent;
-  border-right:180px solid transparent;
-  border-bottom:280px solid rgba(91,176,222,.75);
-}
-
-.mountain.m1{
-  left:-80px;
-}
-
-.mountain.m2{
-  left:18%;
-  border-left-width:230px;
-  border-right-width:230px;
-  border-bottom-width:330px;
-  opacity:.65;
-}
-
-.mountain.m3{
-  right:-80px;
-  border-left-width:240px;
-  border-right-width:240px;
-  border-bottom-width:310px;
-  opacity:.65;
-}
-
-.mountain:after{
-  content:"";
-  position:absolute;
-  left:-55px;
-  bottom:-280px;
-  width:110px;
+.cloud-c:before{
+  width:190px;
   height:190px;
-  background:rgba(255,255,255,.8);
-  clip-path:polygon(50% 0,100% 100%,0 100%);
+  left:110px;
+  top:-95px;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-.header{
-  position:relative;
-  z-index:20;
-  max-width:1450px;
-  margin:auto;
-  padding:24px 42px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.cloud-c:after{
+  width:170px;
+  height:170px;
+  left:290px;
+  top:-82px;
 }
 
-.logo{
-  font-size:40px;
-  line-height:1;
-  font-weight:900;
-  letter-spacing:-2px;
-  color:white;
-}
+/* ================================
+   HERO GRID
+================================ */
 
-.logo span{
-  color:#43e397;
-}
-
-.nav{
-  display:flex;
-  align-items:center;
-  gap:34px;
-}
-
-.nav a{
-  text-decoration:none;
-  color:white;
-  font-size:15px;
-  font-weight:500;
-}
-
-.buy-btn{
-  border:0;
-  border-radius:999px;
-  background:#43e397;
-  color:#071426;
-  padding:13px 25px;
-  font-weight:800;
-}
-
-/* =========================
-   HERO CONTENT
-========================= */
-
-.hero-inner{
+.hero-grid{
   position:relative;
   z-index:5;
-  max-width:1450px;
-  margin:auto;
-  min-height:720px;
+  display:grid;
+  grid-template-columns:300px minmax(0,1fr);
+  gap:22px;
+  min-height:690px;
 }
 
+/* ================================
+   COPY
+================================ */
+
 .hero-copy{
-  position:absolute;
-  left:42px;
-  top:78px;
-  width:330px;
-  z-index:10;
+  padding-top:34px;
+  position:relative;
+  z-index:15;
 }
 
 .eyebrow{
   color:white;
-  font-size:13px;
+  font-size:12px;
+  font-weight:700;
   letter-spacing:6px;
   margin-bottom:18px;
-  font-weight:700;
 }
 
 .hero-copy h1{
   font-size:92px;
-  line-height:.82;
-  letter-spacing:-6px;
+  line-height:.80;
+  letter-spacing:-7px;
   font-weight:900;
-  color:white;
+  color:#fff;
 }
 
 .hero-copy h1 span{
-  color:#43e397;
+  color:var(--green);
 }
 
 .hero-copy p{
-  color:white;
-  font-size:18px;
-  line-height:1.35;
-  margin-top:25px;
-  max-width:290px;
+  margin-top:24px;
+  color:#fff;
+  font-size:17px;
+  line-height:1.4;
+  max-width:270px;
 }
 
-/* =========================
-   GAME
-========================= */
+/* ================================
+   GAME AREA
+================================ */
 
-.game-wrap{
-  position:absolute;
-  left:330px;
-  right:20px;
-  top:0;
-  bottom:0;
-  z-index:8;
+.game-section{
+  position:relative;
+  min-width:0;
+  padding-top:25px;
 }
 
-#game{
+.game-board{
+  position:relative;
+  width:100%;
+  aspect-ratio:1.47 / 1;
+  min-height:600px;
+  overflow:hidden;
+  border-radius:26px;
+}
+
+/* actual game canvas */
+
+#gameCanvas{
   position:absolute;
   inset:0;
   width:100%;
@@ -315,59 +299,64 @@ button{
   display:block;
 }
 
-/* score */
+/* ================================
+   SCORE
+================================ */
+
 .score-card{
   position:absolute;
-  top:20px;
+  z-index:10;
+  top:0;
   left:50%;
   transform:translateX(-50%);
   width:310px;
   height:82px;
+  background:rgba(255,255,255,.91);
   border-radius:18px;
-  background:rgba(255,255,255,.9);
   display:flex;
   align-items:center;
-  justify-content:center;
-  z-index:15;
-  box-shadow:0 10px 35px rgba(0,70,110,.08);
+  box-shadow:0 10px 30px rgba(0,60,100,.08);
 }
 
-.score-box{
+.score-side{
   width:50%;
   text-align:center;
 }
 
-.score-box + .score-box{
-  border-left:1px solid #b8c8d2;
+.score-side + .score-side{
+  border-left:1px solid #b9c9d2;
 }
 
-.score-label{
+.score-side small{
+  display:block;
   font-size:13px;
-  color:#142033;
-  margin-bottom:3px;
+  margin-bottom:5px;
 }
 
-.score-value{
+.score-side strong{
+  display:block;
   font-size:31px;
   line-height:1;
-  font-weight:900;
 }
 
-/* game over */
+/* ================================
+   GAME OVER
+================================ */
+
 .game-over{
-  position:absolute;
-  right:5px;
-  bottom:55px;
-  width:270px;
-  border-radius:20px;
-  background:rgba(255,255,255,.91);
-  padding:20px;
-  z-index:18;
-  box-shadow:0 15px 45px rgba(0,40,70,.13);
   display:none;
+  position:absolute;
+  z-index:20;
+  right:0;
+  bottom:66px;
+  width:270px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 15px 45px rgba(0,40,70,.14);
 }
 
-.game-over.show{
+.game-over.active{
   display:block;
 }
 
@@ -379,184 +368,188 @@ button{
 
 .over-stats{
   display:flex;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
 .over-stat{
   width:50%;
   text-align:center;
-  color:#687789;
+  color:#6a7886;
+  font-size:14px;
 }
 
 .over-stat + .over-stat{
-  border-left:1px solid #ccd5dc;
+  border-left:1px solid #ccd7de;
 }
 
 .over-stat strong{
   display:block;
-  color:#071426;
-  font-size:28px;
+  color:var(--dark);
+  font-size:29px;
   margin-top:5px;
 }
 
-.try{
+.try-button,
+.share-button{
   width:100%;
-  border:0;
   border-radius:999px;
-  background:#071426;
-  color:white;
   padding:14px;
+  font-size:16px;
   font-weight:800;
+}
+
+.try-button{
+  border:0;
+  background:var(--dark);
+  color:white;
   margin-bottom:10px;
 }
 
-.share{
-  width:100%;
-  border:1px solid #d8e0e6;
-  border-radius:999px;
+.share-button{
+  border:1px solid #d6e0e6;
   background:white;
-  color:#071426;
-  padding:13px;
-  font-weight:700;
+  color:var(--dark);
 }
 
-/* jump */
+/* ================================
+   JUMP
+================================ */
+
 .jump-area{
   position:absolute;
+  z-index:15;
   left:50%;
-  bottom:24px;
+  bottom:20px;
   transform:translateX(-50%);
-  z-index:20;
   text-align:center;
 }
 
-.jump-btn{
-  border:0;
-  background:#43e397;
-  color:#071426;
+.jump-button{
   width:270px;
   height:70px;
+  border:0;
   border-radius:999px;
+  background:var(--green);
+  color:var(--dark);
   font-size:28px;
   font-weight:900;
-  box-shadow:0 10px 25px rgba(15,100,70,.12);
+  box-shadow:0 10px 28px rgba(20,130,80,.13);
 }
 
-.jump-btn span{
+.jump-button span{
   margin-right:12px;
 }
 
-.instructions{
-  color:#51697a;
-  font-size:14px;
-  margin-top:9px;
+.help{
+  margin-top:8px;
+  color:#4c6878;
+  font-size:13px;
 }
 
-/* =========================
+/* ================================
    CONTRACT
-========================= */
+================================ */
 
 .contract{
   position:relative;
-  z-index:10;
-  max-width:1370px;
-  margin:-1px auto 0;
-  background:rgba(255,255,255,.93);
-  border:1px solid #dce8ee;
+  z-index:20;
+  width:min(1400px,calc(100% - 68px));
+  margin:18px auto 0;
+  padding:16px 24px;
+  background:rgba(255,255,255,.96);
+  border:1px solid var(--line);
   border-radius:20px;
-  padding:18px 28px;
   display:flex;
   align-items:center;
-  gap:25px;
+  gap:18px;
 }
 
 .contract-icon{
   width:58px;
   height:58px;
+  flex:none;
   border-radius:50%;
-  background:#edf7fc;
+  background:#eef8fc;
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:28px;
+  align-items:center;
+  font-size:27px;
 }
 
-.contract-main{
-  flex:1;
+.contract-info{
   min-width:0;
+  flex:1;
 }
 
 .contract-label{
-  color:#6c7d8c;
-  font-size:13px;
+  color:#657789;
+  font-size:12px;
   margin-bottom:7px;
 }
 
 .contract-address{
-  font-size:21px;
+  font-size:20px;
   font-weight:900;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 
-.copy{
-  border:1px solid #d9e2e8;
+.copy-button{
+  flex:none;
+  border:1px solid #d8e2e8;
   background:white;
   border-radius:999px;
-  padding:13px 25px;
+  padding:12px 24px;
   font-weight:800;
 }
 
 .socials{
   display:flex;
   align-items:center;
-  border-left:1px solid #d8e0e5;
-  padding-left:30px;
-  gap:28px;
+  gap:20px;
+  padding-left:25px;
+  border-left:1px solid #d8e1e6;
 }
 
 .social{
-  text-decoration:none;
-  color:#071426;
+  width:78px;
   text-align:center;
-  min-width:70px;
 }
 
 .social-icon{
-  font-size:27px;
   height:31px;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  font-size:27px;
 }
 
-.dex-logo{
-  width:29px;
-  height:29px;
-  object-fit:contain;
+.dex-icon{
+  width:30px;
+  height:30px;
 }
 
 .social small{
   display:block;
-  color:#657585;
-  margin-top:5px;
-  font-size:12px;
+  color:#697987;
+  font-size:11px;
+  margin-top:4px;
 }
 
-/* =========================
+/* ================================
    MARKET
-========================= */
+================================ */
 
 .market{
-  max-width:1370px;
-  margin:15px auto;
-  padding:30px;
-  border:1px solid #dce8ee;
+  width:min(1400px,calc(100% - 68px));
+  margin:16px auto;
+  padding:28px 30px;
   background:white;
+  border:1px solid var(--line);
   border-radius:20px;
   display:grid;
-  grid-template-columns:340px 1fr;
+  grid-template-columns:340px minmax(0,1fr);
   gap:25px;
 }
 
@@ -566,38 +559,38 @@ button{
 }
 
 .market-title span{
-  color:#43d991;
+  color:var(--green2);
 }
 
-.market-sub{
-  color:#687889;
-  line-height:1.4;
-  margin-top:10px;
-  max-width:270px;
+.market-description{
+  color:#667787;
+  font-size:16px;
+  line-height:1.35;
+  margin-top:8px;
 }
 
-.price{
-  margin-top:23px;
-  font-size:30px;
+.market-price{
+  margin-top:22px;
+  font-size:29px;
   font-weight:900;
 }
 
-.change{
-  color:#22c878;
-  font-size:17px;
-  margin-left:8px;
+.market-change{
+  color:#20c878;
+  font-size:16px;
+  margin-left:5px;
 }
 
 .metrics{
   display:flex;
-  gap:35px;
+  gap:28px;
   margin-top:25px;
 }
 
 .metric label{
   display:block;
-  color:#6c7c8b;
-  font-size:13px;
+  color:#6a7b89;
+  font-size:12px;
   margin-bottom:6px;
 }
 
@@ -605,27 +598,27 @@ button{
   font-size:18px;
 }
 
-.chart-box{
-  min-width:0;
-  border-radius:13px;
-  overflow:hidden;
-  background:#091525;
+.chart{
   height:300px;
+  min-width:0;
+  overflow:hidden;
+  border-radius:13px;
+  background:#091525;
 }
 
-.chart-box iframe{
+.chart iframe{
   width:100%;
   height:100%;
   border:0;
 }
 
-/* =========================
-   FEATURES
-========================= */
+/* ================================
+   FEATURE CARDS
+================================ */
 
 .features{
-  max-width:1370px;
-  margin:15px auto 35px;
+  width:min(1400px,calc(100% - 68px));
+  margin:16px auto 35px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:15px;
@@ -633,83 +626,133 @@ button{
 
 .feature{
   background:white;
-  border:1px solid #dce8ee;
+  border:1px solid var(--line);
   border-radius:20px;
-  padding:25px;
+  padding:23px;
   display:flex;
   align-items:center;
-  gap:20px;
+  gap:18px;
 }
 
 .feature-icon{
   width:55px;
   height:55px;
+  flex:none;
   border-radius:50%;
-  background:#edf7fc;
+  background:#eef8fc;
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:25px;
+  align-items:center;
+  font-size:24px;
 }
 
 .feature h3{
-  font-size:16px;
+  font-size:15px;
   margin-bottom:6px;
 }
 
 .feature p{
-  color:#697988;
-  font-size:14px;
+  color:#697987;
+  font-size:13px;
   line-height:1.35;
 }
 
-/* =========================
+/* ================================
    FOOTER
-========================= */
+================================ */
 
 footer{
-  max-width:1370px;
+  width:min(1400px,calc(100% - 68px));
   margin:auto;
-  padding:30px 0 45px;
+  padding:10px 0 40px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  color:#657585;
+  align-items:center;
+  color:#667687;
 }
 
 .footer-logo{
   color:#071426;
-  font-size:25px;
+  font-size:26px;
   font-weight:900;
 }
 
 .footer-logo span{
-  color:#43d991;
+  color:var(--green2);
 }
 
-footer a{
-  color:#657585;
-  text-decoration:none;
-  margin:0 12px;
+.footer-tag{
+  font-size:11px;
+  letter-spacing:4px;
+  margin-left:15px;
+}
+
+.footer-nav{
+  display:flex;
+  gap:28px;
+  font-size:13px;
+}
+
+.solana{
   font-size:14px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* ================================
+   TABLET
+================================ */
 
-@media(max-width:900px){
+@media(max-width:1050px){
+
+  .hero-inner{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .hero-grid{
+    grid-template-columns:250px minmax(0,1fr);
+  }
+
+  .hero-copy h1{
+    font-size:72px;
+  }
+
+  .game-board{
+    min-height:540px;
+  }
+
+  .contract,
+  .market,
+  .features,
+  footer{
+    width:calc(100% - 40px);
+  }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:700px){
+
+  body{
+    background:#f7fbfd;
+  }
 
   .hero{
-    min-height:820px;
+    min-height:auto;
+  }
+
+  .hero-inner{
+    padding:0 14px 20px;
   }
 
   .header{
-    padding:18px 20px;
+    height:70px;
   }
 
   .logo{
-    font-size:29px;
+    font-size:30px;
+    letter-spacing:-2px;
   }
 
   .nav{
@@ -720,235 +763,270 @@ footer a{
     display:none;
   }
 
-  .buy-btn{
+  .buy{
+    display:block!important;
     padding:10px 15px;
-    font-size:13px;
-  }
-
-  .hero-inner{
-    min-height:770px;
-  }
-
-  .hero-copy{
-    left:20px;
-    top:65px;
-    width:280px;
-  }
-
-  .eyebrow{
-    font-size:10px;
-    letter-spacing:4px;
-    margin-bottom:10px;
-  }
-
-  .hero-copy h1{
-    font-size:62px;
-    letter-spacing:-4px;
-  }
-
-  .hero-copy p{
-    font-size:15px;
-    margin-top:13px;
-    max-width:250px;
-  }
-
-  .game-wrap{
-    left:0;
-    right:0;
-    top:235px;
-    bottom:0;
-  }
-
-  .score-card{
-    top:5px;
-    width:280px;
-    height:70px;
-  }
-
-  .score-value{
-    font-size:27px;
-  }
-
-  .game-over{
-    right:15px;
-    bottom:92px;
-    width:260px;
-  }
-
-  .jump-area{
-    bottom:14px;
-  }
-
-  .jump-btn{
-    width:245px;
-    height:62px;
-    font-size:24px;
-  }
-
-  .instructions{
     font-size:12px;
   }
 
+  .hero-grid{
+    display:block;
+    min-height:0;
+  }
+
+  .hero-copy{
+    padding:17px 12px 0;
+    height:195px;
+  }
+
+  .eyebrow{
+    font-size:9px;
+    letter-spacing:4px;
+    margin-bottom:12px;
+  }
+
+  .hero-copy h1{
+    font-size:58px;
+    letter-spacing:-5px;
+    line-height:.82;
+  }
+
+  .hero-copy p{
+    margin-top:14px;
+    font-size:14px;
+    line-height:1.35;
+    max-width:245px;
+  }
+
+  .game-section{
+    padding-top:0;
+  }
+
+  .game-board{
+    width:100%;
+    min-height:0;
+    aspect-ratio:0.78 / 1;
+    border-radius:18px;
+  }
+
+  .score-card{
+    width:245px;
+    height:65px;
+    top:8px;
+    border-radius:17px;
+  }
+
+  .score-side small{
+    font-size:11px;
+  }
+
+  .score-side strong{
+    font-size:25px;
+  }
+
+  .game-over{
+    width:230px;
+    right:10px;
+    bottom:78px;
+    padding:17px;
+    border-radius:19px;
+  }
+
+  .game-over h2{
+    font-size:19px;
+    margin-bottom:17px;
+  }
+
+  .over-stat{
+    font-size:13px;
+  }
+
+  .over-stat strong{
+    font-size:26px;
+  }
+
+  .try-button,
+  .share-button{
+    padding:12px;
+    font-size:15px;
+  }
+
+  .jump-area{
+    bottom:13px;
+  }
+
+  .jump-button{
+    width:220px;
+    height:58px;
+    font-size:23px;
+  }
+
+  .help{
+    font-size:11px;
+    margin-top:7px;
+  }
+
   .moon{
-    width:75px;
-    height:75px;
-    right:7%;
+    width:70px;
+    height:70px;
+    right:8%;
     top:145px;
   }
 
-  .mountains{
-    height:180px;
+  .cloud-a{
+    top:290px;
+    left:-150px;
+    transform:scale(.75);
   }
 
-  .mountain{
-    border-left-width:100px;
-    border-right-width:100px;
-    border-bottom-width:180px;
+  .cloud-b{
+    top:430px;
+    right:-210px;
+    transform:scale(.75);
   }
+
+  .cloud-c{
+    bottom:80px;
+    left:-130px;
+    transform:scale(.8);
+  }
+
+  /* contract */
 
   .contract{
-    margin:0 12px;
+    width:calc(100% - 20px);
+    margin:10px auto 0;
     padding:15px;
-    gap:12px;
-    flex-wrap:wrap;
+    display:grid;
+    grid-template-columns:48px minmax(0,1fr);
+    gap:10px;
+    border-radius:18px;
   }
 
   .contract-icon{
-    width:45px;
-    height:45px;
+    width:48px;
+    height:48px;
     font-size:22px;
   }
 
-  .contract-main{
-    width:calc(100% - 60px);
+  .contract-info{
+    min-width:0;
+  }
+
+  .contract-label{
+    font-size:11px;
+    line-height:1.3;
   }
 
   .contract-address{
     font-size:16px;
   }
 
-  .copy{
-    margin-left:57px;
-    padding:10px 18px;
+  .copy-button{
+    grid-column:2;
+    justify-self:start;
+    padding:10px 20px;
+    font-size:14px;
   }
 
   .socials{
+    grid-column:1 / -1;
     width:100%;
-    padding:15px 0 0;
+    padding:14px 0 0;
     border-left:0;
-    border-top:1px solid #d8e0e5;
+    border-top:1px solid #d8e1e6;
     justify-content:space-around;
   }
 
+  /* market */
+
   .market{
-    margin:15px 12px;
-    padding:20px;
+    width:calc(100% - 20px);
     display:block;
+    padding:21px;
+    border-radius:18px;
   }
 
   .market-title{
     font-size:34px;
   }
 
+  .market-description{
+    font-size:14px;
+  }
+
+  .market-price{
+    font-size:25px;
+  }
+
+  .market-change{
+    font-size:13px;
+  }
+
   .metrics{
     gap:20px;
+    justify-content:space-between;
   }
 
   .metric strong{
     font-size:16px;
   }
 
-  .chart-box{
-    margin-top:25px;
+  .chart{
+    margin-top:23px;
     height:260px;
   }
 
+  /* cards */
+
   .features{
-    margin:15px 12px;
+    width:calc(100% - 20px);
     grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .feature{
+    padding:19px;
   }
 
   footer{
-    margin:0 20px;
+    width:calc(100% - 30px);
     flex-direction:column;
-    gap:20px;
+    gap:18px;
     text-align:center;
   }
 
-  footer nav{
+  .footer-nav{
     display:none;
   }
 }
 
-@media(max-width:500px){
+/* very small phones */
 
-  .hero{
-    min-height:790px;
+@media(max-width:380px){
+
+  .hero-copy h1{
+    font-size:51px;
   }
 
   .hero-copy{
-    top:60px;
+    height:180px;
   }
 
-  .hero-copy h1{
-    font-size:57px;
-  }
-
-  .hero-copy p{
-    max-width:230px;
-  }
-
-  .game-wrap{
-    top:225px;
+  .game-board{
+    aspect-ratio:.72 / 1;
   }
 
   .score-card{
-    width:250px;
-    height:64px;
-  }
-
-  .score-label{
-    font-size:11px;
-  }
-
-  .score-value{
-    font-size:24px;
+    width:225px;
   }
 
   .game-over{
-    width:235px;
-    right:10px;
-    bottom:88px;
-    padding:16px;
+    width:215px;
   }
 
-  .game-over h2{
-    font-size:19px;
-    margin-bottom:16px;
-  }
-
-  .try,
-  .share{
-    padding:11px;
-  }
-
-  .jump-btn{
-    width:220px;
-    height:57px;
-    font-size:22px;
-  }
-
-  .contract{
-    margin-left:8px;
-    margin-right:8px;
-  }
-
-  .socials{
-    gap:5px;
-  }
-
-  .social{
-    min-width:65px;
+  .jump-button{
+    width:205px;
   }
 }
 </style>
@@ -958,108 +1036,115 @@ footer a{
 
 <section class="hero">
 
-  <div class="cloud one"></div>
-  <div class="cloud two"></div>
-  <div class="cloud three"></div>
-
-  <div class="moon"></div>
-
-  <div class="mountains">
-    <div class="mountain m1"></div>
-    <div class="mountain m2"></div>
-    <div class="mountain m3"></div>
+  <div class="sky-decoration">
+    <div class="moon"></div>
+    <div class="cloud cloud-a"></div>
+    <div class="cloud cloud-b"></div>
+    <div class="cloud cloud-c"></div>
   </div>
-
-  <header class="header">
-    <div class="logo">JUMP<span>Y</span></div>
-
-    <nav class="nav">
-      <a href="#market">About</a>
-      <a href="#market">Tokenomics</a>
-      <a href="#features">Roadmap</a>
-      <a class="buy-btn"
-         href="https://pump.fun/"
-         target="_blank">
-        Buy $JUMPY
-      </a>
-    </nav>
-  </header>
 
   <div class="hero-inner">
 
-    <div class="hero-copy">
-      <div class="eyebrow">HIGHER TOGETHER.</div>
+    <header class="header">
+      <div class="logo">JUMP<span>Y</span></div>
 
-      <h1>
-        JUST<br>
-        <span>JUMP.</span>
-      </h1>
+      <nav class="nav">
+        <a href="#market">About</a>
+        <a href="#market">Tokenomics</a>
+        <a href="#features">Roadmap</a>
+        <a class="buy" href="https://pump.fun/" target="_blank">
+          Buy $JUMPY
+        </a>
+      </nav>
+    </header>
 
-      <p>
-        A community-driven memecoin on Solana.
-      </p>
-    </div>
+    <div class="hero-grid">
 
-    <div class="game-wrap">
-
-      <canvas id="game"></canvas>
-
-      <div class="score-card">
-        <div class="score-box">
-          <div class="score-label">SCORE</div>
-          <div class="score-value" id="score">0</div>
+      <div class="hero-copy">
+        <div class="eyebrow">
+          HIGHER TOGETHER.
         </div>
 
-        <div class="score-box">
-          <div class="score-label">BEST</div>
-          <div class="score-value" id="best">0</div>
-        </div>
+        <h1>
+          JUST<br>
+          <span>JUMP.</span>
+        </h1>
+
+        <p>
+          A community-driven memecoin on Solana.
+        </p>
       </div>
 
-      <div class="game-over" id="gameOver">
 
-        <h2>GAME OVER</h2>
+      <div class="game-section">
 
-        <div class="over-stats">
+        <div class="game-board">
 
-          <div class="over-stat">
-            Score
-            <strong id="finalScore">0</strong>
+          <canvas id="gameCanvas"></canvas>
+
+
+          <div class="score-card">
+
+            <div class="score-side">
+              <small>SCORE</small>
+              <strong id="score">0</strong>
+            </div>
+
+            <div class="score-side">
+              <small>BEST</small>
+              <strong id="best">0</strong>
+            </div>
+
           </div>
 
-          <div class="over-stat">
-            Best
-            <strong id="finalBest">0</strong>
+
+          <div class="game-over" id="gameOver">
+
+            <h2>GAME OVER</h2>
+
+            <div class="over-stats">
+
+              <div class="over-stat">
+                Score
+                <strong id="finalScore">0</strong>
+              </div>
+
+              <div class="over-stat">
+                Best
+                <strong id="finalBest">0</strong>
+              </div>
+
+            </div>
+
+            <button class="try-button" id="tryAgain">
+              ↻ &nbsp; Try Again
+            </button>
+
+            <button class="share-button" id="share">
+              𝕏 &nbsp; Share to X
+            </button>
+
           </div>
 
-        </div>
 
-        <button class="try" id="tryAgain">
-          ↻ &nbsp; Try Again
-        </button>
+          <div class="jump-area">
 
-        <button class="share" id="share">
-          𝕏 &nbsp; Share to X
-        </button>
+            <button class="jump-button" id="jump">
+              <span>↑</span> JUMP
+            </button>
 
-      </div>
+            <div class="help">
+              Press SPACE or click to jump
+            </div>
 
-      <div class="jump-area">
+          </div>
 
-        <button class="jump-btn" id="jumpButton">
-          <span>↑</span> JUMP
-        </button>
-
-        <div class="instructions">
-          Press SPACE or click to jump
         </div>
 
       </div>
 
     </div>
-
   </div>
-
 </section>
 
 
@@ -1069,7 +1154,8 @@ footer a{
 
   <div class="contract-icon">🔗</div>
 
-  <div class="contract-main">
+  <div class="contract-info">
+
     <div class="contract-label">
       CONTRACT ADDRESS (SOLANA)
     </div>
@@ -1077,39 +1163,55 @@ footer a{
     <div class="contract-address">
       CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h
     </div>
+
   </div>
 
-  <button class="copy" id="copyButton">
+  <button class="copy-button" id="copy">
     ▣ &nbsp; Copy
   </button>
 
+
   <div class="socials">
 
-    <a class="social"
-       href="https://x.com/jumpymeme"
-       target="_blank">
+    <a class="social" href="https://x.com/jumpymeme" target="_blank">
+
       <div class="social-icon">𝕏</div>
+
       <small>Twitter</small>
+
     </a>
 
-    <a class="social"
-       href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
-       target="_blank">
+
+    <a
+      class="social"
+      href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
+      target="_blank">
 
       <div class="social-icon">
-        <img
-          class="dex-logo"
-          src="https://brandlogos.sgp1.digitaloceanspaces.com/svg/arcticons/dex-screener.svg"
-          alt="Dexscreener">
+
+        <!-- Dexscreener-style inline logo -->
+        <svg class="dex-icon" viewBox="0 0 64 64">
+          <path
+            d="M8 24 23 9l8 8 8-8 17 17-9 9-8-8-8 8-8-8-7 7z"
+            fill="#111"/>
+          <path
+            d="m17 31 9-9 8 8 8-8 9 9-9 9-8-8-8 8z"
+            fill="#111"/>
+          <circle cx="25" cy="31" r="3" fill="#fff"/>
+          <circle cx="39" cy="31" r="3" fill="#fff"/>
+        </svg>
+
       </div>
 
       <small>Dexscreener</small>
+
     </a>
 
-    <a class="social"
-       href="mailto:jumpymeme@gmail.com">
+
+    <a class="social" href="mailto:jumpymeme@gmail.com">
 
       <div class="social-icon">✉</div>
+
       <small>jumpymeme@gmail.com</small>
 
     </a>
@@ -1129,13 +1231,16 @@ footer a{
       $JUMP<span>Y</span>
     </div>
 
-    <p class="market-sub">
-      A community-driven memecoin on Solana.
-    </p>
+    <div class="market-description">
+      A community-driven memecoin<br>
+      on Solana.
+    </div>
 
-    <div class="price">
+    <div class="market-price">
       $0.009293
-      <span class="change">↗ +124.3% (24h)</span>
+      <span class="market-change">
+        ↗ +124.3% (24h)
+      </span>
     </div>
 
     <div class="metrics">
@@ -1159,7 +1264,8 @@ footer a{
 
   </div>
 
-  <div class="chart-box">
+
+  <div class="chart">
 
     <iframe
       src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=dark&trades=0&info=0"
@@ -1186,6 +1292,7 @@ footer a{
 
   </div>
 
+
   <div class="feature">
 
     <div class="feature-icon">👥</div>
@@ -1196,6 +1303,7 @@ footer a{
     </div>
 
   </div>
+
 
   <div class="feature">
 
@@ -1211,22 +1319,27 @@ footer a{
 </section>
 
 
+<!-- FOOTER -->
+
 <footer>
 
   <div>
-    <div class="footer-logo">
+    <span class="footer-logo">
       JUMP<span>Y</span>
-    </div>
-    <small>HIGHER TOGETHER.</small>
+    </span>
+
+    <span class="footer-tag">
+      HIGHER TOGETHER.
+    </span>
   </div>
 
-  <nav>
-    <a href="#">About</a>
-    <a href="#">Tokenomics</a>
-    <a href="#">Roadmap</a>
+  <nav class="footer-nav">
+    <a href="#market">About</a>
+    <a href="#market">Tokenomics</a>
+    <a href="#features">Roadmap</a>
   </nav>
 
-  <div>
+  <div class="solana">
     Built on <strong>Solana</strong>
   </div>
 
@@ -1235,151 +1348,230 @@ footer a{
 
 <script>
 
-/* ==========================================
+/* =========================================================
    JUMPY GAME
-========================================== */
+========================================================= */
 
-const canvas = document.getElementById("game");
+const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const scoreEl = document.getElementById("score");
-const bestEl = document.getElementById("best");
+const scoreText = document.getElementById("score");
+const bestText = document.getElementById("best");
 
-const gameOverEl = document.getElementById("gameOver");
-const finalScoreEl = document.getElementById("finalScore");
-const finalBestEl = document.getElementById("finalBest");
+const gameOver = document.getElementById("gameOver");
+const finalScore = document.getElementById("finalScore");
+const finalBest = document.getElementById("finalBest");
 
-const jumpButton = document.getElementById("jumpButton");
+const jumpButton = document.getElementById("jump");
 const tryAgain = document.getElementById("tryAgain");
 const share = document.getElementById("share");
 
-let W = 900;
-let H = 650;
 
-let dpr = Math.min(window.devicePixelRatio || 1,2);
+/* Internal game resolution */
 
-function resize(){
+const GAME_W = 1200;
+const GAME_H = 680;
 
-  const rect = canvas.getBoundingClientRect();
-
-  W = Math.max(320,rect.width);
-  H = Math.max(400,rect.height);
-
-  canvas.width = Math.floor(W*dpr);
-  canvas.height = Math.floor(H*dpr);
-
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-}
-
-window.addEventListener("resize",resize);
-resize();
+let scale = 1;
 
 
-/* ==========================================
-   GAME STATE
-========================================== */
-
-let best = Number(localStorage.getItem("jumpyBest") || 0);
-
-let score = 0;
-let running = false;
-let dead = false;
-
-let lastTime = 0;
-let spawnTimer = 0;
+/* =========================================================
+   PLAYER
+========================================================= */
 
 const player = {
-  x:0,
-  y:0,
-  vy:0,
-  width:48,
-  height:72
+  x:265,
+  y:305,
+  w:58,
+  h:82,
+  velocity:0,
+  rotation:0
 };
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let score = 0;
+
+let best =
+  Number(localStorage.getItem("jumpyBest") || 0);
+
+let playing = false;
+let gameEnded = false;
 
 let candles = [];
 
+let spawnClock = 0;
 
-function reset(){
+let lastTime = 0;
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+function resizeCanvas(){
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+  const dpr =
+    Math.min(window.devicePixelRatio || 1,2);
+
+  canvas.width =
+    GAME_W * dpr;
+
+  canvas.height =
+    GAME_H * dpr;
+
+  scale =
+    rect.width / GAME_W;
+
+  ctx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
+}
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+resizeCanvas();
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetGame(){
 
   score = 0;
-  running = false;
-  dead = false;
 
-  spawnTimer = 0;
+  playing = false;
+
+  gameEnded = false;
 
   candles = [];
 
-  player.x = Math.max(75,W*.23);
-  player.y = H*.48;
-  player.vy = 0;
+  spawnClock = 0;
 
-  scoreEl.textContent = "0";
-  bestEl.textContent = best;
+  player.x = 270;
 
-  gameOverEl.classList.remove("show");
+  player.y = 310;
+
+  player.velocity = 0;
+
+  player.rotation = 0;
+
+  scoreText.textContent = "0";
+
+  bestText.textContent = best;
+
+  gameOver.classList.remove("active");
 }
 
 
-reset();
-
-
-/* ==========================================
-   START / JUMP
-========================================== */
+/* =========================================================
+   JUMP
+========================================================= */
 
 function jump(){
 
-  if(dead){
+  if(gameEnded){
     return;
   }
 
-  if(!running){
-    running = true;
-  }
+  playing = true;
 
-  player.vy = -470;
+  player.velocity = -570;
 }
 
 
-jumpButton.addEventListener("click",jump);
+/* button */
 
-canvas.addEventListener("click",jump);
-
-document.addEventListener("keydown",(e)=>{
-
-  if(e.code === "Space" || e.code === "ArrowUp"){
+jumpButton.addEventListener(
+  "pointerdown",
+  function(e){
 
     e.preventDefault();
+
     jump();
 
   }
+);
 
-});
+
+/* canvas click */
+
+canvas.addEventListener(
+  "pointerdown",
+  function(e){
+
+    e.preventDefault();
+
+    jump();
+
+  }
+);
 
 
-/* ==========================================
-   CANDLES
-========================================== */
+/* keyboard */
 
-function spawnCandle(){
+document.addEventListener(
+  "keydown",
+  function(e){
 
-  const size = Math.max(30,Math.min(50,W*.052));
+    if(
+      e.code === "Space" ||
+      e.code === "ArrowUp"
+    ){
 
-  const gap = Math.max(115,H*.19);
+      e.preventDefault();
+
+      jump();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   CANDLE CREATION
+========================================================= */
+
+function createCandle(){
+
+  const gap = 180;
+
+  /*
+    The reference has the candles travelling
+    diagonally upward through the scene.
+  */
 
   const center =
-    H*.42 +
-    (Math.random()-.5)*H*.28;
+    385 +
+    (Math.random() - .5) * 120;
 
   candles.push({
 
-    x:W+70,
+    x:GAME_W + 80,
 
-    width:size,
+    width:42,
 
-    gap:gap,
+    topHeight:
+      center - gap/2,
 
-    center:center,
+    bottomY:
+      center + gap/2,
 
     scored:false
 
@@ -1388,28 +1580,31 @@ function spawnCandle(){
 }
 
 
-/* ==========================================
+/* =========================================================
    COLLISION
-========================================== */
+========================================================= */
 
-function collision(a,b){
+function intersects(a,b){
 
   return (
-    a.x < b.x+b.width &&
-    a.x+a.width > b.x &&
-    a.y < b.y+b.height &&
-    a.y+a.height > b.y
+    a.x < b.x + b.w &&
+    a.x + a.w > b.x &&
+    a.y < b.y + b.h &&
+    a.y + a.h > b.y
   );
 
 }
 
 
-function hit(){
+function endGame(){
 
-  if(dead)return;
+  if(gameEnded){
+    return;
+  }
 
-  dead = true;
-  running = false;
+  gameEnded = true;
+
+  playing = false;
 
   if(score > best){
 
@@ -1417,123 +1612,174 @@ function hit(){
 
     localStorage.setItem(
       "jumpyBest",
-      best
+      String(best)
     );
 
   }
 
-  finalScoreEl.textContent = score;
-  finalBestEl.textContent = best;
+  finalScore.textContent = score;
 
-  bestEl.textContent = best;
+  finalBest.textContent = best;
 
-  gameOverEl.classList.add("show");
+  bestText.textContent = best;
+
+  gameOver.classList.add("active");
 }
 
 
-/* ==========================================
-   DRAW BACKGROUND
-========================================== */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
-function drawBackground(){
+function drawSky(){
 
-  /* sky */
-
-  const gradient =
+  const sky =
     ctx.createLinearGradient(
-      0,0,0,H
+      0,
+      0,
+      0,
+      GAME_H
     );
 
-  gradient.addColorStop(0,"#18a5dc");
-  gradient.addColorStop(.65,"#54c4e8");
-  gradient.addColorStop(1,"#dff7fc");
+  sky.addColorStop(
+    0,
+    "#159ddd"
+  );
 
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0,0,W,H);
+  sky.addColorStop(
+    .52,
+    "#37b8e5"
+  );
+
+  sky.addColorStop(
+    1,
+    "#dff7fc"
+  );
+
+  ctx.fillStyle = sky;
+
+  ctx.fillRect(
+    0,
+    0,
+    GAME_W,
+    GAME_H
+  );
 
 
   /* clouds */
 
-  drawCloud(W*.05,H*.48,150,38);
-  drawCloud(W*.60,H*.62,210,45);
-  drawCloud(W*.34,H*.75,250,48);
+  drawCloud(
+    90,
+    390,
+    190,
+    55
+  );
+
+  drawCloud(
+    570,
+    450,
+    260,
+    65
+  );
+
+  drawCloud(
+    1030,
+    320,
+    230,
+    60
+  );
+
+  drawCloud(
+    720,
+    585,
+    310,
+    65
+  );
 
 
   /* distant mountains */
 
-  ctx.fillStyle="rgba(90,175,220,.65)";
-
-  mountain(
-    W*.10,
-    H*.94,
-    W*.22,
-    H*.43
+  drawMountain(
+    120,
+    675,
+    260,
+    270
   );
 
-  mountain(
-    W*.48,
-    H*.98,
-    W*.28,
-    H*.50
+  drawMountain(
+    520,
+    680,
+    330,
+    300
   );
 
-  mountain(
-    W*.87,
-    H*.96,
-    W*.25,
-    H*.46
+  drawMountain(
+    1040,
+    680,
+    360,
+    320
   );
 
 
-  /* snow */
+  /* snow peaks */
 
-  ctx.fillStyle="rgba(255,255,255,.88)";
-
-  snowMountain(
-    W*.10,
-    H*.94,
-    W*.22,
-    H*.43
+  drawSnowPeak(
+    120,
+    675,
+    260,
+    270
   );
 
-  snowMountain(
-    W*.87,
-    H*.96,
-    W*.25,
-    H*.46
+  drawSnowPeak(
+    1040,
+    680,
+    360,
+    320
   );
 
 }
 
 
-function drawCloud(x,y,w,h){
+function drawCloud(
+  x,
+  y,
+  w,
+  h
+){
 
-  ctx.fillStyle="rgba(255,255,255,.72)";
+  ctx.fillStyle =
+    "rgba(255,255,255,.76)";
 
   ctx.beginPath();
 
   ctx.ellipse(
     x,
     y,
-    w*.5,
+    w/2,
     h,
-    0,0,Math.PI*2
+    0,
+    0,
+    Math.PI*2
   );
 
   ctx.ellipse(
-    x+w*.28,
-    y-h*.5,
-    w*.25,
-    h*1.35,
-    0,0,Math.PI*2
+    x-w*.22,
+    y-h*.45,
+    w*.22,
+    h*1.15,
+    0,
+    0,
+    Math.PI*2
   );
 
   ctx.ellipse(
-    x-w*.23,
-    y-h*.3,
-    w*.25,
-    h*1.1,
-    0,0,Math.PI*2
+    x+w*.18,
+    y-h*.65,
+    w*.26,
+    h*1.45,
+    0,
+    0,
+    Math.PI*2
   );
 
   ctx.fill();
@@ -1541,15 +1787,32 @@ function drawCloud(x,y,w,h){
 }
 
 
-function mountain(x,y,w,h){
+function drawMountain(
+  x,
+  y,
+  w,
+  h
+){
+
+  ctx.fillStyle =
+    "rgba(83,169,216,.72)";
 
   ctx.beginPath();
 
-  ctx.moveTo(x-w/2,y);
+  ctx.moveTo(
+    x-w/2,
+    y
+  );
 
-  ctx.lineTo(x,y-h);
+  ctx.lineTo(
+    x,
+    y-h
+  );
 
-  ctx.lineTo(x+w/2,y);
+  ctx.lineTo(
+    x+w/2,
+    y
+  );
 
   ctx.closePath();
 
@@ -1558,14 +1821,38 @@ function mountain(x,y,w,h){
 }
 
 
-function snowMountain(x,y,w,h){
+function drawSnowPeak(
+  x,
+  y,
+  w,
+  h
+){
+
+  ctx.fillStyle =
+    "rgba(255,255,255,.84)";
 
   ctx.beginPath();
 
-  ctx.moveTo(x,y-h);
-  ctx.lineTo(x-w*.13,y-h*.55);
-  ctx.lineTo(x-w*.025,y-h*.63);
-  ctx.lineTo(x+w*.13,y-h*.42);
+  ctx.moveTo(
+    x,
+    y-h
+  );
+
+  ctx.lineTo(
+    x-w*.12,
+    y-h*.52
+  );
+
+  ctx.lineTo(
+    x-w*.025,
+    y-h*.67
+  );
+
+  ctx.lineTo(
+    x+w*.13,
+    y-h*.38
+  );
+
   ctx.closePath();
 
   ctx.fill();
@@ -1573,294 +1860,139 @@ function snowMountain(x,y,w,h){
 }
 
 
-/* ==========================================
+/* =========================================================
    MOON
-========================================== */
+========================================================= */
 
 function drawMoon(){
 
-  const x=W*.88;
-  const y=H*.14;
-  const r=Math.min(60,W*.065);
+  const x = 1060;
+  const y = 105;
+  const r = 62;
 
-  const g =
+  const moon =
     ctx.createRadialGradient(
-      x-r*.3,
-      y-r*.3,
-      2,
+      x-18,
+      y-18,
+      3,
       x,
       y,
       r
     );
 
-  g.addColorStop(0,"#fff");
-  g.addColorStop(.7,"#eef6fa");
-  g.addColorStop(1,"#d2e5ee");
+  moon.addColorStop(
+    0,
+    "#ffffff"
+  );
 
-  ctx.fillStyle=g;
+  moon.addColorStop(
+    .7,
+    "#edf7fb"
+  );
+
+  moon.addColorStop(
+    1,
+    "#cfe4ee"
+  );
+
+  ctx.fillStyle = moon;
 
   ctx.beginPath();
-  ctx.arc(x,y,r,0,Math.PI*2);
+
+  ctx.arc(
+    x,
+    y,
+    r,
+    0,
+    Math.PI*2
+  );
+
   ctx.fill();
 
 }
 
 
-/* ==========================================
-   JUMPY
-========================================== */
+/* =========================================================
+   TRAJECTORY
+========================================================= */
 
-function drawJumpy(){
-
-  const x=player.x;
-  const y=player.y;
+function drawTrajectory(){
 
   ctx.save();
 
-  const tilt =
-    Math.max(
-      -.35,
-      Math.min(
-        .35,
-        player.vy/1200
-      )
-    );
+  ctx.strokeStyle =
+    "rgba(255,255,255,.94)";
 
-  ctx.translate(
-    x+player.width/2,
-    y+player.height/2
+  ctx.lineWidth = 4;
+
+  ctx.setLineDash([
+    16,
+    13
+  ]);
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    190,
+    440
   );
 
-  ctx.rotate(tilt);
-
-  /* rocket body */
-
-  ctx.fillStyle="#aeb8bf";
-
-  ctx.beginPath();
-
-  ctx.roundRect(
-    -31,
-    5,
-    20,
-    31,
-    7
+  ctx.quadraticCurveTo(
+    300,
+    290,
+    430,
+    250
   );
 
-  ctx.fill();
-
-  ctx.strokeStyle="#071426";
-  ctx.lineWidth=3;
   ctx.stroke();
-
-
-  /* flame */
-
-  ctx.fillStyle="#ffb21a";
-
-  ctx.beginPath();
-
-  ctx.moveTo(-42,31);
-  ctx.lineTo(-58,40);
-  ctx.lineTo(-42,47);
-  ctx.closePath();
-
-  ctx.fill();
-
-  ctx.fillStyle="#ff642c";
-
-  ctx.beginPath();
-
-  ctx.moveTo(-43,35);
-  ctx.lineTo(-52,40);
-  ctx.lineTo(-43,44);
-  ctx.closePath();
-
-  ctx.fill();
-
-
-  /* body */
-
-  ctx.fillStyle="#ffffff";
-
-  ctx.beginPath();
-
-  ctx.roundRect(
-    -22,
-    -36,
-    44,
-    70,
-    20
-  );
-
-  ctx.fill();
-
-  ctx.strokeStyle="#071426";
-  ctx.lineWidth=3;
-  ctx.stroke();
-
-
-  /* green lower part */
-
-  ctx.save();
-
-  ctx.beginPath();
-
-  ctx.roundRect(
-    -22,
-    -36,
-    44,
-    70,
-    20
-  );
-
-  ctx.clip();
-
-  ctx.fillStyle="#17d46e";
-
-  ctx.fillRect(
-    -24,
-    7,
-    48,
-    32
-  );
-
-  ctx.restore();
-
-
-  /* eyes */
-
-  ctx.fillStyle="#071426";
-
-  ctx.beginPath();
-  ctx.arc(-8,-13,4,0,Math.PI*2);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(8,-13,4,0,Math.PI*2);
-  ctx.fill();
-
-
-  /* tongue */
-
-  ctx.fillStyle="#ff5e91";
-
-  ctx.beginPath();
-  ctx.arc(0,2,6,0,Math.PI*2);
-  ctx.fill();
-
-
-  /* arms */
-
-  ctx.strokeStyle="#071426";
-  ctx.lineWidth=4;
-  ctx.lineCap="round";
-
-  ctx.beginPath();
-  ctx.moveTo(-19,4);
-  ctx.lineTo(-35,15);
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.moveTo(19,4);
-  ctx.lineTo(35,-7);
-  ctx.stroke();
-
-
-  /* legs */
-
-  ctx.beginPath();
-  ctx.moveTo(-11,30);
-  ctx.lineTo(-18,44);
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.moveTo(11,30);
-  ctx.lineTo(20,42);
-  ctx.stroke();
-
-
-  /* hands */
-
-  ctx.fillStyle="#071426";
-
-  ctx.beginPath();
-  ctx.arc(-35,15,4,0,Math.PI*2);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(35,-7,4,0,Math.PI*2);
-  ctx.fill();
-
 
   ctx.restore();
 
 }
 
 
-/* ==========================================
+/* =========================================================
    CANDLES
-========================================== */
+========================================================= */
 
-function drawCandle(c){
-
-  const x=c.x;
-  const w=c.width;
-
-  const top =
-    c.center-c.gap/2;
-
-  const bottom =
-    c.center+c.gap/2;
-
-  /* top candle */
-
-  drawSingleCandle(
-    x,
-    top-80,
-    w,
-    80,
-    false
-  );
-
-  /* bottom candle */
-
-  drawSingleCandle(
-    x,
-    bottom,
-    w,
-    80,
-    true
-  );
-
-}
-
-
-function drawSingleCandle(
-  x,y,w,h,green
+function drawCandleBody(
+  x,
+  y,
+  w,
+  h,
+  green
 ){
 
   const color =
-    green ? "#17d477" : "#f04444";
+    green
+      ? "#16d477"
+      : "#f04444";
 
-  ctx.strokeStyle=color;
-  ctx.lineWidth=5;
+
+  /* wick */
+
+  ctx.strokeStyle = color;
+
+  ctx.lineWidth = 5;
 
   ctx.beginPath();
 
   ctx.moveTo(
     x+w/2,
-    y-25
+    y-28
   );
 
   ctx.lineTo(
     x+w/2,
-    y+h+25
+    y+h+28
   );
 
   ctx.stroke();
 
-  ctx.fillStyle=color;
+
+  /* body */
+
+  ctx.fillStyle = color;
 
   ctx.beginPath();
 
@@ -1874,100 +2006,450 @@ function drawSingleCandle(
 
   ctx.fill();
 
+
+  /* little highlight */
+
+  ctx.fillStyle =
+    "rgba(255,255,255,.14)";
+
+  ctx.fillRect(
+    x+5,
+    y+4,
+    7,
+    h-8
+  );
+
 }
 
 
-/* ==========================================
-   TRAJECTORY
-========================================== */
+function drawCandles(){
 
-function drawTrajectory(){
+  candles.forEach(c=>{
+
+    /*
+      Top candle
+    */
+
+    drawCandleBody(
+      c.x,
+      c.topHeight - 92,
+      c.width,
+      92,
+      false
+    );
+
+
+    /*
+      Bottom candle
+    */
+
+    drawCandleBody(
+      c.x,
+      c.bottomY,
+      c.width,
+      92,
+      true
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   JUMPY
+========================================================= */
+
+function drawJumpy(){
+
+  const x = player.x;
+  const y = player.y;
 
   ctx.save();
 
-  ctx.strokeStyle="rgba(255,255,255,.9)";
-  ctx.lineWidth=4;
-  ctx.setLineDash([14,12]);
+  ctx.translate(
+    x + player.w/2,
+    y + player.h/2
+  );
+
+  ctx.rotate(
+    player.rotation
+  );
+
+
+  /*
+    rocket
+  */
+
+  ctx.fillStyle =
+    "#aab5bc";
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -39,
+    5,
+    25,
+    38,
+    8
+  );
+
+  ctx.fill();
+
+  ctx.strokeStyle =
+    "#071426";
+
+  ctx.lineWidth = 3;
+
+  ctx.stroke();
+
+
+  /*
+    flame
+  */
+
+  ctx.fillStyle =
+    "#ffae17";
 
   ctx.beginPath();
 
   ctx.moveTo(
-    player.x-25,
-    player.y+player.height*.65
+    -42,
+    29
   );
 
-  ctx.quadraticCurveTo(
-    player.x+20,
-    player.y-65,
-    player.x+90,
-    player.y-115
+  ctx.lineTo(
+    -67,
+    41
+  );
+
+  ctx.lineTo(
+    -43,
+    52
+  );
+
+  ctx.closePath();
+
+  ctx.fill();
+
+
+  ctx.fillStyle =
+    "#ff642d";
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    -44,
+    34
+  );
+
+  ctx.lineTo(
+    -57,
+    41
+  );
+
+  ctx.lineTo(
+    -44,
+    46
+  );
+
+  ctx.closePath();
+
+  ctx.fill();
+
+
+  /*
+    body
+  */
+
+  ctx.fillStyle =
+    "#fff";
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -26,
+    -46,
+    52,
+    84,
+    23
+  );
+
+  ctx.fill();
+
+  ctx.strokeStyle =
+    "#071426";
+
+  ctx.lineWidth = 3;
+
+  ctx.stroke();
+
+
+  /*
+    green lower body
+  */
+
+  ctx.save();
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -26,
+    -46,
+    52,
+    84,
+    23
+  );
+
+  ctx.clip();
+
+  ctx.fillStyle =
+    "#17d477";
+
+  ctx.fillRect(
+    -28,
+    7,
+    56,
+    36
+  );
+
+  ctx.restore();
+
+
+  /*
+    eyes
+  */
+
+  ctx.fillStyle =
+    "#071426";
+
+  ctx.beginPath();
+
+  ctx.arc(
+    -9,
+    -15,
+    4.5,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fill();
+
+  ctx.beginPath();
+
+  ctx.arc(
+    9,
+    -15,
+    4.5,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fill();
+
+
+  /*
+    tongue
+  */
+
+  ctx.fillStyle =
+    "#ff5d91";
+
+  ctx.beginPath();
+
+  ctx.arc(
+    0,
+    2,
+    6,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fill();
+
+
+  /*
+    arms
+  */
+
+  ctx.strokeStyle =
+    "#071426";
+
+  ctx.lineWidth = 4;
+
+  ctx.lineCap = "round";
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    -23,
+    4
+  );
+
+  ctx.lineTo(
+    -42,
+    17
   );
 
   ctx.stroke();
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    23,
+    4
+  );
+
+  ctx.lineTo(
+    43,
+    -10
+  );
+
+  ctx.stroke();
+
+
+  /*
+    legs
+  */
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    -11,
+    37
+  );
+
+  ctx.lineTo(
+    -20,
+    53
+  );
+
+  ctx.stroke();
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    11,
+    37
+  );
+
+  ctx.lineTo(
+    20,
+    51
+  );
+
+  ctx.stroke();
+
+
+  /*
+    hands
+  */
+
+  ctx.fillStyle =
+    "#071426";
+
+  ctx.beginPath();
+
+  ctx.arc(
+    -42,
+    17,
+    4,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fill();
+
+  ctx.beginPath();
+
+  ctx.arc(
+    43,
+    -10,
+    4,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fill();
+
 
   ctx.restore();
 
 }
 
 
-/* ==========================================
-   GAME LOOP
-========================================== */
+/* =========================================================
+   UPDATE
+========================================================= */
 
 function update(dt){
 
-  if(!running || dead){
+  if(!playing || gameEnded){
     return;
   }
 
+
   /* gravity */
 
-  player.vy += 1150*dt;
+  player.velocity +=
+    1250 * dt;
 
-  player.y += player.vy*dt;
+  player.y +=
+    player.velocity * dt;
 
 
-  /* spawn */
-
-  spawnTimer += dt;
-
-  const interval =
+  player.rotation =
     Math.max(
-      .72,
-      1.12-score*.012
+      -.38,
+      Math.min(
+        .5,
+        player.velocity / 1300
+      )
     );
 
-  if(spawnTimer > interval){
 
-    spawnTimer=0;
+  /* candles */
 
-    spawnCandle();
+  spawnClock += dt;
+
+  const spawnEvery =
+    Math.max(
+      .82,
+      1.12 - score*.008
+    );
+
+  if(spawnClock >= spawnEvery){
+
+    spawnClock = 0;
+
+    createCandle();
 
   }
 
 
-  /* move candles */
-
   const speed =
     Math.min(
-      430,
-      265+score*5
+      500,
+      315 + score*4
     );
+
 
   candles.forEach(c=>{
 
-    c.x -= speed*dt;
+    c.x -= speed * dt;
+
 
     if(
       !c.scored &&
-      c.x+c.width < player.x
+      c.x + c.width < player.x
     ){
 
-      c.scored=true;
+      c.scored = true;
 
       score++;
 
-      scoreEl.textContent=score;
+      scoreText.textContent =
+        String(score);
 
     }
 
@@ -1976,51 +2458,60 @@ function update(dt){
 
   candles =
     candles.filter(
-      c=>c.x+c.width>-80
+      c => c.x + c.width > -100
     );
 
 
-  /* collision */
+  /* player collision box */
 
-  const playerBox={
-    x:player.x+7,
-    y:player.y+5,
-    width:player.width-14,
-    height:player.height-10
+  const p = {
+
+    x:player.x + 8,
+
+    y:player.y + 8,
+
+    w:player.w - 16,
+
+    h:player.h - 16
+
   };
 
 
   for(const c of candles){
 
-    const top =
-      c.center-c.gap/2;
+    const top = {
 
-    const bottom =
-      c.center+c.gap/2;
-
-
-    const topBox={
       x:c.x,
-      y:top-80,
-      width:c.width,
-      height:80
+
+      y:c.topHeight - 92,
+
+      w:c.width,
+
+      h:92
+
     };
 
 
-    const bottomBox={
+    const bottom = {
+
       x:c.x,
-      y:bottom,
-      width:c.width,
-      height:80
+
+      y:c.bottomY,
+
+      w:c.width,
+
+      h:92
+
     };
 
 
     if(
-      collision(playerBox,topBox) ||
-      collision(playerBox,bottomBox)
+      intersects(p,top) ||
+      intersects(p,bottom)
     ){
 
-      hit();
+      endGame();
+
       return;
 
     }
@@ -2028,56 +2519,73 @@ function update(dt){
   }
 
 
-  /* boundaries */
+  /* ceiling */
+
+  if(player.y < -30){
+
+    endGame();
+
+    return;
+
+  }
+
+
+  /* floor */
 
   if(
-    player.y < -30 ||
-    player.y+player.height > H
+    player.y + player.h >
+    GAME_H - 5
   ){
 
-    hit();
+    endGame();
 
   }
 
 }
 
 
-/* ==========================================
+/* =========================================================
    DRAW
-========================================== */
+========================================================= */
 
 function draw(){
 
-  ctx.clearRect(0,0,W,H);
+  ctx.clearRect(
+    0,
+    0,
+    GAME_W,
+    GAME_H
+  );
 
-  drawBackground();
+  drawSky();
 
   drawMoon();
 
   drawTrajectory();
 
-  candles.forEach(drawCandle);
+  drawCandles();
 
   drawJumpy();
 
 }
 
 
-/* ==========================================
-   LOOP
-========================================== */
+/* =========================================================
+   GAME LOOP
+========================================================= */
 
-function loop(time){
+function loop(timestamp){
 
   const dt =
     Math.min(
-      .033,
-      (time-lastTime)/1000 || 0
+      .032,
+      (timestamp-lastTime)/1000 || 0
     );
 
-  lastTime=time;
+  lastTime = timestamp;
 
   update(dt);
+
   draw();
 
   requestAnimationFrame(loop);
@@ -2087,73 +2595,91 @@ function loop(time){
 requestAnimationFrame(loop);
 
 
-/* ==========================================
+/* =========================================================
    TRY AGAIN
-========================================== */
+========================================================= */
 
-tryAgain.addEventListener("click",()=>{
+tryAgain.addEventListener(
+  "click",
+  function(){
 
-  reset();
+    resetGame();
 
-  running=true;
+    jump();
 
-  player.vy=-470;
+  }
+);
 
-});
 
-
-/* ==========================================
+/* =========================================================
    SHARE
-========================================== */
+========================================================= */
 
-share.addEventListener("click",()=>{
+share.addEventListener(
+  "click",
+  function(){
 
-  const text =
-    "I scored "+score+" on JUMPY. JUST JUMP. 🟢";
+    const text =
+      "I scored " +
+      score +
+      " on $JUMPY. JUST JUMP. 🟢";
 
-  const url =
-    "https://x.com/intent/post?text="+
-    encodeURIComponent(text);
+    const url =
+      "https://x.com/intent/post?text=" +
+      encodeURIComponent(text);
 
-  window.open(
-    url,
-    "_blank"
-  );
+    window.open(
+      url,
+      "_blank"
+    );
 
-});
+  }
+);
 
 
-/* ==========================================
-   COPY CONTRACT
-========================================== */
+/* =========================================================
+   COPY
+========================================================= */
 
 document
-  .getElementById("copyButton")
-  .addEventListener("click",async()=>{
+  .getElementById("copy")
+  .addEventListener(
+    "click",
+    async function(){
 
-    const address =
-      "CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h";
+      const address =
+        "CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h";
 
-    try{
+      try{
 
-      await navigator.clipboard.writeText(address);
+        await navigator.clipboard.writeText(
+          address
+        );
 
-      const btn =
-        document.getElementById("copyButton");
+        this.textContent =
+          "✓ Copied";
 
-      btn.textContent="✓ Copied";
+        setTimeout(
+          ()=>{
+            this.textContent =
+              "▣  Copy";
+          },
+          1500
+        );
 
-      setTimeout(()=>{
-        btn.textContent="▣  Copy";
-      },1500);
+      }catch{
 
-    }catch(e){
+        alert(address);
 
-      alert(address);
+      }
 
     }
+  );
 
-  });
+
+/* initial state */
+
+resetGame();
 
 </script>
 
