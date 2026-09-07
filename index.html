@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>JUMPY — JUST JUMP.</title>
 
+
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
   box-sizing:border-box;
@@ -18,9 +29,15 @@ html{
 
 body{
   margin:0;
+
   background:#eef8fd;
+
   color:#081426;
-  font-family:Arial,Helvetica,sans-serif;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 }
 
 a{
@@ -32,72 +49,184 @@ button{
   font:inherit;
 }
 
-/* =========================================
-   HERO — ORIGINAL JUMPY COVER
-========================================= */
+
+/* =====================================================
+   HERO
+
+   IMPORTANT:
+   JUMPY-COVER.PNG ALREADY HAS:
+   - JUMPY
+   - ABOUT
+   - TOKENOMICS
+   - ROADMAP
+   - BUY $JUMPY
+
+   We DO NOT add another visible menu.
+===================================================== */
 
 .hero{
+  position:relative;
+
   width:100%;
+
   margin:0;
   padding:0;
+
   overflow:hidden;
+
   background:#079cf0;
+
   line-height:0;
 }
 
 .cover{
+  display:block;
+
   width:100%;
   height:auto;
-  display:block;
+
+  max-width:none;
 }
 
 
-/* =========================================
-   MAIN
-========================================= */
+/* =====================================================
+   INVISIBLE CLICK AREAS OVER THE ORIGINAL COVER
+===================================================== */
+
+.hero-link{
+  position:absolute;
+
+  z-index:5;
+
+  display:block;
+
+  /*
+    Transparent clickable area.
+    Nothing visually appears over the image.
+  */
+
+  background:transparent;
+
+  cursor:pointer;
+}
+
+
+/*
+   ABOUT
+*/
+
+.hero-about{
+  top:4%;
+  left:52%;
+  width:10%;
+  height:9%;
+}
+
+
+/*
+   TOKENOMICS
+*/
+
+.hero-tokenomics{
+  top:4%;
+  left:62%;
+  width:13%;
+  height:9%;
+}
+
+
+/*
+   ROADMAP
+*/
+
+.hero-roadmap{
+  top:4%;
+  left:74%;
+  width:10%;
+  height:9%;
+}
+
+
+/*
+   BUY $JUMPY
+*/
+
+.hero-buy{
+  top:2.5%;
+  left:82%;
+  width:17%;
+  height:11%;
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
 
 .container{
   width:min(1120px,calc(100% - 32px));
+
   margin:0 auto;
 }
 
+
+/* =====================================================
+   PANELS
+===================================================== */
+
 .panel{
   background:#fff;
+
   border:1px solid #dce8ef;
+
   border-radius:22px;
-  box-shadow:0 8px 28px rgba(40,100,140,.07);
+
+  box-shadow:
+    0 8px 28px rgba(40,100,140,.07);
 }
 
 
-/* =========================================
+/* =====================================================
    CONTRACT
-========================================= */
+===================================================== */
 
 .contract{
   margin-top:22px;
+
   padding:18px 22px;
 
   display:grid;
-  grid-template-columns:1.45fr .8fr 1fr;
+
+  grid-template-columns:
+    1.45fr
+    .8fr
+    1fr;
+
   align-items:center;
 }
 
 .ca{
   display:flex;
+
   align-items:center;
+
   gap:14px;
+
   min-width:0;
 }
 
 .ca-icon{
   width:58px;
   height:58px;
+
   flex:none;
 
   border-radius:50%;
+
   background:#eaf5fc;
 
   display:grid;
+
   place-items:center;
 
   font-size:27px;
@@ -109,15 +238,21 @@ button{
 
 .ca-text small{
   display:block;
+
   color:#647286;
+
   font-size:11px;
+
   margin-bottom:8px;
+
   letter-spacing:.3px;
 }
 
 .ca-text strong{
   display:block;
+
   font-size:17px;
+
   white-space:nowrap;
 }
 
@@ -125,44 +260,60 @@ button{
   margin-left:10px;
 
   border:1px solid #d9e5ec;
+
   background:#fff;
 
   border-radius:28px;
+
   padding:11px 18px;
 
   font-weight:800;
+
   cursor:pointer;
+
+  transition:.2s;
 }
 
 .copy:hover{
   background:#f4fafc;
+
+  transform:translateY(-1px);
 }
 
 
-/* =========================================
+/* =====================================================
    SOCIALS
-========================================= */
+===================================================== */
 
 .socials{
   min-height:68px;
 
-  border-left:1px solid #dbe5eb;
-  border-right:1px solid #dbe5eb;
+  border-left:
+    1px solid #dbe5eb;
+
+  border-right:
+    1px solid #dbe5eb;
 
   display:flex;
+
   justify-content:space-around;
+
   align-items:center;
 }
 
 .social{
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
 
   gap:6px;
 
   color:#58677a;
+
   font-size:12px;
 }
 
@@ -175,40 +326,54 @@ button{
 
 .x-icon{
   font-size:31px;
+
   line-height:32px;
+
   color:#081426;
 }
 
 .email{
   text-align:center;
+
   color:#58677a;
+
   font-size:12px;
 }
 
 .email-icon{
   display:block;
+
   font-size:27px;
+
   margin-bottom:5px;
+
+  color:#081426;
 }
 
 
-/* =========================================
+/* =====================================================
    MARKET
-========================================= */
+===================================================== */
 
 .market{
   margin-top:16px;
+
   padding:24px;
 
   display:grid;
-  grid-template-columns:330px 1fr;
+
+  grid-template-columns:
+    330px
+    1fr;
 
   gap:25px;
 }
 
 .market-title{
   font-size:43px;
+
   font-weight:950;
+
   letter-spacing:-3px;
 }
 
@@ -218,11 +383,13 @@ button{
 
 .muted{
   color:#637185;
+
   line-height:1.45;
 }
 
 .price{
   font-size:31px;
+
   font-weight:900;
 
   margin:24px 0;
@@ -232,6 +399,7 @@ button{
   display:block;
 
   color:#1dcc82;
+
   font-size:15px;
 
   margin-top:7px;
@@ -239,6 +407,7 @@ button{
 
 .stats{
   display:flex;
+
   gap:27px;
 
   margin-bottom:23px;
@@ -248,6 +417,7 @@ button{
   display:block;
 
   color:#68778a;
+
   font-size:12px;
 
   margin-bottom:5px;
@@ -280,13 +450,15 @@ button{
 }
 
 
-/* =========================================
+/* =====================================================
    CHART
-========================================= */
+===================================================== */
 
 .chart-header{
   display:flex;
+
   align-items:center;
+
   justify-content:flex-end;
 
   gap:20px;
@@ -294,6 +466,7 @@ button{
   margin-bottom:9px;
 
   color:#5c6a7b;
+
   font-size:12px;
 }
 
@@ -316,6 +489,7 @@ button{
 
 .chart{
   width:100%;
+
   height:300px;
 
   overflow:hidden;
@@ -333,13 +507,15 @@ button{
 }
 
 
-/* =========================================
+/* =====================================================
    FEATURES
-========================================= */
+===================================================== */
 
 .features{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
 
   gap:16px;
 
@@ -352,6 +528,7 @@ button{
   padding:19px;
 
   display:flex;
+
   align-items:center;
 
   gap:16px;
@@ -368,6 +545,7 @@ button{
   background:#eaf5fc;
 
   display:grid;
+
   place-items:center;
 
   font-size:27px;
@@ -390,14 +568,16 @@ button{
 }
 
 
-/* =========================================
+/* =====================================================
    LOWER
-========================================= */
+===================================================== */
 
 .lower{
   display:grid;
 
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:
+    1fr
+    1fr;
 
   gap:16px;
 
@@ -415,83 +595,52 @@ button{
 }
 
 
-/* =========================================
+/* =====================================================
    TOKENOMICS
-========================================= */
+===================================================== */
 
-.token{
-  display:flex;
-  align-items:center;
-
-  gap:28px;
-}
-
-.donut{
-  width:145px;
-  height:145px;
-
-  flex:none;
-
-  border-radius:50%;
-
-  background:
-    conic-gradient(
-      #079f5c 0 70%,
-      #1dc982 70% 85%,
-      #55e5a7 85% 95%,
-      #a5f5d1 95% 100%
-    );
-
-  position:relative;
-}
-
-.donut:after{
-  content:"";
-
-  position:absolute;
-
-  inset:35px;
-
-  background:#fff;
-
-  border-radius:50%;
-}
-
-.legend{
+.tokenomics-list{
   display:grid;
 
   gap:13px;
-
-  width:100%;
 }
 
-.legend div{
+.tokenomics-row{
   display:flex;
 
   justify-content:space-between;
 
-  color:#5c6b7e;
+  align-items:center;
+
+  padding:14px 16px;
+
+  background:#f6fbfd;
+
+  border:1px solid #e3eef3;
+
+  border-radius:14px;
+}
+
+.tokenomics-row span{
+  color:#617084;
 
   font-size:14px;
 }
 
-.legend i{
-  width:11px;
-  height:11px;
+.tokenomics-row strong{
+  font-size:16px;
 
-  display:inline-block;
+  color:#081426;
+}
 
-  border-radius:50%;
-
-  background:#1dce85;
-
-  margin-right:8px;
+.tokenomics-row .green{
+  color:#19c982;
 }
 
 
-/* =========================================
+/* =====================================================
    ROADMAP
-========================================= */
+===================================================== */
 
 .roadmap{
   display:grid;
@@ -509,7 +658,9 @@ button{
   position:absolute;
 
   left:6px;
+
   top:7px;
+
   bottom:7px;
 
   width:2px;
@@ -520,7 +671,9 @@ button{
 .step{
   display:grid;
 
-  grid-template-columns:75px 1fr;
+  grid-template-columns:
+    75px
+    1fr;
 
   gap:14px;
 
@@ -535,9 +688,11 @@ button{
   position:absolute;
 
   left:-26px;
+
   top:1px;
 
   width:10px;
+
   height:10px;
 
   border-radius:50%;
@@ -552,9 +707,9 @@ button{
 }
 
 
-/* =========================================
+/* =====================================================
    FOOTER
-========================================= */
+===================================================== */
 
 footer{
   padding:32px 0 45px;
@@ -607,9 +762,9 @@ footer{
 }
 
 
-/* =========================================
+/* =====================================================
    TABLET
-========================================= */
+===================================================== */
 
 @media(max-width:900px){
 
@@ -636,32 +791,63 @@ footer{
 }
 
 
-/* =========================================
+/* =====================================================
    MOBILE
-========================================= */
+===================================================== */
 
 @media(max-width:650px){
 
-  .hero{
-    width:100%;
-  }
-
-  /*
-     VERY IMPORTANT:
-     The original cover is NOT cropped.
-     It keeps its original proportions.
-  */
-
   .cover{
     width:100%;
+
     height:auto;
+
     min-height:0;
+
     object-fit:initial;
   }
+
+
+  /*
+     MOBILE CLICK AREAS
+
+     Same visual cover.
+     Only invisible buttons.
+  */
+
+  .hero-about{
+    top:4%;
+    left:49%;
+    width:12%;
+    height:10%;
+  }
+
+  .hero-tokenomics{
+    top:4%;
+    left:61%;
+    width:15%;
+    height:10%;
+  }
+
+  .hero-roadmap{
+    top:4%;
+    left:75%;
+    width:10%;
+    height:10%;
+  }
+
+  .hero-buy{
+    top:2%;
+    left:82%;
+    width:17%;
+    height:12%;
+  }
+
 
   .container{
     width:calc(100% - 20px);
   }
+
 
   .contract{
     margin-top:12px;
@@ -669,9 +855,11 @@ footer{
     padding:14px;
   }
 
+
   .ca{
     gap:10px;
   }
+
 
   .ca-icon{
     width:50px;
@@ -680,13 +868,16 @@ footer{
     font-size:23px;
   }
 
+
   .ca-text small{
     font-size:9px;
   }
 
+
   .ca-text strong{
     font-size:14px;
   }
+
 
   .copy{
     padding:9px 13px;
@@ -694,31 +885,38 @@ footer{
     margin-left:0;
   }
 
+
   .market{
     padding:17px;
 
     gap:20px;
   }
 
+
   .market-title{
     font-size:38px;
   }
+
 
   .price{
     font-size:28px;
   }
 
+
   .stats{
     gap:14px;
   }
+
 
   .stats strong{
     font-size:14px;
   }
 
+
   .chart{
     height:245px;
   }
+
 
   .chart-header{
     justify-content:flex-start;
@@ -730,26 +928,21 @@ footer{
     white-space:nowrap;
   }
 
+
   .features{
     grid-template-columns:1fr;
   }
+
 
   .lower{
     grid-template-columns:1fr;
   }
 
-  .token{
-    gap:17px;
+
+  .tokenomics-row{
+    padding:13px 14px;
   }
 
-  .donut{
-    width:110px;
-    height:110px;
-  }
-
-  .donut:after{
-    inset:27px;
-  }
 
   footer{
     flex-direction:column;
@@ -762,9 +955,9 @@ footer{
 }
 
 
-/* =========================================
+/* =====================================================
    SMALL PHONES
-========================================= */
+===================================================== */
 
 @media(max-width:390px){
 
@@ -791,6 +984,7 @@ footer{
 }
 
 </style>
+
 </head>
 
 
@@ -798,21 +992,61 @@ footer{
 
 
 <!-- =====================================================
-     ORIGINAL COVER
+     HERO
 
-     IMPORTANT:
-     Do NOT add another JUMPY menu here.
-     Your jumpy-cover.PNG already contains:
-     JUMPY / About / Tokenomics / Roadmap / Buy $JUMPY
+     NO SECOND MENU HERE.
+     The menu is already inside jumpy-cover.PNG.
+
+     Invisible click areas make the existing menu work.
 ===================================================== -->
 
 <section class="hero">
+
 
   <img
     class="cover"
     src="jumpy-cover.PNG"
     alt="JUMPY — JUST JUMP."
   >
+
+
+  <!-- ABOUT -->
+
+  <a
+    class="hero-link hero-about"
+    href="#about"
+    aria-label="About">
+  </a>
+
+
+  <!-- TOKENOMICS -->
+
+  <a
+    class="hero-link hero-tokenomics"
+    href="#tokenomics"
+    aria-label="Tokenomics">
+  </a>
+
+
+  <!-- ROADMAP -->
+
+  <a
+    class="hero-link hero-roadmap"
+    href="#roadmap"
+    aria-label="Roadmap">
+  </a>
+
+
+  <!-- BUY -->
+
+  <a
+    class="hero-link hero-buy"
+    href="https://pump.fun"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Buy JUMPY">
+  </a>
+
 
 </section>
 
@@ -1031,29 +1265,18 @@ footer{
 
     <div class="chart-header">
 
-      <span>
-        1D
-      </span>
+      <span>1D</span>
 
-      <span>
-        1W
-      </span>
+      <span>1W</span>
 
-      <span>
-        1M
-      </span>
+      <span>1M</span>
 
-      <span>
-        3M
-      </span>
+      <span>3M</span>
 
-      <span>
-        1Y
-      </span>
+      <span>1Y</span>
 
-      <span>
-        All
-      </span>
+      <span>All</span>
+
 
       <span class="live">
 
@@ -1181,7 +1404,9 @@ footer{
 <section class="lower">
 
 
-  <!-- TOKENOMICS -->
+  <!-- ===================================================
+       TOKENOMICS
+  =================================================== -->
 
   <div
     class="panel"
@@ -1193,70 +1418,57 @@ footer{
     </h2>
 
 
-    <div class="token">
+    <div class="tokenomics-list">
 
 
-      <div class="donut"></div>
+      <div class="tokenomics-row">
+
+        <span>
+          Total Supply
+        </span>
+
+        <strong>
+          1,000,000,000 $JUMPY
+        </strong>
+
+      </div>
 
 
-      <div class="legend">
+      <div class="tokenomics-row">
+
+        <span>
+          Launch
+        </span>
+
+        <strong class="green">
+          Fair Launch
+        </strong>
+
+      </div>
 
 
-        <div>
+      <div class="tokenomics-row">
 
-          <span>
-            <i></i>
-            Liquidity
-          </span>
+        <span>
+          Team Allocation
+        </span>
 
-          <strong>
-            70%
-          </strong>
+        <strong>
+          0%
+        </strong>
 
-        </div>
-
-
-        <div>
-
-          <span>
-            <i></i>
-            Marketing
-          </span>
-
-          <strong>
-            15%
-          </strong>
-
-        </div>
+      </div>
 
 
-        <div>
+      <div class="tokenomics-row">
 
-          <span>
-            <i></i>
-            CEX Listings
-          </span>
+        <span>
+          Buy / Sell Tax
+        </span>
 
-          <strong>
-            10%
-          </strong>
-
-        </div>
-
-
-        <div>
-
-          <span>
-            <i></i>
-            Community
-          </span>
-
-          <strong>
-            5%
-          </strong>
-
-        </div>
-
+        <strong>
+          0%
+        </strong>
 
       </div>
 
@@ -1268,7 +1480,9 @@ footer{
 
 
 
-  <!-- ROADMAP -->
+  <!-- ===================================================
+       ROADMAP
+  =================================================== -->
 
   <div
     class="panel"
@@ -1406,7 +1620,7 @@ footer{
 <script>
 
 /* =====================================================
-   CONTRACT
+   JUMPY CONTRACT
 ===================================================== */
 
 const CA =
@@ -1431,6 +1645,7 @@ copyButton.addEventListener(
 
       copyButton.textContent =
       "✓  Copied";
+
 
       setTimeout(
         function(){
@@ -1459,8 +1674,10 @@ copyButton.addEventListener(
 
       textArea.remove();
 
+
       copyButton.textContent =
       "✓  Copied";
+
 
       setTimeout(
         function(){
