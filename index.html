@@ -7,98 +7,337 @@
 <title>JUMPY — JUST JUMP.</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#24a8df;
+  --blue-light:#72d2ef;
+  --green:#45e991;
+  --dark:#071426;
+  --muted:#667486;
+  --border:#e3ebf1;
+}
 
-html,body{
-  width:100%;
-  min-height:100%;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f5fbfe;
-  color:#071426;
+  color:var(--dark);
+  background:#f6fbfd;
   overflow-x:hidden;
 }
 
-button{font-family:inherit}
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
 
-a{text-decoration:none}
-
-.site{
-  width:100%;
+a{
+  text-decoration:none;
 }
 
 /* =====================================================
-   HERO — THE ACTUAL DESIGN IMAGE
+   HERO
 ===================================================== */
 
 .hero{
   position:relative;
-  width:100%;
-  aspect-ratio:1024 / 802;
-  min-height:700px;
   overflow:hidden;
-
-  background-image:url("jumpy-background.PNG");
-  background-position:center top;
-  background-size:cover;
-  background-repeat:no-repeat;
+  min-height:800px;
+  background:
+    linear-gradient(
+      180deg,
+      #159fdb 0%,
+      #38b8e5 45%,
+      #9cdef1 100%
+    );
 }
 
-/*
-   Interactive game layer.
-   Transparent so the original design remains visible.
-*/
+/* SKY */
 
-.game-layer{
+.sky{
   position:absolute;
-  left:34%;
-  top:13%;
-  width:65%;
-  height:76%;
-  z-index:10;
+  inset:0;
+  overflow:hidden;
   pointer-events:none;
 }
 
-#game{
-  width:100%;
-  height:100%;
-  display:block;
-  pointer-events:auto;
-  touch-action:none;
+/* MOON */
+
+.moon{
+  position:absolute;
+  width:115px;
+  height:115px;
+  border-radius:50%;
+  right:7%;
+  top:115px;
+  background:
+    radial-gradient(circle at 35% 32%,
+      #fff 0 12%,
+      #edf7ff 13% 30%,
+      #d8e9f6 31% 60%,
+      #fff 61%);
+  box-shadow:
+    0 0 25px rgba(255,255,255,.8);
 }
 
-/* SCORE */
+/* CLOUDS */
 
-.score-ui{
+.cloud{
   position:absolute;
-  left:4%;
-  top:0;
+  background:rgba(255,255,255,.72);
+  border-radius:100px;
+  filter:blur(.5px);
+}
+
+.cloud:before,
+.cloud:after{
+  content:"";
+  position:absolute;
+  background:inherit;
+  border-radius:50%;
+}
+
+.cloud:before{
+  width:70px;
+  height:70px;
+  left:25px;
+  bottom:5px;
+}
+
+.cloud:after{
+  width:95px;
+  height:95px;
+  right:35px;
+  bottom:0;
+}
+
+.cloud-a{
+  width:260px;
+  height:55px;
+  top:225px;
+  right:17%;
+}
+
+.cloud-b{
+  width:300px;
+  height:65px;
+  top:365px;
+  left:-50px;
+}
+
+.cloud-c{
+  width:420px;
+  height:90px;
+  bottom:70px;
+  left:5%;
+}
+
+.cloud-d{
+  width:330px;
+  height:70px;
+  right:-40px;
+  bottom:145px;
+}
+
+/* MOUNTAINS */
+
+.mountains{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:170px;
+  height:230px;
+}
+
+.mountain{
+  position:absolute;
+  bottom:0;
+  width:0;
+  height:0;
+  border-left:120px solid transparent;
+  border-right:120px solid transparent;
+  border-bottom:180px solid rgba(255,255,255,.65);
+}
+
+.mountain:after{
+  content:"";
+  position:absolute;
+  left:-55px;
+  top:70px;
+  width:110px;
+  height:110px;
+  background:
+    linear-gradient(
+      135deg,
+      transparent 48%,
+      rgba(87,164,211,.38) 49% 52%,
+      transparent 53%
+    );
+}
+
+.m1{left:-50px;transform:scale(1.3)}
+.m2{left:16%;transform:scale(.85)}
+.m3{left:35%;transform:scale(1.15)}
+.m4{right:12%;transform:scale(.9)}
+.m5{right:-60px;transform:scale(1.3)}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+  position:relative;
+  z-index:50;
+  width:min(1200px,92%);
+  margin:auto;
+  padding:22px 0;
+}
+
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  color:white;
+  font-size:39px;
+  font-weight:1000;
+  letter-spacing:-3px;
+}
+
+.logo span{
+  color:var(--green);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:32px;
+}
+
+.nav a{
+  color:white;
+  font-size:14px;
+  font-weight:700;
+}
+
+.buy{
+  background:var(--green);
+  color:var(--dark)!important;
+  padding:13px 23px;
+  border-radius:30px;
+}
+
+/* =====================================================
+   HERO GRID
+===================================================== */
+
+.hero-content{
+  position:relative;
+  z-index:20;
+  width:min(1200px,92%);
+  min-height:690px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:15px;
+}
+
+/* LEFT TEXT */
+
+.hero-copy{
+  padding-top:52px;
+  color:white;
+}
+
+.kicker{
+  font-size:12px;
+  letter-spacing:7px;
+  font-weight:700;
+  margin-bottom:23px;
+}
+
+.hero-copy h1{
+  font-size:95px;
+  line-height:.77;
+  letter-spacing:-7px;
+  font-weight:1000;
+}
+
+.hero-copy h1 span{
+  color:var(--green);
+}
+
+.hero-copy p{
+  margin-top:24px;
+  max-width:270px;
+  font-size:17px;
+  line-height:1.4;
+}
+
+/* =====================================================
+   GAME
+===================================================== */
+
+.game-area{
+  position:relative;
+  min-width:0;
+  padding-top:25px;
+}
+
+.score{
+  position:relative;
+  z-index:40;
   width:310px;
   height:80px;
+  margin:0 auto;
   background:rgba(255,255,255,.94);
-  border-radius:22px;
+  border-radius:23px;
   display:grid;
   grid-template-columns:1fr 1px 1fr;
   align-items:center;
   text-align:center;
-  box-shadow:0 12px 35px rgba(0,0,0,.08);
-  z-index:20;
+  box-shadow:0 12px 35px rgba(0,0,0,.1);
 }
 
-.score-ui .divider{
-  width:1px;
-  height:48px;
-  background:#cbd6df;
+.score-divider{
+  height:50px;
+  background:#cad5df;
 }
 
-.score-label{
+.score small{
+  display:block;
   font-size:13px;
 }
 
-.score-value{
+.score strong{
+  display:block;
   font-size:34px;
-  font-weight:900;
   line-height:1;
   margin-top:3px;
+}
+
+.game{
+  position:relative;
+  width:100%;
+  max-width:720px;
+  height:500px;
+  margin:5px auto 0;
+}
+
+canvas{
+  width:100%;
+  height:100%;
+  display:block;
+  touch-action:none;
 }
 
 /* GAME OVER */
@@ -106,15 +345,15 @@ a{text-decoration:none}
 .game-over{
   position:absolute;
   right:0;
-  bottom:4%;
+  bottom:5px;
   width:275px;
+  background:rgba(255,255,255,.94);
+  border-radius:27px;
   padding:23px 18px;
-  background:rgba(255,255,255,.95);
-  border-radius:26px;
-  box-shadow:0 15px 45px rgba(0,0,0,.12);
   text-align:center;
+  box-shadow:0 15px 45px rgba(0,0,0,.13);
   display:none;
-  z-index:30;
+  z-index:60;
 }
 
 .game-over.show{
@@ -126,23 +365,23 @@ a{text-decoration:none}
   margin-bottom:19px;
 }
 
-.result-row{
+.results{
   display:grid;
   grid-template-columns:1fr 1fr;
   margin-bottom:17px;
 }
 
-.result{
-  font-size:12px;
+.result:first-child{
+  border-right:1px solid #ccd6de;
 }
 
-.result:first-child{
-  border-right:1px solid #ccd5dd;
+.result small{
+  color:#657283;
 }
 
 .result strong{
   display:block;
-  font-size:29px;
+  font-size:30px;
   margin-top:3px;
 }
 
@@ -157,57 +396,50 @@ a{text-decoration:none}
 
 .retry{
   border:0;
-  background:#071426;
+  background:var(--dark);
   color:white;
-  margin-bottom:9px;
+  margin-bottom:10px;
 }
 
 .share{
-  border:1px solid #d9e2e8;
+  border:1px solid #dce5eb;
   background:white;
-  color:#071426;
+  color:var(--dark);
 }
 
-/* JUMP BUTTON */
+/* JUMP */
+
+.jump-wrap{
+  position:relative;
+  z-index:60;
+  text-align:center;
+  margin-top:4px;
+}
 
 .jump{
-  position:absolute;
-  left:50%;
-  bottom:0;
-  transform:translateX(-50%);
-  z-index:25;
-
   width:270px;
   height:70px;
-
   border:0;
   border-radius:40px;
-
-  background:#4be892;
-  color:#071426;
-
+  background:var(--green);
+  color:var(--dark);
   font-size:23px;
   font-weight:900;
-
-  box-shadow:0 10px 28px rgba(0,0,0,.10);
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
 }
 
 .jump:active{
-  transform:translateX(-50%) scale(.96);
+  transform:scale(.96);
 }
 
 .hint{
-  position:absolute;
-  left:50%;
-  bottom:-26px;
-  transform:translateX(-50%);
-  color:rgba(7,20,38,.6);
+  margin-top:8px;
   font-size:12px;
-  white-space:nowrap;
+  color:rgba(7,20,38,.6);
 }
 
 /* =====================================================
-   LOWER CONTENT
+   LOWER
 ===================================================== */
 
 .lower{
@@ -223,15 +455,14 @@ a{text-decoration:none}
 /* CONTRACT */
 
 .contract{
-  min-height:110px;
   background:white;
-  border:1px solid #e3ebf1;
+  border:1px solid var(--border);
   border-radius:22px;
-  padding:18px 25px;
+  min-height:105px;
+  padding:18px 24px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  box-shadow:0 5px 20px rgba(0,0,0,.03);
 }
 
 .contract-left{
@@ -250,8 +481,8 @@ a{text-decoration:none}
   font-size:25px;
 }
 
-.contract-small{
-  color:#687585;
+.contract-label{
+  color:#667486;
   font-size:12px;
   margin-bottom:7px;
 }
@@ -264,38 +495,36 @@ a{text-decoration:none}
 .contract-right{
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:22px;
 }
 
 .copy{
   border:1px solid #dce5eb;
   background:white;
   border-radius:25px;
-  padding:12px 23px;
-  font-size:14px;
+  padding:12px 22px;
   font-weight:800;
-  cursor:pointer;
 }
 
 .socials{
   display:flex;
-  gap:24px;
   align-items:center;
+  gap:25px;
 }
 
 .socials a{
-  color:#071426;
   text-align:center;
   font-size:24px;
   font-weight:800;
+  color:var(--dark);
 }
 
 .socials span{
   display:block;
-  color:#687585;
   font-size:11px;
+  color:#667486;
   font-weight:400;
-  margin-top:3px;
+  margin-top:4px;
 }
 
 /* MARKET */
@@ -303,7 +532,7 @@ a{text-decoration:none}
 .market{
   margin-top:14px;
   background:white;
-  border:1px solid #e3ebf1;
+  border:1px solid var(--border);
   border-radius:22px;
   padding:22px;
   display:grid;
@@ -312,7 +541,7 @@ a{text-decoration:none}
 }
 
 .market-info{
-  padding:10px 10px;
+  padding:7px 10px;
 }
 
 .market-title{
@@ -322,12 +551,12 @@ a{text-decoration:none}
 }
 
 .market-title span{
-  color:#20d47b;
+  color:#25d67e;
 }
 
-.market-desc{
-  color:#647184;
-  line-height:1.45;
+.description{
+  color:#657384;
+  line-height:1.4;
   margin-top:7px;
 }
 
@@ -338,21 +567,20 @@ a{text-decoration:none}
 }
 
 .change{
-  color:#23c978;
+  color:#25c977;
   font-size:16px;
-  margin-left:5px;
 }
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
+  margin-top:24px;
   gap:10px;
-  margin-top:25px;
 }
 
 .stat small{
   display:block;
-  color:#6c7886;
+  color:#687586;
   margin-bottom:4px;
 }
 
@@ -362,12 +590,11 @@ a{text-decoration:none}
 
 .dex{
   border:0;
+  background:var(--green);
   border-radius:30px;
-  background:#4be892;
   padding:14px 20px;
   margin-top:22px;
   font-weight:900;
-  cursor:pointer;
 }
 
 .chart{
@@ -388,22 +615,22 @@ a{text-decoration:none}
 }
 
 .feature{
+  min-height:105px;
   background:white;
-  border:1px solid #e3ebf1;
+  border:1px solid var(--border);
   border-radius:20px;
   padding:20px;
-  min-height:105px;
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:16px;
 }
 
 .feature-icon{
   width:52px;
   height:52px;
   flex-shrink:0;
-  border-radius:50%;
   background:#eef7ff;
+  border-radius:50%;
   display:grid;
   place-items:center;
   font-size:24px;
@@ -415,7 +642,7 @@ a{text-decoration:none}
 }
 
 .feature p{
-  color:#687585;
+  color:#687586;
   font-size:13px;
   line-height:1.35;
 }
@@ -423,13 +650,13 @@ a{text-decoration:none}
 /* ROADMAP */
 
 .roadmap{
-  padding:35px 0 50px;
+  padding:38px 0 50px;
 }
 
 .roadmap h2{
   text-align:center;
   font-size:32px;
-  margin-bottom:22px;
+  margin-bottom:23px;
 }
 
 .roadmap-grid{
@@ -440,23 +667,23 @@ a{text-decoration:none}
 
 .phase{
   background:white;
-  border:1px solid #e3ebf1;
+  border:1px solid var(--border);
   border-radius:20px;
-  padding:22px;
+  padding:23px;
 }
 
 .phase small{
-  color:#20c976;
+  color:#25ce78;
   font-weight:900;
   letter-spacing:2px;
 }
 
 .phase h3{
-  margin:9px 0;
+  margin:10px 0 8px;
 }
 
 .phase p{
-  color:#687585;
+  color:#687586;
   font-size:13px;
   line-height:1.5;
 }
@@ -465,16 +692,16 @@ a{text-decoration:none}
 
 footer{
   background:white;
-  border-top:1px solid #e5edf2;
+  border-top:1px solid var(--border);
   padding:30px 0;
 }
 
-.footer-inner{
+.footer{
   width:min(1120px,92%);
   margin:auto;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 }
 
 .footer-logo{
@@ -483,61 +710,98 @@ footer{
 }
 
 .footer-logo span{
-  color:#27d57c;
+  color:#28d57d;
+}
+
+.footer-slogan{
+  margin-left:15px;
+  color:#687586;
+  font-size:12px;
+  letter-spacing:3px;
 }
 
 .footer-links{
   display:flex;
   gap:25px;
-  color:#667383;
+  color:#687586;
   font-size:13px;
 }
 
 .solana{
-  color:#667383;
+  color:#687586;
 }
 
 /* =====================================================
    MOBILE
 ===================================================== */
 
-@media(max-width:700px){
+@media(max-width:800px){
 
   .hero{
-    aspect-ratio:auto;
-    height:720px;
-
-    background-size:auto 720px;
-    background-position:center top;
+    min-height:780px;
   }
 
-  /*
-     On phone the original composition is scaled down
-     rather than stretched.
-  */
-
-  .game-layer{
-    left:4%;
-    top:20%;
-    width:92%;
-    height:67%;
+  .header{
+    padding:18px 0;
   }
 
-  .score-ui{
-    left:50%;
-    transform:translateX(-50%);
+  .logo{
+    font-size:31px;
+  }
+
+  .nav{
+    display:none;
+  }
+
+  .hero-content{
+    width:94%;
+    display:block;
+    min-height:0;
+  }
+
+  .hero-copy{
+    text-align:center;
+    padding-top:25px;
+  }
+
+  .kicker{
+    font-size:11px;
+    letter-spacing:5px;
+    margin-bottom:18px;
+  }
+
+  .hero-copy h1{
+    font-size:68px;
+    letter-spacing:-5px;
+  }
+
+  .hero-copy p{
+    margin:18px auto 0;
+    font-size:15px;
+  }
+
+  .game-area{
+    padding-top:22px;
+  }
+
+  .score{
     width:280px;
     height:72px;
   }
 
-  .score-value{
+  .score strong{
     font-size:31px;
+  }
+
+  .game{
+    height:420px;
+    margin-top:4px;
   }
 
   .game-over{
     width:245px;
     right:3%;
-    bottom:9%;
+    bottom:3px;
     padding:18px 14px;
   }
 
@@ -547,21 +811,17 @@ footer{
     font-size:20px;
   }
 
-  .hint{
-    bottom:-23px;
-  }
-
   .contract{
     flex-direction:column;
     align-items:flex-start;
-    gap:17px;
+    gap:18px;
     padding:17px;
   }
 
   .contract-right{
     width:100%;
-    justify-content:space-between;
     flex-wrap:wrap;
+    justify-content:space-between;
   }
 
   .contract-address{
@@ -583,9 +843,10 @@ footer{
     text-align:center;
   }
 
-  .market-desc{
+  .description{
     max-width:300px;
-    margin:7px auto 0;
+    margin-left:auto;
+    margin-right:auto;
   }
 
   .chart{
@@ -600,7 +861,7 @@ footer{
     grid-template-columns:1fr;
   }
 
-  .footer-inner{
+  .footer{
     flex-direction:column;
     gap:18px;
     text-align:center;
@@ -609,10 +870,7 @@ footer{
 </style>
 </head>
 
-
 <body>
-
-<div class="site">
 
 <!-- =====================================================
      HERO
@@ -620,75 +878,173 @@ footer{
 
 <section class="hero">
 
-  <div class="game-layer">
+  <div class="sky">
 
-    <div class="score-ui">
+    <div class="moon"></div>
 
-      <div>
-        <div class="score-label">SCORE</div>
-        <div class="score-value" id="score">0</div>
+    <div class="cloud cloud-a"></div>
+    <div class="cloud cloud-b"></div>
+    <div class="cloud cloud-c"></div>
+    <div class="cloud cloud-d"></div>
+
+    <div class="mountains">
+      <div class="mountain m1"></div>
+      <div class="mountain m2"></div>
+      <div class="mountain m3"></div>
+      <div class="mountain m4"></div>
+      <div class="mountain m5"></div>
+    </div>
+
+  </div>
+
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <div class="header-inner">
+
+      <div class="logo">
+        JUMP<span>Y</span>
       </div>
 
-      <div class="divider"></div>
+      <nav class="nav">
 
-      <div>
-        <div class="score-label">BEST</div>
-        <div class="score-value" id="best">0</div>
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#market">
+          Tokenomics
+        </a>
+
+        <a href="#roadmap">
+          Roadmap
+        </a>
+
+        <a
+          class="buy"
+          href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
+          target="_blank">
+          Buy $JUMPY
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- HERO CONTENT -->
+
+  <div
+    class="hero-content"
+    id="about">
+
+
+    <!-- LEFT -->
+
+    <div class="hero-copy">
+
+      <div class="kicker">
+        HIGHER TOGETHER.
       </div>
+
+      <h1>
+        JUST<br>
+        <span>JUMP.</span>
+      </h1>
+
+      <p>
+        A community-driven memecoin
+        on Solana.
+      </p>
 
     </div>
 
 
-    <canvas
-      id="game"
-      width="720"
-      height="500">
-    </canvas>
+    <!-- GAME -->
 
+    <div class="game-area">
 
-    <div
-      class="game-over"
-      id="gameOver">
+      <div class="score">
 
-      <h2>GAME OVER</h2>
-
-      <div class="result-row">
-
-        <div class="result">
-          Score
-          <strong id="finalScore">0</strong>
+        <div>
+          <small>SCORE</small>
+          <strong id="score">0</strong>
         </div>
 
-        <div class="result">
-          Best
-          <strong id="finalBest">0</strong>
+        <div class="score-divider"></div>
+
+        <div>
+          <small>BEST</small>
+          <strong id="best">0</strong>
         </div>
 
       </div>
 
-      <button
-        class="retry"
-        id="retry">
-        ↻ &nbsp; Try Again
-      </button>
 
-      <button
-        class="share"
-        id="share">
-        𝕏 &nbsp; Share to X
-      </button>
+      <div class="game">
 
-    </div>
+        <canvas
+          id="canvas"
+          width="720"
+          height="500">
+        </canvas>
 
 
-    <button
-      class="jump"
-      id="jump">
-      ↑ &nbsp; JUMP
-    </button>
+        <div
+          class="game-over"
+          id="gameOver">
 
-    <div class="hint">
-      Press SPACE or click to jump
+          <h2>GAME OVER</h2>
+
+          <div class="results">
+
+            <div class="result">
+              <small>Score</small>
+              <strong id="finalScore">0</strong>
+            </div>
+
+            <div class="result">
+              <small>Best</small>
+              <strong id="finalBest">0</strong>
+            </div>
+
+          </div>
+
+          <button
+            class="retry"
+            id="retry">
+            ↻ &nbsp; Try Again
+          </button>
+
+          <button
+            class="share"
+            id="share">
+            𝕏 &nbsp; Share to X
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="jump-wrap">
+
+        <button
+          class="jump"
+          id="jump">
+          ↑ &nbsp; JUMP
+        </button>
+
+        <div class="hint">
+          Press SPACE or click to jump
+        </div>
+
+      </div>
+
     </div>
 
   </div>
@@ -702,282 +1058,298 @@ footer{
 
 <div class="lower">
 
-  <div class="container">
+<div class="container">
 
-    <!-- CONTRACT -->
 
-    <section class="contract">
+  <!-- CONTRACT -->
 
-      <div class="contract-left">
+  <section class="contract">
 
-        <div class="contract-icon">
-          🔗
-        </div>
+    <div class="contract-left">
 
-        <div>
-
-          <div class="contract-small">
-            CONTRACT ADDRESS (SOLANA)
-          </div>
-
-          <div class="contract-address">
-            CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h
-          </div>
-
-        </div>
-
+      <div class="contract-icon">
+        🔗
       </div>
-
-
-      <div class="contract-right">
-
-        <button
-          class="copy"
-          id="copy">
-          ▣ &nbsp; Copy
-        </button>
-
-        <div class="socials">
-
-          <a
-            href="https://x.com/jumpymeme"
-            target="_blank">
-            𝕏
-            <span>Twitter</span>
-          </a>
-
-          <a
-            href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
-            target="_blank">
-            ◈
-            <span>Dexscreener</span>
-          </a>
-
-          <a
-            href="mailto:jumpymeme@gmail.com">
-            ✉
-            <span>Email</span>
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- MARKET -->
-
-    <section class="market">
-
-      <div class="market-info">
-
-        <div class="market-title">
-          $JUMP<span>Y</span>
-        </div>
-
-        <div class="market-desc">
-          A community-driven memecoin
-          on Solana.
-        </div>
-
-        <div class="price">
-          $0.009293
-          <span class="change">
-            ↑ +124.3% (24h)
-          </span>
-        </div>
-
-        <div class="stats">
-
-          <div class="stat">
-            <small>Market Cap</small>
-            <strong>$9.2M</strong>
-          </div>
-
-          <div class="stat">
-            <small>Liquidity</small>
-            <strong>$437K</strong>
-          </div>
-
-          <div class="stat">
-            <small>Holders</small>
-            <strong>1.7K</strong>
-          </div>
-
-        </div>
-
-        <button
-          class="dex"
-          onclick="window.open(
-          'https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW',
-          '_blank')">
-
-          View on Dexscreener ↗
-
-        </button>
-
-      </div>
-
-
-      <iframe
-        class="chart"
-        src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=light&trades=0&info=0"
-        title="Live chart"
-        loading="lazy">
-      </iframe>
-
-    </section>
-
-
-    <!-- FEATURES -->
-
-    <section class="features">
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          🎮
-        </div>
-
-        <div>
-          <h3>PLAY</h3>
-          <p>
-            Jump through the candles.
-            Beat your high score.
-          </p>
-        </div>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          👥
-        </div>
-
-        <div>
-          <h3>COMMUNITY</h3>
-          <p>
-            A growing community
-            that just keeps jumping.
-          </p>
-        </div>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          🚀
-        </div>
-
-        <div>
-          <h3>MOON</h3>
-          <p>
-            From Solana.
-            To higher.
-          </p>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ROADMAP -->
-
-    <section class="roadmap">
-
-      <h2>ROADMAP</h2>
-
-      <div class="roadmap-grid">
-
-        <div class="phase">
-
-          <small>PHASE 01</small>
-
-          <h3>
-            JUST JUMP.
-          </h3>
-
-          <p>
-            Launch the coin, website,
-            game and community.
-          </p>
-
-        </div>
-
-
-        <div class="phase">
-
-          <small>PHASE 02</small>
-
-          <h3>
-            GO HIGHER.
-          </h3>
-
-          <p>
-            More players, memes
-            and community growth.
-          </p>
-
-        </div>
-
-
-        <div class="phase">
-
-          <small>PHASE 03</small>
-
-          <h3>
-            HIGHER TOGETHER.
-          </h3>
-
-          <p>
-            Keep building JUMPY
-            together.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </div>
-
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <div class="footer-inner">
 
       <div>
 
-        <span class="footer-logo">
-          JUMP<span>Y</span>
-        </span>
+        <div class="contract-label">
+          CONTRACT ADDRESS (SOLANA)
+        </div>
 
-      </div>
+        <div class="contract-address">
+          CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h
+        </div>
 
-      <div class="footer-links">
-        <a href="#">About</a>
-        <a href="#market">Tokenomics</a>
-        <a href="#roadmap">Roadmap</a>
-      </div>
-
-      <div class="solana">
-        Built on ⚡ Solana
       </div>
 
     </div>
 
-  </footer>
+
+    <div class="contract-right">
+
+      <button
+        class="copy"
+        id="copy">
+        ▣ &nbsp; Copy
+      </button>
+
+      <div class="socials">
+
+        <a
+          href="https://x.com/jumpymeme"
+          target="_blank">
+          𝕏
+          <span>Twitter</span>
+        </a>
+
+        <a
+          href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
+          target="_blank">
+          ◈
+          <span>Dexscreener</span>
+        </a>
+
+        <a
+          href="mailto:jumpymeme@gmail.com">
+          ✉
+          <span>Email</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MARKET -->
+
+  <section
+    class="market"
+    id="market">
+
+    <div class="market-info">
+
+      <div class="market-title">
+        $JUMP<span>Y</span>
+      </div>
+
+      <div class="description">
+        A community-driven memecoin
+        on Solana.
+      </div>
+
+      <div class="price">
+        $0.009293
+
+        <span class="change">
+          ↑ +124.3% (24h)
+        </span>
+      </div>
+
+      <div class="stats">
+
+        <div class="stat">
+          <small>Market Cap</small>
+          <strong>$9.2M</strong>
+        </div>
+
+        <div class="stat">
+          <small>Liquidity</small>
+          <strong>$437K</strong>
+        </div>
+
+        <div class="stat">
+          <small>Holders</small>
+          <strong>1.7K</strong>
+        </div>
+
+      </div>
+
+      <button
+        class="dex"
+        onclick="window.open(
+        'https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW',
+        '_blank')">
+        View on Dexscreener ↗
+      </button>
+
+    </div>
+
+
+    <iframe
+      class="chart"
+      src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=light&trades=0&info=0"
+      title="JUMPY live chart"
+      loading="lazy">
+    </iframe>
+
+  </section>
+
+
+  <!-- FEATURES -->
+
+  <section class="features">
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🎮
+      </div>
+
+      <div>
+        <h3>PLAY</h3>
+        <p>
+          Jump through the candles.
+          Beat your high score.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        👥
+      </div>
+
+      <div>
+        <h3>COMMUNITY</h3>
+        <p>
+          A growing community
+          that just keeps jumping.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🚀
+      </div>
+
+      <div>
+        <h3>MOON</h3>
+        <p>
+          From Solana.
+          To higher.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ROADMAP -->
+
+  <section
+    class="roadmap"
+    id="roadmap">
+
+    <h2>ROADMAP</h2>
+
+    <div class="roadmap-grid">
+
+      <div class="phase">
+
+        <small>PHASE 01</small>
+
+        <h3>
+          JUST JUMP.
+        </h3>
+
+        <p>
+          Launch the coin, website,
+          game and community.
+        </p>
+
+      </div>
+
+
+      <div class="phase">
+
+        <small>PHASE 02</small>
+
+        <h3>
+          GO HIGHER.
+        </h3>
+
+        <p>
+          More players, memes
+          and community growth.
+        </p>
+
+      </div>
+
+
+      <div class="phase">
+
+        <small>PHASE 03</small>
+
+        <h3>
+          HIGHER TOGETHER.
+        </h3>
+
+        <p>
+          Keep building JUMPY
+          together.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
 
 </div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer">
+
+    <div>
+
+      <span class="footer-logo">
+        JUMP<span>Y</span>
+      </span>
+
+      <span class="footer-slogan">
+        HIGHER TOGETHER.
+      </span>
+
+    </div>
+
+    <div class="footer-links">
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#market">
+        Tokenomics
+      </a>
+
+      <a href="#roadmap">
+        Roadmap
+      </a>
+
+    </div>
+
+    <div class="solana">
+      Built on ⚡ Solana
+    </div>
+
+  </div>
+
+</footer>
 
 </div>
 
@@ -985,11 +1357,11 @@ footer{
 <script>
 
 /* =====================================================
-   REAL JUMPY GAME
+   JUMPY GAME ENGINE
 ===================================================== */
 
 const canvas =
-  document.getElementById("game");
+  document.getElementById("canvas");
 
 const ctx =
   canvas.getContext("2d");
@@ -1009,22 +1381,25 @@ const finalScoreEl =
 const finalBestEl =
   document.getElementById("finalBest");
 
-const jumpBtn =
+const jumpButton =
   document.getElementById("jump");
 
-const retryBtn =
+const retryButton =
   document.getElementById("retry");
 
-const shareBtn =
+const shareButton =
   document.getElementById("share");
 
 
 let best =
   Number(
-    localStorage.getItem("JUMPY_BEST") || 0
+    localStorage.getItem(
+      "JUMPY_BEST"
+    ) || 0
   );
 
-bestEl.textContent = best;
+bestEl.textContent =
+  best;
 
 
 let player;
@@ -1032,22 +1407,28 @@ let candles;
 let score;
 let running;
 let lastTime;
-let raf;
+let animation;
 
 
 /* =====================================================
    START
 ===================================================== */
 
-function start(){
+function startGame(){
 
   player = {
-    x:145,
-    y:245,
-    r:24,
+
+    x:155,
+
+    y:240,
+
+    radius:25,
+
     velocity:0,
+
     rotation:0
   };
+
 
   candles = [];
 
@@ -1058,40 +1439,108 @@ function start(){
   lastTime =
     performance.now();
 
-  scoreEl.textContent = "0";
+  scoreEl.textContent =
+    "0";
 
-  gameOverEl.classList.remove("show");
-
-  candles.push(
-    makeCandle(760)
+  gameOverEl.classList.remove(
+    "show"
   );
 
-  cancelAnimationFrame(raf);
 
-  raf =
-    requestAnimationFrame(loop);
+  /*
+    First candles reproduce the
+    composition of the reference.
+  */
+
+  candles.push({
+    x:20,
+    top:265,
+    gap:165,
+    width:52,
+    passed:true
+  });
+
+  candles.push({
+    x:135,
+    top:285,
+    gap:165,
+    width:52,
+    passed:true
+  });
+
+  candles.push({
+    x:250,
+    top:250,
+    gap:165,
+    width:52,
+    passed:false
+  });
+
+  candles.push({
+    x:365,
+    top:215,
+    gap:165,
+    width:52,
+    passed:false
+  });
+
+  candles.push({
+    x:480,
+    top:180,
+    gap:165,
+    width:52,
+    passed:false
+  });
+
+  candles.push({
+    x:595,
+    top:150,
+    gap:165,
+    width:52,
+    passed:false
+  });
+
+
+  cancelAnimationFrame(
+    animation
+  );
+
+  animation =
+    requestAnimationFrame(
+      gameLoop
+    );
 }
 
 
 /* =====================================================
-   CANDLE
+   NEW CANDLE
 ===================================================== */
 
-function makeCandle(x){
+function newCandle(){
 
   const gap = 165;
 
   const top =
-    70 +
-    Math.random() * 205;
+    75 +
+    Math.random() * 210;
 
-  return {
-    x:x,
-    width:50,
-    top:top,
-    gap:gap,
+
+  candles.push({
+
+    x:
+      canvas.width + 20,
+
+    top:
+      top,
+
+    gap:
+      gap,
+
+    width:
+      52,
+
     passed:false
-  };
+  });
 }
 
 
@@ -1103,27 +1552,142 @@ function jump(){
 
   if(!running){
 
-    start();
+    startGame();
 
     return;
   }
 
-  player.velocity = -8.4;
+  player.velocity =
+    -8.7;
 }
 
 
 /* =====================================================
-   DRAW JUMPY
+   CANDLE
+===================================================== */
+
+function drawCandle(c){
+
+  const x =
+    c.x;
+
+  const w =
+    c.width;
+
+  const top =
+    c.top;
+
+  const bottom =
+    c.top + c.gap;
+
+
+  /* top red body */
+
+  ctx.fillStyle =
+    "#ef4d48";
+
+  ctx.fillRect(
+    x,
+    0,
+    w,
+    top - 18
+  );
+
+
+  /* top green cap */
+
+  ctx.fillStyle =
+    "#31d878";
+
+  ctx.fillRect(
+    x - 5,
+    top - 18,
+    w + 10,
+    18
+  );
+
+
+  /* top wick */
+
+  ctx.strokeStyle =
+    "#071426";
+
+  ctx.lineWidth =
+    3;
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    x + w/2,
+    top - 18
+  );
+
+  ctx.lineTo(
+    x + w/2,
+    top - 38
+  );
+
+  ctx.stroke();
+
+
+  /* bottom red body */
+
+  ctx.fillStyle =
+    "#ef4d48";
+
+  ctx.fillRect(
+    x,
+    bottom + 18,
+    w,
+    canvas.height - bottom
+  );
+
+
+  /* bottom green cap */
+
+  ctx.fillStyle =
+    "#31d878";
+
+  ctx.fillRect(
+    x - 5,
+    bottom,
+    w + 10,
+    18
+  );
+
+
+  /* bottom wick */
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    x + w/2,
+    bottom + 18
+  );
+
+  ctx.lineTo(
+    x + w/2,
+    bottom + 38
+  );
+
+  ctx.stroke();
+}
+
+
+/* =====================================================
+   JUMPY
 ===================================================== */
 
 function drawJumpy(){
 
   ctx.save();
 
+
   ctx.translate(
     player.x,
     player.y
   );
+
 
   player.rotation =
     Math.max(
@@ -1134,64 +1698,86 @@ function drawJumpy(){
       )
     );
 
+
   ctx.rotate(
     player.rotation
   );
 
 
-  /* flame */
+  /* rocket flame */
 
-  ctx.fillStyle="#ff9c18";
-  ctx.strokeStyle="#071426";
-  ctx.lineWidth=3;
+  ctx.fillStyle =
+    "#ff9d16";
+
+  ctx.strokeStyle =
+    "#071426";
+
+  ctx.lineWidth =
+    3;
 
   ctx.beginPath();
 
-  ctx.moveTo(-22,8);
-  ctx.lineTo(-48,-2);
-  ctx.lineTo(-29,19);
+  ctx.moveTo(
+    -25,
+    8
+  );
+
+  ctx.lineTo(
+    -55,
+    -4
+  );
+
+  ctx.lineTo(
+    -32,
+    20
+  );
 
   ctx.closePath();
 
   ctx.fill();
+
   ctx.stroke();
 
 
   /* rocket */
 
-  ctx.fillStyle="#8b969f";
+  ctx.fillStyle =
+    "#89949d";
 
   ctx.beginPath();
 
   ctx.ellipse(
     -18,
     5,
-    20,
-    11,
+    21,
+    12,
     0,
     0,
     Math.PI*2
   );
 
   ctx.fill();
+
   ctx.stroke();
 
 
   /* body */
 
-  ctx.fillStyle="#fff";
+  ctx.fillStyle =
+    "#ffffff";
 
   ctx.beginPath();
 
   ctx.arc(
     0,
     0,
-    27,
+    28,
     0,
     Math.PI*2
   );
 
   ctx.fill();
+
   ctx.stroke();
 
 
@@ -1204,20 +1790,21 @@ function drawJumpy(){
   ctx.arc(
     0,
     0,
-    27,
+    28,
     0,
     Math.PI*2
   );
 
   ctx.clip();
 
-  ctx.fillStyle="#43d83e";
+  ctx.fillStyle =
+    "#42d83e";
 
   ctx.fillRect(
-    -30,
+    -32,
     2,
-    60,
-    35
+    64,
+    38
   );
 
   ctx.restore();
@@ -1225,7 +1812,8 @@ function drawJumpy(){
 
   /* eyes */
 
-  ctx.fillStyle="#071426";
+  ctx.fillStyle =
+    "#071426";
 
   ctx.beginPath();
 
@@ -1253,9 +1841,10 @@ function drawJumpy(){
   ctx.fill();
 
 
-  /* tongue */
+  /* mouth / tongue */
 
-  ctx.fillStyle="#ff628c";
+  ctx.fillStyle =
+    "#ff628c";
 
   ctx.beginPath();
 
@@ -1274,19 +1863,25 @@ function drawJumpy(){
 
   /* arms */
 
-  ctx.strokeStyle="#071426";
-  ctx.lineWidth=5;
-  ctx.lineCap="round";
+  ctx.strokeStyle =
+    "#071426";
+
+  ctx.lineWidth =
+    5;
+
+  ctx.lineCap =
+    "round";
+
 
   ctx.beginPath();
 
   ctx.moveTo(
     22,
-    6
+    7
   );
 
   ctx.lineTo(
-    39,
+    41,
     -2
   );
 
@@ -1297,12 +1892,12 @@ function drawJumpy(){
 
   ctx.moveTo(
     -22,
-    9
+    10
   );
 
   ctx.lineTo(
-    -38,
-    18
+    -39,
+    19
   );
 
   ctx.stroke();
@@ -1345,118 +1940,26 @@ function drawJumpy(){
 
 
 /* =====================================================
-   DRAW CANDLE
-===================================================== */
-
-function drawCandle(c){
-
-  const x =
-    c.x;
-
-  const w =
-    c.width;
-
-  const bottom =
-    c.top + c.gap;
-
-
-  /* TOP */
-
-  ctx.fillStyle="#ef514b";
-
-  ctx.fillRect(
-    x,
-    0,
-    w,
-    c.top - 17
-  );
-
-
-  ctx.fillStyle="#36d87a";
-
-  ctx.fillRect(
-    x - 5,
-    c.top - 17,
-    w + 10,
-    17
-  );
-
-
-  /* wick */
-
-  ctx.strokeStyle="#071426";
-  ctx.lineWidth=3;
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    x+w/2,
-    c.top-17
-  );
-
-  ctx.lineTo(
-    x+w/2,
-    c.top-35
-  );
-
-  ctx.stroke();
-
-
-  /* BOTTOM */
-
-  ctx.fillStyle="#ef514b";
-
-  ctx.fillRect(
-    x,
-    bottom+17,
-    w,
-    canvas.height-bottom
-  );
-
-
-  ctx.fillStyle="#36d87a";
-
-  ctx.fillRect(
-    x-5,
-    bottom,
-    w+10,
-    17
-  );
-
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    x+w/2,
-    bottom+17
-  );
-
-  ctx.lineTo(
-    x+w/2,
-    bottom+35
-  );
-
-  ctx.stroke();
-}
-
-
-/* =====================================================
    COLLISION
 ===================================================== */
 
 function collision(){
 
   const left =
-    player.x-player.r;
+    player.x -
+    player.radius;
 
   const right =
-    player.x+player.r;
+    player.x +
+    player.radius;
 
   const top =
-    player.y-player.r;
+    player.y -
+    player.radius;
 
   const bottom =
-    player.y+player.r;
+    player.y +
+    player.radius;
 
 
   if(
@@ -1472,22 +1975,22 @@ function collision(){
     const c of candles
   ){
 
-    const candleLeft =
+    const leftC =
       c.x;
 
-    const candleRight =
-      c.x+c.width;
+    const rightC =
+      c.x + c.width;
 
     const gapTop =
       c.top;
 
     const gapBottom =
-      c.top+c.gap;
+      c.top + c.gap;
 
 
     if(
-      right > candleLeft &&
-      left < candleRight &&
+      right > leftC &&
+      left < rightC &&
       (
         top < gapTop ||
         bottom > gapBottom
@@ -1510,24 +2013,27 @@ function collision(){
 function update(dt){
 
   player.velocity +=
-    .42 * dt;
+    .43 * dt;
 
   player.y +=
     player.velocity * dt;
 
 
+  /*
+    Keep adding candles.
+  */
+
+  const last =
+    candles[candles.length-1];
+
+
   if(
-    candles.length === 0 ||
-    candles[
-      candles.length-1
-    ].x < canvas.width-280
+    !last ||
+    last.x <
+    canvas.width - 230
   ){
 
-    candles.push(
-      makeCandle(
-        canvas.width+20
-      )
-    );
+    newCandle();
   }
 
 
@@ -1541,11 +2047,12 @@ function update(dt){
 
     if(
       !c.passed &&
-      c.x+c.width <
+      c.x + c.width <
       player.x
     ){
 
-      c.passed = true;
+      c.passed =
+        true;
 
       score++;
 
@@ -1558,8 +2065,65 @@ function update(dt){
   candles =
     candles.filter(
       c =>
-        c.x+c.width > -40
+        c.x + c.width >
+        -80
     );
+}
+
+
+/* =====================================================
+   GAME BACKGROUND
+===================================================== */
+
+function drawCanvasBackground(){
+
+  /*
+    Very subtle transparent haze
+    so the actual CSS sky remains visible.
+  */
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  /*
+    White flight trail.
+  */
+
+  ctx.save();
+
+  ctx.strokeStyle =
+    "rgba(255,255,255,.9)";
+
+  ctx.lineWidth =
+    5;
+
+  ctx.setLineDash([
+    15,
+    12
+  ]);
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    45,
+    365
+  );
+
+  ctx.quadraticCurveTo(
+    120,
+    225,
+    225,
+    150
+  );
+
+  ctx.stroke();
+
+  ctx.restore();
 }
 
 
@@ -1569,17 +2133,7 @@ function update(dt){
 
 function draw(){
 
-  /*
-    Canvas is transparent.
-    The exact background image remains underneath.
-  */
-
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
+  drawCanvasBackground();
 
 
   for(
@@ -1595,17 +2149,19 @@ function draw(){
 
 
 /* =====================================================
-   END
+   GAME OVER
 ===================================================== */
 
-function endGame(){
+function gameOver(){
 
-  running = false;
+  running =
+    false;
 
 
   if(score > best){
 
-    best = score;
+    best =
+      score;
 
     localStorage.setItem(
       "JUMPY_BEST",
@@ -1633,7 +2189,7 @@ function endGame(){
    LOOP
 ===================================================== */
 
-function loop(time){
+function gameLoop(time){
 
   if(!running){
 
@@ -1661,7 +2217,7 @@ function loop(time){
 
     draw();
 
-    endGame();
+    gameOver();
 
     return;
   }
@@ -1670,9 +2226,9 @@ function loop(time){
   draw();
 
 
-  raf =
+  animation =
     requestAnimationFrame(
-      loop
+      gameLoop
     );
 }
 
@@ -1681,15 +2237,15 @@ function loop(time){
    CONTROLS
 ===================================================== */
 
-jumpBtn.addEventListener(
+jumpButton.addEventListener(
   "click",
   jump
 );
 
 
-retryBtn.addEventListener(
+retryButton.addEventListener(
   "click",
-  start
+  startGame
 );
 
 
@@ -1709,8 +2265,8 @@ document.addEventListener(
   function(e){
 
     if(
-      e.code==="Space" ||
-      e.code==="ArrowUp"
+      e.code === "Space" ||
+      e.code === "ArrowUp"
     ){
 
       e.preventDefault();
@@ -1725,7 +2281,7 @@ document.addEventListener(
    SHARE
 ===================================================== */
 
-shareBtn.addEventListener(
+shareButton.addEventListener(
   "click",
   function(){
 
@@ -1734,9 +2290,12 @@ shareBtn.addEventListener(
       score +
       " on JUMPY. JUST JUMP. 🟢 $JUMPY";
 
+    const url =
+      "https://twitter.com/intent/tweet?text=" +
+      encodeURIComponent(text);
+
     window.open(
-      "https://twitter.com/intent/tweet?text="+
-      encodeURIComponent(text),
+      url,
       "_blank"
     );
   }
@@ -1744,7 +2303,7 @@ shareBtn.addEventListener(
 
 
 /* =====================================================
-   COPY
+   COPY CA
 ===================================================== */
 
 document
@@ -1785,7 +2344,7 @@ document
    START
 ===================================================== */
 
-start();
+startGame();
 
 </script>
 
