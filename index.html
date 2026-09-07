@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUMPY — JUST JUMP.</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef9ff;
+  color: #071526;
+}
+
+.page {
+  width: min(1100px, 100%);
+  margin: auto;
+}
+
+/* HEADER */
+
+header {
+  height: 80px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #159fe5;
+  color: white;
+}
+
+.logo {
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.logo span {
+  color: #55efa0;
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.buy {
+  background: #55efa0;
+  color: #071526 !important;
+  padding: 13px 22px;
+  border-radius: 30px;
+}
+
+/* GAME */
+
+.game-section {
+  position: relative;
+  height: 620px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      #159fe5,
+      #75d5f5 70%,
+      #eafaff
+    );
+}
+
+.cloud {
+  position: absolute;
+  width: 180px;
+  height: 45px;
+  background: rgba(255,255,255,.65);
+  border-radius: 50px;
+}
+
+.cloud.one {
+  left: -30px;
+  top: 180px;
+}
+
+.cloud.two {
+  right: -30px;
+  top: 110px;
+}
+
+.cloud.three {
+  left: 40%;
+  top: 350px;
+}
+
+.hero-title {
+  position: absolute;
+  left: 35px;
+  top: 45px;
+  color: white;
+  z-index: 2;
+}
+
+.hero-title small {
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+.hero-title h1 {
+  margin: 15px 0 0;
+  font-size: 80px;
+  line-height: .8;
+}
+
+.hero-title h1 span {
+  color: #55efa0;
+}
+
+/* SCORE */
+
+.score {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 20px;
+  padding: 15px 35px;
+  display: flex;
+  gap: 35px;
+  z-index: 10;
+  text-align: center;
+}
+
+.score small {
+  display: block;
+}
+
+.score strong {
+  font-size: 30px;
+}
+
+/* CANVAS */
+
+#gameCanvas {
+  position: absolute;
+  left: 18%;
+  top: 115px;
+  width: 82%;
+  height: 430px;
+}
+
+/* GAME CARD */
+
+.game-card {
+  position: absolute;
+  right: 25px;
+  bottom: 65px;
+  width: 270px;
+  padding: 22px;
+  border-radius: 25px;
+  background: rgba(255,255,255,.9);
+  z-index: 10;
+  text-align: center;
+}
+
+.game-card h2 {
+  margin: 0 0 20px;
+}
+
+.stats {
+  display: flex;
+}
+
+.stats > div {
+  flex: 1;
+}
+
+.stats > div + div {
+  border-left: 1px solid #ccd8e0;
+}
+
+.stats small {
+  display: block;
+}
+
+.stats strong {
+  font-size: 27px;
+}
+
+.game-card button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.try {
+  border: 0;
+  background: #0b1728;
+  color: white;
+}
+
+.share {
+  border: 1px solid #d5dfe6;
+  background: white;
+}
+
+.jump {
+  position: absolute;
+  left: 48%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  padding: 17px 65px;
+  border: 0;
+  border-radius: 40px;
+  background: #55efa0;
+  color: #071526;
+  font-size: 21px;
+  font-weight: 900;
+  cursor: pointer;
+  z-index: 15;
+}
+
+/* CONTRACT */
+
+.contract {
+  margin: 20px 0;
+  padding: 25px;
+  background: white;
+  border-radius: 20px;
+}
+
+.contract small {
+  color: #657487;
+}
+
+.contract-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 8px;
+}
+
+.address {
+  font-family: monospace;
+  font-weight: bold;
+  word-break: break-all;
+}
+
+.copy {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid #d5dfe6;
+  background: white;
+  cursor: pointer;
+}
+
+/* MARKET */
+
+.market {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.market h2 {
+  font-size: 38px;
+  margin: 0;
+}
+
+.market h2 span {
+  color: #20df89;
+}
+
+.chart {
+  margin-top: 20px;
+  width: 100%;
+  height: 420px;
+  background: #091525;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.chart iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 35px;
+  text-align: center;
+  background: #f1faff;
+}
+
+@media(max-width:700px) {
+
+  nav {
+    display: none;
+  }
+
+  header {
+    justify-content: center;
+  }
+
+  .game-section {
+    height: 700px;
+  }
+
+  .hero-title {
+    left: 20px;
+  }
+
+  .hero-title h1 {
+    font-size: 58px;
+  }
+
+  #gameCanvas {
+    left: 0;
+    width: 100%;
+    top: 190px;
+  }
+
+  .game-card {
+    width: 220px;
+    right: 10px;
+    bottom: 70px;
+  }
+
+  .jump {
+    left: 42%;
+    padding: 14px 45px;
+  }
+
+  .contract-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chart {
+    height: 320px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<header>
+  <div class="logo">JUMP<span>Y</span></div>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#market">Tokenomics</a>
+    <a href="#roadmap">Roadmap</a>
+    <a class="buy" href="#market">Buy $JUMPY</a>
+  </nav>
+</header>
+
+
+<section class="game-section">
+
+  <div class="cloud one"></div>
+  <div class="cloud two"></div>
+  <div class="cloud three"></div>
+
+  <div class="hero-title">
+    <small>HIGHER TOGETHER.</small>
+    <h1>JUST<br><span>JUMP.</span></h1>
+  </div>
+
+
+  <div class="score">
+
+    <div>
+      <small>SCORE</small>
+      <strong id="score">0</strong>
+    </div>
+
+    <div>
+      <small>BEST</small>
+      <strong id="best">0</strong>
+    </div>
+
+  </div>
+
+
+  <canvas id="gameCanvas"></canvas>
+
+
+  <div class="game-card">
+
+    <h2 id="gameStatus">
+      GAME OVER
+    </h2>
+
+    <div class="stats">
+
+      <div>
+        <small>Score</small>
+        <strong id="finalScore">0</strong>
+      </div>
+
+      <div>
+        <small>Best</small>
+        <strong id="bestScore">0</strong>
+      </div>
+
+    </div>
+
+    <button class="try" id="tryAgain">
+      ↻ Try Again
+    </button>
+
+    <button class="share" id="share">
+      𝕏 Share to X
+    </button>
+
+  </div>
+
+
+  <button class="jump" id="jump">
+    ↑ JUMP
+  </button>
+
+</section>
+
+
+<section class="contract">
+
+  <small>
+    CONTRACT ADDRESS (SOLANA)
+  </small>
+
+  <div class="contract-row">
+
+    <div class="address">
+      CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h
+    </div>
+
+    <button class="copy" id="copy">
+      Copy
+    </button>
+
+  </div>
+
+</section>
+
+
+<section class="market" id="market">
+
+  <h2>
+    $JUMP<span>Y</span>
+  </h2>
+
+  <p>
+    A community-driven meme project on Solana.
+  </p>
+
+  <div class="chart">
+
+    <iframe
+      src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=dark&trades=0&info=0"
+      title="JUMPY DEX Screener">
+    </iframe>
+
+  </div>
+
+</section>
+
+
+<footer id="roadmap">
+  JUMPY — HIGHER TOGETHER. 🚀
+</footer>
+
+</div>
+
+
+<script>
+
+/* =========================
+   GAME
+========================= */
+
+const canvas =
+document.getElementById("gameCanvas");
+
+const ctx =
+canvas.getContext("2d");
+
+const scoreEl =
+document.getElementById("score");
+
+const bestEl =
+document.getElementById("best");
+
+const best2El =
+document.getElementById("bestScore");
+
+const finalEl =
+document.getElementById("finalScore");
+
+const statusEl =
+document.getElementById("gameStatus");
+
+
+let W;
+let H;
+
+let running = false;
+
+let score = 0;
+
+let best =
+Number(
+localStorage.getItem("jumpyBest") || 0
+);
+
+let speed = 4;
+
+let last = 0;
+
+let timer = 0;
+
+let candles = [];
+
+
+const player = {
+
+  x: 120,
+
+  y: 150,
+
+  width: 48,
+
+  height: 65,
+
+  velocity: 0
+
+};
+
+
+bestEl.textContent = best;
+best2El.textContent = best;
+
+
+/* =========================
+   RESIZE
+========================= */
+
+function resize(){
+
+  const rect =
+  canvas.getBoundingClientRect();
+
+  const ratio =
+  window.devicePixelRatio || 1;
+
+  W = rect.width;
+
+  H = rect.height;
+
+  canvas.width =
+  W * ratio;
+
+  canvas.height =
+  H * ratio;
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+}
+
+window.addEventListener(
+"resize",
+resize
+);
+
+resize();
+
+
+/* =========================
+   RESET
+========================= */
+
+function reset(){
+
+  score = 0;
+
+  speed = 4;
+
+  timer = 0;
+
+  candles = [];
+
+  player.x = 120;
+
+  player.y = H / 2;
+
+  player.velocity = 0;
+
+  scoreEl.textContent = 0;
+
+  finalEl.textContent = 0;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+function start(){
+
+  reset();
+
+  running = true;
+
+  statusEl.textContent = "";
+
+  jumpNow();
+
+  last =
+  performance.now();
+
+  requestAnimationFrame(loop);
+
+}
+
+
+/* =========================
+   JUMP
+========================= */
+
+function jumpNow(){
+
+  player.velocity = -10;
+
+}
+
+
+function jump(){
+
+  if(!running){
+
+    start();
+
+  }else{
+
+    jumpNow();
+
+  }
+
+}
+
+
+/* =========================
+   CANDLE
+========================= */
+
+function addCandle(){
+
+  const height =
+  70 +
+  Math.random() * 100;
+
+  candles.push({
+
+    x: W + 30,
+
+    y: H - 20 - height,
+
+    width: 32,
+
+    height: height,
+
+    color:
+      Math.random() > .5
+      ? "#18df72"
+      : "#ff5151",
+
+    passed:false
+
+  });
+
+}
+
+
+/* =========================
+   DRAW CANDLE
+========================= */
+
+function drawCandle(c){
+
+  ctx.fillStyle =
+  c.color;
+
+  ctx.strokeStyle =
+  "#111";
+
+  ctx.lineWidth = 2;
+
+  ctx.fillRect(
+    c.x,
+    c.y,
+    c.width,
+    c.height
+  );
+
+  ctx.strokeRect(
+    c.x,
+    c.y,
+    c.width,
+    c.height
+  );
+
+  ctx.fillRect(
+    c.x + 12,
+    c.y - 22,
+    5,
+    20
+  );
+
+  ctx.fillRect(
+    c.x + 12,
+    c.y + c.height,
+    5,
+    22
+  );
+
+}
+
+
+/* =========================
+   DRAW JUMPY
+========================= */
+
+function drawJumpy(){
+
+  const x =
+  player.x;
+
+  const y =
+  player.y;
+
+  ctx.save();
+
+  ctx.translate(
+    x + player.width / 2,
+    y + player.height / 2
+  );
+
+  ctx.rotate(
+    player.velocity * -0.025
+  );
+
+
+  /* rocket */
+
+  ctx.fillStyle =
+  "#8d9499";
+
+  ctx.strokeStyle =
+  "#111";
+
+  ctx.lineWidth = 2.5;
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -45,
+    -5,
+    27,
+    17,
+    7
+  );
+
+  ctx.fill();
+
+  ctx.stroke();
+
+
+  /* flame */
+
+  ctx.fillStyle =
+  "#ffae00";
+
+  ctx.beginPath();
+
+  ctx.moveTo(-45,3);
+
+  ctx.lineTo(-67,-7);
+
+  ctx.lineTo(-60,4);
+
+  ctx.lineTo(-67,15);
+
+  ctx.closePath();
+
+  ctx.fill();
+
+  ctx.stroke();
+
+
+  /* body */
+
+  ctx.fillStyle =
+  "#fff";
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -24,
+    -34,
+    48,
+    68,
+    22
+  );
+
+  ctx.fill();
+
+  ctx.stroke();
+
+
+  /* green */
+
+  ctx.save();
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -24,
+    -34,
+    48,
+    68,
+    22
+  );
+
+  ctx.clip();
+
+  ctx.fillStyle =
+  "#58d53c";
+
+  ctx.fillRect(
+    -28,
+    7,
+    56,
+    35
+  );
+
+  ctx.restore();
+
+
+  /* eyes */
+
+  ctx.fillStyle =
+  "#111";
+
+  ctx.beginPath();
+
+  ctx.arc(
+    -8,
+    -8,
+    3.5,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.arc(
+    8,
+    -8,
+    3.5,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+
+
+  /* tongue */
+
+  ctx.fillStyle =
+  "#f46b87";
+
+  ctx.beginPath();
+
+  ctx.arc(
+    0,
+    5,
+    6,
+    0,
+    Math.PI
+  );
+
+  ctx.fill();
+
+
+  /* arms + legs */
+
+  ctx.strokeStyle =
+  "#111";
+
+  ctx.lineWidth = 3.5;
+
+  ctx.lineCap =
+  "round";
+
+
+  const lines = [
+
+    [-23,2,-42,-10],
+
+    [23,2,42,-11],
+
+    [-11,31,-23,46],
+
+    [11,31,23,45]
+
+  ];
+
+
+  lines.forEach(
+    a => {
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        a[0],
+        a[1]
+      );
+
+      ctx.lineTo(
+        a[2],
+        a[3]
+      );
+
+      ctx.stroke();
+
+    }
+  );
+
+
+  ctx.restore();
+
+}
+
+
+/* =========================
+   COLLISION
+========================= */
+
+function collision(a,b){
+
+  return (
+
+    a.x + 8 <
+    b.x + b.width &&
+
+    a.x + a.width - 8 >
+    b.x &&
+
+    a.y + 8 <
+    b.y + b.height + 20 &&
+
+    a.y + a.height - 8 >
+    b.y
+
+  );
+
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+function gameOver(){
+
+  running = false;
+
+  statusEl.textContent =
+  "GAME OVER";
+
+  finalEl.textContent =
+  score;
+
+
+  if(score > best){
+
+    best = score;
+
+    localStorage.setItem(
+      "jumpyBest",
+      best
+    );
+
+    bestEl.textContent =
+    best;
+
+    best2El.textContent =
+    best;
+
+  }
+
+}
+
+
+/* =========================
+   DRAW
+========================= */
+
+function draw(){
+
+  ctx.clearRect(
+    0,
+    0,
+    W,
+    H
+  );
+
+
+  /* clouds */
+
+  ctx.fillStyle =
+  "rgba(255,255,255,.35)";
+
+
+  for(
+    let i=0;
+    i<4;
+    i++
+  ){
+
+    const x =
+    (i * 260) -
+    ((score * 2) % 260);
+
+    const y =
+    70 +
+    i * 70;
+
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      x,
+      y,
+      90,
+      25,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+  }
+
+
+  candles.forEach(
+    drawCandle
+  );
+
+
+  drawJumpy();
+
+}
+
+
+/* =========================
+   LOOP
+========================= */
+
+function loop(time){
+
+  if(!running){
+
+    draw();
+
+    return;
+
+  }
+
+
+  const dt =
+  Math.min(
+    (time-last)/16.67,
+    2
+  );
+
+
+  last = time;
+
+
+  /* gravity */
+
+  player.velocity +=
+  .58 * dt;
+
+  player.y +=
+  player.velocity * dt;
+
+
+  /* top */
+
+  if(player.y < 5){
+
+    player.y = 5;
+
+    player.velocity = 0;
+
+  }
+
+
+  /* ground */
+
+  if(
+    player.y +
+    player.height >
+    H - 20
+  ){
+
+    gameOver();
+
+    return;
+
+  }
+
+
+  /* candles */
+
+  timer += dt;
+
+
+  if(timer > 70){
+
+    addCandle();
+
+    timer = 0;
+
+  }
+
+
+  for(
+    let i=candles.length-1;
+    i>=0;
+    i--
+  ){
+
+    const c =
+    candles[i];
+
+
+    c.x -=
+    speed * dt;
+
+
+    if(
+      !c.passed &&
+      c.x + c.width <
+      player.x
+    ){
+
+      c.passed = true;
+
+      score++;
+
+      scoreEl.textContent =
+      score;
+
+      speed =
+      Math.min(
+        7,
+        4 + score * .04
+      );
+
+    }
+
+
+    if(
+      collision(
+        player,
+        c
+      )
+    ){
+
+      gameOver();
+
+      return;
+
+    }
+
+
+    if(
+      c.x + c.width <
+      -50
+    ){
+
+      candles.splice(
+        i,
+        1
+      );
+
+    }
+
+  }
+
+
+  draw();
+
+
+  requestAnimationFrame(
+    loop
+  );
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+document
+.getElementById("jump")
+.addEventListener(
+"click",
+jump
+);
+
+
+document
+.getElementById("tryAgain")
+.addEventListener(
+"click",
+start
+);
+
+
+document
+.getElementById("share")
+.addEventListener(
+"click",
+function(){
+
+  window.open(
+    "https://twitter.com/intent/tweet?text=" +
+    encodeURIComponent(
+      "I just played JUMPY. JUST JUMP. 🟢"
+    ),
+    "_blank"
+  );
+
+});
+
+
+/* =========================
+   COPY CA
+========================= */
+
+document
+.getElementById("copy")
+.addEventListener(
+"click",
+async function(){
+
+  try{
+
+    await navigator.clipboard.writeText(
+      CONTRACT
+    );
+
+  }catch(e){
+
+    const input =
+    document.createElement("input");
+
+    input.value =
+    CONTRACT;
+
+    document.body.appendChild(
+      input
+    );
+
+    input.select();
+
+    document.execCommand(
+      "copy"
+    );
+
+    input.remove();
+
+  }
+
+  this.textContent =
+  "Copied ✓";
+
+});
+
+
+/* =========================
+   KEYBOARD
+========================= */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+  if(
+    e.code === "Space" ||
+    e.code === "ArrowUp"
+  ){
+
+    e.preventDefault();
+
+    jump();
+
+  }
+
+});
+
+
+/* =========================
+   TOUCH
+========================= */
+
+canvas.addEventListener(
+"touchstart",
+function(e){
+
+  e.preventDefault();
+
+  jump();
+
+},
+{passive:false}
+);
+
+
+/* =========================
+   INITIAL
+========================= */
+
+draw();
+
+</script>
+
+</body>
+</html>
