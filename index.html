@@ -1,24 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>JUMPY — JUST JUMP.</title>
 
-
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
   box-sizing:border-box;
 }
@@ -29,150 +17,98 @@ html{
 
 body{
   margin:0;
-
   background:#eef8fd;
-
   color:#081426;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 a{
-  color:inherit;
   text-decoration:none;
+  color:inherit;
 }
 
-button{
-  font:inherit;
-}
-
-
-/* =====================================================
+/* =========================
    HERO
-
-   IMPORTANT:
-   JUMPY-COVER.PNG ALREADY HAS:
-   - JUMPY
-   - ABOUT
-   - TOKENOMICS
-   - ROADMAP
-   - BUY $JUMPY
-
-   We DO NOT add another visible menu.
-===================================================== */
+========================= */
 
 .hero{
   position:relative;
-
   width:100%;
-
-  margin:0;
-  padding:0;
-
   overflow:hidden;
-
-  background:#079cf0;
-
+  background:#79cfee;
   line-height:0;
 }
 
 .cover{
   display:block;
-
   width:100%;
   height:auto;
-
-  max-width:none;
 }
 
+/* =========================
+   TOP MENU
+   LOGO IS NOT ADDED HERE
+========================= */
 
-/* =====================================================
-   INVISIBLE CLICK AREAS OVER THE ORIGINAL COVER
-===================================================== */
-
-.hero-link{
+.top-menu{
   position:absolute;
+  top:0;
+  left:0;
+  width:100%;
 
-  z-index:5;
+  padding:22px 5%;
 
-  display:block;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
 
-  /*
-    Transparent clickable area.
-    Nothing visually appears over the image.
-  */
+  gap:34px;
 
-  background:transparent;
+  z-index:20;
 
-  cursor:pointer;
+  line-height:normal;
 }
 
+.top-menu a{
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
 
-/*
-   ABOUT
-*/
+  text-shadow:0 1px 4px rgba(0,0,0,.12);
 
-.hero-about{
-  top:4%;
-  left:52%;
-  width:10%;
-  height:9%;
+  transition:.2s;
 }
 
-
-/*
-   TOKENOMICS
-*/
-
-.hero-tokenomics{
-  top:4%;
-  left:62%;
-  width:13%;
-  height:9%;
+.top-menu a:hover{
+  transform:translateY(-1px);
+  opacity:.75;
 }
 
+.buy{
+  padding:13px 23px;
 
-/*
-   ROADMAP
-*/
+  border-radius:30px;
 
-.hero-roadmap{
-  top:4%;
-  left:74%;
-  width:10%;
-  height:9%;
+  background:#24e18b;
+
+  color:#07151a !important;
+
+  text-shadow:none !important;
+
+  font-weight:900 !important;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.10);
 }
 
-
-/*
-   BUY $JUMPY
-*/
-
-.hero-buy{
-  top:2.5%;
-  left:82%;
-  width:17%;
-  height:11%;
-}
-
-
-/* =====================================================
-   MAIN CONTAINER
-===================================================== */
+/* =========================
+   MAIN
+========================= */
 
 .container{
   width:min(1120px,calc(100% - 32px));
-
   margin:0 auto;
 }
-
-
-/* =====================================================
-   PANELS
-===================================================== */
 
 .panel{
   background:#fff;
@@ -185,10 +121,9 @@ button{
     0 8px 28px rgba(40,100,140,.07);
 }
 
-
-/* =====================================================
+/* =========================
    CONTRACT
-===================================================== */
+========================= */
 
 .contract{
   margin-top:22px;
@@ -207,11 +142,8 @@ button{
 
 .ca{
   display:flex;
-
   align-items:center;
-
   gap:14px;
-
   min-width:0;
 }
 
@@ -226,7 +158,6 @@ button{
   background:#eaf5fc;
 
   display:grid;
-
   place-items:center;
 
   font-size:27px;
@@ -259,45 +190,36 @@ button{
 .copy{
   margin-left:10px;
 
-  border:1px solid #d9e5ec;
+  padding:11px 18px;
 
-  background:#fff;
+  border:1px solid #d9e5ec;
 
   border-radius:28px;
 
-  padding:11px 18px;
+  background:#fff;
 
   font-weight:800;
 
   cursor:pointer;
-
-  transition:.2s;
 }
 
 .copy:hover{
   background:#f4fafc;
-
-  transform:translateY(-1px);
 }
 
-
-/* =====================================================
+/* =========================
    SOCIALS
-===================================================== */
+========================= */
 
 .socials{
   min-height:68px;
 
-  border-left:
-    1px solid #dbe5eb;
-
-  border-right:
-    1px solid #dbe5eb;
+  border-left:1px solid #dbe5eb;
+  border-right:1px solid #dbe5eb;
 
   display:flex;
 
   justify-content:space-around;
-
   align-items:center;
 }
 
@@ -307,8 +229,6 @@ button{
   flex-direction:column;
 
   align-items:center;
-
-  justify-content:center;
 
   gap:6px;
 
@@ -326,9 +246,7 @@ button{
 
 .x-icon{
   font-size:31px;
-
   line-height:32px;
-
   color:#081426;
 }
 
@@ -350,10 +268,9 @@ button{
   color:#081426;
 }
 
-
-/* =====================================================
+/* =========================
    MARKET
-===================================================== */
+========================= */
 
 .market{
   margin-top:16px;
@@ -362,9 +279,7 @@ button{
 
   display:grid;
 
-  grid-template-columns:
-    330px
-    1fr;
+  grid-template-columns:330px 1fr;
 
   gap:25px;
 }
@@ -430,8 +345,6 @@ button{
 .dex-button{
   display:block;
 
-  text-align:center;
-
   padding:14px;
 
   border-radius:30px;
@@ -440,19 +353,14 @@ button{
 
   color:#06151b;
 
+  text-align:center;
+
   font-weight:900;
-
-  transition:.2s;
 }
 
-.dex-button:hover{
-  transform:translateY(-2px);
-}
-
-
-/* =====================================================
+/* =========================
    CHART
-===================================================== */
+========================= */
 
 .chart-header{
   display:flex;
@@ -475,10 +383,10 @@ button{
 }
 
 .live-dot{
+  display:inline-block;
+
   width:9px;
   height:9px;
-
-  display:inline-block;
 
   border-radius:50%;
 
@@ -506,16 +414,14 @@ button{
   border:0;
 }
 
-
-/* =====================================================
+/* =========================
    FEATURES
-===================================================== */
+========================= */
 
 .features{
   display:grid;
 
-  grid-template-columns:
-    repeat(3,1fr);
+  grid-template-columns:repeat(3,1fr);
 
   gap:16px;
 
@@ -567,17 +473,14 @@ button{
   line-height:1.4;
 }
 
-
-/* =====================================================
+/* =========================
    LOWER
-===================================================== */
+========================= */
 
 .lower{
   display:grid;
 
-  grid-template-columns:
-    1fr
-    1fr;
+  grid-template-columns:1fr 1fr;
 
   gap:16px;
 
@@ -594,23 +497,22 @@ button{
   font-size:20px;
 }
 
-
-/* =====================================================
+/* =========================
    TOKENOMICS
-===================================================== */
+========================= */
 
 .tokenomics-list{
   display:grid;
 
-  gap:13px;
+  gap:12px;
 }
 
 .tokenomics-row{
   display:flex;
 
-  justify-content:space-between;
-
   align-items:center;
+
+  justify-content:space-between;
 
   padding:14px 16px;
 
@@ -628,19 +530,16 @@ button{
 }
 
 .tokenomics-row strong{
-  font-size:16px;
-
-  color:#081426;
+  font-size:15px;
 }
 
-.tokenomics-row .green{
-  color:#19c982;
+.green{
+  color:#18c982;
 }
 
-
-/* =====================================================
+/* =========================
    ROADMAP
-===================================================== */
+========================= */
 
 .roadmap{
   display:grid;
@@ -671,9 +570,7 @@ button{
 .step{
   display:grid;
 
-  grid-template-columns:
-    75px
-    1fr;
+  grid-template-columns:75px 1fr;
 
   gap:14px;
 
@@ -706,10 +603,9 @@ button{
   color:#68778a;
 }
 
-
-/* =====================================================
+/* =========================
    FOOTER
-===================================================== */
+========================= */
 
 footer{
   padding:32px 0 45px;
@@ -761,16 +657,27 @@ footer{
   font-weight:700;
 }
 
-
-/* =====================================================
+/* =========================
    TABLET
-===================================================== */
+========================= */
 
 @media(max-width:900px){
 
+  .top-menu{
+    gap:18px;
+    padding:18px 3%;
+  }
+
+  .top-menu a{
+    font-size:13px;
+  }
+
+  .buy{
+    padding:11px 17px;
+  }
+
   .contract{
     grid-template-columns:1fr;
-
     gap:15px;
   }
 
@@ -787,67 +694,35 @@ footer{
   .market{
     grid-template-columns:1fr;
   }
-
 }
 
-
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
 @media(max-width:650px){
 
-  .cover{
-    width:100%;
+  .top-menu{
+    padding:11px 10px;
 
-    height:auto;
+    gap:9px;
 
-    min-height:0;
-
-    object-fit:initial;
+    justify-content:flex-end;
   }
 
-
-  /*
-     MOBILE CLICK AREAS
-
-     Same visual cover.
-     Only invisible buttons.
-  */
-
-  .hero-about{
-    top:4%;
-    left:49%;
-    width:12%;
-    height:10%;
+  .top-menu a{
+    font-size:9px;
   }
 
-  .hero-tokenomics{
-    top:4%;
-    left:61%;
-    width:15%;
-    height:10%;
-  }
+  .buy{
+    padding:8px 10px;
 
-  .hero-roadmap{
-    top:4%;
-    left:75%;
-    width:10%;
-    height:10%;
+    font-size:9px !important;
   }
-
-  .hero-buy{
-    top:2%;
-    left:82%;
-    width:17%;
-    height:12%;
-  }
-
 
   .container{
     width:calc(100% - 20px);
   }
-
 
   .contract{
     margin-top:12px;
@@ -855,11 +730,9 @@ footer{
     padding:14px;
   }
 
-
   .ca{
     gap:10px;
   }
-
 
   .ca-icon{
     width:50px;
@@ -868,23 +741,19 @@ footer{
     font-size:23px;
   }
 
-
   .ca-text small{
     font-size:9px;
   }
 
-
   .ca-text strong{
-    font-size:14px;
+    font-size:13px;
   }
-
 
   .copy{
-    padding:9px 13px;
-
     margin-left:0;
-  }
 
+    padding:9px 12px;
+  }
 
   .market{
     padding:17px;
@@ -892,31 +761,25 @@ footer{
     gap:20px;
   }
 
-
   .market-title{
     font-size:38px;
   }
-
 
   .price{
     font-size:28px;
   }
 
-
   .stats{
-    gap:14px;
+    gap:13px;
   }
-
 
   .stats strong{
     font-size:14px;
   }
 
-
   .chart{
     height:245px;
   }
-
 
   .chart-header{
     justify-content:flex-start;
@@ -928,21 +791,17 @@ footer{
     white-space:nowrap;
   }
 
-
   .features{
     grid-template-columns:1fr;
   }
-
 
   .lower{
     grid-template-columns:1fr;
   }
 
-
   .tokenomics-row{
-    padding:13px 14px;
+    padding:13px;
   }
-
 
   footer{
     flex-direction:column;
@@ -951,36 +810,43 @@ footer{
 
     text-align:center;
   }
-
 }
 
-
-/* =====================================================
+/* =========================
    SMALL PHONES
-===================================================== */
+========================= */
 
 @media(max-width:390px){
+
+  .top-menu{
+    gap:6px;
+  }
+
+  .top-menu a{
+    font-size:8px;
+  }
+
+  .buy{
+    padding:7px 8px;
+
+    font-size:8px !important;
+  }
 
   .ca-text strong{
     font-size:12px;
   }
 
-  .copy{
-    padding:8px 11px;
-  }
-
   .stats{
-    gap:9px;
+    gap:8px;
   }
 
   .stats small{
-    font-size:10px;
+    font-size:9px;
   }
 
   .stats strong{
-    font-size:13px;
+    font-size:12px;
   }
-
 }
 
 </style>
@@ -994,58 +860,54 @@ footer{
 <!-- =====================================================
      HERO
 
-     NO SECOND MENU HERE.
-     The menu is already inside jumpy-cover.PNG.
-
-     Invisible click areas make the existing menu work.
+     YOUR JUMPY LOGO REMAINS INSIDE jumpy-cover.PNG.
+     ONLY THE 4 NAV BUTTONS ARE ADDED HERE.
 ===================================================== -->
 
 <section class="hero">
 
+
+  <!-- VISIBLE TOP MENU -->
+
+  <nav class="top-menu">
+
+
+    <a href="#about">
+      About
+    </a>
+
+
+    <a href="#tokenomics">
+      Tokenomics
+    </a>
+
+
+    <a href="#roadmap">
+      Roadmap
+    </a>
+
+
+    <a
+      class="buy"
+      href="https://pump.fun"
+      target="_blank"
+      rel="noopener noreferrer">
+
+      Buy $JUMPY
+
+    </a>
+
+
+  </nav>
+
+
+  <!-- ORIGINAL COVER -->
 
   <img
     class="cover"
     src="jumpy-cover.PNG"
     alt="JUMPY — JUST JUMP."
   >
-
-
-  <!-- ABOUT -->
-
-  <a
-    class="hero-link hero-about"
-    href="#about"
-    aria-label="About">
-  </a>
-
-
-  <!-- TOKENOMICS -->
-
-  <a
-    class="hero-link hero-tokenomics"
-    href="#tokenomics"
-    aria-label="Tokenomics">
-  </a>
-
-
-  <!-- ROADMAP -->
-
-  <a
-    class="hero-link hero-roadmap"
-    href="#roadmap"
-    aria-label="Roadmap">
-  </a>
-
-
-  <!-- BUY -->
-
-  <a
-    class="hero-link hero-buy"
-    href="https://pump.fun"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Buy JUMPY">
-  </a>
 
 
 </section>
@@ -1099,8 +961,6 @@ footer{
   <div class="socials">
 
 
-    <!-- X -->
-
     <a
       class="social"
       href="https://x.com/jumpymeme"
@@ -1118,8 +978,6 @@ footer{
     </a>
 
 
-
-    <!-- DEXSCREENER -->
 
     <a
       class="social"
@@ -1143,8 +1001,6 @@ footer{
 
 
 
-  <!-- EMAIL -->
-
   <a
     class="email"
     href="mailto:jumpymeme@gmail.com">
@@ -1166,9 +1022,7 @@ footer{
      MARKET
 ===================================================== -->
 
-<section
-  class="panel market"
-  id="market">
+<section class="panel market">
 
 
   <div>
@@ -1308,7 +1162,7 @@ footer{
 
 
 <!-- =====================================================
-     FEATURES
+     ABOUT
 ===================================================== -->
 
 <section
@@ -1404,9 +1258,7 @@ footer{
 <section class="lower">
 
 
-  <!-- ===================================================
-       TOKENOMICS
-  =================================================== -->
+  <!-- TOKENOMICS -->
 
   <div
     class="panel"
@@ -1480,9 +1332,7 @@ footer{
 
 
 
-  <!-- ===================================================
-       ROADMAP
-  =================================================== -->
+  <!-- ROADMAP -->
 
   <div
     class="panel"
@@ -1569,16 +1419,12 @@ footer{
   <div>
 
     <span class="footer-logo">
-
       JUMP<span>Y</span>
-
     </span>
 
 
     <span class="tag">
-
       HIGHER TOGETHER.
-
     </span>
 
   </div>
@@ -1620,7 +1466,7 @@ footer{
 <script>
 
 /* =====================================================
-   JUMPY CONTRACT
+   CONTRACT
 ===================================================== */
 
 const CA =
@@ -1628,7 +1474,7 @@ const CA =
 
 
 /* =====================================================
-   COPY BUTTON
+   COPY
 ===================================================== */
 
 const copyButton =
@@ -1661,18 +1507,18 @@ copyButton.addEventListener(
 
     catch(error){
 
-      const textArea =
+      const textarea =
       document.createElement("textarea");
 
-      textArea.value = CA;
+      textarea.value = CA;
 
-      document.body.appendChild(textArea);
+      document.body.appendChild(textarea);
 
-      textArea.select();
+      textarea.select();
 
       document.execCommand("copy");
 
-      textArea.remove();
+      textarea.remove();
 
 
       copyButton.textContent =
