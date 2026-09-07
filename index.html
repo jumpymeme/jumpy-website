@@ -2,2224 +2,227 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>JUMPY — JUST JUMP.</title>
 
 <style>
-
-/* =====================================================
-   JUMPY
-===================================================== */
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  color:#091426;
-  background:#f2faff;
-  overflow-x:hidden;
-}
-
-button{
-  font-family:inherit;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-
-/* =====================================================
-   COLORS
-===================================================== */
-
-:root{
-  --green:#55efa0;
-  --green2:#18dc78;
-  --blue:#159fe8;
-  --dark:#0b1728;
-  --muted:#617185;
-  --red:#ff5151;
-}
-
-
-/* =====================================================
-   HERO SKY
-===================================================== */
-
-.hero-section{
-
-  position:relative;
-
-  min-height:820px;
-
-  overflow:hidden;
-
-  background:
-    linear-gradient(
-      180deg,
-      #119de7 0%,
-      #39baf0 40%,
-      #91def8 72%,
-      #dff7ff 100%
-    );
-
-}
-
-
-/* =====================================================
-   CLOUDS
-===================================================== */
-
-.cloud{
-
-  position:absolute;
-
-  background:rgba(255,255,255,.82);
-
-  border-radius:100px;
-
-  filter:blur(1px);
-
-}
-
-.cloud:before,
-.cloud:after{
-
-  content:"";
-
-  position:absolute;
-
-  background:inherit;
-
-  border-radius:50%;
-
-}
-
-.cloud1{
-
-  width:240px;
-  height:60px;
-
-  left:-45px;
-  top:310px;
-
-}
-
-.cloud1:before{
-
-  width:110px;
-  height:110px;
-
-  left:55px;
-  top:-58px;
-
-}
-
-.cloud1:after{
-
-  width:82px;
-  height:82px;
-
-  left:145px;
-  top:-35px;
-
-}
-
-
-.cloud2{
-
-  width:310px;
-  height:65px;
-
-  right:-70px;
-  top:255px;
-
-}
-
-.cloud2:before{
-
-  width:125px;
-  height:125px;
-
-  left:65px;
-  top:-65px;
-
-}
-
-.cloud2:after{
-
-  width:95px;
-  height:95px;
-
-  left:175px;
-  top:-45px;
-
-}
-
-
-.cloud3{
-
-  width:420px;
-  height:75px;
-
-  left:33%;
-  top:480px;
-
-  opacity:.7;
-
-}
-
-.cloud3:before{
-
-  width:150px;
-  height:150px;
-
-  left:90px;
-  top:-80px;
-
-}
-
-.cloud3:after{
-
-  width:115px;
-  height:115px;
-
-  left:235px;
-  top:-58px;
-
-}
-
-
-/* =====================================================
-   MOON
-===================================================== */
-
-.moon{
-
-  position:absolute;
-
-  width:108px;
-  height:108px;
-
-  right:6%;
-  top:125px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      white,
-      #dceeff 70%
-    );
-
-  box-shadow:
-    0 0 35px
-    rgba(255,255,255,.8);
-
-}
-
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
-.container{
-
-  width:
-    min(
-      1120px,
-      calc(100% - 48px)
-    );
-
-  margin:auto;
-
-  position:relative;
-
-  z-index:5;
-
-}
-
-
-/* =====================================================
-   NAV
-===================================================== */
-
-nav{
-
-  height:88px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  color:white;
-
-}
-
-.logo{
-
-  font-size:37px;
-
-  font-weight:1000;
-
-  letter-spacing:-2px;
-
-}
-
-.logo span{
-
-  color:var(--green);
-
-}
-
-.nav-links{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:31px;
-
-  font-size:14px;
-
-  font-weight:800;
-
-}
-
-.nav-links a:hover{
-
-  opacity:.7;
-
-}
-
-.buy-button{
-
-  background:var(--green);
-
-  color:#071827;
-
-  padding:
-    13px
-    23px;
-
-  border-radius:999px;
-
-  font-weight:950;
-
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero{
-
-  position:relative;
-
-  min-height:730px;
-
-}
-
-
-/* =====================================================
-   HERO TEXT
-===================================================== */
-
-.hero-text{
-
-  position:absolute;
-
-  left:0;
-
-  top:65px;
-
-  width:350px;
-
-  color:white;
-
-}
-
-.kicker{
-
-  font-size:12px;
-
-  font-weight:800;
-
-  letter-spacing:7px;
-
-  margin-bottom:17px;
-
-}
-
-.hero-text h1{
-
-  font-size:88px;
-
-  line-height:.84;
-
-  letter-spacing:-6px;
-
-  font-weight:1000;
-
-}
-
-.hero-text h1 span{
-
-  color:var(--green);
-
-}
-
-.hero-sub{
-
-  margin-top:24px;
-
-  max-width:285px;
-
-  font-size:17px;
-
-  line-height:1.45;
-
-}
-
-
-/* =====================================================
-   SCORE
-===================================================== */
-
-.score-box{
-
-  position:absolute;
-
-  left:53%;
-
-  top:27px;
-
-  transform:translateX(-50%);
-
-  display:flex;
-
-  gap:32px;
-
-  padding:
-    16px
-    43px;
-
-  border-radius:20px;
-
-  background:rgba(255,255,255,.92);
-
-  box-shadow:
-    0 15px 40px
-    rgba(10,80,120,.12);
-
-  text-align:center;
-
-  z-index:20;
-
-}
-
-.score-item{
-
-  min-width:92px;
-
-}
-
-.score-item + .score-item{
-
-  border-left:
-    1px solid
-    #cbd9e4;
-
-  padding-left:32px;
-
-}
-
-.score-item small{
-
-  display:block;
-
-  font-size:13px;
-
-}
-
-.score-item strong{
-
-  display:block;
-
-  font-size:30px;
-
-  margin-top:2px;
-
-}
-
-
-/* =====================================================
-   GAME
-===================================================== */
-
-.game{
-
-  position:absolute;
-
-  left:185px;
-
-  right:0;
-
-  top:145px;
-
-  height:530px;
-
-  overflow:hidden;
-
-}
-
-
-/* =====================================================
-   GAME CANVAS
-===================================================== */
-
-#gameCanvas{
-
-  position:absolute;
-
-  inset:0;
-
-  width:100%;
-
-  height:100%;
-
-  z-index:2;
-
-  cursor:pointer;
-
-}
-
-
-/* =====================================================
-   GAME CARD
-===================================================== */
-
-.game-card{
-
-  position:absolute;
-
-  right:0;
-
-  bottom:55px;
-
-  width:275px;
-
-  padding:23px;
-
-  border-radius:25px;
-
-  background:
-    rgba(255,255,255,.82);
-
-  backdrop-filter:blur(15px);
-
-  box-shadow:
-    0 18px 50px
-    rgba(20,90,130,.15);
-
-  z-index:10;
-
-}
-
-.game-card h3{
-
-  text-align:center;
-
-  font-size:20px;
-
-  margin-bottom:21px;
-
-}
-
-.game-stats{
-
-  display:flex;
-
-  text-align:center;
-
-}
-
-.game-stats > div{
-
-  flex:1;
-
-}
-
-.game-stats > div + div{
-
-  border-left:
-    1px solid
-    #cbd9e4;
-
-}
-
-.game-stats small{
-
-  display:block;
-
-  color:#536276;
-
-}
-
-.game-stats strong{
-
-  font-size:27px;
-
-}
-
-.dark-button,
-.light-button{
-
-  width:100%;
-
-  border-radius:999px;
-
-  padding:14px;
-
-  margin-top:15px;
-
-  cursor:pointer;
-
-  font-weight:900;
-
-}
-
-.dark-button{
-
-  border:0;
-
-  background:#0d192b;
-
-  color:white;
-
-}
-
-.light-button{
-
-  border:
-    1px solid
-    #d7e1e9;
-
-  background:white;
-
-}
-
-
-/* =====================================================
-   JUMP BUTTON
-===================================================== */
-
-.jump-button{
-
-  position:absolute;
-
-  left:47%;
-
-  bottom:25px;
-
-  transform:translateX(-50%);
-
-  z-index:15;
-
-  border:0;
-
-  background:var(--green);
-
-  color:#071827;
-
-  padding:
-    17px
-    65px;
-
-  border-radius:999px;
-
-  font-size:22px;
-
-  font-weight:1000;
-
-  cursor:pointer;
-
-  box-shadow:
-    0 12px 25px
-    rgba(38,160,105,.22);
-
-}
-
-.jump-button:active{
-
-  transform:
-    translateX(-50%)
-    translateY(2px);
-
-}
-
-.game-hint{
-
-  position:absolute;
-
-  left:47%;
-
-  bottom:-2px;
-
-  transform:translateX(-50%);
-
-  color:#5c7386;
-
-  font-size:12px;
-
-  z-index:15;
-
-  white-space:nowrap;
-
-}
-
-
-/* =====================================================
-   MAIN
-===================================================== */
-
-main{
-
-  background:
-    linear-gradient(
-      180deg,
-      #f7fcff,
-      #edf8fc
-    );
-
-  padding:
-    20px
-    0
-    55px;
-
-}
-
-
-/* =====================================================
-   CARD
-===================================================== */
-
-.card{
-
-  background:
-    rgba(255,255,255,.94);
-
-  border:
-    1px solid
-    rgba(10,25,40,.09);
-
-  border-radius:22px;
-
-  box-shadow:
-    0 10px 35px
-    rgba(20,60,90,.07);
-
-}
-
-
-/* =====================================================
-   CONTRACT
-===================================================== */
-
-.contract{
-
-  display:grid;
-
-  grid-template-columns:
-    1.55fr
-    1fr;
-
-  align-items:center;
-
-  gap:25px;
-
-  padding:
-    23px
-    27px;
-
-}
-
-.contract-label{
-
-  font-size:12px;
-
-  color:#637285;
-
-}
-
-.contract-row{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:14px;
-
-  margin-top:7px;
-
-}
-
-.contract-address{
-
-  font-family:monospace;
-
-  font-size:19px;
-
-  font-weight:900;
-
-  word-break:break-all;
-
-}
-
-.copy-button{
-
-  flex-shrink:0;
-
-  background:white;
-
-  border:
-    1px solid
-    #d7e1e9;
-
-  border-radius:999px;
-
-  padding:
-    10px
-    20px;
-
-  font-weight:900;
-
-  cursor:pointer;
-
-}
-
-
-/* =====================================================
-   SOCIAL
-===================================================== */
-
-.socials{
-
-  display:flex;
-
-  justify-content:flex-end;
-
-  align-items:center;
-
-  gap:28px;
-
-}
-
-.social{
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  color:#637285;
-
-  font-size:12px;
-
-  text-align:center;
-
-}
-
-.social-icon{
-
-  font-size:25px;
-
-  color:#071321;
-
-  margin-bottom:3px;
-
-}
-
-
-/* =====================================================
-   MARKET
-===================================================== */
-
-.market{
-
-  margin-top:16px;
-
-  padding:
-    28px
-    30px;
-
-  display:grid;
-
-  grid-template-columns:
-    330px
-    1fr;
-
-  gap:30px;
-
-}
-
-.market-title{
-
-  font-size:39px;
-
-  font-weight:1000;
-
-  letter-spacing:-2px;
-
-}
-
-.market-title span{
-
-  color:#27df8c;
-
-}
-
-.market-description{
-
-  color:#5d6d80;
-
-  line-height:1.45;
-
-  margin-top:8px;
-
-}
-
-.price{
-
-  font-size:29px;
-
-  font-weight:1000;
-
-  margin-top:34px;
-
-}
-
-.gain{
-
-  color:#13bd73;
-
-  font-size:16px;
-
-  margin-left:7px;
-
-}
-
-.metrics{
-
-  display:flex;
-
-  gap:32px;
-
-  margin-top:28px;
-
-}
-
-.metric small{
-
-  display:block;
-
-  color:#68778a;
-
-}
-
-.metric strong{
-
-  font-size:20px;
-
-}
-
-.dex-button{
-
-  display:inline-block;
-
-  margin-top:29px;
-
-  padding:
-    13px
-    24px;
-
-  background:var(--green);
-
-  border-radius:999px;
-
-  font-weight:950;
-
-}
-
-
-/* =====================================================
-   CHART
-===================================================== */
-
-.chart-area{
-
-  min-width:0;
-
-}
-
-.chart-tabs{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:19px;
-
-  color:#657487;
-
-  font-size:13px;
-
-  margin-bottom:8px;
-
-}
-
-.active{
-
-  background:#e5f2fa;
-
-  padding:
-    8px
-    14px;
-
-  border-radius:10px;
-
-  color:#111c2d;
-
-  font-weight:900;
-
-}
-
-.live{
-
-  margin-left:auto;
-
-  color:#10b975;
-
-  font-weight:900;
-
-}
-
-.live-dot{
-
-  display:inline-block;
-
-  width:8px;
-
-  height:8px;
-
-  border-radius:50%;
-
-  background:#10b975;
-
-  margin-right:5px;
-
-}
-
-.chart{
-
-  width:100%;
-
-  height:365px;
-
-  border-radius:15px;
-
-  overflow:hidden;
-
-  background:#0b1627;
-
-}
-
-.chart iframe{
-
-  width:100%;
-
-  height:100%;
-
-  border:0;
-
-}
-
-
-/* =====================================================
-   FEATURES
-===================================================== */
-
-.features{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:16px;
-
-  margin-top:16px;
-
-}
-
-.feature{
-
-  padding:
-    24px
-    26px;
-
-  display:flex;
-
-  align-items:center;
-
-  gap:18px;
-
-}
-
-.feature-icon{
-
-  width:55px;
-
-  height:55px;
-
-  display:grid;
-
-  place-items:center;
-
-  flex-shrink:0;
-
-  background:#eaf5fb;
-
-  border-radius:50%;
-
-  font-size:25px;
-
-}
-
-.feature h3{
-
-  font-size:15px;
-
-  margin-bottom:5px;
-
-}
-
-.feature p{
-
-  color:#637184;
-
-  font-size:13px;
-
-  line-height:1.4;
-
-}
-
-
-/* =====================================================
-   ROADMAP
-===================================================== */
-
-.roadmap{
-
-  margin-top:16px;
-
-  padding:25px;
-
-  text-align:center;
-
-}
-
-.roadmap-title{
-
-  color:#69788b;
-
-  font-size:12px;
-
-  letter-spacing:4px;
-
-  font-weight:900;
-
-}
-
-.roadmap-items{
-
-  display:flex;
-
-  justify-content:center;
-
-  gap:30px;
-
-  margin-top:12px;
-
-  color:#5e6e81;
-
-  font-size:13px;
-
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer{
-
-  background:#f3fbff;
-
-  padding:
-    30px
-    0
-    42px;
-
-}
-
-.footer{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-}
-
-.footer-logo{
-
-  font-size:25px;
-
-  font-weight:1000;
-
-}
-
-.footer-logo span{
-
-  color:#2ee18c;
-
-}
-
-.footer-tag{
-
-  margin-left:14px;
-
-  font-size:10px;
-
-  letter-spacing:4px;
-
-  color:#738194;
-
-}
-
-.footer-links{
-
-  display:flex;
-
-  gap:28px;
-
-  color:#607084;
-
-  font-size:13px;
-
-}
-
-.solana{
-
-  color:#607084;
-
-  font-weight:800;
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:900px){
-
-  .container{
-
-    width:
-      min(
-        calc(100% - 28px),
-        680px
-      );
-
-  }
-
-  .nav-links{
-
-    display:none;
-
-  }
-
-  .hero-section{
-
-    min-height:980px;
-
-  }
-
-  .hero{
-
-    min-height:870px;
-
-  }
-
-  .hero-text{
-
-    position:relative;
-
-    top:0;
-
-    width:100%;
-
-    text-align:center;
-
-    padding-top:35px;
-
-  }
-
-  .hero-sub{
-
-    margin:
-      20px
-      auto
-      0;
-
-  }
-
-  .hero-text h1{
-
-    font-size:67px;
-
-  }
-
-  .score-box{
-
-    top:180px;
-
-  }
-
-  .game{
-
-    left:0;
-
-    top:280px;
-
-    height:560px;
-
-  }
-
-  .game-card{
-
-    right:0;
-
-    bottom:70px;
-
-  }
-
-  .jump-button{
-
-    left:47%;
-
-    bottom:12px;
-
-  }
-
-  .game-hint{
-
-    left:47%;
-
-  }
-
-  .contract{
-
-    grid-template-columns:1fr;
-
-  }
-
-  .socials{
-
-    justify-content:flex-start;
-
-  }
-
-  .market{
-
-    grid-template-columns:1fr;
-
-  }
-
-  .features{
-
-    grid-template-columns:1fr;
-
-  }
-
-  .footer{
-
-    flex-direction:column;
-
-    gap:18px;
-
-  }
-
-}
-
-
-@media(max-width:520px){
-
-  .container{
-
-    width:
-      calc(100% - 20px);
-
-  }
-
-  .logo{
-
-    font-size:31px;
-
-  }
-
-  .moon{
-
-    width:70px;
-
-    height:70px;
-
-    top:100px;
-
-  }
-
-  .hero-section{
-
-    min-height:900px;
-
-  }
-
-  .hero{
-
-    min-height:790px;
-
-  }
-
-  .hero-text h1{
-
-    font-size:64px;
-
-  }
-
-  .score-box{
-
-    top:168px;
-
-    padding:
-      12px
-      18px;
-
-    gap:10px;
-
-  }
-
-  .score-item{
-
-    min-width:70px;
-
-  }
-
-  .score-item + .score-item{
-
-    padding-left:12px;
-
-  }
-
-  .score-item strong{
-
-    font-size:24px;
-
-  }
-
-  .game{
-
-    top:250px;
-
-    height:470px;
-
-  }
-
-  .game-card{
-
-    width:220px;
-
-    padding:16px;
-
-    bottom:55px;
-
-  }
-
-  .game-card h3{
-
-    margin-bottom:14px;
-
-  }
-
-  .game-stats strong{
-
-    font-size:22px;
-
-  }
-
-  .jump-button{
-
-    left:45%;
-
-    padding:
-      14px
-      48px;
-
-    font-size:19px;
-
-  }
-
-  .game-hint{
-
-    left:45%;
-
-  }
-
-  .contract{
-
-    padding:18px;
-
-  }
-
-  .contract-row{
-
-    flex-direction:column;
-
-    align-items:stretch;
-
-  }
-
-  .contract-address{
-
-    font-size:14px;
-
-  }
-
-  .copy-button{
-
-    width:100%;
-
-  }
-
-  .socials{
-
-    flex-wrap:wrap;
-
-    gap:18px;
-
-  }
-
-  .market{
-
-    padding:
-      22px
-      17px;
-
-  }
-
-  .market-title{
-
-    font-size:33px;
-
-  }
-
-  .price{
-
-    font-size:25px;
-
-  }
-
-  .metrics{
-
-    gap:18px;
-
-    flex-wrap:wrap;
-
-  }
-
-  .chart{
-
-    height:300px;
-
-  }
-
-  .chart-tabs{
-
-    gap:9px;
-
-    overflow:hidden;
-
-    white-space:nowrap;
-
-  }
-
-  .roadmap-items{
-
-    flex-wrap:wrap;
-
-  }
-
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#eef8fc;font-family:Arial,Helvetica,sans-serif}
+body{overflow-x:hidden}
+
+#page{
+ position:relative;
+ width:min(1024px,100vw);
+ margin:auto;
+ aspect-ratio:1024/1536;
+ background:url("jumpy-background.PNG") center/100% 100% no-repeat;
+ overflow:hidden;
+}
+
+/* REAL GAME */
+#game{
+ position:absolute;
+ left:30%;
+ top:17%;
+ width:69%;
+ height:34%;
+ z-index:5;
+ pointer-events:none;
+}
+
+#canvas{
+ width:100%;
+ height:100%;
+ display:block;
+}
+
+/* SCORE */
+#score{
+ position:absolute;
+ top:8.6%;
+ left:43%;
+ z-index:10;
+ font-size:31px;
+ font-weight:900;
+ color:#091426;
+ pointer-events:none;
+}
+
+#best{
+ position:absolute;
+ top:8.6%;
+ left:56.8%;
+ z-index:10;
+ font-size:31px;
+ font-weight:900;
+ color:#091426;
+ pointer-events:none;
+}
+
+/* STATUS */
+#status{
+ position:absolute;
+ top:34%;
+ right:6%;
+ z-index:10;
+ font-size:21px;
+ font-weight:900;
+ color:#091426;
+ pointer-events:none;
+}
+
+/* INVISIBLE FUNCTION BUTTONS */
+
+#jump{
+ position:absolute;
+ left:36%;
+ top:43.7%;
+ width:28%;
+ height:5.2%;
+ border:0;
+ background:transparent;
+ border-radius:50px;
+ cursor:pointer;
+ z-index:20;
+}
+
+#again{
+ position:absolute;
+ left:72%;
+ top:41.5%;
+ width:24%;
+ height:4%;
+ border:0;
+ background:transparent;
+ border-radius:50px;
+ cursor:pointer;
+ z-index:20;
+}
+
+#share{
+ position:absolute;
+ left:72%;
+ top:45.3%;
+ width:24%;
+ height:4%;
+ border:0;
+ background:transparent;
+ border-radius:50px;
+ cursor:pointer;
+ z-index:20;
+}
+
+#copy{
+ position:absolute;
+ left:38%;
+ top:55.2%;
+ width:14%;
+ height:4%;
+ border:0;
+ background:transparent;
+ border-radius:50px;
+ cursor:pointer;
+ z-index:20;
+}
+
+/* LINKS */
+
+#x{
+ position:absolute;
+ left:57%;
+ top:54%;
+ width:9%;
+ height:7%;
+ z-index:20;
+}
+
+#dex{
+ position:absolute;
+ left:67%;
+ top:54%;
+ width:10%;
+ height:7%;
+ z-index:20;
+}
+
+#email{
+ position:absolute;
+ left:79%;
+ top:54%;
+ width:19%;
+ height:7%;
+ z-index:20;
+}
+
+#dexButton{
+ position:absolute;
+ left:6%;
+ top:81%;
+ width:29%;
+ height:4%;
+ z-index:20;
+}
+
+@media(max-width:600px){
+ #page{width:100vw}
+ #score,#best{font-size:22px}
+ #status{font-size:15px}
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero-section">
-
-  <div class="cloud cloud1"></div>
-  <div class="cloud cloud2"></div>
-  <div class="cloud cloud3"></div>
-
-  <div class="moon"></div>
-
-
-  <div class="container">
-
-
-    <!-- NAV -->
-
-    <nav>
-
-      <a class="logo" href="#">
-        JUMP<span>Y</span>
-      </a>
-
-
-      <div class="nav-links">
-
-        <a href="#about">
-          About
-        </a>
-
-        <a href="#market">
-          Tokenomics
-        </a>
-
-        <a href="#roadmap">
-          Roadmap
-        </a>
-
-        <a
-          class="buy-button"
-          href="#market"
-        >
-          Buy $JUMPY
-        </a>
-
-      </div>
-
-    </nav>
-
-
-    <!-- HERO -->
-
-    <div class="hero">
-
-
-      <div class="hero-text">
-
-        <div class="kicker">
-          HIGHER TOGETHER.
-        </div>
-
-        <h1>
-          JUST<br>
-          <span>JUMP.</span>
-        </h1>
-
-        <p class="hero-sub">
-          A community-driven meme project
-          on Solana.
-        </p>
-
-      </div>
-
-
-      <!-- SCORE -->
-
-      <div class="score-box">
-
-        <div class="score-item">
-
-          <small>
-            SCORE
-          </small>
-
-          <strong id="score">
-            0
-          </strong>
-
-        </div>
-
-
-        <div class="score-item">
-
-          <small>
-            BEST
-          </small>
-
-          <strong>
-            ♛
-            <span id="best">
-              0
-            </span>
-          </strong>
-
-        </div>
-
-      </div>
-
-
-      <!-- REAL GAME -->
-
-      <div
-        class="game"
-        id="game"
-      >
-
-        <canvas
-          id="gameCanvas"
-        ></canvas>
-
-
-        <!-- GAME CARD -->
-
-        <div class="game-card">
-
-          <h3 id="gameTitle">
-            GAME OVER
-          </h3>
-
-
-          <div class="game-stats">
-
-            <div>
-
-              <small>
-                Score
-              </small>
-
-              <strong id="finalScore">
-                0
-              </strong>
-
-            </div>
-
-
-            <div>
-
-              <small>
-                Best
-              </small>
-
-              <strong>
-                ♛
-                <span id="best2">
-                  0
-                </span>
-              </strong>
-
-            </div>
-
-          </div>
-
-
-          <button
-            class="dark-button"
-            id="tryAgain"
-          >
-            ↻ &nbsp; Try Again
-          </button>
-
-
-          <button
-            class="light-button"
-            id="shareX"
-          >
-            𝕏 &nbsp; Share to X
-          </button>
-
-        </div>
-
-
-        <!-- JUMP -->
-
-        <button
-          class="jump-button"
-          id="jumpButton"
-        >
-          ↑ &nbsp; JUMP
-        </button>
-
-
-        <div class="game-hint">
-          Press SPACE or click to jump
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main>
-
-  <div class="container">
-
-
-    <!-- CONTRACT -->
-
-    <section class="card contract">
-
-      <div>
-
-        <div class="contract-label">
-          CONTRACT ADDRESS (SOLANA)
-        </div>
-
-
-        <div class="contract-row">
-
-          <div
-            class="contract-address"
-            id="contractAddress"
-          >
-            CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h
-          </div>
-
-
-          <button
-            class="copy-button"
-            id="copyContract"
-          >
-            ▣ &nbsp; Copy
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <div class="socials">
-
-        <a
-          class="social"
-          href="https://x.com/jumpymeme"
-          target="_blank"
-        >
-
-          <div class="social-icon">
-            𝕏
-          </div>
-
-          Twitter
-
-        </a>
-
-
-        <a
-          class="social"
-          href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
-          target="_blank"
-        >
-
-          <div class="social-icon">
-            ◈
-          </div>
-
-          Dexscreener
-
-        </a>
-
-
-        <a
-          class="social"
-          href="mailto:jumpymeme@gmail.com"
-        >
-
-          <div class="social-icon">
-            ✉
-          </div>
-
-          jumpymeme@gmail.com
-
-        </a>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- MARKET -->
-
-    <section
-      class="card market"
-      id="market"
-    >
-
-
-      <div>
-
-        <h2 class="market-title">
-          $JUMP<span>Y</span>
-        </h2>
-
-
-        <p class="market-description">
-          A community-driven meme project
-          on Solana.
-        </p>
-
-
-        <div class="price">
-
-          $0.009293
-
-          <span class="gain">
-            ↗ +124.3% (24h)
-          </span>
-
-        </div>
-
-
-        <div class="metrics">
-
-          <div class="metric">
-
-            <small>
-              Market Cap
-            </small>
-
-            <strong>
-              $9.2M
-            </strong>
-
-          </div>
-
-
-          <div class="metric">
-
-            <small>
-              Liquidity
-            </small>
-
-            <strong>
-              $437K
-            </strong>
-
-          </div>
-
-
-          <div class="metric">
-
-            <small>
-              Holders
-            </small>
-
-            <strong>
-              1.7K
-            </strong>
-
-          </div>
-
-        </div>
-
-
-        <a
-          class="dex-button"
-          href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
-          target="_blank"
-        >
-          View on Dexscreener ↗
-        </a>
-
-      </div>
-
-
-
-      <!-- LIVE DEXSCREENER -->
-
-      <div class="chart-area">
-
-
-        <div class="chart-tabs">
-
-          <span class="active">
-            1D
-          </span>
-
-          <span>
-            1W
-          </span>
-
-          <span>
-            1M
-          </span>
-
-          <span>
-            3M
-          </span>
-
-          <span>
-            1Y
-          </span>
-
-          <span>
-            All
-          </span>
-
-
-          <span class="live">
-
-            <i class="live-dot"></i>
-
-            Live Data
-
-          </span>
-
-        </div>
-
-
-        <div class="chart">
-
-          <iframe
-            src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=dark&trades=0&info=0"
-            title="Live DEX Screener chart"
-            allow="clipboard-write"
-          ></iframe>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- FEATURES -->
-
-    <section
-      class="features"
-      id="about"
-    >
-
-
-      <article class="card feature">
-
-        <div class="feature-icon">
-          🎮
-        </div>
-
-        <div>
-
-          <h3>
-            PLAY
-          </h3>
-
-          <p>
-            Jump through the candles.<br>
-            Beat your high score.
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <article class="card feature">
-
-        <div class="feature-icon">
-          👥
-        </div>
-
-        <div>
-
-          <h3>
-            COMMUNITY
-          </h3>
-
-          <p>
-            A growing community<br>
-            that just keeps jumping.
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <article class="card feature">
-
-        <div class="feature-icon">
-          🚀
-        </div>
-
-        <div>
-
-          <h3>
-            MOON
-          </h3>
-
-          <p>
-            From Solana.<br>
-            To higher.
-          </p>
-
-        </div>
-
-      </article>
-
-    </section>
-
-
-
-    <!-- ROADMAP -->
-
-    <section
-      class="card roadmap"
-      id="roadmap"
-    >
-
-      <div class="roadmap-title">
-        ROADMAP
-      </div>
-
-
-      <div class="roadmap-items">
-
-        <span>
-          01 Build
-        </span>
-
-        <span>
-          02 Launch
-        </span>
-
-        <span>
-          03 Grow
-        </span>
-
-        <span>
-          04 JUST JUMP
-        </span>
-
-      </div>
-
-    </section>
-
-  </div>
-
-</main>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-  <div class="container footer">
-
-    <div class="footer-logo">
-
-      JUMP<span>Y</span>
-
-      <span class="footer-tag">
-        HIGHER TOGETHER.
-      </span>
-
-    </div>
-
-
-    <div class="footer-links">
-
-      <a href="#about">
-        About
-      </a>
-
-      <a href="#market">
-        Tokenomics
-      </a>
-
-      <a href="#roadmap">
-        Roadmap
-      </a>
-
-    </div>
-
-
-    <div class="solana">
-      Built on ◆ Solana
-    </div>
-
-  </div>
-
-</footer>
-
+<div id="page">
+
+<!-- SCORE -->
+<div id="score">0</div>
+<div id="best">0</div>
+<div id="status">GAME OVER</div>
+
+<!-- REAL GAME -->
+<div id="game">
+<canvas id="canvas"></canvas>
+</div>
+
+<!-- GAME BUTTONS -->
+<button id="jump"></button>
+<button id="again"></button>
+<button id="share"></button>
+
+<!-- COPY -->
+<button id="copy"></button>
+
+<!-- SOCIAL LINKS -->
+<a id="x"
+href="https://x.com/jumpymeme"
+target="_blank"></a>
+
+<a id="dex"
+href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
+target="_blank"></a>
+
+<a id="email"
+href="mailto:jumpymeme@gmail.com"></a>
+
+<a id="dexButton"
+href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
+target="_blank"></a>
+
+</div>
 
 
 <script>
 
-/* =====================================================
-   CONFIG
-===================================================== */
+/* =========================================
+   JUMPY CONFIG
+========================================= */
 
 const CONTRACT =
 "CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h";
 
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
 const canvas =
-document.getElementById("gameCanvas");
+document.getElementById("canvas");
 
 const ctx =
 canvas.getContext("2d");
@@ -2227,1131 +230,804 @@ canvas.getContext("2d");
 const game =
 document.getElementById("game");
 
-const jumpButton =
-document.getElementById("jumpButton");
-
-const tryAgain =
-document.getElementById("tryAgain");
-
-const shareX =
-document.getElementById("shareX");
-
-const scoreElement =
+const scoreText =
 document.getElementById("score");
 
-const bestElement =
+const bestText =
 document.getElementById("best");
 
-const best2Element =
-document.getElementById("best2");
+const statusText =
+document.getElementById("status");
 
-const finalScoreElement =
-document.getElementById("finalScore");
+let W=0;
+let H=0;
+let dpr=1;
 
-const gameTitle =
-document.getElementById("gameTitle");
+let running=false;
+let score=0;
 
+let best=
+Number(
+localStorage.getItem("jumpyBest") || 0
+);
 
-/* =====================================================
-   CONTRACT COPY
-===================================================== */
+let last=0;
+let spawnTimer=0;
+let speed=4;
 
-document
-.getElementById("copyContract")
-.addEventListener(
-"click",
-async function(){
+let obstacles=[];
 
-  try{
-
-    await navigator.clipboard.writeText(
-      CONTRACT
-    );
-
-  }catch(e){
-
-    const input =
-    document.createElement("input");
-
-    input.value =
-    CONTRACT;
-
-    document.body.appendChild(input);
-
-    input.select();
-
-    document.execCommand("copy");
-
-    input.remove();
-
-  }
-
-  this.textContent =
-  "✓ Copied";
-
-  setTimeout(
-    ()=>{
-      this.textContent =
-      "▣  Copy";
-    },
-    1500
-  );
-
-});
+let player={
+ x:130,
+ y:150,
+ w:48,
+ h:68,
+ vy:0
+};
 
 
-/* =====================================================
-   CANVAS SIZE
-===================================================== */
+/* =========================================
+   RESIZE
+========================================= */
 
-function resizeCanvas(){
+function resize(){
 
-  const rect =
-  game.getBoundingClientRect();
+ const r=
+ game.getBoundingClientRect();
 
-  const ratio =
-  window.devicePixelRatio || 1;
+ W=r.width;
+ H=r.height;
 
-  canvas.width =
-  rect.width * ratio;
+ dpr=
+ Math.min(
+   window.devicePixelRatio || 1,
+   2
+ );
 
-  canvas.height =
-  rect.height * ratio;
+ canvas.width=
+ W*dpr;
 
-  canvas.style.width =
-  rect.width + "px";
+ canvas.height=
+ H*dpr;
 
-  canvas.style.height =
-  rect.height + "px";
+ canvas.style.width=
+ W+"px";
 
-  ctx.setTransform(
-    ratio,
-    0,
-    0,
-    ratio,
-    0,
-    0
-  );
+ canvas.style.height=
+ H+"px";
 
+ ctx.setTransform(
+   dpr,0,0,dpr,0,0
+ );
+
+ if(!running){
+
+   player.x=
+   W*.25;
+
+   player.y=
+   H*.2;
+
+ }
+
+ draw();
 }
 
 window.addEventListener(
 "resize",
-resizeCanvas
+resize
 );
 
-resizeCanvas();
 
-
-/* =====================================================
-   GAME STATE
-===================================================== */
-
-let player = {
-
-  x:90,
-
-  y:220,
-
-  width:52,
-
-  height:72,
-
-  velocity:0
-
-};
-
-
-let obstacles = [];
-
-let running = false;
-
-let score = 0;
-
-let best =
-Number(
-localStorage.getItem(
-"jumpyBest"
-)
-) || 0;
-
-let lastTime = 0;
-
-let spawnTimer = 0;
-
-let gameSpeed = 4.2;
-
-
-/* best */
-
-bestElement.textContent =
-best;
-
-best2Element.textContent =
-best;
-
-
-/* =====================================================
+/* =========================================
    RESET
-===================================================== */
+========================================= */
 
-function resetGame(){
+function reset(){
 
-  player.x = 90;
+ obstacles=[];
 
-  player.y =
-  canvas.height /
-  (window.devicePixelRatio || 1) -
-  150;
+ score=0;
 
-  player.velocity = 0;
+ speed=4;
 
-  obstacles = [];
+ spawnTimer=0;
 
-  score = 0;
+ player.x=
+ W*.25;
 
-  spawnTimer = 0;
+ player.y=
+ H*.25;
 
-  gameSpeed = 4.2;
+ player.vy=0;
 
-  scoreElement.textContent =
-  "0";
+ scoreText.textContent="0";
 
-  finalScoreElement.textContent =
-  "0";
-
+ statusText.textContent=
+ "GAME OVER";
 }
 
 
-/* =====================================================
+/* =========================================
    START
-===================================================== */
+========================================= */
 
 function startGame(){
 
-  resetGame();
+ reset();
 
-  running = true;
+ running=true;
 
-  gameTitle.textContent =
-  "JUMPY IN FLIGHT";
+ statusText.textContent="";
 
-  player.velocity =
-  -11;
+ jump();
 
-  lastTime =
-  performance.now();
+ last=
+ performance.now();
 
-  requestAnimationFrame(
-    gameLoop
-  );
-
+ requestAnimationFrame(loop);
 }
 
 
-/* =====================================================
+/* =========================================
    JUMP
-===================================================== */
+========================================= */
 
 function jump(){
 
-  if(!running){
+ if(!running){
 
-    startGame();
+   startGame();
 
-    return;
+   return;
+ }
 
-  }
-
-  player.velocity =
-  -10.5;
-
+ player.vy=-10;
 }
 
 
-/* =====================================================
+/* =========================================
    CREATE CANDLE
-===================================================== */
+========================================= */
 
-function createObstacle(){
+function createCandle(){
 
-  const h =
-  70 +
-  Math.random() * 125;
+ const height=
+ 60+
+ Math.random()*100;
 
+ obstacles.push({
 
-  const gap =
-  145 +
-  Math.random() * 90;
+   x:W+30,
 
+   y:H-25-height,
 
-  obstacles.push({
+   width:32,
 
-    x:
-    canvas.clientWidth + 40,
+   height:height,
 
-    y:
-    canvas.clientHeight - h - 35,
+   color:
+     Math.random()>.5
+     ? "#18df72"
+     : "#ff5151",
 
-    width:43,
+   passed:false
 
-    height:h,
-
-    passed:false
-
-  });
-
+ });
 }
 
 
-/* =====================================================
-   DRAW SKY
-===================================================== */
-
-function drawBackground(){
-
-  const w =
-  canvas.clientWidth;
-
-  const h =
-  canvas.clientHeight;
-
-
-  const gradient =
-  ctx.createLinearGradient(
-    0,
-    0,
-    0,
-    h
-  );
-
-
-  gradient.addColorStop(
-    0,
-    "rgba(75,196,244,.10)"
-  );
-
-  gradient.addColorStop(
-    1,
-    "rgba(255,255,255,.72)"
-  );
-
-
-  ctx.fillStyle =
-  gradient;
-
-  ctx.fillRect(
-    0,
-    0,
-    w,
-    h
-  );
-
-
-  /* clouds */
-
-  ctx.fillStyle =
-  "rgba(255,255,255,.62)";
-
-
-  for(
-    let i=0;
-    i<5;
-    i++
-  ){
-
-    const x =
-    (i * 230) -
-    ((score * .5) % 230);
-
-    const y =
-    100 +
-    (i % 3) * 70;
-
-
-    ctx.beginPath();
-
-    ctx.ellipse(
-      x,
-      y,
-      100,
-      30,
-      0,
-      0,
-      Math.PI*2
-    );
-
-    ctx.fill();
-
-  }
-
-}
-
-
-/* =====================================================
+/* =========================================
    DRAW CANDLE
-===================================================== */
+========================================= */
 
 function drawCandle(o){
 
-  ctx.fillStyle =
-  o.color ||
-  "#18df72";
+ ctx.fillStyle=o.color;
 
-  ctx.strokeStyle =
-  "#111";
+ ctx.strokeStyle="#111";
 
-  ctx.lineWidth =
-  3;
+ ctx.lineWidth=2.5;
 
+ ctx.fillRect(
+   o.x,
+   o.y,
+   o.width,
+   o.height
+ );
 
-  /* body */
+ ctx.strokeRect(
+   o.x,
+   o.y,
+   o.width,
+   o.height
+ );
 
-  ctx.fillRect(
-    o.x,
-    o.y,
-    o.width,
-    o.height
-  );
+ /* top wick */
 
+ ctx.fillRect(
+   o.x+12,
+   o.y-22,
+   5,
+   20
+ );
 
-  ctx.strokeRect(
-    o.x,
-    o.y,
-    o.width,
-    o.height
-  );
+ /* bottom wick */
 
-
-  /* top wick */
-
-  ctx.fillRect(
-    o.x + 16,
-    o.y - 30,
-    5,
-    27
-  );
-
-
-  ctx.strokeRect(
-    o.x + 16,
-    o.y - 30,
-    5,
-    27
-  );
-
-
-  /* bottom wick */
-
-  ctx.fillRect(
-    o.x + 16,
-    o.y + o.height,
-    5,
-    27
-  );
-
-
-  ctx.strokeRect(
-    o.x + 16,
-    o.y + o.height,
-    5,
-    27
-  );
-
+ ctx.fillRect(
+   o.x+12,
+   o.y+o.height,
+   5,
+   22
+ );
 }
 
 
-/* =====================================================
+/* =========================================
    DRAW JUMPY
-===================================================== */
+========================================= */
 
 function drawJumpy(){
 
-  const x =
-  player.x;
+ const x=player.x;
+ const y=player.y;
 
-  const y =
-  player.y;
+ ctx.save();
 
+ ctx.translate(
+   x+player.w/2,
+   y+player.h/2
+ );
 
-  ctx.save();
+ ctx.rotate(
+   player.vy*-.025
+ );
 
-  ctx.translate(
-    x + player.width/2,
-    y + player.height/2
-  );
+ ctx.strokeStyle="#111";
+ ctx.lineWidth=2.5;
 
+ /* ROCKET */
 
-  let angle =
-  player.velocity * -0.025;
+ ctx.fillStyle="#8b9298";
 
-  ctx.rotate(angle);
+ ctx.beginPath();
 
+ ctx.roundRect(
+   -43,
+   -5,
+   27,
+   16,
+   7
+ );
 
-  /* rocket */
+ ctx.fill();
+ ctx.stroke();
 
-  ctx.fillStyle =
-  "#8a9096";
 
-  ctx.strokeStyle =
-  "#111";
+ /* FLAME */
 
-  ctx.lineWidth =
-  3;
+ ctx.fillStyle="#ffac00";
 
+ ctx.beginPath();
 
-  ctx.beginPath();
+ ctx.moveTo(-43,3);
 
-  ctx.roundRect(
-    -48,
-    -4,
-    30,
-    18,
-    8
-  );
+ ctx.lineTo(-66,-7);
 
-  ctx.fill();
+ ctx.lineTo(-59,4);
 
-  ctx.stroke();
+ ctx.lineTo(-66,15);
 
+ ctx.closePath();
 
-  /* flame */
+ ctx.fill();
+ ctx.stroke();
 
-  ctx.fillStyle =
-  "#ffae00";
 
-  ctx.beginPath();
+ /* BODY */
 
-  ctx.moveTo(
-    -49,
-    5
-  );
+ ctx.fillStyle="#fff";
 
-  ctx.lineTo(
-    -72,
-    -5
-  );
+ ctx.beginPath();
 
-  ctx.lineTo(
-    -67,
-    7
-  );
+ ctx.roundRect(
+   -24,
+   -35,
+   48,
+   70,
+   22
+ );
 
-  ctx.lineTo(
-    -72,
-    18
-  );
+ ctx.fill();
+ ctx.stroke();
 
-  ctx.closePath();
 
-  ctx.fill();
+ /* GREEN */
 
-  ctx.stroke();
+ ctx.save();
 
+ ctx.beginPath();
 
-  /* body */
+ ctx.roundRect(
+   -24,
+   -35,
+   48,
+   70,
+   22
+ );
 
-  ctx.fillStyle =
-  "#ffffff";
+ ctx.clip();
 
+ ctx.fillStyle="#58d63c";
 
-  ctx.beginPath();
+ ctx.fillRect(
+   -28,
+   7,
+   56,
+   35
+ );
 
-  ctx.roundRect(
-    -26,
-    -37,
-    52,
-    75,
-    24
-  );
+ ctx.restore();
 
-  ctx.fill();
 
-  ctx.stroke();
+ /* EYES */
 
+ ctx.fillStyle="#111";
 
-  /* green lower body */
+ ctx.beginPath();
 
-  ctx.save();
+ ctx.arc(
+   -8,
+   -8,
+   3.5,
+   0,
+   Math.PI*2
+ );
 
-  ctx.beginPath();
+ ctx.arc(
+   8,
+   -8,
+   3.5,
+   0,
+   Math.PI*2
+ );
 
-  ctx.roundRect(
-    -26,
-    -37,
-    52,
-    75,
-    24
-  );
+ ctx.fill();
 
-  ctx.clip();
 
+ /* TONGUE */
 
-  ctx.fillStyle =
-  "#62d940";
+ ctx.fillStyle="#f36b85";
 
-  ctx.fillRect(
-    -30,
-    8,
-    60,
-    35
-  );
+ ctx.beginPath();
 
-  ctx.restore();
+ ctx.arc(
+   0,
+   5,
+   6,
+   0,
+   Math.PI
+ );
 
+ ctx.fill();
 
-  /* eyes */
 
-  ctx.fillStyle =
-  "#111";
+ /* ARMS + LEGS */
 
-  ctx.beginPath();
+ ctx.strokeStyle="#111";
 
-  ctx.arc(
-    -9,
-    -9,
-    4,
-    0,
-    Math.PI*2
-  );
+ ctx.lineWidth=3.5;
 
-  ctx.arc(
-    9,
-    -9,
-    4,
-    0,
-    Math.PI*2
-  );
+ ctx.lineCap="round";
 
-  ctx.fill();
 
+ let lines=[
 
-  /* tongue */
+   [-23,2,-42,-10],
 
-  ctx.fillStyle =
-  "#ff6784";
+   [23,2,42,-11],
 
-  ctx.beginPath();
+   [-11,32,-23,47],
 
-  ctx.arc(
-    0,
-    5,
-    7,
-    0,
-    Math.PI
-  );
+   [11,32,23,46]
 
-  ctx.fill();
+ ];
 
 
-  /* arms */
+ lines.forEach(
+   a=>{
 
-  ctx.strokeStyle =
-  "#111";
+     ctx.beginPath();
 
-  ctx.lineWidth =
-  4;
+     ctx.moveTo(
+       a[0],
+       a[1]
+     );
 
-  ctx.lineCap =
-  "round";
+     ctx.lineTo(
+       a[2],
+       a[3]
+     );
 
+     ctx.stroke();
 
-  ctx.beginPath();
+   }
+ );
 
-  ctx.moveTo(
-    -25,
-    3
-  );
-
-  ctx.lineTo(
-    -48,
-    -10
-  );
-
-  ctx.stroke();
-
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    25,
-    3
-  );
-
-  ctx.lineTo(
-    47,
-    -12
-  );
-
-  ctx.stroke();
-
-
-  /* legs */
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    -13,
-    34
-  );
-
-  ctx.lineTo(
-    -27,
-    52
-  );
-
-  ctx.stroke();
-
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    13,
-    34
-  );
-
-  ctx.lineTo(
-    27,
-    50
-  );
-
-  ctx.stroke();
-
-
-  ctx.restore();
-
+ ctx.restore();
 }
 
 
-/* =====================================================
+/* =========================================
    COLLISION
-===================================================== */
+========================================= */
 
 function collision(a,b){
 
-  const padding =
-  8;
+ return (
 
+   a.x+8 <
+   b.x+b.width &&
 
-  return (
+   a.x+a.width-8 >
+   b.x &&
 
-    a.x + padding <
-    b.x + b.width &&
+   a.y+8 <
+   b.y+b.height+20 &&
 
-    a.x + a.width - padding >
-    b.x &&
+   a.y+a.height-8 >
+   b.y
 
-    a.y + padding <
-    b.y + b.height + 30 &&
-
-    a.y + a.height - padding >
-    b.y
-
-  );
+ );
 
 }
 
 
-/* =====================================================
+/* =========================================
    GAME OVER
-===================================================== */
+========================================= */
 
 function gameOver(){
 
-  running =
-  false;
+ running=false;
 
-  gameTitle.textContent =
-  "GAME OVER";
+ statusText.textContent=
+ "GAME OVER";
 
-  finalScoreElement.textContent =
-  Math.floor(score);
+ if(score>best){
 
+   best=score;
 
-  if(
-    Math.floor(score) > best
-  ){
+   localStorage.setItem(
+     "jumpyBest",
+     best
+   );
 
-    best =
-    Math.floor(score);
-
-    localStorage.setItem(
-      "jumpyBest",
-      best
-    );
-
-    bestElement.textContent =
-    best;
-
-    best2Element.textContent =
-    best;
-
-  }
-
+   bestText.textContent=
+   best;
+ }
 }
 
 
-/* =====================================================
-   GAME LOOP
-===================================================== */
-
-function gameLoop(time){
-
-  if(!running){
-
-    draw();
-
-    return;
-
-  }
-
-
-  const delta =
-  Math.min(
-    (time - lastTime) /
-    16.67,
-    2
-  );
-
-
-  lastTime =
-  time;
-
-
-  const h =
-  canvas.clientHeight;
-
-
-  /* gravity */
-
-  player.velocity +=
-  0.58 * delta;
-
-
-  player.y +=
-  player.velocity * delta;
-
-
-  /* ceiling */
-
-  if(
-    player.y < 10
-  ){
-
-    player.y = 10;
-
-    player.velocity = 0;
-
-  }
-
-
-  /* ground */
-
-  if(
-    player.y +
-    player.height >
-    h - 35
-  ){
-
-    gameOver();
-
-    return;
-
-  }
-
-
-  /* spawn */
-
-  spawnTimer +=
-  delta;
-
-
-  const spawnRate =
-  Math.max(
-    58,
-    85 -
-    score * .25
-  );
-
-
-  if(
-    spawnTimer >
-    spawnRate
-  ){
-
-    createObstacle();
-
-    spawnTimer = 0;
-
-  }
-
-
-  /* move */
-
-  for(
-    let i =
-    obstacles.length - 1;
-
-    i >= 0;
-
-    i--
-  ){
-
-    const o =
-    obstacles[i];
-
-
-    o.x -=
-    gameSpeed * delta;
-
-
-    if(
-      !o.passed &&
-      o.x + o.width <
-      player.x
-    ){
-
-      o.passed =
-      true;
-
-      score++;
-
-      scoreElement.textContent =
-      Math.floor(score);
-
-      gameSpeed =
-      Math.min(
-        7.5,
-        4.2 +
-        score * .035
-      );
-
-    }
-
-
-    if(
-      collision(
-        player,
-        o
-      )
-    ){
-
-      gameOver();
-
-      return;
-
-    }
-
-
-    if(
-      o.x + o.width <
-      -100
-    ){
-
-      obstacles.splice(
-        i,
-        1
-      );
-
-    }
-
-  }
-
-
-  draw();
-
-
-  requestAnimationFrame(
-    gameLoop
-  );
-
-}
-
-
-/* =====================================================
+/* =========================================
    DRAW
-===================================================== */
+========================================= */
 
 function draw(){
 
-  const w =
-  canvas.clientWidth;
+ ctx.clearRect(
+   0,
+   0,
+   W,
+   H
+ );
 
-  const h =
-  canvas.clientHeight;
+ /* soft clouds */
 
+ ctx.fillStyle=
+ "rgba(255,255,255,.28)";
 
-  ctx.clearRect(
-    0,
-    0,
-    w,
-    h
-  );
+ for(
+   let i=0;
+   i<5;
+   i++
+ ){
 
+   let x=
+   (i*220)-
+   ((score*1.5)%220);
 
-  drawBackground();
+   let y=
+   80+
+   (i%3)*70;
 
+   ctx.beginPath();
 
-  /* floor */
+   ctx.ellipse(
+     x,
+     y,
+     90,
+     25,
+     0,
+     0,
+     Math.PI*2
+   );
 
-  ctx.fillStyle =
-  "rgba(255,255,255,.85)";
+   ctx.fill();
+ }
 
-  ctx.fillRect(
-    0,
-    h - 35,
-    w,
-    35
-  );
+ obstacles.forEach(
+   drawCandle
+ );
 
-
-  ctx.strokeStyle =
-  "#111";
-
-  ctx.lineWidth =
-  2;
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    0,
-    h - 35
-  );
-
-  ctx.lineTo(
-    w,
-    h - 35
-  );
-
-  ctx.stroke();
-
-
-  /* obstacles */
-
-  obstacles.forEach(
-    function(o){
-
-      if(!o.color){
-
-        o.color =
-        Math.random() > .5
-        ? "#18df72"
-        : "#ff5151";
-
-      }
-
-      drawCandle(o);
-
-    }
-  );
-
-
-  drawJumpy();
-
+ drawJumpy();
 }
 
 
-/* =====================================================
-   CONTROLS
-===================================================== */
+/* =========================================
+   GAME LOOP
+========================================= */
 
-jumpButton.addEventListener(
-"click",
-function(e){
+function loop(time){
 
-  e.stopPropagation();
+ if(!running){
 
-  jump();
+   draw();
 
+   return;
+ }
+
+ const dt=
+ Math.min(
+   (time-last)/16.67,
+   2
+ );
+
+ last=time;
+
+
+ /* gravity */
+
+ player.vy+=
+ 0.58*dt;
+
+ player.y+=
+ player.vy*dt;
+
+
+ /* ceiling */
+
+ if(player.y<5){
+
+   player.y=5;
+
+   player.vy=0;
+ }
+
+
+ /* ground */
+
+ if(
+   player.y+
+   player.h>
+   H-25
+ ){
+
+   gameOver();
+
+   return;
+ }
+
+
+ /* spawn */
+
+ spawnTimer+=dt;
+
+ if(spawnTimer>72){
+
+   createCandle();
+
+   spawnTimer=0;
+ }
+
+
+ /* move candles */
+
+ for(
+   let i=obstacles.length-1;
+   i>=0;
+   i--
+ ){
+
+   const o=
+   obstacles[i];
+
+   o.x-=
+   speed*dt;
+
+
+   /* score */
+
+   if(
+     !o.passed &&
+     o.x+o.width<
+     player.x
+   ){
+
+     o.passed=true;
+
+     score++;
+
+     scoreText.textContent=
+     score;
+
+     speed=
+     Math.min(
+       7,
+       4+
+       score*.04
+     );
+   }
+
+
+   /* collision */
+
+   if(
+     collision(
+       player,
+       o
+     )
+   ){
+
+     gameOver();
+
+     return;
+   }
+
+
+   /* delete */
+
+   if(
+     o.x+o.width<
+     -50
+   ){
+
+     obstacles.splice(
+       i,
+       1
+     );
+   }
+ }
+
+
+ draw();
+
+ requestAnimationFrame(loop);
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+document
+.getElementById("jump")
+.addEventListener(
+ "click",
+ jump
+);
+
+document
+.getElementById("again")
+.addEventListener(
+ "click",
+ startGame
+);
+
+document
+.getElementById("share")
+.addEventListener(
+ "click",
+ function(){
+
+   const text=
+   "I just played JUMPY. JUST JUMP. 🟢";
+
+   window.open(
+     "https://twitter.com/intent/tweet?text="+
+     encodeURIComponent(text),
+     "_blank"
+   );
 });
 
 
-tryAgain.addEventListener(
-"click",
-function(e){
+/* =========================================
+   COPY CA
+========================================= */
 
-  e.stopPropagation();
+document
+.getElementById("copy")
+.addEventListener(
+ "click",
+ async function(){
 
-  startGame();
+   try{
 
-});
+     await navigator.clipboard.writeText(
+       CONTRACT
+     );
+
+   }catch(e){
+
+     const input=
+     document.createElement("input");
+
+     input.value=CONTRACT;
+
+     document.body.appendChild(
+       input
+     );
+
+     input.select();
+
+     document.execCommand(
+       "copy"
+     );
+
+     input.remove();
+   }
+
+   alert(
+     "Contract copied!"
+   );
+ });
 
 
-shareX.addEventListener(
-"click",
-function(e){
-
-  e.stopPropagation();
-
-  const text =
-  "I scored " +
-  Math.floor(score) +
-  " on JUMPY. JUST JUMP. 🟢";
-
-  window.open(
-    "https://twitter.com/intent/tweet?text="
-    +
-    encodeURIComponent(text),
-    "_blank"
-  );
-
-});
-
-
-/* keyboard */
+/* =========================================
+   KEYBOARD
+========================================= */
 
 document.addEventListener(
-"keydown",
-function(e){
+ "keydown",
+ function(e){
 
-  if(
-    e.code === "Space" ||
-    e.code === "ArrowUp"
-  ){
+   if(
+     e.code==="Space" ||
+     e.code==="ArrowUp"
+   ){
 
-    e.preventDefault();
+     e.preventDefault();
 
-    jump();
-
-  }
-
-});
+     jump();
+   }
+ });
 
 
-/* mouse */
-
-canvas.addEventListener(
-"mousedown",
-function(){
-
-  jump();
-
-});
-
-
-/* touch */
+/* =========================================
+   TOUCH
+========================================= */
 
 canvas.addEventListener(
-"touchstart",
-function(e){
+ "touchstart",
+ function(e){
 
-  e.preventDefault();
+   e.preventDefault();
 
-  jump();
+   jump();
 
-},
-{
-  passive:false
-});
+ },
+ {passive:false}
+);
 
 
-/* =====================================================
-   INITIAL DRAW
-===================================================== */
+/* =========================================
+   INIT
+========================================= */
 
-resetGame();
+bestText.textContent=
+best;
 
-draw();
+resize();
 
 </script>
 
