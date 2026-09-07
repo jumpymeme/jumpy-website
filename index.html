@@ -7,6 +7,7 @@
 <title>JUMPY — JUST JUMP.</title>
 
 <style>
+
 *{
   box-sizing:border-box;
 }
@@ -27,33 +28,104 @@ a{
   text-decoration:none;
 }
 
-button{
-  font:inherit;
-  border:0;
-}
-
-/* =========================
-   HERO / COVER
-========================= */
+/* =========================================
+   HERO
+========================================= */
 
 .hero{
+  position:relative;
   width:100%;
-  background:#eef8fd;
-  display:flex;
-  justify-content:center;
+  background:#079cf0;
   overflow:hidden;
+  line-height:0;
 }
 
 .cover{
   width:100%;
-  max-width:1500px;
   height:auto;
+  min-height:600px;
   display:block;
+  object-fit:contain;
 }
 
-/* =========================
-   GENERAL
-========================= */
+/* =========================================
+   TOP NAVIGATION
+========================================= */
+
+.hero-nav{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+
+  padding:18px 4.5%;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  z-index:10;
+
+  line-height:normal;
+}
+
+.nav-logo{
+  font-size:40px;
+  font-weight:950;
+  letter-spacing:-3px;
+  color:#fff;
+  text-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.nav-logo span{
+  color:#20e08c;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:34px;
+}
+
+.nav-links a{
+  color:#fff;
+  font-size:15px;
+  font-weight:500;
+
+  transition:.2s;
+}
+
+.nav-links a:hover{
+  opacity:.7;
+}
+
+.buy-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:13px 25px;
+
+  border-radius:30px;
+
+  background:#28e58d;
+  color:#06151b !important;
+
+  font-weight:900 !important;
+
+  box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+  transition:.2s;
+}
+
+.buy-button:hover{
+  transform:translateY(-2px);
+  opacity:1 !important;
+}
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
 
 .container{
   width:min(1120px,calc(100% - 32px));
@@ -67,9 +139,9 @@ button{
   box-shadow:0 8px 28px rgba(40,100,140,.07);
 }
 
-/* =========================
+/* =========================================
    CONTRACT
-========================= */
+========================================= */
 
 .contract{
   margin-top:20px;
@@ -111,7 +183,6 @@ button{
   color:#647286;
   font-size:11px;
   margin-bottom:8px;
-  letter-spacing:.3px;
 }
 
 .ca-text strong{
@@ -137,9 +208,9 @@ button{
   background:#f4fafc;
 }
 
-/* =========================
+/* =========================================
    SOCIALS
-========================= */
+========================================= */
 
 .socials{
   min-height:68px;
@@ -156,7 +227,6 @@ button{
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
 
   gap:5px;
 
@@ -167,7 +237,6 @@ button{
 .social-icon{
   width:32px;
   height:32px;
-
   object-fit:contain;
 }
 
@@ -190,9 +259,9 @@ button{
   color:#081426;
 }
 
-/* =========================
+/* =========================================
    MARKET
-========================= */
+========================================= */
 
 .market{
   margin-top:16px;
@@ -259,17 +328,11 @@ button{
   color:#06151b;
 
   font-weight:900;
-
-  transition:.2s;
 }
 
-.dex-button:hover{
-  transform:translateY(-2px);
-}
-
-/* =========================
+/* =========================================
    CHART
-========================= */
+========================================= */
 
 .chart-header{
   display:flex;
@@ -317,9 +380,9 @@ button{
   border:0;
 }
 
-/* =========================
+/* =========================================
    FEATURES
-========================= */
+========================================= */
 
 .features{
   display:grid;
@@ -364,9 +427,9 @@ button{
   line-height:1.4;
 }
 
-/* =========================
-   LOWER SECTIONS
-========================= */
+/* =========================================
+   LOWER
+========================================= */
 
 .lower{
   display:grid;
@@ -384,9 +447,9 @@ button{
   font-size:20px;
 }
 
-/* =========================
+/* =========================================
    TOKENOMICS
-========================= */
+========================================= */
 
 .token{
   display:flex;
@@ -402,12 +465,12 @@ button{
   border-radius:50%;
 
   background:
-    conic-gradient(
-      #079f5c 0 70%,
-      #1dc982 70% 85%,
-      #55e5a7 85% 95%,
-      #a5f5d1 95% 100%
-    );
+  conic-gradient(
+    #079f5c 0 70%,
+    #1dc982 70% 85%,
+    #55e5a7 85% 95%,
+    #a5f5d1 95% 100%
+  );
 
   position:relative;
 }
@@ -448,9 +511,9 @@ button{
   margin-right:8px;
 }
 
-/* =========================
+/* =========================================
    ROADMAP
-========================= */
+========================================= */
 
 .roadmap{
   display:grid;
@@ -505,9 +568,9 @@ button{
   color:#68778a;
 }
 
-/* =========================
+/* =========================================
    FOOTER
-========================= */
+========================================= */
 
 footer{
   padding:32px 0 45px;
@@ -551,11 +614,31 @@ footer{
   font-weight:700;
 }
 
-/* =========================
+/* =========================================
    TABLET
-========================= */
+========================================= */
 
 @media(max-width:900px){
+
+  .hero-nav{
+    padding:16px 3%;
+  }
+
+  .nav-logo{
+    font-size:32px;
+  }
+
+  .nav-links{
+    gap:18px;
+  }
+
+  .nav-links a{
+    font-size:13px;
+  }
+
+  .buy-button{
+    padding:11px 17px;
+  }
 
   .contract{
     grid-template-columns:1fr;
@@ -578,25 +661,46 @@ footer{
 
 }
 
-/* =========================
+/* =========================================
    MOBILE
-========================= */
+========================================= */
 
-@media(max-width:760px){
+@media(max-width:650px){
 
-  .container{
-    width:calc(100% - 20px);
+  .hero{
+    min-height:0;
   }
-
-  /*
-     Cover remains fully visible.
-     It gets larger naturally from its
-     original aspect ratio.
-  */
 
   .cover{
     width:100%;
+    min-height:0;
     height:auto;
+  }
+
+  .hero-nav{
+    padding:11px 14px;
+  }
+
+  .nav-logo{
+    font-size:25px;
+    letter-spacing:-2px;
+  }
+
+  .nav-links{
+    gap:10px;
+  }
+
+  .nav-links a{
+    font-size:10px;
+  }
+
+  .buy-button{
+    padding:8px 12px;
+    font-size:10px !important;
+  }
+
+  .container{
+    width:calc(100% - 20px);
   }
 
   .contract{
@@ -605,16 +709,15 @@ footer{
   }
 
   .ca-text strong{
-    font-size:15px;
+    font-size:14px;
   }
 
   .copy{
-    padding:10px 14px;
+    padding:9px 13px;
   }
 
   .market{
     padding:17px;
-    gap:20px;
   }
 
   .market-title{
@@ -622,7 +725,7 @@ footer{
   }
 
   .price{
-    font-size:28px;
+    font-size:27px;
   }
 
   .price span{
@@ -631,7 +734,7 @@ footer{
   }
 
   .stats{
-    gap:15px;
+    gap:13px;
   }
 
   .stats strong{
@@ -644,8 +747,7 @@ footer{
 
   .chart-header{
     justify-content:flex-start;
-    gap:13px;
-
+    gap:12px;
     overflow:hidden;
     white-space:nowrap;
   }
@@ -659,16 +761,16 @@ footer{
   }
 
   .token{
-    gap:18px;
+    gap:16px;
   }
 
   .donut{
-    width:115px;
-    height:115px;
+    width:110px;
+    height:110px;
   }
 
   .donut:after{
-    inset:29px;
+    inset:27px;
   }
 
   footer{
@@ -677,68 +779,37 @@ footer{
     text-align:center;
   }
 
-  .footer-nav{
-    gap:20px;
-  }
-
 }
 
-/* =========================
-   SMALL MOBILE
-========================= */
+/* =========================================
+   VERY SMALL PHONE
+========================================= */
 
-@media(max-width:430px){
+@media(max-width:390px){
 
-  .ca{
-    gap:10px;
+  .nav-logo{
+    font-size:21px;
   }
 
-  .ca-icon{
-    width:48px;
-    height:48px;
-    font-size:22px;
+  .nav-links{
+    gap:7px;
   }
 
-  .ca-text{
-    flex:1;
-  }
-
-  .ca-text small{
+  .nav-links a{
     font-size:9px;
   }
 
-  .ca-text strong{
-    font-size:13px;
+  .buy-button{
+    padding:7px 9px;
+    font-size:9px !important;
   }
 
-  .copy{
-    margin-left:0;
-    padding:9px 12px;
+  .ca-text strong{
+    font-size:12px;
   }
 
   .stats{
-    gap:10px;
-  }
-
-  .stats small{
-    font-size:10px;
-  }
-
-  .stats strong{
-    font-size:13px;
-  }
-
-  .token{
-    align-items:flex-start;
-  }
-
-  .donut{
-    width:100px;
-    height:100px;
-  }
-
-  .donut:after{
-    inset:25px;
+    gap:9px;
   }
 
 }
@@ -750,18 +821,65 @@ footer{
 <body>
 
 
-<!-- ==================================================
-     JUMPY COVER
-     TAVO ORIGINALUS jumpy-cover.PNG
-================================================== -->
+<!-- =========================================
+     HERO
+========================================= -->
 
 <section class="hero">
+
+
+  <!-- VIRŠUTINIS MENIU -->
+
+  <nav class="hero-nav">
+
+
+    <a
+      href="#"
+      class="nav-logo">
+
+      JUMP<span>Y</span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#tokenomics">
+        Tokenomics
+      </a>
+
+      <a href="#roadmap">
+        Roadmap
+      </a>
+
+      <a
+        href="https://pump.fun/coin/CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="buy-button">
+
+        Buy $JUMPY
+
+      </a>
+
+    </div>
+
+
+  </nav>
+
+
+  <!-- DIDELIS COVER -->
 
   <img
     class="cover"
     src="jumpy-cover.PNG"
     alt="JUMPY — JUST JUMP."
   >
+
 
 </section>
 
@@ -770,9 +888,9 @@ footer{
 <main class="container">
 
 
-<!-- ==================================================
-     CONTRACT + SOCIALS
-================================================== -->
+<!-- =========================================
+     CONTRACT
+========================================= -->
 
 <section class="panel contract">
 
@@ -812,8 +930,6 @@ footer{
   <div class="socials">
 
 
-    <!-- X -->
-
     <a
       class="social"
       href="https://x.com/jumpymeme"
@@ -832,8 +948,6 @@ footer{
 
 
 
-    <!-- DEXSCREENER -->
-
     <a
       class="social"
       href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
@@ -851,11 +965,10 @@ footer{
 
     </a>
 
+
   </div>
 
 
-
-  <!-- EMAIL -->
 
   <a
     class="email"
@@ -874,15 +987,16 @@ footer{
 
 
 
-<!-- ==================================================
-     $JUMPY MARKET
-================================================== -->
+<!-- =========================================
+     MARKET
+========================================= -->
 
-<section class="panel market">
+<section
+  class="panel market"
+  id="tokenomics">
 
 
   <div>
-
 
     <div class="market-title">
       $JUMP<span>Y</span>
@@ -890,10 +1004,8 @@ footer{
 
 
     <p class="muted">
-
       A community-driven memecoin
       on Solana.
-
     </p>
 
 
@@ -911,41 +1023,18 @@ footer{
     <div class="stats">
 
       <div>
-
-        <small>
-          Market
-        </small>
-
-        <strong>
-          Live
-        </strong>
-
+        <small>Market</small>
+        <strong>Live</strong>
       </div>
 
-
       <div>
-
-        <small>
-          Liquidity
-        </small>
-
-        <strong>
-          Live
-        </strong>
-
+        <small>Liquidity</small>
+        <strong>Live</strong>
       </div>
 
-
       <div>
-
-        <small>
-          Holders
-        </small>
-
-        <strong>
-          Live
-        </strong>
-
+        <small>Holders</small>
+        <strong>Live</strong>
       </div>
 
     </div>
@@ -961,46 +1050,24 @@ footer{
 
     </a>
 
-
   </div>
 
 
 
   <div>
 
-
     <div class="chart-header">
 
-      <span>
-        1D
-      </span>
-
-      <span>
-        1W
-      </span>
-
-      <span>
-        1M
-      </span>
-
-      <span>
-        3M
-      </span>
-
-      <span>
-        1Y
-      </span>
-
-      <span>
-        All
-      </span>
+      <span>1D</span>
+      <span>1W</span>
+      <span>1M</span>
+      <span>3M</span>
+      <span>1Y</span>
+      <span>All</span>
 
       <span class="live">
-
         <i class="live-dot"></i>
-
         Live Data
-
       </span>
 
     </div>
@@ -1010,12 +1077,11 @@ footer{
 
       <iframe
         src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=dark&trades=0&info=0"
-        title="JUMPY live Dexscreener chart"
+        title="Dexscreener chart"
         loading="lazy">
       </iframe>
 
     </div>
-
 
   </div>
 
@@ -1024,20 +1090,20 @@ footer{
 
 
 
-<!-- ==================================================
+<!-- =========================================
      FEATURES
-================================================== -->
+========================================= -->
 
-<section class="features">
+<section
+  class="features"
+  id="about">
 
 
   <article class="panel feature">
 
-
     <div class="feature-icon">
       🎮
     </div>
-
 
     <div>
 
@@ -1052,18 +1118,15 @@ footer{
 
     </div>
 
-
   </article>
 
 
 
   <article class="panel feature">
 
-
     <div class="feature-icon">
       👥
     </div>
-
 
     <div>
 
@@ -1078,18 +1141,15 @@ footer{
 
     </div>
 
-
   </article>
 
 
 
   <article class="panel feature">
 
-
     <div class="feature-icon">
       🚀
     </div>
-
 
     <div>
 
@@ -1104,7 +1164,6 @@ footer{
 
     </div>
 
-
   </article>
 
 
@@ -1112,14 +1171,12 @@ footer{
 
 
 
-<!-- ==================================================
+<!-- =========================================
      TOKENOMICS + ROADMAP
-================================================== -->
+========================================= -->
 
 <section class="lower">
 
-
-  <!-- TOKENOMICS -->
 
   <div class="panel">
 
@@ -1130,80 +1187,50 @@ footer{
 
     <div class="token">
 
-
       <div class="donut"></div>
 
 
       <div class="legend">
 
-
         <div>
-
           <span>
             <i></i>
             Liquidity
           </span>
-
-          <strong>
-            70%
-          </strong>
-
+          <strong>70%</strong>
         </div>
 
-
         <div>
-
           <span>
             <i></i>
             Marketing
           </span>
-
-          <strong>
-            15%
-          </strong>
-
+          <strong>15%</strong>
         </div>
 
-
         <div>
-
           <span>
             <i></i>
             CEX Listings
           </span>
-
-          <strong>
-            10%
-          </strong>
-
+          <strong>10%</strong>
         </div>
 
-
         <div>
-
           <span>
             <i></i>
             Community
           </span>
-
-          <strong>
-            5%
-          </strong>
-
+          <strong>5%</strong>
         </div>
-
 
       </div>
 
-
     </div>
-
 
   </div>
 
 
-
-  <!-- ROADMAP -->
 
   <div
     class="panel"
@@ -1216,61 +1243,27 @@ footer{
 
     <div class="roadmap">
 
-
       <div class="step">
-
-        <time>
-          Q1
-        </time>
-
-        <strong>
-          Launch $JUMPY
-        </strong>
-
+        <time>Q1</time>
+        <strong>Launch $JUMPY</strong>
       </div>
 
-
       <div class="step">
-
-        <time>
-          Q2
-        </time>
-
-        <strong>
-          Grow community
-        </strong>
-
+        <time>Q2</time>
+        <strong>Grow community</strong>
       </div>
 
-
       <div class="step">
-
-        <time>
-          Q3
-        </time>
-
-        <strong>
-          CEX listings
-        </strong>
-
+        <time>Q3</time>
+        <strong>CEX listings</strong>
       </div>
 
-
       <div class="step">
-
-        <time>
-          Q4
-        </time>
-
-        <strong>
-          To the moon
-        </strong>
-
+        <time>Q4</time>
+        <strong>To the moon</strong>
       </div>
-
 
     </div>
-
 
   </div>
 
@@ -1279,9 +1272,9 @@ footer{
 
 
 
-<!-- ==================================================
+<!-- =========================================
      FOOTER
-================================================== -->
+========================================= -->
 
 <footer>
 
@@ -1299,14 +1292,13 @@ footer{
   </div>
 
 
-
   <div class="footer-nav">
 
-    <a href="#">
+    <a href="#about">
       About
     </a>
 
-    <a href="#">
+    <a href="#tokenomics">
       Tokenomics
     </a>
 
@@ -1317,11 +1309,8 @@ footer{
   </div>
 
 
-
   <div class="solana">
-
     Built on ◎ Solana
-
   </div>
 
 
@@ -1334,17 +1323,12 @@ footer{
 
 <script>
 
-/* ==================================================
-   JUMPY CONTRACT
-================================================== */
+/* =========================================
+   CONTRACT COPY
+========================================= */
 
 const CA =
 "CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h";
-
-
-/* ==================================================
-   COPY BUTTON
-================================================== */
 
 const copyButton =
 document.getElementById("copyButton");
@@ -1371,14 +1355,7 @@ async function(){
       1600
     );
 
-  }
-
-  catch(error){
-
-    /*
-      Fallback for browsers where
-      clipboard API is unavailable.
-    */
+  }catch(error){
 
     const textArea =
     document.createElement("textarea");
