@@ -2,355 +2,557 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <title>JUMPY — JUST JUMP.</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #eef9ff;
-  color: #071526;
+html{
+  scroll-behavior:smooth;
 }
 
-.page {
-  width: min(1100px, 100%);
-  margin: auto;
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(#18a8e0,#67cce9);
+  color:#071426;
+  overflow-x:hidden;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.container{
+  width:min(1120px,92%);
+  margin:auto;
 }
 
 /* HEADER */
 
-header {
-  height: 80px;
-  padding: 0 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #159fe5;
-  color: white;
+header{
+  position:relative;
+  z-index:20;
+  padding:24px 0;
 }
 
-.logo {
-  font-size: 36px;
-  font-weight: 900;
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
-.logo span {
-  color: #55efa0;
+.logo{
+  font-size:38px;
+  font-weight:900;
+  letter-spacing:-2px;
+  color:white;
 }
 
-nav {
-  display: flex;
-  gap: 25px;
-  align-items: center;
+.logo span{
+  color:#45e48b;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+nav{
+  display:flex;
+  gap:28px;
 }
 
-.buy {
-  background: #55efa0;
-  color: #071526 !important;
-  padding: 13px 22px;
-  border-radius: 30px;
+nav a{
+  color:white;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+  min-height:720px;
+  position:relative;
+  padding:55px 0 70px;
+  overflow:hidden;
+}
+
+.cloud{
+  position:absolute;
+  background:rgba(255,255,255,.42);
+  border-radius:100px;
+  pointer-events:none;
+}
+
+.cloud.one{
+  width:280px;
+  height:70px;
+  right:-60px;
+  top:260px;
+}
+
+.cloud.two{
+  width:330px;
+  height:80px;
+  left:-100px;
+  top:410px;
+}
+
+.cloud.three{
+  width:240px;
+  height:65px;
+  right:10%;
+  bottom:30px;
+}
+
+.hero-title{
+  position:absolute;
+  left:0;
+  top:145px;
+  color:white;
+  font-weight:900;
+  line-height:.8;
+  z-index:1;
+}
+
+.hero-title small{
+  display:block;
+  font-size:22px;
+  letter-spacing:9px;
+  margin-bottom:28px;
+}
+
+.hero-title strong{
+  display:block;
+  font-size:105px;
+  letter-spacing:-7px;
+}
+
+.hero-title strong span{
+  color:#48e58b;
 }
 
 /* GAME */
 
-.game-section {
-  position: relative;
-  height: 620px;
-  overflow: hidden;
-  background:
-    linear-gradient(
-      #159fe5,
-      #75d5f5 70%,
-      #eafaff
-    );
+.game-layout{
+  position:relative;
+  z-index:5;
+  width:min(760px,100%);
+  margin:0 auto;
 }
 
-.cloud {
-  position: absolute;
-  width: 180px;
-  height: 45px;
-  background: rgba(255,255,255,.65);
-  border-radius: 50px;
+.score-box{
+  width:400px;
+  max-width:90%;
+  margin:0 auto 18px;
+  background:white;
+  border-radius:38px;
+  padding:25px 35px;
+  display:flex;
+  justify-content:space-around;
+  text-align:center;
+  box-shadow:0 12px 35px rgba(0,0,0,.08);
 }
 
-.cloud.one {
-  left: -30px;
-  top: 180px;
+.score-box div{
+  font-size:17px;
 }
 
-.cloud.two {
-  right: -30px;
-  top: 110px;
+.score-box b{
+  display:block;
+  font-size:55px;
+  line-height:1;
+  margin-top:6px;
 }
 
-.cloud.three {
-  left: 40%;
-  top: 350px;
+.game-wrap{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:22px;
 }
 
-.hero-title {
-  position: absolute;
-  left: 35px;
-  top: 45px;
-  color: white;
-  z-index: 2;
+canvas{
+  display:block;
+  width:420px;
+  height:500px;
+  max-width:100%;
+  border-radius:32px;
+  background:linear-gradient(#8bdcff,#d9f8ff);
+  box-shadow:0 15px 45px rgba(0,0,0,.12);
+  touch-action:none;
 }
 
-.hero-title small {
-  letter-spacing: 5px;
-  font-weight: bold;
+/* GAME OVER */
+
+.game-over{
+  width:300px;
+  background:rgba(255,255,255,.93);
+  border-radius:35px;
+  padding:35px 25px;
+  text-align:center;
+  box-shadow:0 15px 45px rgba(0,0,0,.12);
+  display:none;
 }
 
-.hero-title h1 {
-  margin: 15px 0 0;
-  font-size: 80px;
-  line-height: .8;
+.game-over.show{
+  display:block;
 }
 
-.hero-title h1 span {
-  color: #55efa0;
+.game-over h2{
+  font-size:32px;
+  margin-bottom:25px;
 }
 
-/* SCORE */
-
-.score {
-  position: absolute;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  border-radius: 20px;
-  padding: 15px 35px;
-  display: flex;
-  gap: 35px;
-  z-index: 10;
-  text-align: center;
+.results{
+  display:flex;
+  justify-content:space-around;
+  margin-bottom:25px;
 }
 
-.score small {
-  display: block;
+.results span{
+  display:block;
+  font-size:14px;
 }
 
-.score strong {
-  font-size: 30px;
+.results b{
+  font-size:42px;
 }
 
-/* CANVAS */
-
-#gameCanvas {
-  position: absolute;
-  left: 18%;
-  top: 115px;
-  width: 82%;
-  height: 430px;
+.retry{
+  width:100%;
+  border:0;
+  background:#071426;
+  color:white;
+  padding:17px;
+  border-radius:30px;
+  font-size:17px;
+  font-weight:800;
+  margin-bottom:14px;
 }
 
-/* GAME CARD */
-
-.game-card {
-  position: absolute;
-  right: 25px;
-  bottom: 65px;
-  width: 270px;
-  padding: 22px;
-  border-radius: 25px;
-  background: rgba(255,255,255,.9);
-  z-index: 10;
-  text-align: center;
+.share{
+  width:100%;
+  border:2px solid #dce5eb;
+  background:white;
+  color:#168fe0;
+  padding:15px;
+  border-radius:30px;
+  font-weight:800;
 }
 
-.game-card h2 {
-  margin: 0 0 20px;
+.jump-button{
+  display:block;
+  margin:22px auto 0;
+  border:0;
+  background:#43e486;
+  color:#071426;
+  font-size:22px;
+  font-weight:900;
+  padding:18px 70px;
+  border-radius:35px;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
 }
 
-.stats {
-  display: flex;
+.jump-button:active{
+  transform:scale(.96);
 }
 
-.stats > div {
-  flex: 1;
+/* CA */
+
+.ca-section{
+  padding:60px 0 50px;
+  text-align:center;
 }
 
-.stats > div + div {
-  border-left: 1px solid #ccd8e0;
+.ca-title{
+  color:white;
+  font-size:15px;
+  letter-spacing:4px;
+  margin-bottom:12px;
 }
 
-.stats small {
-  display: block;
+.ca-box{
+  background:white;
+  border-radius:20px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  max-width:760px;
+  margin:auto;
+  font-family:monospace;
+  font-size:13px;
+  word-break:break-all;
 }
 
-.stats strong {
-  font-size: 27px;
+.copy{
+  flex-shrink:0;
+  border:0;
+  background:#43e486;
+  padding:11px 18px;
+  border-radius:14px;
+  font-weight:800;
 }
 
-.game-card button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 14px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 900;
+/* SOCIAL */
+
+.social{
+  padding:20px 0 80px;
+  text-align:center;
 }
 
-.try {
-  border: 0;
-  background: #0b1728;
-  color: white;
+.social h2{
+  color:white;
+  font-size:38px;
+  margin-bottom:20px;
 }
 
-.share {
-  border: 1px solid #d5dfe6;
-  background: white;
+.social-links{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
-.jump {
-  position: absolute;
-  left: 48%;
-  bottom: 20px;
-  transform: translateX(-50%);
-  padding: 17px 65px;
-  border: 0;
-  border-radius: 40px;
-  background: #55efa0;
-  color: #071526;
-  font-size: 21px;
-  font-weight: 900;
-  cursor: pointer;
-  z-index: 15;
-}
-
-/* CONTRACT */
-
-.contract {
-  margin: 20px 0;
-  padding: 25px;
-  background: white;
-  border-radius: 20px;
-}
-
-.contract small {
-  color: #657487;
-}
-
-.contract-row {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 8px;
-}
-
-.address {
-  font-family: monospace;
-  font-weight: bold;
-  word-break: break-all;
-}
-
-.copy {
-  padding: 10px 20px;
-  border-radius: 25px;
-  border: 1px solid #d5dfe6;
-  background: white;
-  cursor: pointer;
+.social-links a{
+  text-decoration:none;
+  background:white;
+  color:#071426;
+  padding:14px 22px;
+  border-radius:20px;
+  font-weight:800;
 }
 
 /* MARKET */
 
-.market {
-  background: white;
-  border-radius: 20px;
-  padding: 25px;
-  margin-bottom: 20px;
+.market{
+  background:white;
+  padding:75px 0;
 }
 
-.market h2 {
-  font-size: 38px;
-  margin: 0;
+.market h2{
+  text-align:center;
+  font-size:44px;
+  margin-bottom:10px;
 }
 
-.market h2 span {
-  color: #20df89;
+.market-sub{
+  text-align:center;
+  color:#657381;
+  margin-bottom:35px;
 }
 
-.chart {
-  margin-top: 20px;
-  width: 100%;
-  height: 420px;
-  background: #091525;
-  border-radius: 15px;
-  overflow: hidden;
+.chart{
+  width:100%;
+  height:500px;
+  border:0;
+  border-radius:25px;
+  overflow:hidden;
 }
 
-.chart iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
+/* FEATURES */
+
+.features{
+  padding:80px 0;
+}
+
+.features h2,
+.roadmap h2{
+  text-align:center;
+  color:white;
+  font-size:42px;
+  margin-bottom:35px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card{
+  background:white;
+  border-radius:28px;
+  padding:30px;
+  min-height:180px;
+}
+
+.card h3{
+  font-size:22px;
+  margin-bottom:12px;
+}
+
+.card p{
+  color:#647381;
+  line-height:1.5;
+}
+
+/* ROADMAP */
+
+.roadmap{
+  padding:50px 0 90px;
+}
+
+.roadmap-list{
+  max-width:700px;
+  margin:auto;
+}
+
+.phase{
+  background:white;
+  border-radius:25px;
+  padding:24px;
+  margin-bottom:15px;
+}
+
+.phase b{
+  color:#20b967;
 }
 
 /* FOOTER */
 
-footer {
-  padding: 35px;
-  text-align: center;
-  background: #f1faff;
+footer{
+  background:#071426;
+  color:white;
+  text-align:center;
+  padding:45px 20px;
 }
 
-@media(max-width:700px) {
+footer h2{
+  font-size:32px;
+  margin-bottom:10px;
+}
 
-  nav {
-    display: none;
+footer p{
+  color:#9ca9b6;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  header{
+    padding:18px 0;
   }
 
-  header {
-    justify-content: center;
+  .logo{
+    font-size:30px;
   }
 
-  .game-section {
-    height: 700px;
+  nav{
+    display:none;
   }
 
-  .hero-title {
-    left: 20px;
+  .hero{
+    min-height:auto;
+    padding:30px 0 55px;
   }
 
-  .hero-title h1 {
-    font-size: 58px;
+  .hero-title{
+    position:relative;
+    top:auto;
+    left:auto;
+    text-align:center;
+    margin-bottom:30px;
   }
 
-  #gameCanvas {
-    left: 0;
-    width: 100%;
-    top: 190px;
+  .hero-title small{
+    font-size:14px;
+    letter-spacing:6px;
+    margin-bottom:18px;
   }
 
-  .game-card {
-    width: 220px;
-    right: 10px;
-    bottom: 70px;
+  .hero-title strong{
+    font-size:65px;
+    letter-spacing:-4px;
   }
 
-  .jump {
-    left: 42%;
-    padding: 14px 45px;
+  .game-layout{
+    width:100%;
   }
 
-  .contract-row {
-    flex-direction: column;
-    align-items: stretch;
+  .score-box{
+    width:280px;
+    padding:18px 20px;
+    border-radius:28px;
   }
 
-  .chart {
-    height: 320px;
+  .score-box b{
+    font-size:42px;
+  }
+
+  .game-wrap{
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+  }
+
+  canvas{
+    width:100%;
+    max-width:360px;
+    height:auto;
+    aspect-ratio:360/500;
+    border-radius:28px;
+  }
+
+  .game-over{
+    width:100%;
+    max-width:360px;
+  }
+
+  .jump-button{
+    width:100%;
+    max-width:360px;
+    padding:17px;
+  }
+
+  .ca-section{
+    padding-top:40px;
+  }
+
+  .ca-box{
+    flex-direction:column;
+    font-size:11px;
+    padding:16px;
+  }
+
+  .copy{
+    width:100%;
+  }
+
+  .social{
+    padding-bottom:55px;
+  }
+
+  .market{
+    padding:55px 0;
+  }
+
+  .market h2{
+    font-size:34px;
+  }
+
+  .chart{
+    height:420px;
+  }
+
+  .features{
+    padding:60px 0;
+  }
+
+  .features h2,
+  .roadmap h2{
+    font-size:34px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -358,652 +560,491 @@ footer {
 
 <body>
 
-<div class="page">
-
 <header>
-  <div class="logo">JUMP<span>Y</span></div>
+  <div class="container nav">
+    <div class="logo">JUMP<span>Y</span></div>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#market">Tokenomics</a>
-    <a href="#roadmap">Roadmap</a>
-    <a class="buy" href="#market">Buy $JUMPY</a>
-  </nav>
+    <nav>
+      <a href="#about">ABOUT</a>
+      <a href="#market">TOKENOMICS</a>
+      <a href="#roadmap">ROADMAP</a>
+      <a href="#buy">BUY $JUMPY</a>
+    </nav>
+  </div>
 </header>
 
-
-<section class="game-section">
+<section class="hero" id="about">
 
   <div class="cloud one"></div>
   <div class="cloud two"></div>
   <div class="cloud three"></div>
 
-  <div class="hero-title">
-    <small>HIGHER TOGETHER.</small>
-    <h1>JUST<br><span>JUMP.</span></h1>
-  </div>
+  <div class="container">
 
-
-  <div class="score">
-
-    <div>
-      <small>SCORE</small>
-      <strong id="score">0</strong>
+    <div class="hero-title">
+      <small>HIGHER</small>
+      <strong>JUST<br><span>JUMP.</span></strong>
     </div>
 
-    <div>
-      <small>BEST</small>
-      <strong id="best">0</strong>
-    </div>
+    <div class="game-layout">
 
-  </div>
+      <div class="score-box">
+        <div>
+          SCORE
+          <b id="score">0</b>
+        </div>
 
-
-  <canvas id="gameCanvas"></canvas>
-
-
-  <div class="game-card">
-
-    <h2 id="gameStatus">
-      GAME OVER
-    </h2>
-
-    <div class="stats">
-
-      <div>
-        <small>Score</small>
-        <strong id="finalScore">0</strong>
+        <div>
+          BEST
+          <b id="best">0</b>
+        </div>
       </div>
 
-      <div>
-        <small>Best</small>
-        <strong id="bestScore">0</strong>
+      <div class="game-wrap">
+
+        <canvas id="game" width="420" height="500"></canvas>
+
+        <div class="game-over" id="gameOver">
+
+          <h2>GAME OVER</h2>
+
+          <div class="results">
+            <div>
+              <span>Score</span>
+              <b id="finalScore">0</b>
+            </div>
+
+            <div>
+              <span>Best</span>
+              <b id="finalBest">0</b>
+            </div>
+          </div>
+
+          <button class="retry" id="retry">↻ Try Again</button>
+          <button class="share" id="share">𝕏 Share to X</button>
+
+        </div>
+
       </div>
 
+      <button class="jump-button" id="jumpButton">JUMP</button>
+
     </div>
-
-    <button class="try" id="tryAgain">
-      ↻ Try Again
-    </button>
-
-    <button class="share" id="share">
-      𝕏 Share to X
-    </button>
-
   </div>
-
-
-  <button class="jump" id="jump">
-    ↑ JUMP
-  </button>
-
 </section>
 
+<section class="ca-section" id="buy">
 
-<section class="contract">
+  <div class="container">
 
-  <small>
-    CONTRACT ADDRESS (SOLANA)
-  </small>
+    <div class="ca-title">JUMPY CONTRACT ADDRESS</div>
 
-  <div class="contract-row">
+    <div class="ca-box">
 
-    <div class="address">
-      CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h
+      <span id="ca">
+        CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h
+      </span>
+
+      <button class="copy" id="copy">COPY</button>
+
     </div>
 
-    <button class="copy" id="copy">
-      Copy
-    </button>
-
   </div>
-
 </section>
 
+<section class="social">
+
+  <div class="container">
+
+    <h2>JUST JUMP.</h2>
+
+    <div class="social-links">
+
+      <a href="https://x.com/jumpymeme" target="_blank">𝕏 @jumpymeme</a>
+
+      <a href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW" target="_blank">
+        DEXSCREENER
+      </a>
+
+      <a href="mailto:jumpymeme@gmail.com">
+        ✉ EMAIL
+      </a>
+
+    </div>
+
+  </div>
+</section>
 
 <section class="market" id="market">
 
-  <h2>
-    $JUMP<span>Y</span>
-  </h2>
+  <div class="container">
 
-  <p>
-    A community-driven meme project on Solana.
-  </p>
+    <h2>$JUMPY MARKET</h2>
 
-  <div class="chart">
+    <p class="market-sub">
+      Live market chart
+    </p>
 
     <iframe
-      src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=dark&trades=0&info=0"
-      title="JUMPY DEX Screener">
+      class="chart"
+      src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=light&trades=0&info=0"
+      title="JUMPY chart">
     </iframe>
 
   </div>
-
 </section>
 
+<section class="features">
 
-<footer id="roadmap">
-  JUMPY — HIGHER TOGETHER. 🚀
+  <div class="container">
+
+    <h2>WHY JUMPY?</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>🚀 JUST JUMP</h3>
+        <p>
+          No complicated story. No endless promises.
+          Just JUMPY.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🎮 PLAY</h3>
+        <p>
+          Jump through the candles, beat your score
+          and share your run.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🟢 COMMUNITY</h3>
+        <p>
+          Higher together. The community decides
+          how far JUMPY goes.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="roadmap" id="roadmap">
+
+  <div class="container">
+
+    <h2>ROADMAP</h2>
+
+    <div class="roadmap-list">
+
+      <div class="phase">
+        <b>PHASE 01</b>
+        <h3>JUST JUMP.</h3>
+        <p>Launch • Website • Game • X</p>
+      </div>
+
+      <div class="phase">
+        <b>PHASE 02</b>
+        <h3>GO HIGHER.</h3>
+        <p>Community • Memes • More players</p>
+      </div>
+
+      <div class="phase">
+        <b>PHASE 03</b>
+        <h3>HIGHER TOGETHER.</h3>
+        <p>Build the JUMPY community.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<footer>
+
+  <h2>HIGHER TOGETHER.</h2>
+
+  <p>JUMPY • $JUMPY • SOLANA</p>
+
 </footer>
-
-</div>
-
 
 <script>
 
 /* =========================
-   GAME
+   JUMPY GAME
 ========================= */
 
-const canvas =
-document.getElementById("gameCanvas");
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
-const ctx =
-canvas.getContext("2d");
+const scoreEl = document.getElementById("score");
+const bestEl = document.getElementById("best");
 
-const scoreEl =
-document.getElementById("score");
+const gameOver = document.getElementById("gameOver");
+const finalScore = document.getElementById("finalScore");
+const finalBest = document.getElementById("finalBest");
 
-const bestEl =
-document.getElementById("best");
+const jumpButton = document.getElementById("jumpButton");
+const retry = document.getElementById("retry");
+const share = document.getElementById("share");
 
-const best2El =
-document.getElementById("bestScore");
-
-const finalEl =
-document.getElementById("finalScore");
-
-const statusEl =
-document.getElementById("gameStatus");
-
-
-let W;
-let H;
-
-let running = false;
-
-let score = 0;
-
-let best =
-Number(
-localStorage.getItem("jumpyBest") || 0
-);
-
-let speed = 4;
-
-let last = 0;
-
-let timer = 0;
-
-let candles = [];
-
-
-const player = {
-
-  x: 120,
-
-  y: 150,
-
-  width: 48,
-
-  height: 65,
-
-  velocity: 0
-
-};
-
+let best = Number(localStorage.getItem("jumpyBest") || 0);
 
 bestEl.textContent = best;
-best2El.textContent = best;
 
+let player;
+let pipes;
+let score;
+let running;
+let animation;
+let lastTime;
 
-/* =========================
-   RESIZE
-========================= */
+function resetGame(){
 
-function resize(){
+  player = {
+    x:85,
+    y:230,
+    r:20,
+    velocity:0
+  };
 
-  const rect =
-  canvas.getBoundingClientRect();
-
-  const ratio =
-  window.devicePixelRatio || 1;
-
-  W = rect.width;
-
-  H = rect.height;
-
-  canvas.width =
-  W * ratio;
-
-  canvas.height =
-  H * ratio;
-
-  ctx.setTransform(
-    ratio,
-    0,
-    0,
-    ratio,
-    0,
-    0
-  );
-
-}
-
-window.addEventListener(
-"resize",
-resize
-);
-
-resize();
-
-
-/* =========================
-   RESET
-========================= */
-
-function reset(){
-
+  pipes = [];
   score = 0;
-
-  speed = 4;
-
-  timer = 0;
-
-  candles = [];
-
-  player.x = 120;
-
-  player.y = H / 2;
-
-  player.velocity = 0;
-
-  scoreEl.textContent = 0;
-
-  finalEl.textContent = 0;
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-function start(){
-
-  reset();
-
   running = true;
+  lastTime = performance.now();
 
-  statusEl.textContent = "";
+  scoreEl.textContent = "0";
 
-  jumpNow();
+  gameOver.classList.remove("show");
 
-  last =
-  performance.now();
+  cancelAnimationFrame(animation);
 
-  requestAnimationFrame(loop);
-
+  animation = requestAnimationFrame(loop);
 }
-
-
-/* =========================
-   JUMP
-========================= */
-
-function jumpNow(){
-
-  player.velocity = -10;
-
-}
-
 
 function jump(){
 
   if(!running){
-
-    start();
-
-  }else{
-
-    jumpNow();
-
+    resetGame();
+    return;
   }
 
+  player.velocity = -8.2;
 }
 
+function addPipe(){
 
-/* =========================
-   CANDLE
-========================= */
+  const gap = 145;
+  const minTop = 55;
+  const maxTop = canvas.height - gap - 80;
 
-function addCandle(){
+  const top = Math.random() * (maxTop-minTop) + minTop;
 
-  const height =
-  70 +
-  Math.random() * 100;
-
-  candles.push({
-
-    x: W + 30,
-
-    y: H - 20 - height,
-
-    width: 32,
-
-    height: height,
-
-    color:
-      Math.random() > .5
-      ? "#18df72"
-      : "#ff5151",
-
+  pipes.push({
+    x:canvas.width + 30,
+    width:62,
+    top:top,
+    gap:gap,
     passed:false
-
   });
-
 }
 
+function drawBackground(){
 
-/* =========================
-   DRAW CANDLE
-========================= */
+  const gradient = ctx.createLinearGradient(0,0,0,canvas.height);
 
-function drawCandle(c){
+  gradient.addColorStop(0,"#8bdcff");
+  gradient.addColorStop(1,"#d9f8ff");
 
-  ctx.fillStyle =
-  c.color;
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0,0,canvas.width,canvas.height);
 
-  ctx.strokeStyle =
-  "#111";
+  // clouds
 
-  ctx.lineWidth = 2;
+  ctx.fillStyle="rgba(255,255,255,.55)";
 
-  ctx.fillRect(
-    c.x,
-    c.y,
-    c.width,
-    c.height
-  );
-
-  ctx.strokeRect(
-    c.x,
-    c.y,
-    c.width,
-    c.height
-  );
-
-  ctx.fillRect(
-    c.x + 12,
-    c.y - 22,
-    5,
-    20
-  );
-
-  ctx.fillRect(
-    c.x + 12,
-    c.y + c.height,
-    5,
-    22
-  );
-
+  cloud(65,80,70,25);
+  cloud(300,135,90,28);
+  cloud(190,380,80,24);
 }
 
+function cloud(x,y,w,h){
 
-/* =========================
-   DRAW JUMPY
-========================= */
+  ctx.beginPath();
+  ctx.ellipse(x,y,w/2,h/2,0,0,Math.PI*2);
+  ctx.fill();
+}
+
+function drawPipe(p){
+
+  const bottomY = p.top + p.gap;
+
+  // red candle
+
+  ctx.fillStyle="#ef5350";
+  ctx.fillRect(p.x,p.top,p.width,p.height || 0);
+
+  ctx.fillRect(p.x,bottomY,p.width,canvas.height-bottomY);
+
+  // green bodies
+
+  ctx.fillStyle="#38d878";
+
+  ctx.fillRect(
+    p.x+8,
+    p.top-28,
+    p.width-16,
+    28
+  );
+
+  ctx.fillRect(
+    p.x+8,
+    bottomY,
+    p.width-16,
+    28
+  );
+
+  // wicks
+
+  ctx.strokeStyle="#071426";
+  ctx.lineWidth=3;
+
+  ctx.beginPath();
+  ctx.moveTo(p.x+p.width/2,p.top-42);
+  ctx.lineTo(p.x+p.width/2,p.top-28);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(p.x+p.width/2,bottomY+28);
+  ctx.lineTo(p.x+p.width/2,bottomY+42);
+  ctx.stroke();
+}
 
 function drawJumpy(){
 
-  const x =
-  player.x;
-
-  const y =
-  player.y;
-
   ctx.save();
 
-  ctx.translate(
-    x + player.width / 2,
-    y + player.height / 2
-  );
+  ctx.translate(player.x,player.y);
 
-  ctx.rotate(
-    player.velocity * -0.025
-  );
+  // flame
 
-
-  /* rocket */
-
-  ctx.fillStyle =
-  "#8d9499";
-
-  ctx.strokeStyle =
-  "#111";
-
-  ctx.lineWidth = 2.5;
+  ctx.fillStyle="#ff9f1c";
 
   ctx.beginPath();
-
-  ctx.roundRect(
-    -45,
-    -5,
-    27,
-    17,
-    7
-  );
-
-  ctx.fill();
-
-  ctx.stroke();
-
-
-  /* flame */
-
-  ctx.fillStyle =
-  "#ffae00";
-
-  ctx.beginPath();
-
-  ctx.moveTo(-45,3);
-
-  ctx.lineTo(-67,-7);
-
-  ctx.lineTo(-60,4);
-
-  ctx.lineTo(-67,15);
-
+  ctx.moveTo(-25,10);
+  ctx.lineTo(-48,2);
+  ctx.lineTo(-30,20);
   ctx.closePath();
-
   ctx.fill();
 
-  ctx.stroke();
+  // rocket
 
-
-  /* body */
-
-  ctx.fillStyle =
-  "#fff";
+  ctx.fillStyle="#7b8791";
+  ctx.strokeStyle="#071426";
+  ctx.lineWidth=4;
 
   ctx.beginPath();
-
-  ctx.roundRect(
-    -24,
-    -34,
-    48,
-    68,
-    22
-  );
-
+  ctx.ellipse(-18,7,19,10,0,0,Math.PI*2);
   ctx.fill();
-
   ctx.stroke();
 
+  // body
 
-  /* green */
+  ctx.fillStyle="#ffffff";
+
+  ctx.beginPath();
+  ctx.arc(0,0,27,0,Math.PI*2);
+  ctx.fill();
+  ctx.stroke();
+
+  // green lower body
 
   ctx.save();
 
   ctx.beginPath();
-
-  ctx.roundRect(
-    -24,
-    -34,
-    48,
-    68,
-    22
-  );
-
+  ctx.arc(0,0,27,0,Math.PI*2);
   ctx.clip();
 
-  ctx.fillStyle =
-  "#58d53c";
-
-  ctx.fillRect(
-    -28,
-    7,
-    56,
-    35
-  );
+  ctx.fillStyle="#45d83f";
+  ctx.fillRect(-30,3,60,35);
 
   ctx.restore();
 
+  // eyes
 
-  /* eyes */
-
-  ctx.fillStyle =
-  "#111";
+  ctx.fillStyle="#071426";
 
   ctx.beginPath();
-
-  ctx.arc(
-    -8,
-    -8,
-    3.5,
-    0,
-    Math.PI * 2
-  );
-
-  ctx.arc(
-    8,
-    -8,
-    3.5,
-    0,
-    Math.PI * 2
-  );
-
+  ctx.arc(-8,-7,4,0,Math.PI*2);
   ctx.fill();
-
-
-  /* tongue */
-
-  ctx.fillStyle =
-  "#f46b87";
 
   ctx.beginPath();
-
-  ctx.arc(
-    0,
-    5,
-    6,
-    0,
-    Math.PI
-  );
-
+  ctx.arc(9,-7,4,0,Math.PI*2);
   ctx.fill();
 
+  // tongue
 
-  /* arms + legs */
+  ctx.fillStyle="#ff5c8a";
 
-  ctx.strokeStyle =
-  "#111";
+  ctx.beginPath();
+  ctx.ellipse(2,9,7,5,0,0,Math.PI*2);
+  ctx.fill();
 
-  ctx.lineWidth = 3.5;
+  // arm
 
-  ctx.lineCap =
-  "round";
+  ctx.strokeStyle="#071426";
+  ctx.lineWidth=5;
+  ctx.lineCap="round";
 
+  ctx.beginPath();
+  ctx.moveTo(23,7);
+  ctx.lineTo(39,17);
+  ctx.stroke();
 
-  const lines = [
+  ctx.beginPath();
+  ctx.moveTo(-22,12);
+  ctx.lineTo(-37,20);
+  ctx.stroke();
 
-    [-23,2,-42,-10],
+  ctx.restore();
+}
 
-    [23,2,42,-11],
+function collision(){
 
-    [-11,31,-23,46],
+  const left = player.x-player.r;
+  const right = player.x+player.r;
+  const top = player.y-player.r;
+  const bottom = player.y+player.r;
 
-    [11,31,23,45]
+  if(top <= 0 || bottom >= canvas.height){
+    return true;
+  }
 
-  ];
+  for(const p of pipes){
 
+    const pipeLeft = p.x;
+    const pipeRight = p.x+p.width;
 
-  lines.forEach(
-    a => {
+    const topEnd = p.top;
+    const bottomStart = p.top+p.gap;
 
-      ctx.beginPath();
-
-      ctx.moveTo(
-        a[0],
-        a[1]
-      );
-
-      ctx.lineTo(
-        a[2],
-        a[3]
-      );
-
-      ctx.stroke();
-
+    if(
+      right > pipeLeft &&
+      left < pipeRight &&
+      (top < topEnd || bottom > bottomStart)
+    ){
+      return true;
     }
-  );
+  }
 
-
-  ctx.restore();
-
+  return false;
 }
 
-
-/* =========================
-   COLLISION
-========================= */
-
-function collision(a,b){
-
-  return (
-
-    a.x + 8 <
-    b.x + b.width &&
-
-    a.x + a.width - 8 >
-    b.x &&
-
-    a.y + 8 <
-    b.y + b.height + 20 &&
-
-    a.y + a.height - 8 >
-    b.y
-
-  );
-
-}
-
-
-/* =========================
-   GAME OVER
-========================= */
-
-function gameOver(){
+function gameOverNow(){
 
   running = false;
-
-  statusEl.textContent =
-  "GAME OVER";
-
-  finalEl.textContent =
-  score;
-
 
   if(score > best){
 
@@ -1013,317 +1054,90 @@ function gameOver(){
       "jumpyBest",
       best
     );
-
-    bestEl.textContent =
-    best;
-
-    best2El.textContent =
-    best;
-
   }
 
+  bestEl.textContent = best;
+
+  finalScore.textContent = score;
+  finalBest.textContent = best;
+
+  gameOver.classList.add("show");
 }
-
-
-/* =========================
-   DRAW
-========================= */
-
-function draw(){
-
-  ctx.clearRect(
-    0,
-    0,
-    W,
-    H
-  );
-
-
-  /* clouds */
-
-  ctx.fillStyle =
-  "rgba(255,255,255,.35)";
-
-
-  for(
-    let i=0;
-    i<4;
-    i++
-  ){
-
-    const x =
-    (i * 260) -
-    ((score * 2) % 260);
-
-    const y =
-    70 +
-    i * 70;
-
-
-    ctx.beginPath();
-
-    ctx.ellipse(
-      x,
-      y,
-      90,
-      25,
-      0,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fill();
-
-  }
-
-
-  candles.forEach(
-    drawCandle
-  );
-
-
-  drawJumpy();
-
-}
-
-
-/* =========================
-   LOOP
-========================= */
 
 function loop(time){
 
   if(!running){
-
     draw();
-
     return;
-
   }
 
-
-  const dt =
-  Math.min(
-    (time-last)/16.67,
+  const dt = Math.min(
+    (time-lastTime)/16.67,
     2
   );
 
+  lastTime = time;
 
-  last = time;
-
-
-  /* gravity */
-
-  player.velocity +=
-  .58 * dt;
-
-  player.y +=
-  player.velocity * dt;
-
-
-  /* top */
-
-  if(player.y < 5){
-
-    player.y = 5;
-
-    player.velocity = 0;
-
-  }
-
-
-  /* ground */
+  player.velocity += 0.42*dt;
+  player.y += player.velocity*dt;
 
   if(
-    player.y +
-    player.height >
-    H - 20
+    pipes.length === 0 ||
+    pipes[pipes.length-1].x < canvas.width-230
   ){
-
-    gameOver();
-
-    return;
-
+    addPipe();
   }
 
+  for(const p of pipes){
 
-  /* candles */
+    p.x -= 3.2*dt;
 
-  timer += dt;
+    if(!p.passed && p.x+p.width < player.x){
 
-
-  if(timer > 70){
-
-    addCandle();
-
-    timer = 0;
-
-  }
-
-
-  for(
-    let i=candles.length-1;
-    i>=0;
-    i--
-  ){
-
-    const c =
-    candles[i];
-
-
-    c.x -=
-    speed * dt;
-
-
-    if(
-      !c.passed &&
-      c.x + c.width <
-      player.x
-    ){
-
-      c.passed = true;
-
+      p.passed = true;
       score++;
 
-      scoreEl.textContent =
-      score;
-
-      speed =
-      Math.min(
-        7,
-        4 + score * .04
-      );
-
+      scoreEl.textContent = score;
     }
-
-
-    if(
-      collision(
-        player,
-        c
-      )
-    ){
-
-      gameOver();
-
-      return;
-
-    }
-
-
-    if(
-      c.x + c.width <
-      -50
-    ){
-
-      candles.splice(
-        i,
-        1
-      );
-
-    }
-
   }
 
+  pipes = pipes.filter(p => p.x+p.width > -20);
+
+  if(collision()){
+    gameOverNow();
+    return;
+  }
 
   draw();
 
-
-  requestAnimationFrame(
-    loop
-  );
-
+  animation = requestAnimationFrame(loop);
 }
 
+function draw(){
 
-/* =========================
-   BUTTONS
-========================= */
+  drawBackground();
 
-document
-.getElementById("jump")
-.addEventListener(
-"click",
-jump
-);
-
-
-document
-.getElementById("tryAgain")
-.addEventListener(
-"click",
-start
-);
-
-
-document
-.getElementById("share")
-.addEventListener(
-"click",
-function(){
-
-  window.open(
-    "https://twitter.com/intent/tweet?text=" +
-    encodeURIComponent(
-      "I just played JUMPY. JUST JUMP. 🟢"
-    ),
-    "_blank"
-  );
-
-});
-
-
-/* =========================
-   COPY CA
-========================= */
-
-document
-.getElementById("copy")
-.addEventListener(
-"click",
-async function(){
-
-  try{
-
-    await navigator.clipboard.writeText(
-      CONTRACT
-    );
-
-  }catch(e){
-
-    const input =
-    document.createElement("input");
-
-    input.value =
-    CONTRACT;
-
-    document.body.appendChild(
-      input
-    );
-
-    input.select();
-
-    document.execCommand(
-      "copy"
-    );
-
-    input.remove();
-
+  for(const p of pipes){
+    drawPipe(p);
   }
 
-  this.textContent =
-  "Copied ✓";
+  drawJumpy();
+}
+
+/* controls */
+
+jumpButton.addEventListener("click",jump);
+
+retry.addEventListener("click",resetGame);
+
+canvas.addEventListener("pointerdown",function(e){
+
+  e.preventDefault();
+  jump();
 
 });
 
-
-/* =========================
-   KEYBOARD
-========================= */
-
-document.addEventListener(
-"keydown",
-function(e){
+document.addEventListener("keydown",function(e){
 
   if(
     e.code === "Space" ||
@@ -1331,36 +1145,46 @@ function(e){
   ){
 
     e.preventDefault();
-
     jump();
-
   }
 
 });
 
+share.addEventListener("click",function(){
 
-/* =========================
-   TOUCH
-========================= */
+  const text =
+    "I scored " +
+    score +
+    " on JUMPY. JUST JUMP. 🟢 $JUMPY";
 
-canvas.addEventListener(
-"touchstart",
-function(e){
+  const url =
+    "https://twitter.com/intent/tweet?text=" +
+    encodeURIComponent(text);
 
-  e.preventDefault();
+  window.open(url,"_blank");
 
-  jump();
+});
 
-},
-{passive:false}
-);
+/* COPY CA */
 
+document.getElementById("copy").addEventListener("click",function(){
 
-/* =========================
-   INITIAL
-========================= */
+  const ca =
+    "CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h";
 
-draw();
+  navigator.clipboard.writeText(ca);
+
+  this.textContent="COPIED ✓";
+
+  setTimeout(()=>{
+    this.textContent="COPY";
+  },1500);
+
+});
+
+/* START */
+
+resetGame();
 
 </script>
 
