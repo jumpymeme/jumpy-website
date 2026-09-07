@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>JUMPY — JUST JUMP.</title>
 
 <style>
 
-/* =========================
-   RESET
-========================= */
+/* =====================================================
+   JUMPY
+===================================================== */
 
 *{
   box-sizing:border-box;
@@ -23,15 +23,9 @@ html{
 }
 
 body{
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  color:#0b1728;
-
-  background:#f3fbff;
-
+  font-family:Arial,Helvetica,sans-serif;
+  color:#091426;
+  background:#f2faff;
   overflow-x:hidden;
 }
 
@@ -40,39 +34,28 @@ button{
 }
 
 a{
-  color:inherit;
   text-decoration:none;
+  color:inherit;
 }
 
 
-/* =========================
+/* =====================================================
    COLORS
-========================= */
+===================================================== */
 
 :root{
-
-  --blue:#18a8ed;
-
-  --blue-dark:#078bd3;
-
   --green:#55efa0;
-
-  --green-dark:#16d978;
-
-  --red:#ff5353;
-
+  --green2:#18dc78;
+  --blue:#159fe8;
   --dark:#0b1728;
-
-  --muted:#647487;
-
-  --white:#ffffff;
-
+  --muted:#617185;
+  --red:#ff5151;
 }
 
 
-/* =========================
-   SKY HERO
-========================= */
+/* =====================================================
+   HERO SKY
+===================================================== */
 
 .hero-section{
 
@@ -83,32 +66,26 @@ a{
   overflow:hidden;
 
   background:
-
-    radial-gradient(
-      circle at 88% 17%,
-      rgba(255,255,255,.95) 0 52px,
-      rgba(255,255,255,.35) 54px,
-      transparent 115px
-    ),
-
     linear-gradient(
       180deg,
-      #129de7 0%,
-      #45c5f5 43%,
-      #c8efff 100%
+      #119de7 0%,
+      #39baf0 40%,
+      #91def8 72%,
+      #dff7ff 100%
     );
 
 }
 
 
-/* clouds */
+/* =====================================================
+   CLOUDS
+===================================================== */
 
 .cloud{
 
   position:absolute;
 
-  background:
-    rgba(255,255,255,.86);
+  background:rgba(255,255,255,.82);
 
   border-radius:100px;
 
@@ -129,121 +106,122 @@ a{
 
 }
 
-.cloud.one{
+.cloud1{
 
-  width:230px;
-  height:55px;
+  width:240px;
+  height:60px;
 
-  left:-50px;
-  top:320px;
+  left:-45px;
+  top:310px;
 
 }
 
-.cloud.one:before{
+.cloud1:before{
 
-  width:105px;
-  height:105px;
+  width:110px;
+  height:110px;
 
   left:55px;
-  top:-55px;
+  top:-58px;
 
 }
 
-.cloud.one:after{
+.cloud1:after{
 
-  width:75px;
-  height:75px;
+  width:82px;
+  height:82px;
 
   left:145px;
-  top:-32px;
+  top:-35px;
 
 }
 
 
-.cloud.two{
+.cloud2{
 
-  width:320px;
+  width:310px;
   height:65px;
 
-  right:-80px;
-  top:270px;
+  right:-70px;
+  top:255px;
 
 }
 
-.cloud.two:before{
+.cloud2:before{
 
-  width:120px;
-  height:120px;
+  width:125px;
+  height:125px;
 
-  left:80px;
+  left:65px;
   top:-65px;
 
 }
 
-.cloud.two:after{
+.cloud2:after{
 
   width:95px;
   height:95px;
 
-  left:190px;
+  left:175px;
   top:-45px;
 
 }
 
 
-.cloud.three{
+.cloud3{
 
-  width:400px;
+  width:420px;
   height:75px;
 
-  left:35%;
-  top:510px;
+  left:33%;
+  top:480px;
 
-  opacity:.65;
-
-}
-
-.cloud.three:before{
-
-  width:140px;
-  height:140px;
-
-  left:100px;
-  top:-78px;
+  opacity:.7;
 
 }
 
-.cloud.three:after{
+.cloud3:before{
+
+  width:150px;
+  height:150px;
+
+  left:90px;
+  top:-80px;
+
+}
+
+.cloud3:after{
 
   width:115px;
   height:115px;
 
   left:235px;
-  top:-55px;
+  top:-58px;
 
 }
 
 
-/* moon */
+/* =====================================================
+   MOON
+===================================================== */
 
 .moon{
 
   position:absolute;
 
-  width:105px;
-  height:105px;
+  width:108px;
+  height:108px;
 
-  right:7%;
-  top:115px;
+  right:6%;
+  top:125px;
 
   border-radius:50%;
 
   background:
-
     radial-gradient(
       circle at 35% 30%,
-      #ffffff,
-      #e2f1ff 72%
+      white,
+      #dceeff 70%
     );
 
   box-shadow:
@@ -253,9 +231,9 @@ a{
 }
 
 
-/* =========================
+/* =====================================================
    CONTAINER
-========================= */
+===================================================== */
 
 .container{
 
@@ -269,18 +247,18 @@ a{
 
   position:relative;
 
-  z-index:10;
+  z-index:5;
 
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
+/* =====================================================
+   NAV
+===================================================== */
 
 nav{
 
-  height:90px;
+  height:88px;
 
   display:flex;
 
@@ -294,7 +272,7 @@ nav{
 
 .logo{
 
-  font-size:36px;
+  font-size:37px;
 
   font-weight:1000;
 
@@ -314,7 +292,7 @@ nav{
 
   align-items:center;
 
-  gap:32px;
+  gap:31px;
 
   font-size:14px;
 
@@ -332,7 +310,7 @@ nav{
 
   background:var(--green);
 
-  color:#061827;
+  color:#071827;
 
   padding:
     13px
@@ -342,16 +320,12 @@ nav{
 
   font-weight:950;
 
-  box-shadow:
-    0 10px 25px
-    rgba(0,0,0,.10);
-
 }
 
 
-/* =========================
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero{
 
@@ -360,6 +334,11 @@ nav{
   min-height:730px;
 
 }
+
+
+/* =====================================================
+   HERO TEXT
+===================================================== */
 
 .hero-text{
 
@@ -379,11 +358,11 @@ nav{
 
   font-size:12px;
 
-  letter-spacing:7px;
-
   font-weight:800;
 
-  margin-bottom:16px;
+  letter-spacing:7px;
+
+  margin-bottom:17px;
 
 }
 
@@ -405,22 +384,22 @@ nav{
 
 }
 
-.hero-description{
+.hero-sub{
+
+  margin-top:24px;
+
+  max-width:285px;
 
   font-size:17px;
 
   line-height:1.45;
 
-  max-width:280px;
-
-  margin-top:25px;
-
 }
 
 
-/* =========================
+/* =====================================================
    SCORE
-========================= */
+===================================================== */
 
 .score-box{
 
@@ -428,10 +407,9 @@ nav{
 
   left:53%;
 
-  top:28px;
+  top:27px;
 
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 
   display:flex;
 
@@ -439,24 +417,25 @@ nav{
 
   padding:
     16px
-    42px;
-
-  background:
-    rgba(255,255,255,.91);
+    43px;
 
   border-radius:20px;
 
+  background:rgba(255,255,255,.92);
+
   box-shadow:
-    0 14px 35px
-    rgba(0,70,110,.12);
+    0 15px 40px
+    rgba(10,80,120,.12);
 
   text-align:center;
+
+  z-index:20;
 
 }
 
 .score-item{
 
-  min-width:95px;
+  min-width:92px;
 
 }
 
@@ -464,7 +443,7 @@ nav{
 
   border-left:
     1px solid
-    #c8d8e4;
+    #cbd9e4;
 
   padding-left:32px;
 
@@ -475,8 +454,6 @@ nav{
   display:block;
 
   font-size:13px;
-
-  color:#263447;
 
 }
 
@@ -491,11 +468,11 @@ nav{
 }
 
 
-/* =========================
-   GAME AREA
-========================= */
+/* =====================================================
+   GAME
+===================================================== */
 
-.game-area{
+.game{
 
   position:absolute;
 
@@ -503,457 +480,39 @@ nav{
 
   right:0;
 
-  top:155px;
+  top:145px;
 
-  height:500px;
+  height:530px;
 
   overflow:hidden;
 
 }
 
 
-/* =========================
-   CANDLES
-========================= */
+/* =====================================================
+   GAME CANVAS
+===================================================== */
 
-.game-candles{
-
-  position:absolute;
-
-  left:0;
-
-  right:0;
-
-  bottom:50px;
-
-  height:320px;
-
-}
-
-
-.candle{
+#gameCanvas{
 
   position:absolute;
 
-  width:42px;
+  inset:0;
 
-  border-radius:6px;
+  width:100%;
 
-  border:3px solid #111;
+  height:100%;
 
-  box-shadow:
-    0 8px 18px
-    rgba(20,50,70,.10);
+  z-index:2;
 
-}
-
-
-.candle:before,
-.candle:after{
-
-  content:"";
-
-  position:absolute;
-
-  left:15px;
-
-  width:6px;
-
-  height:32px;
-
-  background:inherit;
-
-  border-left:3px solid #111;
-
-  border-right:3px solid #111;
-
-}
-
-.candle:before{
-
-  top:-32px;
-
-}
-
-.candle:after{
-
-  bottom:-32px;
+  cursor:pointer;
 
 }
 
 
-/* starting decorative candles */
-
-.candle.c1{
-
-  left:1%;
-
-  bottom:0;
-
-  height:125px;
-
-  background:#17df72;
-
-}
-
-.candle.c2{
-
-  left:14%;
-
-  bottom:35px;
-
-  height:105px;
-
-  background:#ff5151;
-
-}
-
-.candle.c3{
-
-  left:27%;
-
-  bottom:78px;
-
-  height:125px;
-
-  background:#17df72;
-
-}
-
-.candle.c4{
-
-  left:40%;
-
-  bottom:110px;
-
-  height:85px;
-
-  background:#ff5151;
-
-}
-
-.candle.c5{
-
-  left:53%;
-
-  bottom:145px;
-
-  height:110px;
-
-  background:#17df72;
-
-}
-
-.candle.c6{
-
-  left:65%;
-
-  bottom:175px;
-
-  height:95px;
-
-  background:#ff5151;
-
-}
-
-.candle.c7{
-
-  left:77%;
-
-  bottom:205px;
-
-  height:105px;
-
-  background:#17df72;
-
-}
-
-.candle.c8{
-
-  left:88%;
-
-  bottom:235px;
-
-  height:75px;
-
-  background:#ff5151;
-
-}
-
-
-/* =========================
-   JUMPY
-========================= */
-
-.jumpy{
-
-  position:absolute;
-
-  left:29%;
-
-  top:80px;
-
-  width:82px;
-
-  z-index:8;
-
-  transition:
-    transform .08s linear;
-
-}
-
-
-/* inline mascot */
-
-.jumpy-body{
-
-  position:relative;
-
-  width:58px;
-
-  height:82px;
-
-  margin:auto;
-
-  border:4px solid #111;
-
-  border-radius:
-    28px
-    28px
-    24px
-    24px;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #ffffff 0%,
-      #ffffff 53%,
-      #6ddd43 54%,
-      #55ce38 100%
-    );
-
-  box-shadow:
-    0 12px 8px
-    rgba(0,0,0,.12);
-
-}
-
-
-/* eyes */
-
-.eye{
-
-  position:absolute;
-
-  width:7px;
-
-  height:7px;
-
-  background:#111;
-
-  border-radius:50%;
-
-  top:27px;
-
-}
-
-.eye.left{
-
-  left:15px;
-
-}
-
-.eye.right{
-
-  right:15px;
-
-}
-
-
-/* mouth */
-
-.mouth{
-
-  position:absolute;
-
-  width:13px;
-
-  height:8px;
-
-  left:50%;
-
-  transform:
-    translateX(-50%);
-
-  top:39px;
-
-  background:#ff6684;
-
-  border-radius:
-    0 0 10px 10px;
-
-}
-
-
-/* arms */
-
-.arm{
-
-  position:absolute;
-
-  width:28px;
-
-  height:4px;
-
-  background:#111;
-
-  top:42px;
-
-  border-radius:5px;
-
-}
-
-.arm.left{
-
-  right:49px;
-
-  transform:rotate(-25deg);
-
-}
-
-.arm.right{
-
-  left:49px;
-
-  transform:rotate(-35deg);
-
-}
-
-
-/* legs */
-
-.leg{
-
-  position:absolute;
-
-  width:28px;
-
-  height:4px;
-
-  background:#111;
-
-  bottom:-8px;
-
-  border-radius:5px;
-
-}
-
-.leg.left{
-
-  left:5px;
-
-  transform:rotate(-55deg);
-
-}
-
-.leg.right{
-
-  right:5px;
-
-  transform:rotate(55deg);
-
-}
-
-
-/* rocket */
-
-.rocket{
-
-  position:absolute;
-
-  left:-28px;
-
-  top:28px;
-
-  width:30px;
-
-  height:17px;
-
-  background:#8b9298;
-
-  border:3px solid #111;
-
-  border-radius:10px;
-
-  transform:rotate(-18deg);
-
-}
-
-
-/* rocket flame */
-
-.flame{
-
-  position:absolute;
-
-  left:-45px;
-
-  top:29px;
-
-  width:28px;
-
-  height:20px;
-
-  background:#ffb300;
-
-  border:
-    3px solid #111;
-
-  clip-path:
-    polygon(
-      100% 50%,
-      0 0,
-      20% 50%,
-      0 100%
-    );
-
-  transform:rotate(-18deg);
-
-}
-
-
-/* =========================
-   JUMP ARC
-========================= */
-
-.jump-arc{
-
-  position:absolute;
-
-  left:7%;
-
-  top:110px;
-
-  width:285px;
-
-  height:185px;
-
-  border-top:
-    4px dashed
-    rgba(255,255,255,.95);
-
-  border-radius:50%;
-
-  transform:
-    rotate(-25deg);
-
-}
-
-
-/* =========================
+/* =====================================================
    GAME CARD
-========================= */
+===================================================== */
 
 .game-card{
 
@@ -961,29 +520,24 @@ nav{
 
   right:0;
 
-  bottom:25px;
+  bottom:55px;
 
   width:275px;
 
   padding:23px;
 
-  background:
-    rgba(255,255,255,.83);
-
-  backdrop-filter:
-    blur(16px);
-
-  border:
-    1px solid
-    rgba(255,255,255,.8);
-
   border-radius:25px;
+
+  background:
+    rgba(255,255,255,.82);
+
+  backdrop-filter:blur(15px);
 
   box-shadow:
     0 18px 50px
-    rgba(20,90,130,.16);
+    rgba(20,90,130,.15);
 
-  z-index:20;
+  z-index:10;
 
 }
 
@@ -1023,17 +577,13 @@ nav{
 
   display:block;
 
-  color:#526277;
+  color:#536276;
 
 }
 
 .game-stats strong{
 
-  display:block;
-
   font-size:27px;
-
-  margin-top:2px;
 
 }
 
@@ -1048,49 +598,48 @@ nav{
 
   margin-top:15px;
 
-  font-weight:900;
-
   cursor:pointer;
+
+  font-weight:900;
 
 }
 
 .dark-button{
 
+  border:0;
+
   background:#0d192b;
 
   color:white;
-
-  border:0;
 
 }
 
 .light-button{
 
-  background:white;
-
-  color:#111;
-
   border:
     1px solid
-    #d8e2ea;
+    #d7e1e9;
+
+  background:white;
 
 }
 
 
-/* =========================
+/* =====================================================
    JUMP BUTTON
-========================= */
+===================================================== */
 
 .jump-button{
 
   position:absolute;
 
-  left:50%;
+  left:47%;
 
-  bottom:0;
+  bottom:25px;
 
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
+
+  z-index:15;
 
   border:0;
 
@@ -1108,13 +657,11 @@ nav{
 
   font-weight:1000;
 
+  cursor:pointer;
+
   box-shadow:
     0 12px 25px
     rgba(38,160,105,.22);
-
-  cursor:pointer;
-
-  z-index:30;
 
 }
 
@@ -1130,25 +677,26 @@ nav{
 
   position:absolute;
 
-  left:50%;
+  left:47%;
 
-  bottom:-28px;
+  bottom:-2px;
 
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 
-  color:#627689;
+  color:#5c7386;
 
   font-size:12px;
+
+  z-index:15;
 
   white-space:nowrap;
 
 }
 
 
-/* =========================
+/* =====================================================
    MAIN
-========================= */
+===================================================== */
 
 main{
 
@@ -1159,18 +707,26 @@ main{
       #edf8fc
     );
 
-  padding-bottom:55px;
+  padding:
+    20px
+    0
+    55px;
 
 }
+
+
+/* =====================================================
+   CARD
+===================================================== */
 
 .card{
 
   background:
-    rgba(255,255,255,.92);
+    rgba(255,255,255,.94);
 
   border:
     1px solid
-    rgba(13,22,40,.09);
+    rgba(10,25,40,.09);
 
   border-radius:22px;
 
@@ -1181,16 +737,16 @@ main{
 }
 
 
-/* =========================
+/* =====================================================
    CONTRACT
-========================= */
+===================================================== */
 
-.contract-card{
+.contract{
 
   display:grid;
 
   grid-template-columns:
-    1.6fr
+    1.55fr
     1fr;
 
   align-items:center;
@@ -1205,9 +761,9 @@ main{
 
 .contract-label{
 
-  color:#637285;
-
   font-size:12px;
+
+  color:#637285;
 
 }
 
@@ -1225,12 +781,11 @@ main{
 
 .contract-address{
 
-  font-family:
-    monospace;
+  font-family:monospace;
 
   font-size:19px;
 
-  font-weight:850;
+  font-weight:900;
 
   word-break:break-all;
 
@@ -1240,17 +795,17 @@ main{
 
   flex-shrink:0;
 
+  background:white;
+
   border:
     1px solid
     #d7e1e9;
-
-  background:white;
 
   border-radius:999px;
 
   padding:
     10px
-    19px;
+    20px;
 
   font-weight:900;
 
@@ -1259,7 +814,9 @@ main{
 }
 
 
-/* socials */
+/* =====================================================
+   SOCIAL
+===================================================== */
 
 .socials{
 
@@ -1300,11 +857,11 @@ main{
 }
 
 
-/* =========================
+/* =====================================================
    MARKET
-========================= */
+===================================================== */
 
-.market-card{
+.market{
 
   margin-top:16px;
 
@@ -1326,15 +883,15 @@ main{
 
   font-size:39px;
 
-  letter-spacing:-2px;
-
   font-weight:1000;
+
+  letter-spacing:-2px;
 
 }
 
 .market-title span{
 
-  color:#25df8a;
+  color:#27df8c;
 
 }
 
@@ -1360,7 +917,7 @@ main{
 
 .gain{
 
-  color:#14be73;
+  color:#13bd73;
 
   font-size:16px;
 
@@ -1411,9 +968,9 @@ main{
 }
 
 
-/* =========================
+/* =====================================================
    CHART
-========================= */
+===================================================== */
 
 .chart-area{
 
@@ -1427,11 +984,9 @@ main{
 
   align-items:center;
 
-  justify-content:flex-end;
+  gap:19px;
 
-  gap:20px;
-
-  color:#637285;
+  color:#657487;
 
   font-size:13px;
 
@@ -1439,9 +994,9 @@ main{
 
 }
 
-.active-tab{
+.active{
 
-  background:#e6f2fa;
+  background:#e5f2fa;
 
   padding:
     8px
@@ -1449,9 +1004,9 @@ main{
 
   border-radius:10px;
 
-  font-weight:900;
+  color:#111c2d;
 
-  color:#101b2b;
+  font-weight:900;
 
 }
 
@@ -1461,7 +1016,7 @@ main{
 
   color:#10b975;
 
-  font-weight:850;
+  font-weight:900;
 
 }
 
@@ -1477,11 +1032,13 @@ main{
 
   background:#10b975;
 
-  margin-right:6px;
+  margin-right:5px;
 
 }
 
 .chart{
+
+  width:100%;
 
   height:365px;
 
@@ -1504,9 +1061,9 @@ main{
 }
 
 
-/* =========================
+/* =====================================================
    FEATURES
-========================= */
+===================================================== */
 
 .features{
 
@@ -1541,15 +1098,15 @@ main{
 
   height:55px;
 
-  flex-shrink:0;
-
   display:grid;
 
   place-items:center;
 
-  border-radius:50%;
+  flex-shrink:0;
 
   background:#eaf5fb;
+
+  border-radius:50%;
 
   font-size:25px;
 
@@ -1574,9 +1131,9 @@ main{
 }
 
 
-/* =========================
+/* =====================================================
    ROADMAP
-========================= */
+===================================================== */
 
 .roadmap{
 
@@ -1590,13 +1147,13 @@ main{
 
 .roadmap-title{
 
-  font-size:13px;
+  color:#69788b;
 
-  font-weight:900;
+  font-size:12px;
 
   letter-spacing:4px;
 
-  color:#68778a;
+  font-weight:900;
 
 }
 
@@ -1606,20 +1163,20 @@ main{
 
   justify-content:center;
 
-  gap:25px;
+  gap:30px;
 
   margin-top:12px;
 
-  color:#5d6d80;
+  color:#5e6e81;
 
   font-size:13px;
 
 }
 
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer{
 
@@ -1632,7 +1189,7 @@ footer{
 
 }
 
-.footer-inner{
+.footer{
 
   display:flex;
 
@@ -1658,13 +1215,13 @@ footer{
 
 .footer-tag{
 
+  margin-left:14px;
+
   font-size:10px;
 
   letter-spacing:4px;
 
   color:#738194;
-
-  margin-left:14px;
 
 }
 
@@ -1689,9 +1246,9 @@ footer{
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:900px){
 
@@ -1699,7 +1256,7 @@ footer{
 
     width:
       min(
-        100% - 28px,
+        calc(100% - 28px),
         680px
       );
 
@@ -1713,7 +1270,7 @@ footer{
 
   .hero-section{
 
-    min-height:970px;
+    min-height:980px;
 
   }
 
@@ -1737,12 +1294,18 @@ footer{
 
   }
 
-  .hero-description{
+  .hero-sub{
 
     margin:
       20px
       auto
       0;
+
+  }
+
+  .hero-text h1{
+
+    font-size:67px;
 
   }
 
@@ -1752,39 +1315,39 @@ footer{
 
   }
 
-  .game-area{
+  .game{
 
     left:0;
 
-    top:285px;
+    top:280px;
 
-    height:540px;
-
-  }
-
-  .jumpy{
-
-    left:34%;
-
-    top:70px;
+    height:560px;
 
   }
 
   .game-card{
 
-    bottom:50px;
-
     right:0;
+
+    bottom:70px;
 
   }
 
   .jump-button{
 
-    bottom:0;
+    left:47%;
+
+    bottom:12px;
 
   }
 
-  .contract-card{
+  .game-hint{
+
+    left:47%;
+
+  }
+
+  .contract{
 
     grid-template-columns:1fr;
 
@@ -1796,7 +1359,7 @@ footer{
 
   }
 
-  .market-card{
+  .market{
 
     grid-template-columns:1fr;
 
@@ -1808,7 +1371,7 @@ footer{
 
   }
 
-  .footer-inner{
+  .footer{
 
     flex-direction:column;
 
@@ -1852,21 +1415,19 @@ footer{
 
   .hero{
 
-    min-height:800px;
+    min-height:790px;
 
   }
 
   .hero-text h1{
 
-    font-size:65px;
-
-    letter-spacing:-4px;
+    font-size:64px;
 
   }
 
   .score-box{
 
-    top:170px;
+    top:168px;
 
     padding:
       12px
@@ -1894,21 +1455,11 @@ footer{
 
   }
 
-  .game-area{
+  .game{
 
-    top:255px;
+    top:250px;
 
     height:470px;
-
-  }
-
-  .jumpy{
-
-    width:65px;
-
-    left:30%;
-
-    top:60px;
 
   }
 
@@ -1917,6 +1468,8 @@ footer{
     width:220px;
 
     padding:16px;
+
+    bottom:55px;
 
   }
 
@@ -1934,6 +1487,8 @@ footer{
 
   .jump-button{
 
+    left:45%;
+
     padding:
       14px
       48px;
@@ -1942,7 +1497,13 @@ footer{
 
   }
 
-  .contract-card{
+  .game-hint{
+
+    left:45%;
+
+  }
+
+  .contract{
 
     padding:18px;
 
@@ -1970,13 +1531,13 @@ footer{
 
   .socials{
 
-    gap:18px;
-
     flex-wrap:wrap;
+
+    gap:18px;
 
   }
 
-  .market-card{
+  .market{
 
     padding:
       22px
@@ -2012,9 +1573,11 @@ footer{
 
   .chart-tabs{
 
-    gap:10px;
+    gap:9px;
 
     overflow:hidden;
+
+    white-space:nowrap;
 
   }
 
@@ -2026,64 +1589,6 @@ footer{
 
 }
 
-
-/* =========================
-   HIDDEN GAME OBSTACLES
-========================= */
-
-.game-obstacle{
-
-  position:absolute;
-
-  width:43px;
-
-  border-radius:6px;
-
-  border:
-    3px solid
-    #111;
-
-  z-index:6;
-
-  box-shadow:
-    0 7px 18px
-    rgba(20,50,70,.12);
-
-}
-
-.game-obstacle:before,
-.game-obstacle:after{
-
-  content:"";
-
-  position:absolute;
-
-  left:15px;
-
-  width:5px;
-
-  height:27px;
-
-  background:inherit;
-
-  border-left:3px solid #111;
-
-  border-right:3px solid #111;
-
-}
-
-.game-obstacle:before{
-
-  top:-30px;
-
-}
-
-.game-obstacle:after{
-
-  bottom:-30px;
-
-}
-
 </style>
 </head>
 
@@ -2091,15 +1596,15 @@ footer{
 <body>
 
 
-<!-- ==================================================
+<!-- =====================================================
      HERO
-================================================== -->
+===================================================== -->
 
 <section class="hero-section">
 
-  <div class="cloud one"></div>
-  <div class="cloud two"></div>
-  <div class="cloud three"></div>
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
 
   <div class="moon"></div>
 
@@ -2111,10 +1616,7 @@ footer{
 
     <nav>
 
-      <a
-        class="logo"
-        href="#"
-      >
+      <a class="logo" href="#">
         JUMP<span>Y</span>
       </a>
 
@@ -2150,8 +1652,6 @@ footer{
     <div class="hero">
 
 
-      <!-- TEXT -->
-
       <div class="hero-text">
 
         <div class="kicker">
@@ -2163,7 +1663,7 @@ footer{
           <span>JUMP.</span>
         </h1>
 
-        <p class="hero-description">
+        <p class="hero-sub">
           A community-driven meme project
           on Solana.
         </p>
@@ -2206,72 +1706,16 @@ footer{
       </div>
 
 
-      <!-- GAME -->
+      <!-- REAL GAME -->
 
       <div
-        class="game-area"
-        id="gameArea"
+        class="game"
+        id="game"
       >
 
-
-        <!-- ARC -->
-
-        <div class="jump-arc"></div>
-
-
-        <!-- DECORATIVE CANDLES -->
-
-        <div class="game-candles">
-
-          <div class="candle c1"></div>
-
-          <div class="candle c2"></div>
-
-          <div class="candle c3"></div>
-
-          <div class="candle c4"></div>
-
-          <div class="candle c5"></div>
-
-          <div class="candle c6"></div>
-
-          <div class="candle c7"></div>
-
-          <div class="candle c8"></div>
-
-        </div>
-
-
-        <!-- JUMPY -->
-
-        <div
-          class="jumpy"
-          id="jumpy"
-        >
-
-          <div class="flame"></div>
-
-          <div class="rocket"></div>
-
-          <div class="arm left"></div>
-
-          <div class="arm right"></div>
-
-          <div class="leg left"></div>
-
-          <div class="leg right"></div>
-
-          <div class="jumpy-body">
-
-            <div class="eye left"></div>
-
-            <div class="eye right"></div>
-
-            <div class="mouth"></div>
-
-          </div>
-
-        </div>
+        <canvas
+          id="gameCanvas"
+        ></canvas>
 
 
         <!-- GAME CARD -->
@@ -2348,7 +1792,6 @@ footer{
           Press SPACE or click to jump
         </div>
 
-
       </div>
 
     </div>
@@ -2359,9 +1802,9 @@ footer{
 
 
 
-<!-- ==================================================
+<!-- =====================================================
      MAIN
-================================================== -->
+===================================================== -->
 
 <main>
 
@@ -2370,7 +1813,7 @@ footer{
 
     <!-- CONTRACT -->
 
-    <section class="card contract-card">
+    <section class="card contract">
 
       <div>
 
@@ -2401,10 +1844,7 @@ footer{
       </div>
 
 
-      <!-- SOCIALS -->
-
       <div class="socials">
-
 
         <a
           class="social"
@@ -2449,7 +1889,6 @@ footer{
 
         </a>
 
-
       </div>
 
     </section>
@@ -2459,12 +1898,10 @@ footer{
     <!-- MARKET -->
 
     <section
-      class="card market-card"
+      class="card market"
       id="market"
     >
 
-
-      <!-- LEFT -->
 
       <div>
 
@@ -2480,6 +1917,7 @@ footer{
 
 
         <div class="price">
+
           $0.009293
 
           <span class="gain">
@@ -2490,7 +1928,6 @@ footer{
 
 
         <div class="metrics">
-
 
           <div class="metric">
 
@@ -2530,7 +1967,6 @@ footer{
 
           </div>
 
-
         </div>
 
 
@@ -2546,14 +1982,14 @@ footer{
 
 
 
-      <!-- CHART -->
+      <!-- LIVE DEXSCREENER -->
 
       <div class="chart-area">
 
 
         <div class="chart-tabs">
 
-          <span class="active-tab">
+          <span class="active">
             1D
           </span>
 
@@ -2593,7 +2029,8 @@ footer{
 
           <iframe
             src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=dark&trades=0&info=0"
-            title="JUMPY Live Chart"
+            title="Live DEX Screener chart"
+            allow="clipboard-write"
           ></iframe>
 
         </div>
@@ -2677,7 +2114,6 @@ footer{
 
       </article>
 
-
     </section>
 
 
@@ -2716,21 +2152,19 @@ footer{
 
     </section>
 
-
   </div>
 
 </main>
 
 
 
-<!-- ==================================================
+<!-- =====================================================
      FOOTER
-================================================== -->
+===================================================== -->
 
 <footer>
 
-  <div class="container footer-inner">
-
+  <div class="container footer">
 
     <div class="footer-logo">
 
@@ -2764,7 +2198,6 @@ footer{
       Built on ◆ Solana
     </div>
 
-
   </div>
 
 </footer>
@@ -2773,23 +2206,26 @@ footer{
 
 <script>
 
-/* ==================================================
-   JUMPY CONFIG
-================================================== */
+/* =====================================================
+   CONFIG
+===================================================== */
 
 const CONTRACT =
 "CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h";
 
 
-/* ==================================================
+/* =====================================================
    ELEMENTS
-================================================== */
+===================================================== */
 
-const gameArea =
-document.getElementById("gameArea");
+const canvas =
+document.getElementById("gameCanvas");
 
-const jumpy =
-document.getElementById("jumpy");
+const ctx =
+canvas.getContext("2d");
+
+const game =
+document.getElementById("game");
 
 const jumpButton =
 document.getElementById("jumpButton");
@@ -2803,27 +2239,26 @@ document.getElementById("shareX");
 const scoreElement =
 document.getElementById("score");
 
-const finalScoreElement =
-document.getElementById("finalScore");
-
 const bestElement =
 document.getElementById("best");
 
 const best2Element =
 document.getElementById("best2");
 
+const finalScoreElement =
+document.getElementById("finalScore");
+
 const gameTitle =
 document.getElementById("gameTitle");
 
-const copyContract =
-document.getElementById("copyContract");
 
+/* =====================================================
+   CONTRACT COPY
+===================================================== */
 
-/* ==================================================
-   COPY CONTRACT
-================================================== */
-
-copyContract.addEventListener(
+document
+.getElementById("copyContract")
+.addEventListener(
 "click",
 async function(){
 
@@ -2833,7 +2268,7 @@ async function(){
       CONTRACT
     );
 
-  }catch(error){
+  }catch(e){
 
     const input =
     document.createElement("input");
@@ -2841,30 +2276,23 @@ async function(){
     input.value =
     CONTRACT;
 
-    document.body.appendChild(
-      input
-    );
+    document.body.appendChild(input);
 
     input.select();
 
-    document.execCommand(
-      "copy"
-    );
+    document.execCommand("copy");
 
     input.remove();
 
   }
 
-
-  copyContract.textContent =
+  this.textContent =
   "✓ Copied";
 
   setTimeout(
-    function(){
-
-      copyContract.textContent =
+    ()=>{
+      this.textContent =
       "▣  Copy";
-
     },
     1500
   );
@@ -2872,9 +2300,69 @@ async function(){
 });
 
 
-/* ==================================================
-   GAME
-================================================== */
+/* =====================================================
+   CANVAS SIZE
+===================================================== */
+
+function resizeCanvas(){
+
+  const rect =
+  game.getBoundingClientRect();
+
+  const ratio =
+  window.devicePixelRatio || 1;
+
+  canvas.width =
+  rect.width * ratio;
+
+  canvas.height =
+  rect.height * ratio;
+
+  canvas.style.width =
+  rect.width + "px";
+
+  canvas.style.height =
+  rect.height + "px";
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+}
+
+window.addEventListener(
+"resize",
+resizeCanvas
+);
+
+resizeCanvas();
+
+
+/* =====================================================
+   GAME STATE
+===================================================== */
+
+let player = {
+
+  x:90,
+
+  y:220,
+
+  width:52,
+
+  height:72,
+
+  velocity:0
+
+};
+
+
+let obstacles = [];
 
 let running = false;
 
@@ -2882,27 +2370,19 @@ let score = 0;
 
 let best =
 Number(
-  localStorage.getItem(
-    "jumpyBest"
-  )
+localStorage.getItem(
+"jumpyBest"
+)
 ) || 0;
-
-let playerY = 0;
-
-let velocity = 0;
-
-let obstacles = [];
 
 let lastTime = 0;
 
 let spawnTimer = 0;
 
-let gameAnimation = null;
-
 let gameSpeed = 4.2;
 
 
-/* show best */
+/* best */
 
 bestElement.textContent =
 best;
@@ -2911,27 +2391,24 @@ best2Element.textContent =
 best;
 
 
-/* ==================================================
+/* =====================================================
    RESET
-================================================== */
+===================================================== */
 
 function resetGame(){
 
-  obstacles.forEach(
-    function(obstacle){
+  player.x = 90;
 
-      obstacle.remove();
+  player.y =
+  canvas.height /
+  (window.devicePixelRatio || 1) -
+  150;
 
-    }
-  );
+  player.velocity = 0;
 
   obstacles = [];
 
   score = 0;
-
-  playerY = 0;
-
-  velocity = 0;
 
   spawnTimer = 0;
 
@@ -2943,15 +2420,12 @@ function resetGame(){
   finalScoreElement.textContent =
   "0";
 
-  jumpy.style.transform =
-  "translateY(0) rotate(0deg)";
-
 }
 
 
-/* ==================================================
+/* =====================================================
    START
-================================================== */
+===================================================== */
 
 function startGame(){
 
@@ -2962,16 +2436,12 @@ function startGame(){
   gameTitle.textContent =
   "JUMPY IN FLIGHT";
 
-  velocity = -10;
+  player.velocity =
+  -11;
 
   lastTime =
   performance.now();
 
-  cancelAnimationFrame(
-    gameAnimation
-  );
-
-  gameAnimation =
   requestAnimationFrame(
     gameLoop
   );
@@ -2979,13 +2449,517 @@ function startGame(){
 }
 
 
-/* ==================================================
+/* =====================================================
+   JUMP
+===================================================== */
+
+function jump(){
+
+  if(!running){
+
+    startGame();
+
+    return;
+
+  }
+
+  player.velocity =
+  -10.5;
+
+}
+
+
+/* =====================================================
+   CREATE CANDLE
+===================================================== */
+
+function createObstacle(){
+
+  const h =
+  70 +
+  Math.random() * 125;
+
+
+  const gap =
+  145 +
+  Math.random() * 90;
+
+
+  obstacles.push({
+
+    x:
+    canvas.clientWidth + 40,
+
+    y:
+    canvas.clientHeight - h - 35,
+
+    width:43,
+
+    height:h,
+
+    passed:false
+
+  });
+
+}
+
+
+/* =====================================================
+   DRAW SKY
+===================================================== */
+
+function drawBackground(){
+
+  const w =
+  canvas.clientWidth;
+
+  const h =
+  canvas.clientHeight;
+
+
+  const gradient =
+  ctx.createLinearGradient(
+    0,
+    0,
+    0,
+    h
+  );
+
+
+  gradient.addColorStop(
+    0,
+    "rgba(75,196,244,.10)"
+  );
+
+  gradient.addColorStop(
+    1,
+    "rgba(255,255,255,.72)"
+  );
+
+
+  ctx.fillStyle =
+  gradient;
+
+  ctx.fillRect(
+    0,
+    0,
+    w,
+    h
+  );
+
+
+  /* clouds */
+
+  ctx.fillStyle =
+  "rgba(255,255,255,.62)";
+
+
+  for(
+    let i=0;
+    i<5;
+    i++
+  ){
+
+    const x =
+    (i * 230) -
+    ((score * .5) % 230);
+
+    const y =
+    100 +
+    (i % 3) * 70;
+
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      x,
+      y,
+      100,
+      30,
+      0,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fill();
+
+  }
+
+}
+
+
+/* =====================================================
+   DRAW CANDLE
+===================================================== */
+
+function drawCandle(o){
+
+  ctx.fillStyle =
+  o.color ||
+  "#18df72";
+
+  ctx.strokeStyle =
+  "#111";
+
+  ctx.lineWidth =
+  3;
+
+
+  /* body */
+
+  ctx.fillRect(
+    o.x,
+    o.y,
+    o.width,
+    o.height
+  );
+
+
+  ctx.strokeRect(
+    o.x,
+    o.y,
+    o.width,
+    o.height
+  );
+
+
+  /* top wick */
+
+  ctx.fillRect(
+    o.x + 16,
+    o.y - 30,
+    5,
+    27
+  );
+
+
+  ctx.strokeRect(
+    o.x + 16,
+    o.y - 30,
+    5,
+    27
+  );
+
+
+  /* bottom wick */
+
+  ctx.fillRect(
+    o.x + 16,
+    o.y + o.height,
+    5,
+    27
+  );
+
+
+  ctx.strokeRect(
+    o.x + 16,
+    o.y + o.height,
+    5,
+    27
+  );
+
+}
+
+
+/* =====================================================
+   DRAW JUMPY
+===================================================== */
+
+function drawJumpy(){
+
+  const x =
+  player.x;
+
+  const y =
+  player.y;
+
+
+  ctx.save();
+
+  ctx.translate(
+    x + player.width/2,
+    y + player.height/2
+  );
+
+
+  let angle =
+  player.velocity * -0.025;
+
+  ctx.rotate(angle);
+
+
+  /* rocket */
+
+  ctx.fillStyle =
+  "#8a9096";
+
+  ctx.strokeStyle =
+  "#111";
+
+  ctx.lineWidth =
+  3;
+
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -48,
+    -4,
+    30,
+    18,
+    8
+  );
+
+  ctx.fill();
+
+  ctx.stroke();
+
+
+  /* flame */
+
+  ctx.fillStyle =
+  "#ffae00";
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    -49,
+    5
+  );
+
+  ctx.lineTo(
+    -72,
+    -5
+  );
+
+  ctx.lineTo(
+    -67,
+    7
+  );
+
+  ctx.lineTo(
+    -72,
+    18
+  );
+
+  ctx.closePath();
+
+  ctx.fill();
+
+  ctx.stroke();
+
+
+  /* body */
+
+  ctx.fillStyle =
+  "#ffffff";
+
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -26,
+    -37,
+    52,
+    75,
+    24
+  );
+
+  ctx.fill();
+
+  ctx.stroke();
+
+
+  /* green lower body */
+
+  ctx.save();
+
+  ctx.beginPath();
+
+  ctx.roundRect(
+    -26,
+    -37,
+    52,
+    75,
+    24
+  );
+
+  ctx.clip();
+
+
+  ctx.fillStyle =
+  "#62d940";
+
+  ctx.fillRect(
+    -30,
+    8,
+    60,
+    35
+  );
+
+  ctx.restore();
+
+
+  /* eyes */
+
+  ctx.fillStyle =
+  "#111";
+
+  ctx.beginPath();
+
+  ctx.arc(
+    -9,
+    -9,
+    4,
+    0,
+    Math.PI*2
+  );
+
+  ctx.arc(
+    9,
+    -9,
+    4,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fill();
+
+
+  /* tongue */
+
+  ctx.fillStyle =
+  "#ff6784";
+
+  ctx.beginPath();
+
+  ctx.arc(
+    0,
+    5,
+    7,
+    0,
+    Math.PI
+  );
+
+  ctx.fill();
+
+
+  /* arms */
+
+  ctx.strokeStyle =
+  "#111";
+
+  ctx.lineWidth =
+  4;
+
+  ctx.lineCap =
+  "round";
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    -25,
+    3
+  );
+
+  ctx.lineTo(
+    -48,
+    -10
+  );
+
+  ctx.stroke();
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    25,
+    3
+  );
+
+  ctx.lineTo(
+    47,
+    -12
+  );
+
+  ctx.stroke();
+
+
+  /* legs */
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    -13,
+    34
+  );
+
+  ctx.lineTo(
+    -27,
+    52
+  );
+
+  ctx.stroke();
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    13,
+    34
+  );
+
+  ctx.lineTo(
+    27,
+    50
+  );
+
+  ctx.stroke();
+
+
+  ctx.restore();
+
+}
+
+
+/* =====================================================
+   COLLISION
+===================================================== */
+
+function collision(a,b){
+
+  const padding =
+  8;
+
+
+  return (
+
+    a.x + padding <
+    b.x + b.width &&
+
+    a.x + a.width - padding >
+    b.x &&
+
+    a.y + padding <
+    b.y + b.height + 30 &&
+
+    a.y + a.height - padding >
+    b.y
+
+  );
+
+}
+
+
+/* =====================================================
    GAME OVER
-================================================== */
+===================================================== */
 
-function endGame(){
+function gameOver(){
 
-  running = false;
+  running =
+  false;
 
   gameTitle.textContent =
   "GAME OVER";
@@ -3017,266 +2991,15 @@ function endGame(){
 }
 
 
-/* ==================================================
-   JUMP
-================================================== */
-
-function jump(){
-
-  if(!running){
-
-    startGame();
-
-    return;
-
-  }
-
-  velocity =
-  -10;
-
-}
-
-
-/* ==================================================
-   BUTTON
-================================================== */
-
-jumpButton.addEventListener(
-"click",
-function(event){
-
-  event.stopPropagation();
-
-  jump();
-
-});
-
-
-tryAgain.addEventListener(
-"click",
-function(event){
-
-  event.stopPropagation();
-
-  startGame();
-
-});
-
-
-/* ==================================================
-   SHARE X
-================================================== */
-
-shareX.addEventListener(
-"click",
-function(event){
-
-  event.stopPropagation();
-
-  const text =
-  "I scored " +
-  Math.floor(score) +
-  " on JUMPY. JUST JUMP. 🟢";
-
-  const url =
-  "https://twitter.com/intent/tweet?text="
-  +
-  encodeURIComponent(text);
-
-  window.open(
-    url,
-    "_blank",
-    "width=600,height=500"
-  );
-
-});
-
-
-/* ==================================================
-   KEYBOARD
-================================================== */
-
-document.addEventListener(
-"keydown",
-function(event){
-
-  if(
-    event.code === "Space" ||
-    event.code === "ArrowUp"
-  ){
-
-    event.preventDefault();
-
-    jump();
-
-  }
-
-});
-
-
-/* ==================================================
-   MOBILE TOUCH
-================================================== */
-
-gameArea.addEventListener(
-"touchstart",
-function(event){
-
-  if(
-    event.target.closest("button")
-  ){
-
-    return;
-
-  }
-
-  event.preventDefault();
-
-  jump();
-
-},
-{
-  passive:false
-});
-
-
-/* ==================================================
-   MOUSE
-================================================== */
-
-gameArea.addEventListener(
-"mousedown",
-function(event){
-
-  if(
-    event.target.closest("button")
-  ){
-
-    return;
-
-  }
-
-  jump();
-
-});
-
-
-/* ==================================================
-   CREATE OBSTACLE
-================================================== */
-
-function createObstacle(){
-
-  const obstacle =
-  document.createElement("div");
-
-  obstacle.className =
-  "game-obstacle";
-
-
-  const height =
-  75 +
-  Math.random() * 120;
-
-
-  const green =
-  Math.random() > .5;
-
-
-  obstacle.style.height =
-  height + "px";
-
-
-  obstacle.style.bottom =
-  "50px";
-
-
-  obstacle.style.right =
-  "-60px";
-
-
-  obstacle.style.background =
-  green
-  ? "#16df72"
-  : "#ff5151";
-
-
-  gameArea.appendChild(
-    obstacle
-  );
-
-
-  obstacles.push(
-    obstacle
-  );
-
-}
-
-
-/* ==================================================
-   COLLISION
-================================================== */
-
-function checkCollision(){
-
-  const playerRect =
-  jumpy.getBoundingClientRect();
-
-
-  for(
-    let i=0;
-    i<obstacles.length;
-    i++
-  ){
-
-    const obstacle =
-    obstacles[i];
-
-
-    const obstacleRect =
-    obstacle.getBoundingClientRect();
-
-
-    const padding =
-    9;
-
-
-    const hit =
-
-      playerRect.right - padding >
-      obstacleRect.left &&
-
-      playerRect.left + padding <
-      obstacleRect.right &&
-
-      playerRect.bottom - padding >
-      obstacleRect.top &&
-
-      playerRect.top + padding <
-      obstacleRect.bottom;
-
-
-    if(hit){
-
-      return true;
-
-    }
-
-  }
-
-
-  return false;
-
-}
-
-
-/* ==================================================
+/* =====================================================
    GAME LOOP
-================================================== */
+===================================================== */
 
 function gameLoop(time){
 
   if(!running){
+
+    draw();
 
     return;
 
@@ -3295,48 +3018,46 @@ function gameLoop(time){
   time;
 
 
+  const h =
+  canvas.clientHeight;
+
+
   /* gravity */
 
-  velocity +=
-  .58 * delta;
+  player.velocity +=
+  0.58 * delta;
 
 
-  playerY +=
-  velocity * delta;
+  player.y +=
+  player.velocity * delta;
 
 
-  /* player limits */
+  /* ceiling */
 
   if(
-    playerY < -95
+    player.y < 10
   ){
 
-    playerY =
-    -95;
+    player.y = 10;
 
-    velocity =
-    0;
+    player.velocity = 0;
 
   }
 
 
+  /* ground */
+
   if(
-    playerY > 205
+    player.y +
+    player.height >
+    h - 35
   ){
 
-    endGame();
+    gameOver();
 
     return;
 
   }
-
-
-  jumpy.style.transform =
-  "translateY(" +
-  playerY +
-  "px) rotate(" +
-  (velocity * -1.1) +
-  "deg)";
 
 
   /* spawn */
@@ -3347,9 +3068,9 @@ function gameLoop(time){
 
   const spawnRate =
   Math.max(
-    54,
-    78 -
-    score * .35
+    58,
+    85 -
+    score * .25
   );
 
 
@@ -3360,13 +3081,12 @@ function gameLoop(time){
 
     createObstacle();
 
-    spawnTimer =
-    0;
+    spawnTimer = 0;
 
   }
 
 
-  /* move obstacles */
+  /* move */
 
   for(
     let i =
@@ -3377,79 +3097,70 @@ function gameLoop(time){
     i--
   ){
 
-    const obstacle =
+    const o =
     obstacles[i];
 
 
-    const currentRight =
-    parseFloat(
-      obstacle.style.right
-    );
+    o.x -=
+    gameSpeed * delta;
 
-
-    gameSpeed =
-    4.2 +
-    Math.min(
-      score * .025,
-      3
-    );
-
-
-    obstacle.style.right =
-    (
-      currentRight +
-      gameSpeed * delta
-    )
-    + "px";
-
-
-    const rect =
-    obstacle.getBoundingClientRect();
-
-
-    const areaRect =
-    gameArea.getBoundingClientRect();
-
-
-    /* passed */
 
     if(
-      rect.right <
-      areaRect.left - 20
+      !o.passed &&
+      o.x + o.width <
+      player.x
     ){
 
-      obstacle.remove();
+      o.passed =
+      true;
+
+      score++;
+
+      scoreElement.textContent =
+      Math.floor(score);
+
+      gameSpeed =
+      Math.min(
+        7.5,
+        4.2 +
+        score * .035
+      );
+
+    }
+
+
+    if(
+      collision(
+        player,
+        o
+      )
+    ){
+
+      gameOver();
+
+      return;
+
+    }
+
+
+    if(
+      o.x + o.width <
+      -100
+    ){
 
       obstacles.splice(
         i,
         1
       );
 
-      score +=
-      1;
-
-      scoreElement.textContent =
-      Math.floor(score);
-
     }
 
   }
 
 
-  /* collision */
-
-  if(
-    checkCollision()
-  ){
-
-    endGame();
-
-    return;
-
-  }
+  draw();
 
 
-  gameAnimation =
   requestAnimationFrame(
     gameLoop
   );
@@ -3457,14 +3168,190 @@ function gameLoop(time){
 }
 
 
-/* ==================================================
-   INITIAL STATE
-================================================== */
+/* =====================================================
+   DRAW
+===================================================== */
+
+function draw(){
+
+  const w =
+  canvas.clientWidth;
+
+  const h =
+  canvas.clientHeight;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    w,
+    h
+  );
+
+
+  drawBackground();
+
+
+  /* floor */
+
+  ctx.fillStyle =
+  "rgba(255,255,255,.85)";
+
+  ctx.fillRect(
+    0,
+    h - 35,
+    w,
+    35
+  );
+
+
+  ctx.strokeStyle =
+  "#111";
+
+  ctx.lineWidth =
+  2;
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    0,
+    h - 35
+  );
+
+  ctx.lineTo(
+    w,
+    h - 35
+  );
+
+  ctx.stroke();
+
+
+  /* obstacles */
+
+  obstacles.forEach(
+    function(o){
+
+      if(!o.color){
+
+        o.color =
+        Math.random() > .5
+        ? "#18df72"
+        : "#ff5151";
+
+      }
+
+      drawCandle(o);
+
+    }
+  );
+
+
+  drawJumpy();
+
+}
+
+
+/* =====================================================
+   CONTROLS
+===================================================== */
+
+jumpButton.addEventListener(
+"click",
+function(e){
+
+  e.stopPropagation();
+
+  jump();
+
+});
+
+
+tryAgain.addEventListener(
+"click",
+function(e){
+
+  e.stopPropagation();
+
+  startGame();
+
+});
+
+
+shareX.addEventListener(
+"click",
+function(e){
+
+  e.stopPropagation();
+
+  const text =
+  "I scored " +
+  Math.floor(score) +
+  " on JUMPY. JUST JUMP. 🟢";
+
+  window.open(
+    "https://twitter.com/intent/tweet?text="
+    +
+    encodeURIComponent(text),
+    "_blank"
+  );
+
+});
+
+
+/* keyboard */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+  if(
+    e.code === "Space" ||
+    e.code === "ArrowUp"
+  ){
+
+    e.preventDefault();
+
+    jump();
+
+  }
+
+});
+
+
+/* mouse */
+
+canvas.addEventListener(
+"mousedown",
+function(){
+
+  jump();
+
+});
+
+
+/* touch */
+
+canvas.addEventListener(
+"touchstart",
+function(e){
+
+  e.preventDefault();
+
+  jump();
+
+},
+{
+  passive:false
+});
+
+
+/* =====================================================
+   INITIAL DRAW
+===================================================== */
 
 resetGame();
 
-gameTitle.textContent =
-"GAME OVER";
+draw();
 
 </script>
 
