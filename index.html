@@ -1,2239 +1,855 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>JUMPY — JUST JUMP.</title>
+<title>JUMPY — JUST JUMP.</title>
 
-  <meta
-    name="description"
-    content="JUMPY — a memecoin built to jump higher. Built on Solana."
-  >
+<style>
+*{
+  box-sizing:border-box;
+}
 
-  <meta name="theme-color" content="#79cfee">
+html{
+  scroll-behavior:smooth;
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+body{
+  margin:0;
+  background:#eef8fd;
+  color:#081426;
+  font-family:Arial,Helvetica,sans-serif;
+}
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+a{
+  text-decoration:none;
+  color:inherit;
+}
 
-  <style>
+/* =========================
+   HERO
+========================= */
 
-    /* =========================================================
-       JUMPY
-       FINAL WEBSITE
-    ========================================================= */
+.hero{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  background:#79cfee;
+  line-height:0;
+}
 
-    :root {
+.cover{
+  display:block;
+  width:100%;
+  height:auto;
+}
 
-      --sky: #79cfee;
-      --sky-light: #eef9fd;
+/* =========================
+   TOP MENU
+   LOGO IS NOT ADDED HERE
+========================= */
 
-      --green: #20d987;
-      --green-dark: #10b96c;
+.top-menu{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
 
-      --ink: #071525;
-      --muted: #68798d;
+  padding:22px 5%;
 
-      --white: #ffffff;
-      --soft: #f7fcfe;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
 
-      --line: #d9e8ef;
-      --line-soft: #e5f0f4;
+  gap:34px;
 
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 16px;
+  z-index:20;
 
-      --container: min(1160px, calc(100% - 32px));
+  line-height:normal;
+}
 
-    }
+.top-menu a{
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
 
+  text-shadow:0 1px 4px rgba(0,0,0,.12);
 
-    /* =========================================================
-       RESET
-    ========================================================= */
+  transition:.2s;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+.top-menu a:hover{
+  transform:translateY(-1px);
+  opacity:.75;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+.buy{
+  padding:13px 23px;
 
-    body {
+  border-radius:30px;
 
-      margin: 0;
+  background:#24e18b;
 
-      background:
-        linear-gradient(
-          180deg,
-          #eef9fd 0%,
-          #eaf7fc 100%
-        );
+  color:#07151a !important;
 
-      color: var(--ink);
+  text-shadow:none !important;
 
-      font-family:
-        "Space Grotesk",
-        Arial,
-        Helvetica,
-        sans-serif;
+  font-weight:900 !important;
 
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.10);
+}
 
-    }
+/* =========================
+   MAIN
+========================= */
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
+.container{
+  width:min(1120px,calc(100% - 32px));
+  margin:0 auto;
+}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+.panel{
+  background:#fff;
 
-    button {
-      font-family: inherit;
-    }
+  border:1px solid #dce8ef;
 
+  border-radius:22px;
 
-    /* =========================================================
-       GLOBAL
-    ========================================================= */
+  box-shadow:
+    0 8px 28px rgba(40,100,140,.07);
+}
 
-    .container {
-      width: var(--container);
-      margin: 0 auto;
-    }
+/* =========================
+   CONTRACT
+========================= */
 
-    section {
-      margin-top: 18px;
-    }
+.contract{
+  margin-top:22px;
 
-    .panel {
+  padding:18px 22px;
 
-      background: var(--white);
+  display:grid;
 
-      border:
-        1px solid var(--line);
+  grid-template-columns:
+    1.45fr
+    .8fr
+    1fr;
 
-      border-radius:
-        var(--radius-xl);
+  align-items:center;
+}
 
-      box-shadow:
-        0 14px 45px rgba(18, 75, 100, .045);
+.ca{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
+}
 
-    }
+.ca-icon{
+  width:58px;
+  height:58px;
 
+  flex:none;
 
-    /* =========================================================
-       HERO
-    ========================================================= */
+  border-radius:50%;
 
-    .hero {
+  background:#eaf5fc;
 
-      position: relative;
+  display:grid;
+  place-items:center;
 
-      overflow: hidden;
+  font-size:27px;
+}
 
-      background:
-        var(--sky);
+.ca-text{
+  min-width:0;
+}
 
-    }
+.ca-text small{
+  display:block;
 
-    .hero-image {
+  color:#647286;
 
-      width: 100%;
-      height: auto;
+  font-size:11px;
 
-    }
+  margin-bottom:8px;
 
+  letter-spacing:.3px;
+}
 
-    .nav {
+.ca-text strong{
+  display:block;
 
-      position: absolute;
+  font-size:17px;
 
-      z-index: 10;
+  white-space:nowrap;
+}
 
-      top: 22px;
-      left: 50%;
+.copy{
+  margin-left:10px;
 
-      transform:
-        translateX(-50%);
+  padding:11px 18px;
 
-      width:
-        min(1160px, calc(100% - 32px));
+  border:1px solid #d9e5ec;
 
-      display: flex;
+  border-radius:28px;
 
-      align-items: center;
+  background:#fff;
 
-      justify-content: flex-end;
+  font-weight:800;
 
-      gap: 30px;
+  cursor:pointer;
+}
 
-    }
+.copy:hover{
+  background:#f4fafc;
+}
 
+/* =========================
+   SOCIALS
+========================= */
 
-    .nav a {
+.socials{
+  min-height:68px;
 
-      color: white;
+  border-left:1px solid #dbe5eb;
+  border-right:1px solid #dbe5eb;
 
-      font-size: 15px;
+  display:flex;
 
-      font-weight: 600;
+  justify-content:space-around;
+  align-items:center;
+}
 
-      letter-spacing: -.025em;
+.social{
+  display:flex;
 
-      transition:
-        opacity .2s ease;
+  flex-direction:column;
 
-    }
+  align-items:center;
 
+  gap:6px;
 
-    .nav a:hover {
-      opacity: .72;
-    }
+  color:#58677a;
 
+  font-size:12px;
+}
 
-    .nav-buy {
+.social-icon{
+  width:32px;
+  height:32px;
 
-      display: inline-flex;
+  object-fit:contain;
+}
 
-      align-items: center;
-      justify-content: center;
+.x-icon{
+  font-size:31px;
+  line-height:32px;
+  color:#081426;
+}
 
-      min-height: 48px;
+.email{
+  text-align:center;
 
-      padding:
-        0 21px;
+  color:#58677a;
 
-      border-radius: 999px;
+  font-size:12px;
+}
 
-      background:
-        var(--green);
+.email-icon{
+  display:block;
 
-      color:
-        var(--ink) !important;
+  font-size:27px;
 
-      font-weight: 700 !important;
+  margin-bottom:5px;
 
-      box-shadow:
-        0 10px 28px rgba(0,0,0,.08);
+  color:#081426;
+}
 
-      transition:
-        transform .2s ease,
-        background .2s ease;
+/* =========================
+   MARKET
+========================= */
 
-    }
+.market{
+  margin-top:16px;
 
+  padding:24px;
 
-    .nav-buy:hover {
+  display:grid;
 
-      transform:
-        translateY(-2px);
+  grid-template-columns:330px 1fr;
 
-      background:
-        #34e595;
+  gap:25px;
+}
 
-      opacity: 1 !important;
+.market-title{
+  font-size:43px;
 
-    }
+  font-weight:950;
 
+  letter-spacing:-3px;
+}
 
-    /* =========================================================
-       CONTRACT
-    ========================================================= */
+.market-title span{
+  color:#20d987;
+}
 
-    .contract {
+.muted{
+  color:#637185;
 
-      padding:
-        32px 36px;
+  line-height:1.45;
+}
 
-    }
+.price{
+  font-size:31px;
 
+  font-weight:900;
 
-    .contract-top {
+  margin:24px 0;
+}
 
-      display: flex;
+.price span{
+  display:block;
 
-      align-items: center;
+  color:#1dcc82;
 
-      gap: 20px;
+  font-size:15px;
 
-    }
+  margin-top:7px;
+}
 
+.stats{
+  display:flex;
 
-    .contract-logo {
+  gap:27px;
 
-      width: 68px;
-      height: 68px;
+  margin-bottom:23px;
+}
 
-      flex: 0 0 68px;
+.stats small{
+  display:block;
 
-      display: grid;
+  color:#68778a;
 
-      place-items: center;
+  font-size:12px;
 
-      border-radius: 20px;
+  margin-bottom:5px;
+}
 
-      background:
-        var(--sky-light);
+.stats strong{
+  font-size:17px;
+}
 
-      font-size: 30px;
+.dex-button{
+  display:block;
 
-    }
+  padding:14px;
 
+  border-radius:30px;
 
-    .contract-content {
+  background:#42ed9d;
 
-      flex: 1;
+  color:#06151b;
 
-      min-width: 0;
+  text-align:center;
 
-    }
+  font-weight:900;
+}
 
+/* =========================
+   CHART
+========================= */
 
-    .small-label {
+.chart-header{
+  display:flex;
 
-      margin-bottom: 7px;
+  align-items:center;
 
-      color:
-        var(--muted);
+  justify-content:flex-end;
 
-      font-size: 12px;
+  gap:20px;
 
-      font-weight: 700;
+  margin-bottom:9px;
 
-      letter-spacing: .11em;
+  color:#5c6a7b;
 
-      text-transform: uppercase;
+  font-size:12px;
+}
 
-    }
+.live{
+  font-weight:800;
+}
 
+.live-dot{
+  display:inline-block;
 
-    .contract-address {
+  width:9px;
+  height:9px;
 
-      margin: 0;
+  border-radius:50%;
 
-      font-size: 21px;
+  background:#1bd487;
 
-      font-weight: 600;
+  margin-right:5px;
+}
 
-      letter-spacing: -.045em;
+.chart{
+  width:100%;
 
-      word-break: break-all;
+  height:300px;
 
-    }
+  overflow:hidden;
 
+  border-radius:14px;
 
-    .copy-button {
+  background:#071521;
+}
 
-      min-height: 48px;
+.chart iframe{
+  width:100%;
+  height:100%;
 
-      padding:
-        0 19px;
+  border:0;
+}
 
-      border:
-        1px solid var(--line);
+/* =========================
+   FEATURES
+========================= */
 
-      border-radius: 999px;
+.features{
+  display:grid;
 
-      background:
-        var(--white);
+  grid-template-columns:repeat(3,1fr);
 
-      color:
-        #087fe8;
+  gap:16px;
 
-      font-size: 15px;
+  margin-top:16px;
+}
 
-      font-weight: 600;
+.feature{
+  min-height:108px;
 
-      cursor: pointer;
+  padding:19px;
 
-      transition:
-        transform .2s ease,
-        background .2s ease;
+  display:flex;
 
-    }
+  align-items:center;
 
+  gap:16px;
+}
 
-    .copy-button:hover {
+.feature-icon{
+  width:56px;
+  height:56px;
 
-      transform:
-        translateY(-1px);
+  flex:none;
 
-      background:
-        var(--soft);
+  border-radius:50%;
 
-    }
+  background:#eaf5fc;
 
+  display:grid;
 
-    .divider {
+  place-items:center;
 
-      height: 1px;
+  font-size:27px;
+}
 
-      margin: 27px 0;
+.feature h3{
+  margin:0 0 6px;
 
-      background:
-        var(--line);
+  font-size:15px;
+}
 
-    }
+.feature p{
+  margin:0;
 
+  color:#637185;
 
-    .social-grid {
+  font-size:13px;
 
-      display: grid;
+  line-height:1.4;
+}
 
-      grid-template-columns:
-        1fr 1fr;
+/* =========================
+   LOWER
+========================= */
 
-    }
+.lower{
+  display:grid;
 
+  grid-template-columns:1fr 1fr;
 
-    .social {
+  gap:16px;
 
-      display: flex;
+  margin-top:16px;
+}
 
-      align-items: center;
+.lower .panel{
+  padding:25px;
+}
 
-      justify-content: center;
+.lower h2{
+  margin:0 0 22px;
 
-      gap: 10px;
+  font-size:20px;
+}
 
-      min-height: 62px;
+/* =========================
+   TOKENOMICS
+========================= */
 
-      color:
-        var(--muted);
+.tokenomics-list{
+  display:grid;
 
-      font-size: 16px;
+  gap:12px;
+}
 
-      font-weight: 500;
+.tokenomics-row{
+  display:flex;
 
-      transition:
-        color .2s ease;
+  align-items:center;
 
-    }
+  justify-content:space-between;
 
+  padding:14px 16px;
 
-    .social:first-child {
+  background:#f6fbfd;
 
-      border-right:
-        1px solid var(--line);
+  border:1px solid #e3eef3;
 
-    }
+  border-radius:14px;
+}
 
+.tokenomics-row span{
+  color:#617084;
 
-    .social:hover {
-      color: var(--ink);
-    }
+  font-size:14px;
+}
 
+.tokenomics-row strong{
+  font-size:15px;
+}
 
-    .social-symbol {
+.green{
+  color:#18c982;
+}
 
-      color:
-        var(--ink);
+/* =========================
+   ROADMAP
+========================= */
 
-      font-size: 23px;
+.roadmap{
+  display:grid;
 
-      font-weight: 600;
+  gap:18px;
 
-    }
+  position:relative;
 
+  padding-left:28px;
+}
 
-    .email {
+.roadmap:before{
+  content:"";
 
-      text-align: center;
+  position:absolute;
 
-      color:
-        var(--muted);
+  left:6px;
 
-      font-size: 16px;
+  top:7px;
 
-    }
+  bottom:7px;
 
+  width:2px;
 
-    /* =========================================================
-       INTRO / MARKET
-    ========================================================= */
+  background:#c5ded5;
+}
 
-    .market {
+.step{
+  display:grid;
 
-      padding:
-        58px;
+  grid-template-columns:75px 1fr;
 
-    }
+  gap:14px;
 
+  position:relative;
 
-    .intro {
+  font-size:14px;
+}
 
-      display: grid;
+.step:before{
+  content:"";
 
-      grid-template-columns:
-        1fr 430px;
+  position:absolute;
 
-      gap: 50px;
+  left:-26px;
 
-      align-items: end;
+  top:1px;
 
-      padding-bottom:
-        65px;
+  width:10px;
 
-    }
+  height:10px;
 
+  border-radius:50%;
 
-    .overline {
+  background:#22d48c;
 
-      display: flex;
+  border:4px solid #e6faf2;
+}
 
-      align-items: center;
+.step time{
+  color:#68778a;
+}
 
-      gap: 9px;
+/* =========================
+   FOOTER
+========================= */
 
-      margin-bottom: 17px;
+footer{
+  padding:32px 0 45px;
 
-      color:
-        var(--green-dark);
+  display:flex;
 
-      font-size: 12px;
+  align-items:center;
 
-      font-weight: 700;
+  justify-content:space-between;
 
-      letter-spacing: .13em;
+  gap:20px;
+}
 
-      text-transform: uppercase;
+.footer-logo{
+  font-size:27px;
 
-    }
+  font-weight:950;
 
+  letter-spacing:-2px;
+}
 
-    .overline::before {
+.footer-logo span{
+  color:#20d987;
+}
 
-      content: "";
+.tag{
+  margin-left:12px;
 
-      width: 7px;
-      height: 7px;
+  font-size:10px;
 
-      border-radius: 50%;
+  letter-spacing:4px;
 
-      background:
-        var(--green);
+  color:#758294;
+}
 
-    }
+.footer-nav{
+  display:flex;
 
+  gap:28px;
 
-    .brand {
+  color:#5e6d80;
 
-      margin: 0;
+  font-size:13px;
+}
 
-      font-size:
-        clamp(62px, 8vw, 94px);
+.solana{
+  color:#617084;
 
-      line-height: .82;
+  font-weight:700;
+}
 
-      font-weight: 600;
+/* =========================
+   TABLET
+========================= */
 
-      letter-spacing: -.09em;
+@media(max-width:900px){
 
-    }
+  .top-menu{
+    gap:18px;
+    padding:18px 3%;
+  }
 
+  .top-menu a{
+    font-size:13px;
+  }
 
-    .brand span {
-      color:
-        var(--green);
-    }
+  .buy{
+    padding:11px 17px;
+  }
 
+  .contract{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
 
-    .intro-text {
+  .socials{
+    border-left:0;
+    border-right:0;
 
-      margin: 0;
+    border-top:1px solid #dbe5eb;
+    border-bottom:1px solid #dbe5eb;
 
-      color:
-        var(--muted);
+    padding:10px 0;
+  }
 
-      font-size: 20px;
+  .market{
+    grid-template-columns:1fr;
+  }
+}
 
-      line-height: 1.48;
+/* =========================
+   MOBILE
+========================= */
 
-      letter-spacing: -.03em;
+@media(max-width:650px){
 
-    }
+  .top-menu{
+    padding:11px 10px;
 
+    gap:9px;
 
-    .intro-text strong {
-      color:
-        var(--ink);
+    justify-content:flex-end;
+  }
 
-      font-weight: 600;
-    }
+  .top-menu a{
+    font-size:9px;
+  }
 
+  .buy{
+    padding:8px 10px;
 
-    /* =========================================================
-       MARKET HEADER
-    ========================================================= */
+    font-size:9px !important;
+  }
 
-    .market-header {
+  .container{
+    width:calc(100% - 20px);
+  }
 
-      display: flex;
+  .contract{
+    margin-top:12px;
 
-      align-items: center;
+    padding:14px;
+  }
 
-      justify-content: space-between;
+  .ca{
+    gap:10px;
+  }
 
-      gap: 20px;
+  .ca-icon{
+    width:50px;
+    height:50px;
 
-      margin-bottom: 25px;
+    font-size:23px;
+  }
 
-    }
+  .ca-text small{
+    font-size:9px;
+  }
 
+  .ca-text strong{
+    font-size:13px;
+  }
 
-    .market-title {
+  .copy{
+    margin-left:0;
 
-      margin: 0;
+    padding:9px 12px;
+  }
 
-      font-size: 32px;
+  .market{
+    padding:17px;
 
-      line-height: 1;
+    gap:20px;
+  }
 
-      font-weight: 600;
+  .market-title{
+    font-size:38px;
+  }
 
-      letter-spacing: -.06em;
+  .price{
+    font-size:28px;
+  }
 
-    }
+  .stats{
+    gap:13px;
+  }
 
+  .stats strong{
+    font-size:14px;
+  }
 
-    .live {
+  .chart{
+    height:245px;
+  }
 
-      display: inline-flex;
+  .chart-header{
+    justify-content:flex-start;
 
-      align-items: center;
+    gap:12px;
 
-      gap: 8px;
+    overflow:hidden;
 
-      padding:
-        9px 13px;
+    white-space:nowrap;
+  }
 
-      border:
-        1px solid #ccefe0;
+  .features{
+    grid-template-columns:1fr;
+  }
 
-      border-radius: 999px;
+  .lower{
+    grid-template-columns:1fr;
+  }
 
-      background:
-        #f0fcf7;
+  .tokenomics-row{
+    padding:13px;
+  }
 
-      color:
-        var(--green-dark);
+  footer{
+    flex-direction:column;
 
-      font-size: 12px;
+    justify-content:center;
 
-      font-weight: 700;
+    text-align:center;
+  }
+}
 
-      letter-spacing: .07em;
+/* =========================
+   SMALL PHONES
+========================= */
 
-      text-transform: uppercase;
+@media(max-width:390px){
 
-    }
+  .top-menu{
+    gap:6px;
+  }
 
+  .top-menu a{
+    font-size:8px;
+  }
 
-    .live-dot {
+  .buy{
+    padding:7px 8px;
 
-      width: 7px;
-      height: 7px;
+    font-size:8px !important;
+  }
 
-      border-radius: 50%;
+  .ca-text strong{
+    font-size:12px;
+  }
 
-      background:
-        var(--green);
+  .stats{
+    gap:8px;
+  }
 
-      box-shadow:
-        0 0 0 4px rgba(32,217,135,.12);
+  .stats small{
+    font-size:9px;
+  }
 
-    }
+  .stats strong{
+    font-size:12px;
+  }
+}
 
-
-    /* =========================================================
-       MARKET STATS
-    ========================================================= */
-
-    .stats {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      border-top:
-        1px solid var(--line);
-
-      border-bottom:
-        1px solid var(--line);
-
-    }
-
-
-    .stat {
-
-      padding:
-        21px 22px;
-
-    }
-
-
-    .stat + .stat {
-
-      border-left:
-        1px solid var(--line);
-
-    }
-
-
-    .stat-label {
-
-      margin-bottom: 7px;
-
-      color:
-        var(--muted);
-
-      font-size: 13px;
-
-    }
-
-
-    .stat-value {
-
-      font-size: 21px;
-
-      font-weight: 600;
-
-      letter-spacing: -.04em;
-
-    }
-
-
-    /* =========================================================
-       DEX BUTTON
-    ========================================================= */
-
-    .dex {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      min-height: 64px;
-
-      padding:
-        0 23px;
-
-      margin-top: 20px;
-
-      border-radius: 18px;
-
-      background:
-        var(--green);
-
-      color:
-        var(--ink);
-
-      font-size: 17px;
-
-      font-weight: 700;
-
-      transition:
-        transform .2s ease,
-        background .2s ease;
-
-    }
-
-
-    .dex:hover {
-
-      transform:
-        translateY(-2px);
-
-      background:
-        #35e596;
-
-    }
-
-
-    /* =========================================================
-       CHART
-    ========================================================= */
-
-    .chart-bar {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      margin:
-        20px 0 11px;
-
-      color:
-        var(--muted);
-
-      font-size: 13px;
-
-    }
-
-
-    .periods {
-
-      display: flex;
-
-      gap: 17px;
-
-    }
-
-
-    .chart {
-
-      height: 510px;
-
-      overflow: hidden;
-
-      border-radius: 21px;
-
-      background:
-        #17171d;
-
-    }
-
-
-    .chart iframe {
-
-      width: 100%;
-      height: 100%;
-
-      border: 0;
-
-    }
-
-
-    /* =========================================================
-       FEATURES
-    ========================================================= */
-
-    .features {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 16px;
-
-    }
-
-
-    .feature {
-
-      position: relative;
-
-      min-height: 250px;
-
-      padding: 31px;
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: space-between;
-
-      overflow: hidden;
-
-      background:
-        var(--white);
-
-      border:
-        1px solid var(--line);
-
-      border-radius:
-        var(--radius-xl);
-
-      box-shadow:
-        0 14px 45px rgba(18,75,100,.045);
-
-      transition:
-        transform .22s ease,
-        border-color .22s ease;
-
-    }
-
-
-    .feature:hover {
-
-      transform:
-        translateY(-3px);
-
-      border-color:
-        #c5dfe9;
-
-    }
-
-
-    .feature-top {
-
-      display: flex;
-
-      align-items: flex-start;
-
-      justify-content: space-between;
-
-    }
-
-
-    .feature-number {
-
-      color:
-        #a7b6c4;
-
-      font-size: 12px;
-
-      font-weight: 700;
-
-      letter-spacing: .12em;
-
-    }
-
-
-    .feature-icon {
-
-      width: 52px;
-      height: 52px;
-
-      display: grid;
-
-      place-items: center;
-
-      border-radius: 17px;
-
-      background:
-        var(--sky-light);
-
-      color:
-        var(--ink);
-
-      font-size: 24px;
-
-      font-weight: 600;
-
-    }
-
-
-    .feature h3 {
-
-      margin: 0 0 9px;
-
-      font-size: 27px;
-
-      line-height: 1;
-
-      font-weight: 600;
-
-      letter-spacing: -.06em;
-
-    }
-
-
-    .feature p {
-
-      margin: 0;
-
-      color:
-        var(--muted);
-
-      font-size: 17px;
-
-      line-height: 1.45;
-
-    }
-
-
-    /* =========================================================
-       MEMES
-    ========================================================= */
-
-    .memes {
-
-      padding:
-        58px;
-
-    }
-
-
-    .memes-header {
-
-      display: flex;
-
-      align-items: flex-end;
-
-      justify-content: space-between;
-
-      gap: 30px;
-
-      margin-bottom: 31px;
-
-    }
-
-
-    .section-title {
-
-      margin: 0;
-
-      font-size:
-        clamp(36px, 5vw, 54px);
-
-      line-height: .95;
-
-      font-weight: 600;
-
-      letter-spacing: -.07em;
-
-    }
-
-
-    .section-description {
-
-      margin: 0;
-
-      color:
-        var(--muted);
-
-      font-size: 17px;
-
-    }
-
-
-    .memes-image {
-
-      width: 100%;
-
-      border-radius: 19px;
-
-    }
-
-
-    /* =========================================================
-       HOW TO BUY
-    ========================================================= */
-
-    .buy {
-
-      padding:
-        58px;
-
-    }
-
-
-    .buy-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        .75fr 1.25fr;
-
-      gap: 70px;
-
-      align-items: start;
-
-    }
-
-
-    .buy-copy {
-
-      max-width: 350px;
-
-    }
-
-
-    .buy-copy p {
-
-      margin:
-        19px 0 0;
-
-      color:
-        var(--muted);
-
-      font-size: 19px;
-
-      line-height: 1.5;
-
-    }
-
-
-    .steps {
-
-      display: grid;
-
-      gap: 11px;
-
-    }
-
-
-    .step {
-
-      display: grid;
-
-      grid-template-columns:
-        54px 1fr 25px;
-
-      align-items: center;
-
-      min-height: 82px;
-
-      padding:
-        0 20px;
-
-      border:
-        1px solid var(--line-soft);
-
-      border-radius: 18px;
-
-      background:
-        var(--soft);
-
-      transition:
-        border-color .2s ease,
-        background .2s ease;
-
-    }
-
-
-    .step:hover {
-
-      border-color:
-        #c9e2eb;
-
-      background:
-        #f1fbfe;
-
-    }
-
-
-    .step-number {
-
-      color:
-        #91a1b1;
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-      letter-spacing: .07em;
-
-    }
-
-
-    .step-title {
-
-      font-size: 18px;
-
-      font-weight: 600;
-
-      letter-spacing: -.035em;
-
-    }
-
-
-    .step-arrow {
-
-      color:
-        #9aaaba;
-
-      text-align: right;
-
-    }
-
-
-    .step:last-child {
-
-      border-color:
-        #c8efdc;
-
-      background:
-        #effcf6;
-
-    }
-
-
-    .step:last-child .step-title {
-
-      color:
-        var(--green-dark);
-
-    }
-
-
-    /* =========================================================
-       BRAND
-    ========================================================= */
-
-    .brand-message {
-
-      position: relative;
-
-      padding:
-        82px 30px;
-
-      overflow: hidden;
-
-      text-align: center;
-
-    }
-
-
-    .brand-message::after {
-
-      content:
-        "JUMP.";
-
-      position: absolute;
-
-      z-index: 0;
-
-      top: 50%;
-      left: 50%;
-
-      transform:
-        translate(-50%, -50%);
-
-      color:
-        rgba(8,20,38,.025);
-
-      font-size:
-        clamp(100px, 18vw, 220px);
-
-      font-weight: 700;
-
-      letter-spacing: -.1em;
-
-      white-space: nowrap;
-
-      pointer-events: none;
-
-    }
-
-
-    .brand-message img {
-
-      position: relative;
-
-      z-index: 1;
-
-      width: 185px;
-
-      margin:
-        0 auto 36px;
-
-    }
-
-
-    .brand-message h2 {
-
-      position: relative;
-
-      z-index: 1;
-
-      margin: 0;
-
-      font-size:
-        clamp(38px, 6vw, 62px);
-
-      line-height: 1;
-
-      font-weight: 600;
-
-      letter-spacing: -.075em;
-
-    }
-
-
-    .brand-message p {
-
-      position: relative;
-
-      z-index: 1;
-
-      margin:
-        15px 0 0;
-
-      color:
-        var(--muted);
-
-      font-size: 23px;
-
-    }
-
-
-    /* =========================================================
-       TOKENOMICS
-    ========================================================= */
-
-    .tokenomics {
-
-      padding:
-        58px;
-
-    }
-
-
-    .token-list {
-
-      display: grid;
-
-      gap: 11px;
-
-      margin-top: 34px;
-
-    }
-
-
-    .token-row {
-
-      display: grid;
-
-      grid-template-columns:
-        1fr auto;
-
-      align-items: center;
-
-      min-height: 84px;
-
-      padding:
-        0 23px;
-
-      border:
-        1px solid var(--line-soft);
-
-      border-radius: 18px;
-
-      background:
-        var(--soft);
-
-    }
-
-
-    .token-label {
-
-      color:
-        var(--muted);
-
-      font-size: 17px;
-
-    }
-
-
-    .token-value {
-
-      font-size: 19px;
-
-      font-weight: 600;
-
-      letter-spacing: -.035em;
-
-      text-align: right;
-
-    }
-
-
-    .token-green {
-
-      color:
-        var(--green-dark);
-
-    }
-
-
-    /* =========================================================
-       ROADMAP
-    ========================================================= */
-
-    .roadmap {
-
-      padding:
-        58px;
-
-    }
-
-
-    .roadmap-list {
-
-      position: relative;
-
-      display: grid;
-
-      gap: 7px;
-
-      margin-top: 35px;
-
-      max-width: 850px;
-
-    }
-
-
-    .roadmap-list::before {
-
-      content: "";
-
-      position: absolute;
-
-      top: 25px;
-      bottom: 25px;
-
-      left: 18px;
-
-      width: 1px;
-
-      background:
-        #c9e6da;
-
-    }
-
-
-    .roadmap-item {
-
-      position: relative;
-
-      display: grid;
-
-      grid-template-columns:
-        55px 85px 1fr;
-
-      align-items: center;
-
-      min-height: 72px;
-
-    }
-
-
-    .roadmap-dot {
-
-      position: relative;
-
-      z-index: 2;
-
-      width: 36px;
-      height: 36px;
-
-      border:
-        9px solid #e8faf3;
-
-      border-radius: 50%;
-
-      background:
-        var(--green);
-
-    }
-
-
-    .roadmap-quarter {
-
-      color:
-        var(--muted);
-
-      font-size: 15px;
-
-      font-weight: 600;
-
-    }
-
-
-    .roadmap-text {
-
-      font-size: 20px;
-
-      font-weight: 600;
-
-      letter-spacing: -.04em;
-
-    }
-
-
-    /* =========================================================
-       FOOTER
-    ========================================================= */
-
-    footer {
-
-      padding:
-        70px 0 90px;
-
-    }
-
-
-    .footer {
-
-      display: flex;
-
-      align-items: flex-end;
-
-      justify-content: space-between;
-
-      gap: 30px;
-
-    }
-
-
-    .footer-logo {
-
-      margin: 0;
-
-      font-size: 48px;
-
-      line-height: .9;
-
-      font-weight: 600;
-
-      letter-spacing: -.08em;
-
-    }
-
-
-    .footer-logo span {
-
-      color:
-        var(--green);
-
-    }
-
-
-    .footer-tagline {
-
-      margin-top: 11px;
-
-      color:
-        var(--muted);
-
-      font-size: 11px;
-
-      font-weight: 600;
-
-      letter-spacing: .35em;
-
-    }
-
-
-    .footer-right {
-
-      text-align: right;
-
-    }
-
-
-    .footer-links {
-
-      display: flex;
-
-      gap: 25px;
-
-      margin-bottom: 13px;
-
-    }
-
-
-    .footer-links a {
-
-      color:
-        var(--muted);
-
-      font-size: 14px;
-
-      font-weight: 500;
-
-    }
-
-
-    .footer-links a:hover {
-
-      color:
-        var(--ink);
-
-    }
-
-
-    .solana {
-
-      color:
-        var(--muted);
-
-      font-size: 14px;
-
-    }
-
-
-    /* =========================================================
-       MOBILE CTA
-    ========================================================= */
-
-    .mobile-cta {
-
-      display: none;
-
-    }
-
-
-    /* =========================================================
-       MOBILE
-    ========================================================= */
-
-    @media (max-width: 800px) {
-
-
-      :root {
-
-        --container:
-          calc(100% - 22px);
-
-        --radius-xl:
-          24px;
-
-      }
-
-
-      section {
-        margin-top: 12px;
-      }
-
-
-      /* NAV */
-
-      .nav {
-
-        top: 12px;
-
-        width:
-          calc(100% - 22px);
-
-      }
-
-
-      .nav a:not(.nav-buy) {
-        display: none;
-      }
-
-
-      .nav-buy {
-
-        min-height: 44px;
-
-        padding:
-          0 17px;
-
-        font-size: 14px;
-
-      }
-
-
-      /* CONTRACT */
-
-      .contract {
-
-        padding:
-          26px 22px;
-
-      }
-
-
-      .contract-top {
-
-        display: grid;
-
-        grid-template-columns:
-          56px 1fr;
-
-        gap: 15px;
-
-      }
-
-
-      .contract-logo {
-
-        width: 56px;
-        height: 56px;
-
-        border-radius: 17px;
-
-      }
-
-
-      .contract-address {
-
-        font-size: 16px;
-
-      }
-
-
-      .copy-button {
-
-        grid-column:
-          1 / -1;
-
-        width: 100%;
-
-      }
-
-
-      .social {
-
-        min-height: 58px;
-
-        font-size: 14px;
-
-      }
-
-
-      /* MARKET */
-
-      .market {
-
-        padding:
-          38px 23px;
-
-      }
-
-
-      .intro {
-
-        display: block;
-
-        padding-bottom:
-          45px;
-
-      }
-
-
-      .brand {
-
-        font-size: 62px;
-
-      }
-
-
-      .intro-text {
-
-        margin-top: 24px;
-
-        font-size: 18px;
-
-      }
-
-
-      .market-header {
-
-        display: block;
-
-      }
-
-
-      .market-title {
-
-        font-size: 29px;
-
-      }
-
-
-      .live {
-
-        margin-top: 14px;
-
-      }
-
-
-      .stats {
-
-        grid-template-columns:
-          repeat(3, 1fr);
-
-      }
-
-
-      .stat {
-
-        padding:
-          18px 9px;
-
-      }
-
-
-      .stat-label {
-
-        font-size: 11px;
-
-      }
-
-
-      .stat-value {
-
-        font-size: 16px;
-
-      }
-
-
-      .dex {
-
-        min-height: 58px;
-
-        font-size: 15px;
-
-      }
-
-
-      .chart-bar {
-
-        display: block;
-
-      }
-
-
-      .periods {
-
-        margin-bottom: 10px;
-
-        gap: 11px;
-
-        font-size: 11px;
-
-      }
-
-
-      .chart {
-
-        height:
-          420px;
-
-        border-radius: 18px;
-
-      }
-
-
-      /* FEATURES */
-
-      .features {
-
-        grid-template-columns:
-          1fr;
-
-        gap: 11px;
-
-      }
-
-
-      .feature {
-
-        min-height:
-          190px;
-
-        padding:
-          27px;
-
-      }
-
-
-      .feature h3 {
-
-        font-size:
-          25px;
-
-      }
-
-
-      .feature p {
-
-        font-size:
-          16px;
-
-      }
-
-
-      /* MEMES */
-
-      .memes {
-
-        padding:
-          38px 23px;
-
-      }
-
-
-      .memes-header {
-
-        display: block;
-
-      }
-
-
-      .section-title {
-
-        font-size:
-          39px;
-
-      }
-
-
-      .section-description {
-
-        margin-top:
-          12px;
-
-        font-size:
-          16px;
-
-      }
-
-
-      /* BUY */
-
-      .buy {
-
-        padding:
-          38px 23px;
-
-      }
-
-
-      .buy-grid {
-
-        grid-template-columns:
-          1fr;
-
-        gap:
-          30px;
-
-      }
-
-
-      .buy-copy {
-
-        max-width:
-          none;
-
-      }
-
-
-      .buy-copy p {
-
-        font-size:
-          17px;
-
-      }
-
-
-      .step {
-
-        grid-template-columns:
-          46px 1fr 20px;
-
-        min-height:
-          75px;
-
-        padding:
-          0 17px;
-
-      }
-
-
-      .step-title {
-
-        font-size:
-          16px;
-
-      }
-
-
-      /* BRAND */
-
-      .brand-message {
-
-        padding:
-          65px 20px;
-
-      }
-
-
-      .brand-message img {
-
-        width:
-          155px;
-
-        margin-bottom:
-          31px;
-
-      }
-
-
-      .brand-message h2 {
-
-        font-size:
-          38px;
-
-      }
-
-
-      .brand-message p {
-
-        font-size:
-          20px;
-
-      }
-
-
-      /* TOKENOMICS */
-
-      .tokenomics {
-
-        padding:
-          38px 23px;
-
-      }
-
-
-      .token-row {
-
-        min-height:
-          76px;
-
-        padding:
-          0 16px;
-
-        gap:
-          15px;
-
-      }
-
-
-      .token-label {
-
-        font-size:
-          14px;
-
-      }
-
-
-      .token-value {
-
-        font-size:
-          15px;
-
-      }
-
-
-      /* ROADMAP */
-
-      .roadmap {
-
-        padding:
-          38px 23px;
-
-      }
-
-
-      .roadmap-item {
-
-        grid-template-columns:
-          44px 54px 1fr;
-
-      }
-
-
-      .roadmap-text {
-
-        font-size:
-          17px;
-
-      }
-
-
-      /* FOOTER */
-
-      footer {
-
-        padding:
-          48px 0 100px;
-
-      }
-
-
-      .footer {
-
-        display:
-          block;
-
-        text-align:
-          center;
-
-      }
-
-
-      .footer-right {
-
-        margin-top:
-          30px;
-
-        text-align:
-          center;
-
-      }
-
-
-      .footer-links {
-
-        justify-content:
-          center;
-
-        flex-wrap:
-          wrap;
-
-        gap:
-          17px 24px;
-
-      }
-
-
-      /* MOBILE BUY */
-
-      .mobile-cta {
-
-        position:
-          fixed;
-
-        z-index:
-          100;
-
-        left:
-          11px;
-
-        right:
-          11px;
-
-        bottom:
-          11px;
-
-        display:
-          flex;
-
-        align-items:
-          center;
-
-        justify-content:
-          space-between;
-
-        min-height:
-          58px;
-
-        padding:
-          0 7px 0 18px;
-
-        border:
-          1px solid rgba(255,255,255,.65);
-
-        border-radius:
-          999px;
-
-        background:
-          rgba(7,21,37,.94);
-
-        backdrop-filter:
-          blur(15px);
-
-        box-shadow:
-          0 14px 40px rgba(7,21,37,.18);
-
-      }
-
-
-      .mobile-cta span {
-
-        color:
-          #fff;
-
-        font-size:
-          14px;
-
-        font-weight:
-          600;
-
-      }
-
-
-      .mobile-cta a {
-
-        display:
-          flex;
-
-        align-items:
-          center;
-
-        justify-content:
-          center;
-
-        min-height:
-          44px;
-
-        padding:
-          0 17px;
-
-        border-radius:
-          999px;
-
-        background:
-          var(--green);
-
-        color:
-          var(--ink);
-
-        font-size:
-          13px;
-
-        font-weight:
-          700;
-
-      }
-
-    }
-
-
-    @media (max-width: 420px) {
-
-
-      .brand {
-        font-size:
-          55px;
-      }
-
-
-      .stat {
-        padding:
-          17px 6px;
-      }
-
-
-      .stat-value {
-        font-size:
-          15px;
-      }
-
-
-      .token-value {
-        font-size:
-          14px;
-      }
-
-    }
-
-  </style>
+</style>
 
 </head>
 
@@ -2241,929 +857,677 @@
 <body>
 
 
-  <!-- =========================================================
-       HERO
-  ========================================================== -->
+<!-- =====================================================
+     HERO
 
-  <header class="hero">
+     YOUR JUMPY LOGO REMAINS INSIDE jumpy-cover.PNG.
+     ONLY THE 4 NAV BUTTONS ARE ADDED HERE.
+===================================================== -->
 
-    <img
-      class="hero-image"
-      src="jumpy-cover.PNG"
-      alt="JUMPY — JUST JUMP."
-    >
+<section class="hero">
 
 
-    <nav class="nav">
+  <!-- VISIBLE TOP MENU -->
 
-      <a href="#about">
-        About
-      </a>
+  <nav class="top-menu">
 
-      <a href="#market">
-        Market
-      </a>
 
-      <a href="#tokenomics">
-        Tokenomics
-      </a>
+    <a href="#about">
+      About
+    </a>
 
-      <a href="#roadmap">
-        Roadmap
-      </a>
 
-      <a
-        href="https://pump.fun"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="nav-buy"
-      >
-        Buy $JUMPY
-      </a>
+    <a href="#tokenomics">
+      Tokenomics
+    </a>
 
-    </nav>
 
-  </header>
+    <a href="#roadmap">
+      Roadmap
+    </a>
 
 
+    <a
+      class="buy"
+      href="https://pump.fun"
+      target="_blank"
+      rel="noopener noreferrer">
 
-  <main>
+      Buy $JUMPY
 
-    <div class="container">
+    </a>
 
 
-      <!-- =====================================================
-           CONTRACT
-      ====================================================== -->
+  </nav>
 
-      <section>
 
-        <div class="panel contract">
+  <!-- ORIGINAL COVER -->
 
+  <img
+    class="cover"
+    src="jumpy-cover.PNG"
+    alt="JUMPY — JUST JUMP."
+  >
 
-          <div class="contract-top">
 
+</section>
 
-            <div class="contract-logo">
-              🔗
-            </div>
 
 
-            <div class="contract-content">
+<main class="container">
 
-              <div class="small-label">
-                Solana Contract Address
-              </div>
 
-              <p class="contract-address">
-                CaWZeU...aM5o7h
-              </p>
+<!-- =====================================================
+     CONTRACT
+===================================================== -->
 
-            </div>
+<section class="panel contract">
 
 
-            <button
-              class="copy-button"
-              id="copyButton"
-              onclick="copyCA()"
-            >
-              Copy Address
-            </button>
+  <div class="ca">
 
 
-          </div>
+    <div class="ca-icon">
+      🔗
+    </div>
 
 
-          <div class="divider"></div>
+    <div class="ca-text">
 
+      <small>
+        CONTRACT ADDRESS (SOLANA)
+      </small>
 
-          <div class="social-grid">
-
-
-            <a
-              class="social"
-              href="https://x.com/jumpymeme"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-
-              <span class="social-symbol">
-                𝕏
-              </span>
-
-              X
-
-            </a>
-
-
-            <a
-              class="social"
-              href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-
-              <span class="social-symbol">
-                ◇
-              </span>
-
-              Dexscreener
-
-            </a>
-
-
-          </div>
-
-
-          <div class="divider"></div>
-
-
-          <div class="email">
-            ✉ &nbsp; jumpymeme@gmail.com
-          </div>
-
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =====================================================
-           ABOUT + MARKET
-      ====================================================== -->
-
-      <section id="about">
-
-        <div
-          class="panel market"
-          id="market"
-        >
-
-
-          <div class="intro">
-
-
-            <div>
-
-              <div class="overline">
-                The meme
-              </div>
-
-              <h1 class="brand">
-                $JUMP<span>Y</span>
-              </h1>
-
-            </div>
-
-
-            <p class="intro-text">
-
-              A memecoin built to jump higher.
-              Simple idea. One mission.
-              <strong>JUST JUMP.</strong>
-
-            </p>
-
-
-          </div>
-
-
-
-          <div class="market-header">
-
-
-            <div>
-
-              <div class="overline">
-                On-chain
-              </div>
-
-              <h2 class="market-title">
-                $JUMPY Live Market
-              </h2>
-
-            </div>
-
-
-            <div class="live">
-
-              <span class="live-dot"></span>
-
-              Live Data
-
-            </div>
-
-
-          </div>
-
-
-
-          <div class="stats">
-
-
-            <div class="stat">
-
-              <div class="stat-label">
-                Market Cap
-              </div>
-
-              <div class="stat-value">
-                Live
-              </div>
-
-            </div>
-
-
-            <div class="stat">
-
-              <div class="stat-label">
-                Liquidity
-              </div>
-
-              <div class="stat-value">
-                Live
-              </div>
-
-            </div>
-
-
-            <div class="stat">
-
-              <div class="stat-label">
-                Holders
-              </div>
-
-              <div class="stat-value">
-                Live
-              </div>
-
-            </div>
-
-
-          </div>
-
-
-
-          <a
-            class="dex"
-            href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-
-            <span>
-              View $JUMPY on Dexscreener
-            </span>
-
-            <span>
-              ↗
-            </span>
-
-          </a>
-
-
-
-          <div class="chart-bar">
-
-            <div class="periods">
-
-              <span>1D</span>
-              <span>1W</span>
-              <span>1M</span>
-              <span>3M</span>
-              <span>1Y</span>
-              <span>ALL</span>
-
-            </div>
-
-            <span>
-              $JUMPY / SOL
-            </span>
-
-          </div>
-
-
-
-          <div class="chart">
-
-            <iframe
-              src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=dark"
-              title="$JUMPY live chart"
-              loading="lazy"
-              allow="clipboard-write"
-            ></iframe>
-
-          </div>
-
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =====================================================
-           FEATURES
-      ====================================================== -->
-
-      <section>
-
-
-        <div class="features">
-
-
-          <article class="feature">
-
-            <div class="feature-top">
-
-              <span class="feature-number">
-                01
-              </span>
-
-              <div class="feature-icon">
-                ↗
-              </div>
-
-            </div>
-
-
-            <div>
-
-              <h3>
-                JUMP
-              </h3>
-
-              <p>
-                Jump higher.<br>
-                Keep going.
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <article class="feature">
-
-            <div class="feature-top">
-
-              <span class="feature-number">
-                02
-              </span>
-
-              <div class="feature-icon">
-                +
-              </div>
-
-            </div>
-
-
-            <div>
-
-              <h3>
-                TOGETHER
-              </h3>
-
-              <p>
-                One community.<br>
-                One mission.
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <article class="feature">
-
-            <div class="feature-top">
-
-              <span class="feature-number">
-                03
-              </span>
-
-              <div class="feature-icon">
-                ↑
-              </div>
-
-            </div>
-
-
-            <div>
-
-              <h3>
-                HIGHER
-              </h3>
-
-              <p>
-                Built on Solana.<br>
-                Going higher.
-              </p>
-
-            </div>
-
-          </article>
-
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =====================================================
-           MEMES
-      ====================================================== -->
-
-      <section>
-
-        <div class="panel memes">
-
-
-          <div class="memes-header">
-
-            <div>
-
-              <div class="overline">
-                Community
-              </div>
-
-              <h2 class="section-title">
-                MEMES
-              </h2>
-
-            </div>
-
-
-            <p class="section-description">
-              Same meme. Bigger heights.
-            </p>
-
-
-          </div>
-
-
-          <img
-            class="memes-image"
-            src="Image.PNG"
-            alt="JUMPY memes"
-            loading="lazy"
-          >
-
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =====================================================
-           HOW TO BUY
-      ====================================================== -->
-
-      <section>
-
-        <div class="panel buy">
-
-
-          <div class="buy-grid">
-
-
-            <div class="buy-copy">
-
-              <div class="overline">
-                Get in
-              </div>
-
-              <h2 class="section-title">
-                HOW TO BUY
-                <br>
-                $JUMPY
-              </h2>
-
-              <p>
-                Four simple steps.
-                No overthinking.
-              </p>
-
-            </div>
-
-
-
-            <div class="steps">
-
-
-              <div class="step">
-
-                <span class="step-number">
-                  01
-                </span>
-
-                <span class="step-title">
-                  Get SOL
-                </span>
-
-                <span class="step-arrow">
-                  →
-                </span>
-
-              </div>
-
-
-              <div class="step">
-
-                <span class="step-number">
-                  02
-                </span>
-
-                <span class="step-title">
-                  Open $JUMPY
-                </span>
-
-                <span class="step-arrow">
-                  →
-                </span>
-
-              </div>
-
-
-              <div class="step">
-
-                <span class="step-number">
-                  03
-                </span>
-
-                <span class="step-title">
-                  Swap
-                </span>
-
-                <span class="step-arrow">
-                  →
-                </span>
-
-              </div>
-
-
-              <div class="step">
-
-                <span class="step-number">
-                  04
-                </span>
-
-                <span class="step-title">
-                  JUST JUMP.
-                </span>
-
-                <span class="step-arrow">
-                  ↗
-                </span>
-
-              </div>
-
-
-            </div>
-
-
-          </div>
-
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =====================================================
-           BRAND MESSAGE
-      ====================================================== -->
-
-      <section>
-
-        <div class="panel brand-message">
-
-
-          <img
-            src="Logo.JPG"
-            alt="JUMPY mascot"
-            loading="lazy"
-          >
-
-
-          <h2>
-            NO OVERTHINKING.
-          </h2>
-
-
-          <p>
-            JUST JUMP.
-          </p>
-
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =====================================================
-           TOKENOMICS
-      ====================================================== -->
-
-      <section id="tokenomics">
-
-        <div class="panel tokenomics">
-
-
-          <div class="overline">
-            The numbers
-          </div>
-
-
-          <h2 class="section-title">
-            TOKENOMICS
-          </h2>
-
-
-          <div class="token-list">
-
-
-            <div class="token-row">
-
-              <span class="token-label">
-                Total Supply
-              </span>
-
-              <span class="token-value">
-                1,000,000,000 $JUMPY
-              </span>
-
-            </div>
-
-
-            <div class="token-row">
-
-              <span class="token-label">
-                Launch
-              </span>
-
-              <span class="token-value token-green">
-                Fair Launch
-              </span>
-
-            </div>
-
-
-            <div class="token-row">
-
-              <span class="token-label">
-                Buy / Sell Tax
-              </span>
-
-              <span class="token-value">
-                0%
-              </span>
-
-            </div>
-
-
-          </div>
-
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =====================================================
-           ROADMAP
-      ====================================================== -->
-
-      <section id="roadmap">
-
-        <div class="panel roadmap">
-
-
-          <div class="overline">
-            The journey
-          </div>
-
-
-          <h2 class="section-title">
-            ROADMAP
-          </h2>
-
-
-          <div class="roadmap-list">
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-quarter">
-                Q1
-              </div>
-
-              <div class="roadmap-text">
-                Launch $JUMPY
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-quarter">
-                Q2
-              </div>
-
-              <div class="roadmap-text">
-                Grow community
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-quarter">
-                Q3
-              </div>
-
-              <div class="roadmap-text">
-                Expand the reach
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-quarter">
-                Q4
-              </div>
-
-              <div class="roadmap-text">
-                Higher together
-              </div>
-
-            </div>
-
-
-          </div>
-
-
-        </div>
-
-      </section>
-
+      <strong>
+        CaWZeU...aM5o7h
+      </strong>
 
     </div>
 
-  </main>
+
+    <button
+      class="copy"
+      id="copyButton">
+
+      ▣ &nbsp; Copy
+
+    </button>
+
+
+  </div>
 
 
 
-  <!-- =========================================================
-       FOOTER
-  ========================================================== -->
-
-  <footer>
-
-    <div class="container">
+  <div class="socials">
 
 
-      <div class="footer">
+    <a
+      class="social"
+      href="https://x.com/jumpymeme"
+      target="_blank"
+      rel="noopener noreferrer">
+
+      <span class="x-icon">
+        𝕏
+      </span>
+
+      <span>
+        Twitter
+      </span>
+
+    </a>
 
 
-        <div>
 
-          <h2 class="footer-logo">
-            JUMP<span>Y</span>
-          </h2>
+    <a
+      class="social"
+      href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
+      target="_blank"
+      rel="noopener noreferrer">
 
-          <div class="footer-tagline">
-            HIGHER TOGETHER.
-          </div>
+      <img
+        class="social-icon"
+        src="https://brandlogos.sgp1.digitaloceanspaces.com/svg/arcticons/dex-screener.svg"
+        alt="Dexscreener">
 
-        </div>
+      <span>
+        Dexscreener
+      </span>
 
-
-        <div class="footer-right">
-
-
-          <nav class="footer-links">
-
-            <a href="#about">
-              About
-            </a>
-
-            <a href="#market">
-              Market
-            </a>
-
-            <a href="#tokenomics">
-              Tokenomics
-            </a>
-
-            <a href="#roadmap">
-              Roadmap
-            </a>
-
-          </nav>
+    </a>
 
 
-          <div class="solana">
-            Built on ◎ Solana
-          </div>
+  </div>
 
 
-        </div>
 
+  <a
+    class="email"
+    href="mailto:jumpymeme@gmail.com">
+
+    <span class="email-icon">
+      ✉
+    </span>
+
+    jumpymeme@gmail.com
+
+  </a>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     MARKET
+===================================================== -->
+
+<section class="panel market">
+
+
+  <div>
+
+
+    <div class="market-title">
+
+      $JUMP<span>Y</span>
+
+    </div>
+
+
+    <p class="muted">
+
+      A community-driven memecoin
+      on Solana.
+
+    </p>
+
+
+    <div class="price">
+
+      $JUMPY
+
+      <span>
+        Live Market
+      </span>
+
+    </div>
+
+
+    <div class="stats">
+
+
+      <div>
+
+        <small>
+          Market
+        </small>
+
+        <strong>
+          Live
+        </strong>
+
+      </div>
+
+
+      <div>
+
+        <small>
+          Liquidity
+        </small>
+
+        <strong>
+          Live
+        </strong>
+
+      </div>
+
+
+      <div>
+
+        <small>
+          Holders
+        </small>
+
+        <strong>
+          Live
+        </strong>
 
       </div>
 
 
     </div>
 
-  </footer>
-
-
-
-  <!-- =========================================================
-       MOBILE BUY BAR
-  ========================================================== -->
-
-  <div class="mobile-cta">
-
-    <span>
-      🟢 $JUMPY
-    </span>
 
     <a
-      href="https://pump.fun"
+      class="dex-button"
+      href="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
       target="_blank"
-      rel="noopener noreferrer"
-    >
-      BUY $JUMPY
+      rel="noopener noreferrer">
+
+      View on Dexscreener ↗
+
+    </a>
+
+
+  </div>
+
+
+
+  <div>
+
+
+    <div class="chart-header">
+
+      <span>1D</span>
+
+      <span>1W</span>
+
+      <span>1M</span>
+
+      <span>3M</span>
+
+      <span>1Y</span>
+
+      <span>All</span>
+
+
+      <span class="live">
+
+        <i class="live-dot"></i>
+
+        Live Data
+
+      </span>
+
+    </div>
+
+
+    <div class="chart">
+
+      <iframe
+        src="https://dexscreener.com/solana/DPh4Cfctg8yycPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW?embed=1&theme=dark&trades=0&info=0"
+        title="Dexscreener live chart"
+        loading="lazy">
+      </iframe>
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+  class="features"
+  id="about">
+
+
+  <article class="panel feature">
+
+
+    <div class="feature-icon">
+      🎮
+    </div>
+
+
+    <div>
+
+      <h3>
+        PLAY
+      </h3>
+
+      <p>
+        Jump through the candles.<br>
+        Beat your high score.
+      </p>
+
+    </div>
+
+
+  </article>
+
+
+
+  <article class="panel feature">
+
+
+    <div class="feature-icon">
+      👥
+    </div>
+
+
+    <div>
+
+      <h3>
+        COMMUNITY
+      </h3>
+
+      <p>
+        A growing community<br>
+        that just keeps jumping.
+      </p>
+
+    </div>
+
+
+  </article>
+
+
+
+  <article class="panel feature">
+
+
+    <div class="feature-icon">
+      🚀
+    </div>
+
+
+    <div>
+
+      <h3>
+        MOON
+      </h3>
+
+      <p>
+        From Solana.<br>
+        To higher.
+      </p>
+
+    </div>
+
+
+  </article>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     TOKENOMICS + ROADMAP
+===================================================== -->
+
+<section class="lower">
+
+
+  <!-- TOKENOMICS -->
+
+  <div
+    class="panel"
+    id="tokenomics">
+
+
+    <h2>
+      TOKENOMICS
+    </h2>
+
+
+    <div class="tokenomics-list">
+
+
+      <div class="tokenomics-row">
+
+        <span>
+          Total Supply
+        </span>
+
+        <strong>
+          1,000,000,000 $JUMPY
+        </strong>
+
+      </div>
+
+
+      <div class="tokenomics-row">
+
+        <span>
+          Launch
+        </span>
+
+        <strong class="green">
+          Fair Launch
+        </strong>
+
+      </div>
+
+      
+      <div class="tokenomics-row">
+
+        <span>
+          Buy / Sell Tax
+        </span>
+
+        <strong>
+          0%
+        </strong>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- ROADMAP -->
+
+  <div
+    class="panel"
+    id="roadmap">
+
+
+    <h2>
+      ROADMAP
+    </h2>
+
+
+    <div class="roadmap">
+
+
+      <div class="step">
+
+        <time>
+          Q1
+        </time>
+
+        <strong>
+          Launch $JUMPY
+        </strong>
+
+      </div>
+
+
+      <div class="step">
+
+        <time>
+          Q2
+        </time>
+
+        <strong>
+          Grow community
+        </strong>
+
+      </div>
+
+
+      <div class="step">
+
+        <time>
+          Q3
+        </time>
+
+        <strong>
+          CEX listings
+        </strong>
+
+      </div>
+
+
+      <div class="step">
+
+        <time>
+          Q4
+        </time>
+
+        <strong>
+          To the moon
+        </strong>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+  <div>
+
+    <span class="footer-logo">
+      JUMP<span>Y</span>
+    </span>
+
+
+    <span class="tag">
+      HIGHER TOGETHER.
+    </span>
+
+  </div>
+
+
+
+  <div class="footer-nav">
+
+    <a href="#about">
+      About
+    </a>
+
+    <a href="#tokenomics">
+      Tokenomics
+    </a>
+
+    <a href="#roadmap">
+      Roadmap
     </a>
 
   </div>
 
 
 
-  <!-- =========================================================
-       JAVASCRIPT
-  ========================================================== -->
+  <div class="solana">
 
-  <script>
+    Built on ◎ Solana
 
-
-    const CA =
-      "CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h";
+  </div>
 
 
-    function copyCA() {
-
-      const button =
-        document.getElementById("copyButton");
+</footer>
 
 
-      navigator.clipboard
-        .writeText(CA)
-        .then(() => {
+</main>
 
-          button.textContent =
-            "✓ Copied";
 
-          setTimeout(() => {
 
-            button.textContent =
-              "Copy Address";
+<script>
 
-          }, 1600);
+/* =====================================================
+   CONTRACT
+===================================================== */
 
-        })
-        .catch(() => {
+const CA =
+"CaWZeUM4FvX9dPkjGc2xHS6tSN3qJfTWyvaG77aM5o7h";
 
-          button.textContent =
-            "Copy manually";
 
-        });
+/* =====================================================
+   COPY
+===================================================== */
+
+const copyButton =
+document.getElementById("copyButton");
+
+
+copyButton.addEventListener(
+  "click",
+  async function(){
+
+    try{
+
+      await navigator.clipboard.writeText(CA);
+
+      copyButton.textContent =
+      "✓  Copied";
+
+
+      setTimeout(
+        function(){
+
+          copyButton.textContent =
+          "▣  Copy";
+
+        },
+        1600
+      );
 
     }
 
-  </script>
+    catch(error){
+
+      const textarea =
+      document.createElement("textarea");
+
+      textarea.value = CA;
+
+      document.body.appendChild(textarea);
+
+      textarea.select();
+
+      document.execCommand("copy");
+
+      textarea.remove();
+
+
+      copyButton.textContent =
+      "✓  Copied";
+
+
+      setTimeout(
+        function(){
+
+          copyButton.textContent =
+          "▣  Copy";
+
+        },
+        1600
+      );
+
+    }
+
+  }
+);
+
+</script>
 
 
 </body>
