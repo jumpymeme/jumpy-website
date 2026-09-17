@@ -272,6 +272,33 @@ img{
 
 
 /* =========================
+   ABOUT JUMPY
+========================= */
+
+.about-text{
+  padding:34px 8px 12px;
+}
+
+.about-text h2{
+  margin:0 0 12px;
+
+  font-size:30px;
+  font-weight:900;
+}
+
+.about-text p{
+  margin:0;
+
+  max-width:760px;
+
+  color:#c9d7e4;
+
+  font-size:15px;
+  line-height:1.6;
+}
+
+
+/* =========================
    FEATURES
 ========================= */
 
@@ -493,6 +520,32 @@ img{
 
 
 /* =========================
+   FINAL MESSAGE
+========================= */
+
+.final-message{
+  text-align:center;
+
+  padding:42px 12px 26px;
+
+  font-family:
+    "Comic Sans MS",
+    "Trebuchet MS",
+    cursive;
+
+  font-size:22px;
+
+  font-weight:900;
+
+  transform:rotate(-3deg);
+}
+
+.final-message span{
+  color:var(--green);
+}
+
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -515,17 +568,30 @@ footer{
   gap:20px;
 }
 
+.footer-brand{
+  min-width:0;
+}
+
 .footer-brand strong{
   display:inline-block;
+
   font-size:26px;
+
   font-weight:900;
+
   letter-spacing:-1px;
+
   white-space:nowrap;
+
+  line-height:1;
 }
 
 .footer-brand strong span{
   display:inline !important;
-  color:#00f59b;
+
+  color:#00f59b !important;
+
+  white-space:nowrap;
 }
 
 .footer-brand > span{
@@ -627,21 +693,44 @@ footer{
     margin-left:auto;
   }
 
+
+  /* ABOUT */
+
+  .about-text{
+    padding:30px 4px 8px;
+  }
+
+  .about-text h2{
+    font-size:27px;
+  }
+
+  .about-text p{
+    font-size:14px;
+    line-height:1.55;
+  }
+
+
   /* FEATURES */
 
   .features{
     grid-template-columns:repeat(2,1fr);
+
     margin-top:24px;
+
     gap:0;
   }
 
   .feature{
     min-height:165px;
+
     padding:24px 10px;
 
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
+
     justify-content:center;
 
     border-right:
@@ -676,6 +765,7 @@ footer{
     line-height:1.35;
   }
 
+
   /* SAME GUY */
 
   .hand{
@@ -697,6 +787,7 @@ footer{
 
     width:70px;
   }
+
 
   /* MEMES HEADER */
 
@@ -740,16 +831,44 @@ footer{
     white-space:nowrap;
   }
 
+
+  /* FINAL MESSAGE */
+
+  .final-message{
+    font-size:20px;
+
+    padding:34px 10px 22px;
+  }
+
+
+  /* FOOTER */
+
   .footer-row{
     flex-direction:column;
 
     align-items:flex-start;
   }
 
+  .footer-brand strong{
+    display:inline-block;
+
+    font-size:26px;
+
+    white-space:nowrap;
+
+    line-height:1;
+  }
+
+  .footer-brand strong span{
+    display:inline !important;
+
+    color:#00f59b !important;
+  }
+
   .footer-brand > span{
     display:block;
 
-    margin:5px 0 0;
+    margin:7px 0 0;
   }
 
   .footer-links{
@@ -760,7 +879,9 @@ footer{
 }
 
 
-/* SMALL PHONES */
+/* =========================
+   SMALL PHONES
+========================= */
 
 @media(max-width:430px){
 
@@ -802,6 +923,16 @@ footer{
 
   .section-head p{
     font-size:11px;
+  }
+
+  .final-message{
+    font-size:18px;
+
+    padding:30px 8px 20px;
+  }
+
+  .footer-brand strong{
+    font-size:26px;
   }
 }
 
@@ -982,6 +1113,25 @@ footer{
     </div>
 
   </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT JUMPY
+========================= -->
+
+<section class="about-text">
+
+  <h2>
+    ABOUT JUMPY
+  </h2>
+
+  <p>
+    JUMPY is built for one thing — going higher.
+    A community-driven meme coin on Solana, powered by
+    memes, good vibes and a community that keeps jumping forward.
+  </p>
 
 </section>
 
@@ -1317,7 +1467,9 @@ footer{
 </section>
 
 
-<!-- Tokenomics -->
+<!-- =========================
+     TOKENOMICS
+========================= -->
 
 <section
   id="tokenomics"
@@ -1325,6 +1477,18 @@ footer{
   aria-label="Tokenomics"
 >
 </section>
+
+
+<!-- =========================
+     FINAL MESSAGE
+========================= -->
+
+<div class="final-message">
+
+  JUST JUMP.
+  <span>KEEP GOING HIGHER. 🚀</span>
+
+</div>
 
 
 </main>
@@ -1341,9 +1505,7 @@ footer{
 
     <div class="footer-brand">
 
-      <strong>
-        JUMP<span>Y</span>
-      </strong>
+      <strong>JUMP<span>Y</span></strong>
 
       <span>
         A meme coin for higher places.
@@ -1429,7 +1591,7 @@ footer{
       </a>
 
       <span>
-        © 2026 JUMPY. All rights reserved.
+        © 2024 JUMPY. All rights reserved.
       </span>
 
     </div>
