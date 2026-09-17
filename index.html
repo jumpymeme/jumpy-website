@@ -7,6 +7,7 @@
 <meta name="description" content="JUMPY — a community-driven memecoin on Solana.">
 
 <style>
+
 :root{
   --bg:#062746;
   --green:#00f59b;
@@ -276,11 +277,11 @@ img{
 ========================= */
 
 .about-text{
-  padding:34px 8px 12px;
+  padding:28px 8px 6px;
 }
 
 .about-text h2{
-  margin:0 0 12px;
+  margin:0 0 8px;
 
   font-size:30px;
   font-weight:900;
@@ -293,8 +294,8 @@ img{
 
   color:#c9d7e4;
 
-  font-size:15px;
-  line-height:1.6;
+  font-size:13px;
+  line-height:1.4;
 }
 
 
@@ -323,9 +324,6 @@ img{
     1px solid rgba(93,169,231,.2);
 }
 
-
-/* FIXED FEATURE ICONS */
-
 .feature-icon{
   width:42px;
   height:42px;
@@ -353,9 +351,6 @@ img{
   stroke-linejoin:round;
 }
 
-
-/* Rocket stays as before */
-
 .feature-icon.rocket{
   font-size:32px;
   line-height:1;
@@ -366,8 +361,14 @@ img{
   line-height:1.15;
 }
 
+
+/* =========================
+   SAME GUY
+========================= */
+
 .hand{
   display:flex;
+
   align-items:center;
   justify-content:center;
 
@@ -378,13 +379,17 @@ img{
 
   font-weight:800;
 
-  font-size:19px;
+  font-size:16px;
 
-  line-height:1;
+  line-height:1.15;
+
+  text-align:center;
 
   transform:rotate(-5deg);
 
   border:0!important;
+
+  position:relative;
 }
 
 .hand:after{
@@ -392,10 +397,10 @@ img{
 
   position:absolute;
 
-  margin-top:65px;
+  margin-top:40px;
 
-  width:62px;
-  height:4px;
+  width:85px;
+  height:3px;
 
   background:var(--green);
 
@@ -520,32 +525,6 @@ img{
 
 
 /* =========================
-   FINAL MESSAGE
-========================= */
-
-.final-message{
-  text-align:center;
-
-  padding:42px 12px 26px;
-
-  font-family:
-    "Comic Sans MS",
-    "Trebuchet MS",
-    cursive;
-
-  font-size:22px;
-
-  font-weight:900;
-
-  transform:rotate(-3deg);
-}
-
-.final-message span{
-  color:var(--green);
-}
-
-
-/* =========================
    FOOTER
 ========================= */
 
@@ -575,11 +554,11 @@ footer{
 .footer-brand strong{
   display:inline-block;
 
-  font-size:26px;
+  font-size:36px;
 
   font-weight:900;
 
-  letter-spacing:-1px;
+  letter-spacing:-1.5px;
 
   white-space:nowrap;
 
@@ -697,16 +676,20 @@ footer{
   /* ABOUT */
 
   .about-text{
-    padding:30px 4px 8px;
+    padding:28px 4px 6px;
   }
 
   .about-text h2{
     font-size:27px;
+    margin-bottom:8px;
   }
 
   .about-text p{
-    font-size:14px;
-    line-height:1.55;
+    max-width:100%;
+
+    font-size:13px;
+
+    line-height:1.4;
   }
 
 
@@ -769,27 +752,26 @@ footer{
   /* SAME GUY */
 
   .hand{
-    grid-column:auto;
-
-    min-height:165px;
+    min-height:155px;
 
     padding:20px 10px;
 
-    font-size:20px;
+    font-size:16px;
 
-    line-height:1.05;
+    line-height:1.15;
 
     transform:rotate(-4deg);
   }
 
   .hand:after{
-    margin-top:72px;
+    margin-top:40px;
 
-    width:70px;
+    width:85px;
+    height:3px;
   }
 
 
-  /* MEMES HEADER */
+  /* MEMES */
 
   .section-head{
     margin:30px 0 14px;
@@ -832,15 +814,6 @@ footer{
   }
 
 
-  /* FINAL MESSAGE */
-
-  .final-message{
-    font-size:20px;
-
-    padding:34px 10px 22px;
-  }
-
-
   /* FOOTER */
 
   .footer-row{
@@ -852,7 +825,7 @@ footer{
   .footer-brand strong{
     display:inline-block;
 
-    font-size:26px;
+    font-size:36px;
 
     white-space:nowrap;
 
@@ -914,7 +887,7 @@ footer{
   .hand{
     min-height:155px;
 
-    font-size:19px;
+    font-size:16px;
   }
 
   .section-head h2{
@@ -925,14 +898,8 @@ footer{
     font-size:11px;
   }
 
-  .final-message{
-    font-size:18px;
-
-    padding:30px 8px 20px;
-  }
-
   .footer-brand strong{
-    font-size:26px;
+    font-size:36px;
   }
 }
 
@@ -1128,9 +1095,7 @@ footer{
   </h2>
 
   <p>
-    JUMPY is built for one thing — going higher.
-    A community-driven meme coin on Solana, powered by
-    memes, good vibes and a community that keeps jumping forward.
+    JUMPY is built to go higher. A community-driven meme coin on Solana.
   </p>
 
 </section>
@@ -1348,14 +1313,12 @@ footer{
   </div>
 
 
-  <!-- Handwritten -->
+  <!-- SAME GUY -->
 
   <div class="feature hand">
 
-    SAME<br>
-    GUY.<br>
-    BIGGER<br>
-    PLANS.
+    SAME GUY.<br>
+    BIGGER PLANS.
 
   </div>
 
@@ -1479,18 +1442,6 @@ footer{
 </section>
 
 
-<!-- =========================
-     FINAL MESSAGE
-========================= -->
-
-<div class="final-message">
-
-  JUST JUMP.
-  <span>KEEP GOING HIGHER. 🚀</span>
-
-</div>
-
-
 </main>
 
 
@@ -1498,14 +1449,16 @@ footer{
      FOOTER
 ========================= -->
 
-<footer id="community">
+<footer id="community-footer">
 
   <div class="wrap footer-row">
 
 
     <div class="footer-brand">
 
-      <strong>JUMP<span>Y</span></strong>
+      <strong>
+        JUMP<span>Y</span>
+      </strong>
 
       <span>
         A meme coin for higher places.
@@ -1591,7 +1544,7 @@ footer{
       </a>
 
       <span>
-        © 2024 JUMPY. All rights reserved.
+        © 2026 JUMPY. All rights reserved.
       </span>
 
     </div>
