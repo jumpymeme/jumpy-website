@@ -76,9 +76,6 @@ img{
   display:block;
 }
 
-
-/* Hero navigation */
-
 .home{
   left:25%;
   top:2%;
@@ -141,9 +138,6 @@ img{
   width:7%;
   height:12%;
 }
-
-
-/* Hero buttons */
 
 .buyhero{
   left:5%;
@@ -302,11 +296,42 @@ img{
     1px solid rgba(93,169,231,.2);
 }
 
-.icon{
+
+/* FIXED FEATURE ICONS */
+
+.feature-icon{
+  width:42px;
+  height:42px;
+
+  margin:0 auto 12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#087cff;
+}
+
+.feature-icon svg{
+  width:42px;
+  height:42px;
+
+  fill:none;
+
+  stroke:currentColor;
+
+  stroke-width:2.8;
+
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+
+/* Rocket stays as before */
+
+.feature-icon.rocket{
   font-size:32px;
   line-height:1;
-
-  margin-bottom:12px;
 }
 
 .feature b{
@@ -535,6 +560,19 @@ footer{
 }
 
 
+/* DEX SCREENER LOGO */
+
+.dex-logo{
+  width:18px;
+  height:18px;
+  display:block;
+}
+
+.dex-logo rect{
+  fill:#fff;
+}
+
+
 /* =========================
    MOBILE
 ========================= */
@@ -667,48 +705,19 @@ footer{
     alt="JUMPY — Just Jump"
   >
 
-  <!--
-    Transparent clickable areas.
-    The artwork itself stays unchanged.
-  -->
-
   <nav class="hotspots" aria-label="Main navigation">
 
-    <a
-      class="home"
-      href="#home"
-      aria-label="Home">
-    </a>
+    <a class="home" href="#home" aria-label="Home"></a>
 
-    <a
-      class="about"
-      href="#about"
-      aria-label="About">
-    </a>
+    <a class="about" href="#about" aria-label="About"></a>
 
-    <a
-      class="memes"
-      href="#memes"
-      aria-label="Memes">
-    </a>
+    <a class="memes" href="#memes" aria-label="Memes"></a>
 
-    <a
-      class="how"
-      href="#how-to-buy"
-      aria-label="How to Buy">
-    </a>
+    <a class="how" href="#how-to-buy" aria-label="How to Buy"></a>
 
-    <a
-      class="token"
-      href="#tokenomics"
-      aria-label="Tokenomics">
-    </a>
+    <a class="token" href="#tokenomics" aria-label="Tokenomics"></a>
 
-    <a
-      class="community"
-      href="#community"
-      aria-label="Community">
-    </a>
+    <a class="community" href="#community" aria-label="Community"></a>
 
     <a
       class="buytop"
@@ -868,9 +877,12 @@ footer{
   class="features"
 >
 
+
+  <!-- Strong Community -->
+
   <div class="feature">
 
-    <div class="icon">
+    <div class="feature-icon rocket">
       🚀
     </div>
 
@@ -882,10 +894,39 @@ footer{
   </div>
 
 
+  <!-- Real Memes -->
+
   <div class="feature">
 
-    <div class="icon">
-      👥
+    <div class="feature-icon">
+
+      <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+
+        <circle
+          cx="18"
+          cy="17"
+          r="7"
+        />
+
+        <circle
+          cx="31"
+          cy="19"
+          r="6"
+        />
+
+        <path
+          d="M5 38c1-8 7-12 13-12s12 4 13 12"
+        />
+
+        <path
+          d="M27 29c7-4 14 0 16 9"
+        />
+
+      </svg>
+
     </div>
 
     <b>
@@ -896,10 +937,35 @@ footer{
   </div>
 
 
+  <!-- Fair Launch -->
+
   <div class="feature">
 
-    <div class="icon">
-      💎
+    <div class="feature-icon">
+
+      <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+
+        <path
+          d="M24 5L43 18 24 43 5 18 24 5Z"
+        />
+
+        <path
+          d="M5 18h38"
+        />
+
+        <path
+          d="M15 18l9 25 9-25"
+        />
+
+        <path
+          d="M15 18l9-13 9 13"
+        />
+
+      </svg>
+
     </div>
 
     <b>
@@ -910,10 +976,51 @@ footer{
   </div>
 
 
+  <!-- Big Potential -->
+
   <div class="feature">
 
-    <div class="icon">
-      ▮▮▮
+    <div class="feature-icon">
+
+      <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+
+        <rect
+          x="5"
+          y="27"
+          width="7"
+          height="16"
+          rx="2"
+        />
+
+        <rect
+          x="16"
+          y="19"
+          width="7"
+          height="24"
+          rx="2"
+        />
+
+        <rect
+          x="27"
+          y="11"
+          width="7"
+          height="32"
+          rx="2"
+        />
+
+        <path
+          d="M34 8h9v9"
+        />
+
+        <path
+          d="M43 8L31 20"
+        />
+
+      </svg>
+
     </div>
 
     <b>
@@ -924,10 +1031,45 @@ footer{
   </div>
 
 
+  <!-- To The Moon -->
+
   <div class="feature">
 
-    <div class="icon">
-      🌐
+    <div class="feature-icon">
+
+      <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+
+        <circle
+          cx="24"
+          cy="24"
+          r="19"
+        />
+
+        <path
+          d="M5 24h38"
+        />
+
+        <path
+          d="M24 5c6 5 9 12 9 19s-3 14-9 19"
+        />
+
+        <path
+          d="M24 5c-6 5-9 12-9 19s3 14 9 19"
+        />
+
+        <path
+          d="M9 14h30"
+        />
+
+        <path
+          d="M9 34h30"
+        />
+
+      </svg>
+
     </div>
 
     <b>
@@ -938,6 +1080,8 @@ footer{
   </div>
 
 
+  <!-- Handwritten -->
+
   <div class="feature hand">
 
     SAME<br>
@@ -946,6 +1090,7 @@ footer{
     PLANS.
 
   </div>
+
 
 </section>
 
@@ -1054,7 +1199,7 @@ footer{
 </section>
 
 
-<!-- Tokenomics anchor -->
+<!-- Tokenomics -->
 
 <section
   id="tokenomics"
@@ -1091,6 +1236,8 @@ footer{
 
     <div class="socials">
 
+      <!-- X -->
+
       <a
         class="social"
         href="https://x.com/jumpymeme"
@@ -1102,6 +1249,8 @@ footer{
       </a>
 
 
+      <!-- DEX SCREENER -->
+
       <a
         class="social"
         href="https://dexscreener.com/solana/DPh4Cfctg8yycPZPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
@@ -1109,7 +1258,39 @@ footer{
         rel="noopener"
         aria-label="DEX Screener"
       >
-        ▮
+
+        <svg
+          class="dex-logo"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+
+          <rect
+            x="3"
+            y="11"
+            width="4"
+            height="10"
+            rx="1"
+          />
+
+          <rect
+            x="10"
+            y="7"
+            width="4"
+            height="14"
+            rx="1"
+          />
+
+          <rect
+            x="17"
+            y="3"
+            width="4"
+            height="18"
+            rx="1"
+          />
+
+        </svg>
+
       </a>
 
     </div>
