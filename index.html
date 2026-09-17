@@ -305,32 +305,53 @@ img{
 .features{
   display:grid;
 
-  grid-template-columns:
-    repeat(5,1fr)
-    1.15fr;
+  grid-template-columns:repeat(3,1fr);
 
   margin:30px auto 10px;
+
+  gap:0;
 }
 
 .feature{
   text-align:center;
 
-  min-height:105px;
+  min-height:135px;
 
-  padding:10px 12px;
+  padding:18px 10px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
 
   border-right:
     1px solid rgba(93,169,231,.2);
+
+  border-bottom:
+    1px solid rgba(93,169,231,.2);
+}
+
+.feature:nth-child(3n){
+  border-right:0;
+}
+
+.feature:nth-child(n+4){
+  border-bottom:0;
 }
 
 
-/* FIXED FEATURE ICONS */
+/* =========================
+   FEATURE ICONS
+========================= */
 
 .feature-icon{
-  width:42px;
-  height:42px;
+  width:40px;
+  height:40px;
 
-  margin:0 auto 12px;
+  margin:0 auto 10px;
 
   display:flex;
   align-items:center;
@@ -340,8 +361,8 @@ img{
 }
 
 .feature-icon svg{
-  width:42px;
-  height:42px;
+  width:40px;
+  height:40px;
 
   fill:none;
 
@@ -353,23 +374,23 @@ img{
   stroke-linejoin:round;
 }
 
-
-/* Rocket stays as before */
-
 .feature-icon.rocket{
-  font-size:32px;
+  font-size:30px;
   line-height:1;
 }
 
 .feature b{
-  font-size:14px;
-  line-height:1.15;
+  font-size:13px;
+  line-height:1.2;
 }
 
+
+/* =========================
+   SAME GUY
+========================= */
+
 .hand{
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  position:relative;
 
   font-family:
     "Comic Sans MS",
@@ -378,13 +399,18 @@ img{
 
   font-weight:800;
 
-  font-size:19px;
+  font-size:16px;
 
-  line-height:1;
+  line-height:1.15;
 
-  transform:rotate(-5deg);
+  transform:rotate(-4deg);
 
-  border:0!important;
+  border-right:0!important;
+}
+
+.hand span{
+  display:block;
+  white-space:nowrap;
 }
 
 .hand:after{
@@ -392,16 +418,16 @@ img{
 
   position:absolute;
 
-  margin-top:65px;
-
-  width:62px;
-  height:4px;
+  width:55px;
+  height:3px;
 
   background:var(--green);
 
   border-radius:50%;
 
-  transform:rotate(-12deg);
+  bottom:27px;
+
+  transform:rotate(-8deg);
 }
 
 
@@ -710,10 +736,10 @@ footer{
   }
 
 
-  /* FEATURES */
+  /* FEATURES — 3 PER ROW */
 
   .features{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
 
     margin-top:24px;
 
@@ -721,9 +747,9 @@ footer{
   }
 
   .feature{
-    min-height:165px;
+    min-height:125px;
 
-    padding:24px 10px;
+    padding:16px 5px;
 
     display:flex;
 
@@ -740,52 +766,55 @@ footer{
       1px solid rgba(93,169,231,.18);
   }
 
-  .feature:nth-child(2n){
+  .feature:nth-child(3n){
     border-right:0;
   }
 
-  .feature-icon{
-    width:46px;
-    height:46px;
+  .feature:nth-child(n+4){
+    border-bottom:0;
+  }
 
-    margin-bottom:14px;
+  .feature-icon{
+    width:36px;
+    height:36px;
+
+    margin-bottom:8px;
   }
 
   .feature-icon svg{
-    width:46px;
-    height:46px;
+    width:36px;
+    height:36px;
   }
 
   .feature-icon.rocket{
-    font-size:34px;
+    font-size:27px;
   }
 
   .feature b{
-    font-size:15px;
-    line-height:1.35;
+    font-size:12px;
+    line-height:1.2;
   }
 
 
-  /* SAME GUY */
+  /* SAME GUY — 2 LINES */
 
   .hand{
-    grid-column:auto;
+    min-height:125px;
 
-    min-height:165px;
+    padding:15px 4px;
 
-    padding:20px 10px;
+    font-size:15px;
 
-    font-size:20px;
-
-    line-height:1.05;
+    line-height:1.15;
 
     transform:rotate(-4deg);
   }
 
   .hand:after{
-    margin-top:72px;
+    width:52px;
+    height:3px;
 
-    width:70px;
+    bottom:24px;
   }
 
 
@@ -886,35 +915,41 @@ footer{
 @media(max-width:430px){
 
   .feature{
-    min-height:155px;
+    min-height:120px;
 
-    padding:20px 8px;
+    padding:14px 4px;
   }
 
   .feature-icon{
-    width:42px;
-    height:42px;
+    width:34px;
+    height:34px;
 
-    margin-bottom:11px;
+    margin-bottom:7px;
   }
 
   .feature-icon svg{
-    width:42px;
-    height:42px;
+    width:34px;
+    height:34px;
   }
 
   .feature-icon.rocket{
-    font-size:31px;
+    font-size:25px;
   }
 
   .feature b{
-    font-size:14px;
+    font-size:11.5px;
+    line-height:1.2;
   }
 
   .hand{
-    min-height:155px;
+    min-height:120px;
 
-    font-size:19px;
+    font-size:14px;
+  }
+
+  .hand:after{
+    width:48px;
+    bottom:23px;
   }
 
   .section-head h2{
@@ -1352,10 +1387,13 @@ footer{
 
   <div class="feature hand">
 
-    SAME<br>
-    GUY.<br>
-    BIGGER<br>
-    PLANS.
+    <span>
+      SAME GUY.
+    </span>
+
+    <span>
+      BIGGER PLANS.
+    </span>
 
   </div>
 
