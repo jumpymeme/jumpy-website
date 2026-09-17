@@ -279,11 +279,15 @@ img{
   padding:34px 8px 12px;
 }
 
-.about-text h2{
-  margin:0 0 12px;
+/* JUMPY LOGO FROM Logo.JPG */
 
-  font-size:30px;
-  font-weight:900;
+.about-logo{
+  width:110px;
+  height:auto;
+
+  object-fit:contain;
+
+  margin:0 0 16px;
 }
 
 .about-text p{
@@ -661,7 +665,7 @@ footer{
 }
 
 
-/* DEX SCREENER LOGO */
+/* DEX SCREENER */
 
 .dex-logo{
   width:18px;
@@ -726,8 +730,9 @@ footer{
     padding:30px 4px 8px;
   }
 
-  .about-text h2{
-    font-size:27px;
+  .about-logo{
+    width:100px;
+    margin-bottom:14px;
   }
 
   .about-text p{
@@ -736,7 +741,7 @@ footer{
   }
 
 
-  /* FEATURES — 3 PER ROW */
+  /* FEATURES */
 
   .features{
     grid-template-columns:repeat(3,1fr);
@@ -796,7 +801,7 @@ footer{
   }
 
 
-  /* SAME GUY — 2 LINES */
+  /* SAME GUY */
 
   .hand{
     min-height:125px;
@@ -950,6 +955,10 @@ footer{
   .hand:after{
     width:48px;
     bottom:23px;
+  }
+
+  .about-logo{
+    width:90px;
   }
 
   .section-head h2{
@@ -1158,9 +1167,11 @@ footer{
 
 <section class="about-text">
 
-  <h2>
-    ABOUT JUMPY
-  </h2>
+  <img
+    class="about-logo"
+    src="./Logo.JPG"
+    alt="JUMPY"
+  >
 
   <p>
     JUMPY is built for one thing — going higher.
