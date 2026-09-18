@@ -1,19 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>JUMPY — JUST JUMP.</title>
-<meta name="description" content="JUMPY — a community-driven memecoin on Solana.">
 
 <style>
 :root{
-  --bg:#062746;
-  --green:#00f59b;
+  --blue:#0b4168;
+  --blue-dark:#062c49;
+  --blue-light:#0876e8;
+  --green:#00e89b;
+  --white:#fff;
+  --muted:#c8d8e7;
+  --line:#176397;
 }
 
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
@@ -21,16 +28,15 @@ html{
 }
 
 body{
-  margin:0;
-  background:linear-gradient(
-    180deg,
-    #06325a 0%,
-    #062d4d 55%,
-    #031c31 100%
-  );
-  color:#fff;
   font-family:Arial,Helvetica,sans-serif;
+  background:var(--blue);
+  color:var(--white);
   overflow-x:hidden;
+}
+
+img{
+  max-width:100%;
+  display:block;
 }
 
 a{
@@ -38,16 +44,70 @@ a{
   text-decoration:none;
 }
 
-img{
-  display:block;
-  max-width:100%;
+/* =========================
+   NAV
+========================= */
+
+.nav{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 5%;
 }
 
-.wrap{
-  width:min(920px,calc(100% - 48px));
-  margin:auto;
+.logo{
+  width:105px;
 }
 
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-size:12px;
+}
+
+.nav-links a{
+  opacity:.9;
+}
+
+.nav-links a:hover{
+  opacity:1;
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.buy-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--green);
+  color:#042d24;
+  font-weight:800;
+  border-radius:999px;
+  padding:13px 22px;
+  white-space:nowrap;
+}
+
+.social-icon{
+  width:34px;
+  height:34px;
+  border:1px solid rgba(255,255,255,.45);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:14px;
+}
 
 /* =========================
    HERO
@@ -56,234 +116,147 @@ img{
 .hero{
   position:relative;
   width:100%;
-  background:#087cff;
-  line-height:0;
+  background:#0876e8;
+  overflow:hidden;
 }
 
-.hero > img{
+.hero-image{
   width:100%;
   height:auto;
+  min-height:560px;
+  object-fit:cover;
+  object-position:center top;
 }
-
-.hotspots{
-  position:absolute;
-  inset:0;
-  z-index:2;
-}
-
-.hotspots a{
-  position:absolute;
-  display:block;
-}
-
-.home{
-  left:25%;
-  top:2%;
-  width:6%;
-  height:9%;
-}
-
-.about{
-  left:31%;
-  top:2%;
-  width:7%;
-  height:9%;
-}
-
-.memes{
-  left:38%;
-  top:2%;
-  width:7%;
-  height:9%;
-}
-
-.how{
-  left:44%;
-  top:2%;
-  width:8%;
-  height:9%;
-}
-
-.token{
-  left:52%;
-  top:2%;
-  width:9%;
-  height:9%;
-}
-
-.community{
-  left:61%;
-  top:2%;
-  width:9%;
-  height:9%;
-}
-
-.buytop{
-  left:71%;
-  top:1%;
-  width:14%;
-  height:12%;
-}
-
-.x{
-  left:85%;
-  top:1%;
-  width:5%;
-  height:12%;
-}
-
-.dex{
-  left:90%;
-  top:1%;
-  width:7%;
-  height:12%;
-}
-
-.buyhero{
-  left:5%;
-  top:57%;
-  width:19%;
-  height:14%;
-}
-
-.dexhero{
-  left:24%;
-  top:57%;
-  width:22%;
-  height:14%;
-}
-
 
 /* =========================
    MARKET CARD
 ========================= */
 
-.market{
-  margin-top:-4px;
-  position:relative;
-  z-index:3;
+.market-wrap{
+  padding:18px 2.5% 0;
 }
 
 .market-card{
-  min-height:78px;
+  position:relative;
+  border:2px solid #1b679b;
+  border-radius:38px;
+  background:rgba(3,31,51,.78);
+  padding:34px 42px;
+  min-height:480px;
+}
 
-  border:1px solid rgba(71,162,255,.55);
-  border-radius:20px;
+.market-top{
+  display:grid;
+  grid-template-columns:110px 1.15fr 1fr 1fr;
+  gap:28px;
+  align-items:start;
+}
 
-  background:
-    linear-gradient(
-      105deg,
-      rgba(3,22,42,.98),
-      rgba(4,31,54,.95)
-    );
+.coin-image{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  overflow:hidden;
+  border:2px solid #dce8ef;
+  background:#fff;
+}
 
-  box-shadow:0 14px 40px rgba(0,0,0,.24);
+.coin-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
+.coin-title{
+  font-size:32px;
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+.coin-subtitle{
+  font-size:22px;
+  line-height:1.35;
+  max-width:180px;
+  color:#edf5fa;
+}
+
+.stat-label{
+  font-size:18px;
+  color:#d3e0e9;
+  margin-bottom:18px;
+}
+
+.stat-value{
+  font-size:30px;
+  font-weight:700;
+}
+
+.market-bottom{
+  display:grid;
+  grid-template-columns:1fr 1.3fr;
+  gap:40px;
+  margin-top:42px;
+  align-items:end;
+}
+
+.ca-label{
+  font-size:18px;
+  color:#d3e0e9;
+  margin-bottom:16px;
+}
+
+.ca-value{
+  font-size:24px;
+  word-break:break-all;
+}
+
+.market-buy{
+  margin-top:30px;
+}
+
+.market-buy .buy-btn{
+  font-size:22px;
+  padding:20px 42px;
+}
+
+.more-btn{
+  position:absolute;
+  right:26px;
+  bottom:24px;
+  width:76px;
+  height:76px;
+  border-radius:50%;
+  border:2px solid #176397;
   display:flex;
   align-items:center;
-  gap:18px;
-
-  padding:12px 16px;
+  justify-content:center;
+  font-size:26px;
+  letter-spacing:3px;
 }
-
-.market-logo{
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  object-fit:cover;
-
-  border:1px solid rgba(255,255,255,.3);
-}
-
-.market-name{
-  min-width:205px;
-}
-
-.market-name strong{
-  display:block;
-  font-size:18px;
-}
-
-.market-name span{
-  display:block;
-  margin-top:4px;
-  font-size:11px;
-  color:#e2ebf3;
-}
-
-.stat{
-  min-width:78px;
-}
-
-.stat small,
-.ca small{
-  display:block;
-  font-size:9px;
-  color:#cbd8e4;
-  text-transform:uppercase;
-}
-
-.stat b{
-  display:block;
-  margin-top:8px;
-  font-size:16px;
-}
-
-.ca{
-  min-width:105px;
-}
-
-.ca div{
-  margin-top:7px;
-  font-size:12px;
-  white-space:nowrap;
-}
-
-.buy{
-  margin-left:auto;
-
-  background:var(--green);
-  color:#032b22;
-
-  font-weight:800;
-
-  padding:13px 20px;
-
-  border-radius:999px;
-
-  white-space:nowrap;
-
-  font-size:12px;
-}
-
-.more{
-  width:42px;
-  height:42px;
-
-  border:1px solid rgba(82,161,230,.35);
-
-  border-radius:50%;
-
-  display:grid;
-  place-items:center;
-
-  font-weight:900;
-}
-
 
 /* =========================
-   ABOUT JUMPY
+   ABOUT
 ========================= */
 
+.about{
+  padding:70px 4% 0;
+}
+
 .about-text{
-  padding:34px 8px 12px;
+  max-width:1050px;
+  margin:0 auto;
+  border:2px solid #176397;
+  border-radius:28px;
+  padding:38px 40px 42px;
+  background:rgba(3,31,51,.18);
 }
 
 .about-text h2{
-  margin:0 0 12px;
-
-  font-size:30px;
+  font-size:56px;
+  line-height:1;
   font-weight:900;
+  letter-spacing:-2px;
+  margin-bottom:28px;
 }
 
 .about-text h2 span{
@@ -291,16 +264,10 @@ img{
 }
 
 .about-text p{
-  margin:0;
-
-  max-width:760px;
-
-  color:#c9d7e4;
-
-  font-size:15px;
-  line-height:1.6;
+  font-size:23px;
+  line-height:1.55;
+  color:#d5e3ed;
 }
-
 
 /* =========================
    FEATURES
@@ -308,34 +275,22 @@ img{
 
 .features{
   display:grid;
-
   grid-template-columns:repeat(3,1fr);
-
-  margin:30px auto 10px;
-
+  max-width:1100px;
+  margin:38px auto 10px;
   gap:0;
 }
 
 .feature{
-  text-align:center;
-
-  min-height:135px;
-
-  padding:18px 10px;
-
+  min-height:170px;
+  padding:28px 18px;
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
-
   justify-content:center;
-
-  border-right:
-    1px solid rgba(93,169,231,.2);
-
-  border-bottom:
-    1px solid rgba(93,169,231,.2);
+  text-align:center;
+  border-right:1px solid rgba(72,153,210,.3);
+  border-bottom:1px solid rgba(72,153,210,.3);
 }
 
 .feature:nth-child(3n){
@@ -346,69 +301,23 @@ img{
   border-bottom:0;
 }
 
-
-/* =========================
-   FEATURE ICONS
-========================= */
-
 .feature-icon{
-  width:40px;
-  height:40px;
-
-  margin:0 auto 10px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  color:#087cff;
+  font-size:42px;
+  margin-bottom:15px;
 }
 
-.feature-icon svg{
-  width:40px;
-  height:40px;
-
-  fill:none;
-
-  stroke:currentColor;
-
-  stroke-width:2.8;
-
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.feature-icon.rocket{
-  font-size:30px;
-  line-height:1;
-}
-
-.feature b{
-  font-size:13px;
+.feature strong{
+  font-size:20px;
   line-height:1.2;
 }
 
-
-/* =========================
-   SAME GUY
-========================= */
-
 .hand{
   position:relative;
-
-  font-family:
-    "Comic Sans MS",
-    "Trebuchet MS",
-    cursive;
-
+  font-family:"Comic Sans MS","Trebuchet MS",cursive;
   font-weight:800;
-
   font-size:16px;
-
   line-height:1.15;
-
   transform:rotate(-4deg);
-
   border-right:0!important;
 }
 
@@ -417,992 +326,608 @@ img{
   white-space:nowrap;
 }
 
-.hand:after{
-  content:"";
-
-  position:absolute;
-
-  width:55px;
-  height:3px;
-
-  background:var(--green);
-
-  border-radius:50%;
-
-  bottom:27px;
-
-  transform:rotate(-8deg);
-}
-
-
-/* =========================
-   SECTION HEADERS
-========================= */
-
-.section-head{
-  display:flex;
-
-  align-items:end;
-
-  justify-content:space-between;
-
-  gap:20px;
-
-  margin:26px 0 12px;
-}
-
-.section-head h2{
-  margin:0;
-
-  font-size:30px;
-}
-
-.section-head p{
-  margin:0 0 3px;
-
-  font-size:12px;
-}
-
-.section-head a{
-  font-size:12px;
-
-  white-space:nowrap;
-}
-
-
 /* =========================
    MEMES
 ========================= */
 
-.memes-img{
-  width:100%;
-
-  border-radius:14px;
-
-  border:
-    1px solid rgba(82,163,238,.65);
-
-  box-shadow:
-    0 8px 30px rgba(0,0,0,.16);
+.memes{
+  padding:90px 4% 70px;
 }
 
+.section-head{
+  max-width:1100px;
+  margin:0 auto 30px;
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.section-head h2{
+  font-size:64px;
+  font-weight:900;
+}
+
+.section-head p{
+  color:#cbdce9;
+  font-size:18px;
+  margin-top:8px;
+}
+
+.view-all{
+  color:var(--green);
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.memes-image{
+  max-width:1100px;
+  margin:0 auto;
+  border-radius:28px;
+  overflow:hidden;
+}
+
+.memes-image img{
+  width:100%;
+  height:auto;
+}
 
 /* =========================
    HOW TO BUY
 ========================= */
 
-.buy-art{
+.how-to-buy{
+  padding:20px 4% 80px;
+}
+
+.how-card{
   position:relative;
-
-  margin-top:22px;
-
-  border-radius:18px;
-
+  max-width:1100px;
+  margin:0 auto;
   overflow:hidden;
+  border-radius:32px;
 }
 
-.buy-art > img{
+.how-card img{
   width:100%;
-
-  border:
-    1px solid rgba(82,163,238,.55);
-
-  border-radius:18px;
+  height:auto;
 }
-
-.buy-hotspots{
-  position:absolute;
-  inset:0;
-}
-
-.buy-hotspots a{
-  position:absolute;
-  display:block;
-}
-
-.step1{
-  left:5%;
-  top:45%;
-  width:19%;
-  height:45%;
-}
-
-.step2{
-  left:25%;
-  top:45%;
-  width:19%;
-  height:45%;
-}
-
-.step3{
-  left:46%;
-  top:45%;
-  width:20%;
-  height:45%;
-}
-
-.step4{
-  left:67%;
-  top:45%;
-  width:22%;
-  height:45%;
-}
-
-
-/* =========================
-   FINAL MESSAGE
-========================= */
-
-.final-message{
-  text-align:center;
-
-  padding:42px 12px 26px;
-
-  font-family:
-    "Comic Sans MS",
-    "Trebuchet MS",
-    cursive;
-
-  font-size:22px;
-
-  font-weight:900;
-
-  transform:rotate(-3deg);
-}
-
-.final-message span{
-  color:var(--green);
-}
-
 
 /* =========================
    FOOTER
 ========================= */
 
 footer{
-  margin-top:18px;
-
-  border-top:
-    1px solid rgba(91,165,226,.17);
-
-  padding:24px 0 28px;
+  border-top:1px solid rgba(100,170,215,.25);
+  padding:45px 5%;
 }
 
-.footer-row{
+.footer-inner{
+  max-width:1100px;
+  margin:0 auto;
   display:flex;
-
-  align-items:center;
-
   justify-content:space-between;
-
-  gap:20px;
+  gap:30px;
+  align-items:center;
 }
 
-.footer-brand{
-  min-width:0;
+.footer-logo{
+  width:105px;
+  margin-bottom:12px;
 }
 
-.footer-brand strong{
-  display:inline-block;
-
-  font-size:26px;
-
-  font-weight:900;
-
-  letter-spacing:-1px;
-
-  white-space:nowrap;
-
-  line-height:1;
-}
-
-.footer-brand strong span{
-  display:inline !important;
-
-  color:#00f59b !important;
-
-  white-space:nowrap;
-}
-
-.footer-brand > span{
-  font-size:10px;
-
-  color:#c9d7e4;
-
-  margin-left:12px;
+.footer-text{
+  color:#c9d9e6;
 }
 
 .footer-links{
   display:flex;
-
   align-items:center;
-
   gap:20px;
-
-  font-size:11px;
+  flex-wrap:wrap;
 }
 
-.socials{
+.footer-links a{
+  color:#dce8ef;
+}
+
+.footer-links a:hover{
+  color:var(--green);
+}
+
+.footer-social{
   display:flex;
   gap:12px;
+  align-items:center;
 }
 
-.social{
-  width:34px;
-  height:34px;
-
+.footer-social a{
+  width:38px;
+  height:38px;
+  border:1px solid #397aa6;
   border-radius:50%;
-
-  display:grid;
-  place-items:center;
-
-  border:
-    1px solid rgba(255,255,255,.12);
-
-  background:#0a3154;
-
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-weight:800;
 }
-
-
-/* DEX SCREENER */
-
-.dex-logo{
-  width:18px;
-  height:18px;
-  display:block;
-}
-
-.dex-logo rect{
-  fill:#fff;
-}
-
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:760px){
+@media(max-width:800px){
 
-  .wrap{
-    width:calc(100% - 24px);
+  .nav{
+    padding:14px 5%;
   }
 
-  .market{
-    margin-top:8px;
+  .logo{
+    width:82px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .nav-actions{
+    gap:7px;
+  }
+
+  .nav-actions .buy-btn{
+    padding:9px 14px;
+    font-size:12px;
+  }
+
+  .social-icon{
+    width:30px;
+    height:30px;
+    font-size:12px;
+  }
+
+  /* HERO BIGGER */
+
+  .hero-image{
+    min-height:0;
+    width:100%;
+    height:auto;
+    object-fit:contain;
+  }
+
+  .market-wrap{
+    padding:16px 2.5% 0;
   }
 
   .market-card{
-    flex-wrap:wrap;
-
-    gap:12px;
-
-    padding:13px;
+    border-radius:28px;
+    padding:28px 28px 30px;
+    min-height:460px;
   }
 
-  .market-name{
-    min-width:0;
-    flex:1;
+  .market-top{
+    grid-template-columns:105px 1fr 1fr;
+    gap:18px;
   }
 
-  .stat{
-    min-width:
-      calc(33.333% - 10px);
+  .coin-image{
+    width:96px;
+    height:96px;
   }
 
-  .ca{
-    min-width:
-      calc(50% - 10px);
+  .coin-title{
+    font-size:29px;
   }
 
-  .buy{
-    margin-left:0;
+  .coin-subtitle{
+    font-size:20px;
   }
 
-  .more{
-    margin-left:auto;
+  .stat-label{
+    font-size:16px;
   }
 
+  .stat-value{
+    font-size:27px;
+  }
+
+  .market-top > div:nth-child(4){
+    grid-column:3;
+  }
+
+  .market-bottom{
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-top:42px;
+  }
+
+  .ca-value{
+    font-size:21px;
+  }
+
+  .market-buy .buy-btn{
+    font-size:19px;
+    padding:17px 28px;
+  }
+
+  .more-btn{
+    width:60px;
+    height:60px;
+    right:20px;
+    bottom:20px;
+  }
 
   /* ABOUT */
 
+  .about{
+    padding:55px 4% 0;
+  }
+
   .about-text{
-    padding:30px 4px 8px;
+    padding:28px 22px 30px;
+    border-radius:24px;
   }
 
   .about-text h2{
-    font-size:27px;
+    font-size:43px;
+    letter-spacing:-1.5px;
+    margin-bottom:22px;
   }
 
   .about-text p{
-    font-size:14px;
+    font-size:20px;
     line-height:1.55;
   }
 
-
-  /* FEATURES */
+  /* 3 FEATURES PER ROW */
 
   .features{
     grid-template-columns:repeat(3,1fr);
-
-    margin-top:24px;
-
-    gap:0;
+    margin-top:28px;
   }
 
   .feature{
     min-height:125px;
-
-    padding:16px 5px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-right:
-      1px solid rgba(93,169,231,.18);
-
-    border-bottom:
-      1px solid rgba(93,169,231,.18);
-  }
-
-  .feature:nth-child(3n){
-    border-right:0;
-  }
-
-  .feature:nth-child(n+4){
-    border-bottom:0;
+    padding:15px 4px;
   }
 
   .feature-icon{
-    width:36px;
-    height:36px;
-
-    margin-bottom:8px;
+    font-size:30px;
+    margin-bottom:10px;
   }
 
-  .feature-icon svg{
-    width:36px;
-    height:36px;
+  .feature strong{
+    font-size:15px;
   }
-
-  .feature-icon.rocket{
-    font-size:27px;
-  }
-
-  .feature b{
-    font-size:12px;
-    line-height:1.2;
-  }
-
-
-  /* SAME GUY */
 
   .hand{
     min-height:125px;
-
     padding:15px 4px;
-
     font-size:15px;
-
     line-height:1.15;
-
     transform:rotate(-4deg);
   }
 
-  .hand:after{
-    width:52px;
-    height:3px;
+  /* MEMES */
 
-    bottom:24px;
+  .memes{
+    padding:65px 4% 55px;
   }
-
-
-  /* MEMES HEADER */
 
   .section-head{
-    margin:30px 0 14px;
-
-    display:grid;
-
-    grid-template-columns:1fr auto;
-
-    align-items:end;
-
-    gap:5px 12px;
-  }
-
-  .section-head > div{
-    min-width:0;
-
-    display:block!important;
+    align-items:center;
   }
 
   .section-head h2{
-    font-size:30px;
-
-    line-height:1;
-
-    margin:0 0 7px;
+    font-size:48px;
   }
 
   .section-head p{
-    font-size:12px;
-
-    margin:0;
+    font-size:15px;
   }
 
-  .section-head > a{
-    font-size:12px;
+  /* HOW TO BUY */
 
-    align-self:end;
-
-    white-space:nowrap;
+  .how-to-buy{
+    padding:10px 4% 55px;
   }
 
-
-  /* FINAL MESSAGE */
-
-  .final-message{
-    font-size:20px;
-
-    padding:34px 10px 22px;
+  .how-card{
+    border-radius:24px;
   }
-
 
   /* FOOTER */
 
-  .footer-row{
-    flex-direction:column;
+  footer{
+    padding:35px 5%;
+  }
 
+  .footer-inner{
+    flex-direction:column;
     align-items:flex-start;
   }
 
-  .footer-brand strong{
-    display:inline-block;
-
-    font-size:26px;
-
-    white-space:nowrap;
-
-    line-height:1;
-  }
-
-  .footer-brand strong span{
-    display:inline !important;
-
-    color:#00f59b !important;
-  }
-
-  .footer-brand > span{
-    display:block;
-
-    margin:7px 0 0;
-  }
-
-  .footer-links{
-    flex-wrap:wrap;
-
-    gap:14px;
-  }
 }
-
-
-/* =========================
-   SMALL PHONES
-========================= */
 
 @media(max-width:430px){
 
+  .market-card{
+    padding:25px 22px 28px;
+  }
+
+  .market-top{
+    grid-template-columns:92px 1fr 1fr;
+    gap:12px;
+  }
+
+  .coin-image{
+    width:82px;
+    height:82px;
+  }
+
+  .coin-title{
+    font-size:25px;
+  }
+
+  .coin-subtitle{
+    font-size:18px;
+  }
+
+  .stat-label{
+    font-size:14px;
+  }
+
+  .stat-value{
+    font-size:24px;
+  }
+
+  .market-bottom{
+    margin-top:35px;
+  }
+
+  .ca-label{
+    font-size:15px;
+  }
+
+  .ca-value{
+    font-size:18px;
+  }
+
+  .market-buy .buy-btn{
+    font-size:17px;
+    padding:15px 22px;
+  }
+
+  .about-text{
+    padding:25px 18px 28px;
+  }
+
+  .about-text h2{
+    font-size:36px;
+  }
+
+  .about-text p{
+    font-size:18px;
+  }
+
   .feature{
     min-height:120px;
-
     padding:14px 4px;
   }
 
   .feature-icon{
-    width:34px;
-    height:34px;
-
-    margin-bottom:7px;
+    font-size:27px;
   }
 
-  .feature-icon svg{
-    width:34px;
-    height:34px;
-  }
-
-  .feature-icon.rocket{
-    font-size:25px;
-  }
-
-  .feature b{
-    font-size:11.5px;
-
-    line-height:1.2;
+  .feature strong{
+    font-size:14px;
   }
 
   .hand{
     min-height:120px;
-
     font-size:14px;
   }
 
-  .hand:after{
-    width:48px;
-
-    bottom:23px;
-  }
-
   .section-head h2{
-    font-size:27px;
-  }
-
-  .section-head p{
-    font-size:11px;
-  }
-
-  .final-message{
-    font-size:18px;
-
-    padding:30px 8px 20px;
-  }
-
-  .footer-brand strong{
-    font-size:26px;
+    font-size:42px;
   }
 }
-
 </style>
 </head>
 
-
-<body id="home">
-
+<body>
 
 <!-- =========================
      HERO
 ========================= -->
 
-<header class="hero">
+<section class="hero" id="home">
 
-  <img
-    src="./jumpy-cover.PNG"
-    alt="JUMPY — Just Jump"
-  >
+  <nav class="nav">
 
-  <nav class="hotspots" aria-label="Main navigation">
-
-    <a class="home" href="#home" aria-label="Home"></a>
-
-    <a class="about" href="#about" aria-label="About"></a>
-
-    <a class="memes" href="#memes" aria-label="Memes"></a>
-
-    <a class="how" href="#how-to-buy" aria-label="How to Buy"></a>
-
-    <a class="token" href="#tokenomics" aria-label="Tokenomics"></a>
-
-    <a class="community" href="#community" aria-label="Community"></a>
-
-    <a
-      class="buytop"
-      href="https://pump.fun"
-      target="_blank"
-      rel="noopener"
-      aria-label="Buy JUMPY">
+    <a href="#home">
+      <img src="Logo.JPG" alt="JUMPY" class="logo">
     </a>
 
-    <a
-      class="x"
-      href="https://x.com/jumpymeme"
-      target="_blank"
-      rel="noopener"
-      aria-label="X">
-    </a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#memes">Memes</a>
+      <a href="#how-to-buy">How to Buy</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#community">Community</a>
+    </div>
 
-    <a
-      class="dex"
-      href="https://dexscreener.com/solana/DPh4Cfctg8yycPZPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
-      target="_blank"
-      rel="noopener"
-      aria-label="DEX Screener">
-    </a>
+    <div class="nav-actions">
+      <a
+        href="https://pump.fun"
+        target="_blank"
+        rel="noopener"
+        class="buy-btn"
+      >
+        Buy $JUMPY
+      </a>
 
-    <a
-      class="buyhero"
-      href="https://pump.fun"
-      target="_blank"
-      rel="noopener"
-      aria-label="Buy JUMPY">
-    </a>
+      <a
+        href="https://x.com/jumpymeme"
+        target="_blank"
+        rel="noopener"
+        class="social-icon"
+        aria-label="X"
+      >
+        𝕏
+      </a>
 
-    <a
-      class="dexhero"
-      href="https://dexscreener.com/solana/DPh4Cfctg8yycPZPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
-      target="_blank"
-      rel="noopener"
-      aria-label="View on DEX Screener">
-    </a>
+      <a
+        href="https://dexscreener.com/solana/DPh4Cfctg8yycPZPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
+        target="_blank"
+        rel="noopener"
+        class="social-icon"
+        aria-label="DEX Screener"
+      >
+        ◈
+      </a>
+    </div>
 
   </nav>
 
-</header>
+  <!-- PADIDINTAS PIRMAS PAVEIKSLAS -->
+  <img
+    src="jumpy-cover.PNG"
+    alt="JUMPY"
+    class="hero-image"
+  >
 
-
-<main class="wrap">
+</section>
 
 
 <!-- =========================
      MARKET
 ========================= -->
 
-<section
-  class="market"
-  id="about"
->
+<section class="market-wrap">
 
   <div class="market-card">
 
-    <img
-      class="market-logo"
-      src="./Logo.JPG"
-      alt="JUMPY logo"
-    >
+    <div class="market-top">
 
-    <div class="market-name">
-
-      <strong>
-        $JUMPY
-      </strong>
-
-      <span>
-        A Meme Coin for Higher Places
-      </span>
-
-    </div>
-
-
-    <div class="stat">
-
-      <small>
-        Market Cap
-      </small>
-
-      <b>
-        —
-      </b>
-
-    </div>
-
-
-    <div class="stat">
-
-      <small>
-        Holders
-      </small>
-
-      <b>
-        —
-      </b>
-
-    </div>
-
-
-    <div class="stat">
-
-      <small>
-        Liquidity
-      </small>
-
-      <b>
-        —
-      </b>
-
-    </div>
-
-
-    <div class="ca">
-
-      <small>
-        CA
-      </small>
+      <div class="coin-image">
+        <img src="Logo.JPG" alt="$JUMPY">
+      </div>
 
       <div>
-        TAVO_CA
+        <div class="coin-title">$JUMPY</div>
+
+        <div class="coin-subtitle">
+          A Meme Coin for Higher Places
+        </div>
+      </div>
+
+      <div>
+        <div class="stat-label">MARKET CAP</div>
+        <div class="stat-value">—</div>
+      </div>
+
+      <div>
+        <div class="stat-label">HOLDERS</div>
+        <div class="stat-value">—</div>
       </div>
 
     </div>
 
+    <div class="market-bottom">
+
+      <div>
+        <div class="stat-label">LIQUIDITY</div>
+        <div class="stat-value">—</div>
+      </div>
+
+      <div>
+        <div class="ca-label">CA</div>
+        <div class="ca-value">TAVO_CA</div>
+
+        <div class="market-buy">
+          <a
+            href="https://pump.fun"
+            target="_blank"
+            rel="noopener"
+            class="buy-btn"
+          >
+            Buy $JUMPY
+          </a>
+        </div>
+      </div>
+
+    </div>
 
     <a
-      class="buy"
-      href="https://pump.fun"
+      href="https://dexscreener.com/solana/DPh4Cfctg8yycPZPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
       target="_blank"
       rel="noopener"
+      class="more-btn"
+      aria-label="DEX Screener"
     >
-      Buy $JUMPY
+      •••
     </a>
 
-
-    <div class="more">
-      •••
-    </div>
-
   </div>
 
 </section>
 
 
 <!-- =========================
-     ABOUT JUMPY
+     ABOUT
 ========================= -->
 
-<section class="about-text">
+<section class="about" id="about">
 
-  <h2>
-    ABOUT JUMP<span>Y</span>
-  </h2>
+  <div class="about-text">
 
-  <p>
-    JUMPY is built for one thing — going higher.
-    A community-driven meme coin on Solana, powered by
-    memes, good vibes and a community that keeps jumping forward.
-  </p>
+    <h2>
+      ABOUT JUMP<span>Y</span>
+    </h2>
 
-</section>
+    <p>
+      JUMPY is built for one thing — going higher.
+      A community-driven meme coin on Solana, powered by
+      memes, good vibes and a community that keeps jumping forward.
+    </p>
 
-
-<!-- =========================
-     FEATURES
-========================= -->
-
-<section
-  id="community"
-  class="features"
->
+  </div>
 
 
-  <!-- Strong Community -->
+  <div class="features">
 
-  <div class="feature">
-
-    <div class="feature-icon rocket">
-      🚀
+    <div class="feature">
+      <div class="feature-icon">🚀</div>
+      <strong>Strong<br>Community</strong>
     </div>
 
-    <b>
-      Strong<br>
-      Community
-    </b>
-
-  </div>
-
-
-  <!-- Real Memes -->
-
-  <div class="feature">
-
-    <div class="feature-icon">
-
-      <svg
-        viewBox="0 0 48 48"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-
-        <circle
-          cx="18"
-          cy="17"
-          r="7"
-        />
-
-        <circle
-          cx="31"
-          cy="19"
-          r="6"
-        />
-
-        <path
-          d="M5 38c1-8 7-12 13-12s12 4 13 12"
-        />
-
-        <path
-          d="M27 29c7-4 14 0 16 9"
-        />
-
-      </svg>
-
+    <div class="feature">
+      <div class="feature-icon">♧</div>
+      <strong>Real<br>Memes</strong>
     </div>
 
-    <b>
-      Real<br>
-      Memes
-    </b>
-
-  </div>
-
-
-  <!-- Fair Launch -->
-
-  <div class="feature">
-
-    <div class="feature-icon">
-
-      <svg
-        viewBox="0 0 48 48"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-
-        <path
-          d="M24 5L43 18 24 43 5 18 24 5Z"
-        />
-
-        <path
-          d="M5 18h38"
-        />
-
-        <path
-          d="M15 18l9 25 9-25"
-        />
-
-        <path
-          d="M15 18l9-13 9 13"
-        />
-
-      </svg>
-
+    <div class="feature">
+      <div class="feature-icon">◇</div>
+      <strong>Fair<br>Launch</strong>
     </div>
 
-    <b>
-      Fair<br>
-      Launch
-    </b>
-
-  </div>
-
-
-  <!-- Big Potential -->
-
-  <div class="feature">
-
-    <div class="feature-icon">
-
-      <svg
-        viewBox="0 0 48 48"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-
-        <rect
-          x="5"
-          y="27"
-          width="7"
-          height="16"
-          rx="2"
-        />
-
-        <rect
-          x="16"
-          y="19"
-          width="7"
-          height="24"
-          rx="2"
-        />
-
-        <rect
-          x="27"
-          y="11"
-          width="7"
-          height="32"
-          rx="2"
-        />
-
-        <path
-          d="M34 8h9v9"
-        />
-
-        <path
-          d="M43 8L31 20"
-        />
-
-      </svg>
-
+    <div class="feature">
+      <div class="feature-icon">↗</div>
+      <strong>Big<br>Potential</strong>
     </div>
 
-    <b>
-      Big<br>
-      Potential
-    </b>
-
-  </div>
-
-
-  <!-- To The Moon -->
-
-  <div class="feature">
-
-    <div class="feature-icon">
-
-      <svg
-        viewBox="0 0 48 48"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-
-        <circle
-          cx="24"
-          cy="24"
-          r="19"
-        />
-
-        <path
-          d="M5 24h38"
-        />
-
-        <path
-          d="M24 5c6 5 9 12 9 19s-3 14-9 19"
-        />
-
-        <path
-          d="M24 5c-6 5-9 12-9 19s3 14 9 19"
-        />
-
-        <path
-          d="M9 14h30"
-        />
-
-        <path
-          d="M9 34h30"
-        />
-
-      </svg>
-
+    <div class="feature">
+      <div class="feature-icon">◎</div>
+      <strong>To The<br>Moon</strong>
     </div>
 
-    <b>
-      To The<br>
-      Moon
-    </b>
+    <div class="feature hand">
+      <span>SAME GUY.</span>
+      <span>BIGGER PLANS.</span>
+    </div>
 
   </div>
-
-
-  <!-- Handwritten -->
-
-  <div class="feature hand">
-
-    <span>
-      SAME GUY.
-    </span>
-
-    <span>
-      BIGGER PLANS.
-    </span>
-
-  </div>
-
 
 </section>
 
@@ -1411,45 +936,27 @@ footer{
      MEMES
 ========================= -->
 
-<section id="memes">
+<section class="memes" id="memes">
 
   <div class="section-head">
 
-    <div
-      style="
-        display:flex;
-        align-items:baseline;
-        gap:12px
-      "
-    >
-
-      <h2>
-        MEMES
-      </h2>
-
-      <p>
-        Same guy. Different places.
-      </p>
-
+    <div>
+      <h2>MEMES</h2>
+      <p>Same guy. Different places.</p>
     </div>
 
-
-    <a
-      href="https://x.com/jumpymeme"
-      target="_blank"
-      rel="noopener"
-    >
+    <a href="#memes" class="view-all">
       View All →
     </a>
 
   </div>
 
-
-  <img
-    class="memes-img"
-    src="./Image.PNG"
-    alt="JUMPY memes"
-  >
+  <div class="memes-image">
+    <img
+      src="Image.PNG"
+      alt="JUMPY memes"
+    >
+  </div>
 
 </section>
 
@@ -1458,53 +965,14 @@ footer{
      HOW TO BUY
 ========================= -->
 
-<section
-  id="how-to-buy"
-  class="buy-art"
->
+<section class="how-to-buy" id="how-to-buy">
 
-  <img
-    src="./how%20to%20buy%20.PNG"
-    alt="How to buy JUMPY"
-  >
+  <div class="how-card">
 
-
-  <div class="buy-hotspots">
-
-    <a
-      class="step1"
-      href="https://phantom.com/"
-      target="_blank"
-      rel="noopener"
-      aria-label="Get a wallet">
-    </a>
-
-
-    <a
-      class="step2"
-      href="https://www.coinbase.com/how-to-buy/solana"
-      target="_blank"
-      rel="noopener"
-      aria-label="Buy SOL">
-    </a>
-
-
-    <a
-      class="step3"
-      href="https://jup.ag/"
-      target="_blank"
-      rel="noopener"
-      aria-label="Swap for JUMPY">
-    </a>
-
-
-    <a
-      class="step4"
-      href="https://x.com/jumpymeme"
-      target="_blank"
-      rel="noopener"
-      aria-label="Join the community">
-    </a>
+    <img
+      src="how to buy .PNG"
+      alt="How to buy $JUMPY"
+    >
 
   </div>
 
@@ -1515,112 +983,100 @@ footer{
      TOKENOMICS
 ========================= -->
 
-<section
-  id="tokenomics"
-  style="height:1px;overflow:hidden"
-  aria-label="Tokenomics"
->
+<section id="tokenomics" style="
+  padding:60px 5%;
+  text-align:center;
+">
+
+  <h2 style="
+    font-size:52px;
+    font-weight:900;
+    margin-bottom:15px;
+  ">
+    TOKENOMICS
+  </h2>
+
+  <p style="
+    color:#c8d8e7;
+    font-size:18px;
+  ">
+    $JUMPY on Solana.
+  </p>
+
 </section>
 
 
 <!-- =========================
-     FINAL MESSAGE
+     COMMUNITY
 ========================= -->
 
-<div class="final-message">
+<section id="community" style="
+  padding:20px 5% 80px;
+  text-align:center;
+">
 
-  JUST JUMP.
-  <span>KEEP GOING HIGHER. 🚀</span>
+  <h2 style="
+    font-size:52px;
+    font-weight:900;
+    margin-bottom:20px;
+  ">
+    COMMUNITY
+  </h2>
 
-</div>
+  <a
+    href="https://x.com/jumpymeme"
+    target="_blank"
+    rel="noopener"
+    class="buy-btn"
+  >
+    Follow @jumpymeme
+  </a>
 
-
-</main>
+</section>
 
 
 <!-- =========================
      FOOTER
 ========================= -->
 
-<footer id="community">
+<footer>
 
-  <div class="wrap footer-row">
+  <div class="footer-inner">
 
+    <div>
 
-    <div class="footer-brand">
-
-      <strong>JUMP<span>Y</span></strong>
-
-      <span>
-        A meme coin for higher places.
-      </span>
-
-    </div>
-
-
-    <div class="socials">
-
-      <!-- X -->
-
-      <a
-        class="social"
-        href="https://x.com/jumpymeme"
-        target="_blank"
-        rel="noopener"
-        aria-label="X"
-      >
-        𝕏
-      </a>
-
-
-      <!-- DEX SCREENER -->
-
-      <a
-        class="social"
-        href="https://dexscreener.com/solana/DPh4Cfctg8yycPZPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
-        target="_blank"
-        rel="noopener"
-        aria-label="DEX Screener"
-      >
-
-        <svg
-          class="dex-logo"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+      <a href="#home">
+        <img
+          src="Logo.JPG"
+          alt="JUMPY"
+          class="footer-logo"
         >
-
-          <rect
-            x="3"
-            y="11"
-            width="4"
-            height="10"
-            rx="1"
-          />
-
-          <rect
-            x="10"
-            y="7"
-            width="4"
-            height="14"
-            rx="1"
-          />
-
-          <rect
-            x="17"
-            y="3"
-            width="4"
-            height="18"
-            rx="1"
-          />
-
-        </svg>
-
       </a>
+
+      <div class="footer-text">
+        A meme coin for higher places.
+      </div>
 
     </div>
 
 
     <div class="footer-links">
+
+      <a
+        href="https://x.com/jumpymeme"
+        target="_blank"
+        rel="noopener"
+      >
+        𝕏
+      </a>
+
+      <a
+        href="https://dexscreener.com/solana/DPh4Cfctg8yycPZPZP6zVmhQJZ1tHSvByKAbBLjhLBVitW"
+        target="_blank"
+        rel="noopener"
+      >
+        DEX
+      </a>
 
       <a href="#home">
         Privacy
@@ -1634,16 +1090,22 @@ footer{
         Contact
       </a>
 
-      <span>
-        © 2026 JUMPY. All rights reserved.
-      </span>
-
     </div>
 
   </div>
 
-</footer>
+  <div style="
+    max-width:1100px;
+    margin:30px auto 0;
+    padding-top:20px;
+    border-top:1px solid rgba(100,170,215,.2);
+    color:#9eb8cb;
+    font-size:13px;
+  ">
+    © 2026 JUMPY. All rights reserved.
+  </div>
 
+</footer>
 
 </body>
 </html>
