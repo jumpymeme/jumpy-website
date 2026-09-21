@@ -231,12 +231,15 @@ img{
 
 .ca{
   min-width:105px;
+  max-width:230px;
 }
 
 .ca div{
   margin-top:7px;
   font-size:12px;
   white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .buy{
@@ -713,6 +716,12 @@ footer{
   .ca{
     min-width:
       calc(50% - 10px);
+
+    max-width:none;
+  }
+
+  .ca div{
+    max-width:100%;
   }
 
   .buy{
@@ -1010,8 +1019,6 @@ footer{
     <a class="community" href="#community" aria-label="Community"></a>
 
 
-    <!-- BUY TOP -->
-
     <a
       class="buytop"
       href="https://pump.fun/coin/8LjpCjbM2DU2Xgnd3GMmRN5yWqvxfeyP6aGKxCwDpump"
@@ -1020,8 +1027,6 @@ footer{
       aria-label="Buy JUMPY">
     </a>
 
-
-    <!-- X -->
 
     <a
       class="x"
@@ -1032,8 +1037,6 @@ footer{
     </a>
 
 
-    <!-- DEX -->
-
     <a
       class="dex"
       href="https://dexscreener.com/solana/86EaAS41wJYxii3XvFKvumuwpSZJ24iuQWk2jLey6bUg"
@@ -1043,8 +1046,6 @@ footer{
     </a>
 
 
-    <!-- BUY HERO -->
-
     <a
       class="buyhero"
       href="https://pump.fun/coin/8LjpCjbM2DU2Xgnd3GMmRN5yWqvxfeyP6aGKxCwDpump"
@@ -1053,8 +1054,6 @@ footer{
       aria-label="Buy JUMPY">
     </a>
 
-
-    <!-- DEX HERO -->
 
     <a
       class="dexhero"
@@ -1108,7 +1107,7 @@ footer{
         Market Cap
       </small>
 
-      <b>
+      <b id="market-cap">
         —
       </b>
 
@@ -1121,7 +1120,7 @@ footer{
         Holders
       </small>
 
-      <b>
+      <b id="holders">
         —
       </b>
 
@@ -1134,14 +1133,12 @@ footer{
         Liquidity
       </small>
 
-      <b>
+      <b id="liquidity">
         —
       </b>
 
     </div>
 
-
-    <!-- REAL JUMPY CA -->
 
     <div class="ca">
 
@@ -1149,14 +1146,12 @@ footer{
         CA
       </small>
 
-      <div>
+      <div title="8LjpCjbM2DU2Xgnd3GMmRN5yWqvxfeyP6aGKxCwDpump">
         8LjpCjbM2DU2Xgnd3GMmRN5yWqvxfeyP6aGKxCwDpump
       </div>
 
     </div>
 
-
-    <!-- BUY JUMPY -->
 
     <a
       class="buy"
@@ -1206,8 +1201,6 @@ footer{
 >
 
 
-  <!-- Strong Community -->
-
   <div class="feature">
 
     <div class="feature-icon rocket">
@@ -1222,8 +1215,6 @@ footer{
   </div>
 
 
-  <!-- Real Memes -->
-
   <div class="feature">
 
     <div class="feature-icon">
@@ -1233,25 +1224,13 @@ footer{
         xmlns="http://www.w3.org/2000/svg"
       >
 
-        <circle
-          cx="18"
-          cy="17"
-          r="7"
-        />
+        <circle cx="18" cy="17" r="7"/>
 
-        <circle
-          cx="31"
-          cy="19"
-          r="6"
-        />
+        <circle cx="31" cy="19" r="6"/>
 
-        <path
-          d="M5 38c1-8 7-12 13-12s12 4 13 12"
-        />
+        <path d="M5 38c1-8 7-12 13-12s12 4 13 12"/>
 
-        <path
-          d="M27 29c7-4 14 0 16 9"
-        />
+        <path d="M27 29c7-4 14 0 16 9"/>
 
       </svg>
 
@@ -1265,8 +1244,6 @@ footer{
   </div>
 
 
-  <!-- Fair Launch -->
-
   <div class="feature">
 
     <div class="feature-icon">
@@ -1276,21 +1253,13 @@ footer{
         xmlns="http://www.w3.org/2000/svg"
       >
 
-        <path
-          d="M24 5L43 18 24 43 5 18 24 5Z"
-        />
+        <path d="M24 5L43 18 24 43 5 18 24 5Z"/>
 
-        <path
-          d="M5 18h38"
-        />
+        <path d="M5 18h38"/>
 
-        <path
-          d="M15 18l9 25 9-25"
-        />
+        <path d="M15 18l9 25 9-25"/>
 
-        <path
-          d="M15 18l9-13 9 13"
-        />
+        <path d="M15 18l9-13 9 13"/>
 
       </svg>
 
@@ -1304,8 +1273,6 @@ footer{
   </div>
 
 
-  <!-- Big Potential -->
-
   <div class="feature">
 
     <div class="feature-icon">
@@ -1315,37 +1282,15 @@ footer{
         xmlns="http://www.w3.org/2000/svg"
       >
 
-        <rect
-          x="5"
-          y="27"
-          width="7"
-          height="16"
-          rx="2"
-        />
+        <rect x="5" y="27" width="7" height="16" rx="2"/>
 
-        <rect
-          x="16"
-          y="19"
-          width="7"
-          height="24"
-          rx="2"
-        />
+        <rect x="16" y="19" width="7" height="24" rx="2"/>
 
-        <rect
-          x="27"
-          y="11"
-          width="7"
-          height="32"
-          rx="2"
-        />
+        <rect x="27" y="11" width="7" height="32" rx="2"/>
 
-        <path
-          d="M34 8h9v9"
-        />
+        <path d="M34 8h9v9"/>
 
-        <path
-          d="M43 8L31 20"
-        />
+        <path d="M43 8L31 20"/>
 
       </svg>
 
@@ -1359,8 +1304,6 @@ footer{
   </div>
 
 
-  <!-- To The Moon -->
-
   <div class="feature">
 
     <div class="feature-icon">
@@ -1370,31 +1313,17 @@ footer{
         xmlns="http://www.w3.org/2000/svg"
       >
 
-        <circle
-          cx="24"
-          cy="24"
-          r="19"
-        />
+        <circle cx="24" cy="24" r="19"/>
 
-        <path
-          d="M5 24h38"
-        />
+        <path d="M5 24h38"/>
 
-        <path
-          d="M24 5c6 5 9 12 9 19s-3 14-9 19"
-        />
+        <path d="M24 5c6 5 9 12 9 19s-3 14-9 19"/>
 
-        <path
-          d="M24 5c-6 5-9 12-9 19s3 14 9 19"
-        />
+        <path d="M24 5c-6 5-9 12-9 19s3 14 9 19"/>
 
-        <path
-          d="M9 14h30"
-        />
+        <path d="M9 14h30"/>
 
-        <path
-          d="M9 34h30"
-        />
+        <path d="M9 34h30"/>
 
       </svg>
 
@@ -1407,8 +1336,6 @@ footer{
 
   </div>
 
-
-  <!-- Handwritten -->
 
   <div class="feature hand">
 
@@ -1579,8 +1506,6 @@ footer{
 
     <div class="socials">
 
-      <!-- X -->
-
       <a
         class="social"
         href="https://x.com/jumpymeme"
@@ -1591,8 +1516,6 @@ footer{
         𝕏
       </a>
 
-
-      <!-- DEX SCREENER -->
 
       <a
         class="social"
@@ -1662,6 +1585,320 @@ footer{
   </div>
 
 </footer>
+
+
+<!-- =========================
+     LIVE JUMPY DATA
+========================= -->
+
+<script>
+
+const JUMPY_CA =
+  "8LjpCjbM2DU2Xgnd3GMmRN5yWqvxfeyP6aGKxCwDpump";
+
+const JUMPY_PAIR =
+  "86EaAS41wJYxii3XvFKvumuwpSZJ24iuQWk2jLey6bUg";
+
+const DEX_API =
+  "https://api.dexscreener.com/latest/dex/pairs/solana/" + JUMPY_PAIR;
+
+const SOLANA_RPC =
+  "https://api.mainnet-beta.solana.com";
+
+const TOKEN_PROGRAM =
+  "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA";
+
+
+function formatMoney(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    !Number.isFinite(Number(value))
+  ){
+    return "—";
+  }
+
+  const number = Number(value);
+
+  if(number >= 1000000000){
+    return "$" + (number / 1000000000).toFixed(2) + "B";
+  }
+
+  if(number >= 1000000){
+    return "$" + (number / 1000000).toFixed(2) + "M";
+  }
+
+  if(number >= 1000){
+    return "$" + (number / 1000).toFixed(1) + "K";
+  }
+
+  if(number >= 1){
+    return "$" + number.toFixed(0);
+  }
+
+  return "$" + number.toFixed(2);
+}
+
+
+function setText(id,value){
+
+  const element = document.getElementById(id);
+
+  if(element){
+    element.textContent = value;
+  }
+
+}
+
+
+/* =========================
+   DEX SCREENER DATA
+========================= */
+
+async function loadMarketData(){
+
+  try{
+
+    const response = await fetch(
+      DEX_API + "?_=" + Date.now(),
+      {
+        cache:"no-store"
+      }
+    );
+
+    if(!response.ok){
+      throw new Error("DEX API error");
+    }
+
+    const data = await response.json();
+
+    const pair = data && data.pair
+      ? data.pair
+      : null;
+
+    if(!pair){
+      throw new Error("Pair not found");
+    }
+
+
+    const marketCap =
+      pair.marketCap ??
+      pair.fdv ??
+      null;
+
+
+    const liquidity =
+      pair.liquidity &&
+      pair.liquidity.usd !== undefined
+        ? pair.liquidity.usd
+        : null;
+
+
+    setText(
+      "market-cap",
+      formatMoney(marketCap)
+    );
+
+
+    setText(
+      "liquidity",
+      formatMoney(liquidity)
+    );
+
+
+  }catch(error){
+
+    console.log(
+      "JUMPY market data error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   SOLANA HOLDERS
+========================= */
+
+async function loadHolders(){
+
+  try{
+
+    const body = {
+
+      jsonrpc:"2.0",
+
+      id:1,
+
+      method:"getProgramAccounts",
+
+      params:[
+
+        TOKEN_PROGRAM,
+
+        {
+
+          encoding:"jsonParsed",
+
+          commitment:"confirmed",
+
+          filters:[
+
+            {
+              dataSize:165
+            },
+
+            {
+              memcmp:{
+                offset:0,
+                bytes:JUMPY_CA
+              }
+            }
+
+          ]
+
+        }
+
+      ]
+
+    };
+
+
+    const response = await fetch(
+      SOLANA_RPC,
+      {
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify(body),
+
+        cache:"no-store"
+      }
+    );
+
+
+    if(!response.ok){
+      throw new Error("Solana RPC error");
+    }
+
+
+    const data = await response.json();
+
+
+    if(
+      !data ||
+      !Array.isArray(data.result)
+    ){
+      throw new Error("Invalid Solana response");
+    }
+
+
+    const owners = new Set();
+
+
+    for(
+      const account of data.result
+    ){
+
+      try{
+
+        const info =
+          account
+            .account
+            .data
+            .parsed
+            .info;
+
+
+        const amount =
+          info
+            .tokenAmount
+            .amount;
+
+
+        const owner =
+          info.owner;
+
+
+        if(
+          owner &&
+          BigInt(amount) > 0n
+        ){
+
+          owners.add(owner);
+
+        }
+
+      }catch(error){
+
+        console.log(
+          "JUMPY holder parse error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    setText(
+      "holders",
+      owners.size.toLocaleString()
+    );
+
+
+  }catch(error){
+
+    console.log(
+      "JUMPY holders error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   LOAD EVERYTHING
+========================= */
+
+async function updateJumpyStats(){
+
+  await Promise.allSettled([
+
+    loadMarketData(),
+
+    loadHolders()
+
+  ]);
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+updateJumpyStats();
+
+
+/*
+   Update every 30 seconds
+*/
+
+setInterval(
+  updateJumpyStats,
+  30000
+);
+
+</script>
 
 
 </body>
