@@ -1609,6 +1609,10 @@ const TOKEN_PROGRAM =
   "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA";
 
 
+/* =========================
+   FORMAT MONEY
+========================= */
+
 function formatMoney(value){
 
   if(
@@ -1641,9 +1645,14 @@ function formatMoney(value){
 }
 
 
+/* =========================
+   SET ELEMENT TEXT
+========================= */
+
 function setText(id,value){
 
-  const element = document.getElementById(id);
+  const element =
+    document.getElementById(id);
 
   if(element){
     element.textContent = value;
@@ -1653,7 +1662,7 @@ function setText(id,value){
 
 
 /* =========================
-   DEX SCREENER DATA
+   DEX SCREENER
 ========================= */
 
 async function loadMarketData(){
@@ -1668,25 +1677,41 @@ async function loadMarketData(){
     );
 
     if(!response.ok){
-      throw new Error("DEX API error");
+      throw new Error(
+        "DEX Screener HTTP " +
+        response.status
+      );
     }
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
-    const pair = data && data.pair
-      ? data.pair
-      : null;
+    const pair =
+      data &&
+      Array.isArray(data.pairs)
+        ? data.pairs.find(
+            p =>
+              p &&
+              p.chainId === "solana"
+          ) || data.pairs[0]
+        : data.pair || null;
 
     if(!pair){
-      throw new Error("Pair not found");
+      throw new Error(
+        "JUMPY pair not found"
+      );
     }
 
+
+    /* MARKET CAP */
 
     const marketCap =
       pair.marketCap ??
       pair.fdv ??
       null;
 
+
+    /* LIQUIDITY */
 
     const liquidity =
       pair.liquidity &&
@@ -1720,6 +1745,57 @@ async function loadMarketData(){
 
 
 /* =========================
+   READ UINT64 LITTLE ENDIAN
+========================= */
+
+function readUint64LE(bytes){
+
+  let value = 0n;
+
+  for(let i = 7; i >= 0; i--){
+
+    value =
+      (value << 8n) |
+      BigInt(bytes[i]);
+
+  }
+
+  return value;
+
+}
+
+
+/* =========================
+   BASE64 → BYTES
+========================= */
+
+function base64ToBytes(base64){
+
+  const binary =
+    atob(base64);
+
+  const bytes =
+    new Uint8Array(
+      binary.length
+    );
+
+  for(
+    let i = 0;
+    i < binary.length;
+    i++
+  ){
+
+    bytes[i] =
+      binary.charCodeAt(i);
+
+  }
+
+  return bytes;
+
+}
+
+
+/* =========================
    SOLANA HOLDERS
 ========================= */
 
@@ -1741,7 +1817,14 @@ async function loadHolders(){
 
         {
 
-          encoding:"jsonParsed",
+          /*
+           * Base64 instead of jsonParsed.
+           *
+           * This makes the RPC response
+           * much smaller.
+           */
+
+          encoding:"base64",
 
           commitment:"confirmed",
 
@@ -1758,7 +1841,22 @@ async function loadHolders(){
               }
             }
 
-          ]
+          ],
+
+          /*
+           * Token account layout:
+           *
+           * 0  - 31  = mint
+           * 32 - 63  = owner
+           * 64 - 71  = amount
+           *
+           * We only need owner + amount.
+           */
+
+          dataSlice:{
+            offset:32,
+            length:40
+          }
 
         }
 
@@ -1767,78 +1865,144 @@ async function loadHolders(){
     };
 
 
-    const response = await fetch(
-      SOLANA_RPC,
-      {
-        method:"POST",
+    const response =
+      await fetch(
+        SOLANA_RPC,
+        {
+          method:"POST",
 
-        headers:{
-          "Content-Type":"application/json"
-        },
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
 
-        body:JSON.stringify(body),
+          body:
+            JSON.stringify(body),
 
-        cache:"no-store"
-      }
-    );
+          cache:"no-store"
+        }
+      );
 
 
     if(!response.ok){
-      throw new Error("Solana RPC error");
+
+      throw new Error(
+        "Solana RPC HTTP " +
+        response.status
+      );
+
     }
 
 
-    const data = await response.json();
+    const data =
+      await response.json();
+
+
+    if(data.error){
+
+      throw new Error(
+        data.error.message ||
+        "Solana RPC error"
+      );
+
+    }
 
 
     if(
-      !data ||
+      !data.result ||
       !Array.isArray(data.result)
     ){
-      throw new Error("Invalid Solana response");
+
+      throw new Error(
+        "Invalid Solana response"
+      );
+
     }
 
 
-    const owners = new Set();
+    const owners =
+      new Set();
 
 
     for(
-      const account of data.result
+      const account
+      of data.result
     ){
 
       try{
 
-        const info =
-          account
-            .account
-            .data
-            .parsed
-            .info;
+        const encoded =
+          account &&
+          account.account &&
+          account.account.data &&
+          account.account.data[0];
+
+
+        if(!encoded){
+          continue;
+        }
+
+
+        const bytes =
+          base64ToBytes(
+            encoded
+          );
+
+
+        /*
+         * dataSlice starts at byte 32.
+         *
+         * bytes 0-31:
+         * owner
+         *
+         * bytes 32-39:
+         * amount
+         */
+
+
+        if(bytes.length < 40){
+          continue;
+        }
+
+
+        const ownerBytes =
+          bytes.slice(0,32);
+
+
+        const amountBytes =
+          bytes.slice(32,40);
 
 
         const amount =
-          info
-            .tokenAmount
-            .amount;
+          readUint64LE(
+            amountBytes
+          );
 
+
+        if(amount === 0n){
+          continue;
+        }
+
+
+        /*
+         * Convert owner public key
+         * bytes into base58.
+         */
 
         const owner =
-          info.owner;
+          bytesToBase58(
+            ownerBytes
+          );
 
 
-        if(
-          owner &&
-          BigInt(amount) > 0n
-        ){
-
+        if(owner){
           owners.add(owner);
-
         }
 
       }catch(error){
 
         console.log(
-          "JUMPY holder parse error:",
+          "Holder parse error:",
           error
         );
 
@@ -1866,6 +2030,96 @@ async function loadHolders(){
 
 
 /* =========================
+   BASE58
+========================= */
+
+function bytesToBase58(bytes){
+
+  const alphabet =
+    "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+
+
+  let digits = [0];
+
+
+  for(
+    const byte of bytes
+  ){
+
+    let carry =
+      byte;
+
+
+    for(
+      let j = 0;
+      j < digits.length;
+      j++
+    ){
+
+      const value =
+        digits[j] * 256 +
+        carry;
+
+      digits[j] =
+        value % 58;
+
+      carry =
+        Math.floor(
+          value / 58
+        );
+
+    }
+
+
+    while(carry > 0){
+
+      digits.push(
+        carry % 58
+      );
+
+      carry =
+        Math.floor(
+          carry / 58
+        );
+
+    }
+
+  }
+
+
+  let result = "";
+
+
+  for(
+    let i = 0;
+    i < bytes.length &&
+    bytes[i] === 0;
+    i++
+  ){
+
+    result += "1";
+
+  }
+
+
+  for(
+    let i = digits.length - 1;
+    i >= 0;
+    i--
+  ){
+
+    result +=
+      alphabet[digits[i]];
+
+  }
+
+
+  return result;
+
+}
+
+
+/* =========================
    LOAD EVERYTHING
 ========================= */
 
@@ -1883,15 +2137,15 @@ async function updateJumpyStats(){
 
 
 /* =========================
-   START
+   FIRST LOAD
 ========================= */
 
 updateJumpyStats();
 
 
-/*
-   Update every 30 seconds
-*/
+/* =========================
+   AUTO UPDATE
+========================= */
 
 setInterval(
   updateJumpyStats,
